@@ -119,7 +119,7 @@ export default {
 <style lang="less">
 .like-table {
   .ant-row {
-    padding: 3px 0;
+    padding: 7px 0;
   }
 }
 </style>

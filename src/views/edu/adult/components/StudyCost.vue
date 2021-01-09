@@ -9,7 +9,7 @@
   >
     <a-row>
       <a-col :span="12" :gutter="5" v-for="(item, index) in tab6" :key="index">
-        <a-form-item :label="item.label">
+        <a-form-model-item :label="item.label" :prop="item.field">
           <a-input v-if="item.form === 'input'" v-model="studyCost[item.field]" />
           <a-select v-if="item.form === 'select'" v-model="studyCost[item.field]">
             <a-select-option value="shanghai">
@@ -17,7 +17,7 @@
             </a-select-option>
           </a-select>
           <a-date-picker v-if="item.form === 'date'" v-model="studyCost[item.field]" />
-        </a-form-item>
+        </a-form-model-item>
       </a-col>
     </a-row>
   </a-form-model>
@@ -164,12 +164,18 @@ export default {
           form: 'input',
           rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
         }
-      ],
-      rules: []
+      ]
     }
   },
-  computed: {}
+  computed: {
+    rules() {
+      const rules = {}
+      this.tab6.forEach(item => {
+        rules[item.field] = item.rules
+      })
+      return rules
+    }
+  }
 }
 </script>
-<style lang="less">
-</style>
+<style lang="less"></style>

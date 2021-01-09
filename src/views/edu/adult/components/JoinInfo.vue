@@ -2,14 +2,14 @@
   <a-form-model
     class="form-no-margin"
     ref="joinInfo"
-    :model="form"
+    :model="joinInfo"
     :rules="rules"
     :label-col="labelCol"
     :wrapper-col="wrapperCol"
   >
     <a-row>
       <a-col :span="12" :gutter="5" v-for="(item, index) in tab3" :key="index">
-        <a-form-item :label="item.label">
+        <a-form-model-item :label="item.label" :prop="item.field">
           <a-input v-if="item.form === 'input'" v-model="joinInfo[item.field]" />
           <a-select v-if="item.form === 'select'" v-model="joinInfo[item.field]">
             <a-select-option value="shanghai">
@@ -22,7 +22,7 @@
             </a-radio>
           </a-radio-group>
           <a-date-picker v-if="item.form === 'date'" v-model="joinInfo[item.field]" />
-        </a-form-item>
+        </a-form-model-item>
       </a-col>
     </a-row>
   </a-form-model>
@@ -120,10 +120,17 @@ export default {
           form: 'radio',
           rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
         }
-      ],
-      rules: []
+      ]
     }
   },
-  computed: {}
+  computed: {
+    rules() {
+      const rules = {}
+      this.tab3.forEach(item => {
+        rules[item.field] = item.rules
+      })
+      return rules
+    }
+  }
 }
 </script>

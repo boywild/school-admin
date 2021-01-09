@@ -3,7 +3,9 @@
     title="新建学生"
     :width="900"
     :visible="visible"
+    :mask-closable="false"
     :confirmLoading="loading"
+    :okText="okText"
     @ok="
       () => {
         $emit('ok')
@@ -19,7 +21,7 @@
       <a-tab-pane key="1" tab="基本信息">
         <a-spin :spinning="loading"><BaseInfo></BaseInfo> </a-spin>
       </a-tab-pane>
-      <a-tab-pane key="2" tab="学生图片信息">
+      <a-tab-pane key="2" tab="图片信息">
         <a-spin :spinning="loading"><ImgInfo></ImgInfo> </a-spin>
       </a-tab-pane>
       <a-tab-pane key="3" tab="报名相关信息">
@@ -48,40 +50,45 @@ export default {
   components: { BaseInfo, ImgInfo, JoinInfo, StudyTerm, StudyDegree, StudyCost },
   data() {
     return {
-      // form: this.$form.createForm(this),
-      form: {},
-      previewVisible: false,
-      previewImage: '',
-      rules: {}
+      currentTab: '1'
     }
   },
   created() {
     console.log('custom modal created')
   },
   computed: {
-    formItemLayout() {
-      return {
-        labelCol: { span: 4 },
-        wrapperCol: { span: 14 }
+    okText() {
+      let btnTxt = ''
+      switch (this.currentTab) {
+        case '1':
+          btnTxt = '基本信息'
+          break
+        case '2':
+          btnTxt = '图片信息'
+          break
+        case '3':
+          btnTxt = '报名相关信息'
+          break
+        case '4':
+          btnTxt = '学期管理信息'
+          break
+        case '5':
+          btnTxt = '学位管理信息'
+          break
+        case '6':
+          btnTxt = '财务管理信息'
+          break
       }
+      return '保存' + btnTxt
     }
   },
   methods: {
     callback(key) {
+      this.currentTab = key
       console.log(key)
     },
     handleCancel() {
       this.previewVisible = false
-    },
-    async handlePreview(file) {
-      if (!file.url && !file.preview) {
-        // file.preview = await getBase64(file.originFileObj)
-      }
-      this.previewImage = file.url || file.preview
-      this.previewVisible = true
-    },
-    handleChange({ fileList }) {
-      this.fileList = fileList
     }
   }
 }
