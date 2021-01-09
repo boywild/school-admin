@@ -63,16 +63,6 @@
         :rowSelection="rowSelection"
         showPagination="auto"
       >
-        <span slot="serial" slot-scope="text, record, index">
-          {{ index + 1 }}
-        </span>
-        <span slot="status" slot-scope="text">
-          <a-badge :status="text | statusTypeFilter" :text="text | statusFilter" />
-        </span>
-        <span slot="description" slot-scope="text">
-          <ellipsis :length="4" tooltip>{{ text }}</ellipsis>
-        </span>
-
         <span slot="action">
           <template>
             <a>修改</a>
@@ -101,7 +91,6 @@ import { getRoleList, getServiceList } from '@/api/manage'
 import CreateForm from './components/CreateForm'
 
 const columns = [
-  { title: '#', scopedSlots: { customRender: 'serial' } },
   { title: '学号', dataIndex: 'no', width: 150 },
   { title: '姓名', dataIndex: 'description', width: 120 },
   { title: '身份证号', dataIndex: 'callNo', width: 170 },
@@ -113,13 +102,6 @@ const columns = [
   { title: '学分', dataIndex: 'score', width: 80 },
   { title: '操作', dataIndex: 'action', width: '80px', scopedSlots: { customRender: 'action' } }
 ]
-
-const statusMap = {
-  0: { status: 'default', text: '关闭' },
-  1: { status: 'processing', text: '运行中' },
-  2: { status: 'success', text: '已上线' },
-  3: { status: 'error', text: '异常' }
-}
 
 export default {
   name: 'TableList',
@@ -151,14 +133,7 @@ export default {
       selectedRows: []
     }
   },
-  filters: {
-    statusFilter(type) {
-      return statusMap[type].text
-    },
-    statusTypeFilter(type) {
-      return statusMap[type].status
-    }
-  },
+
   created() {
     getRoleList({ t: new Date() })
   },
