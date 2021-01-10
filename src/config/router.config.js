@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import { UserLayout, BasicLayout, BlankLayout } from '@/layouts'
+import { UserLayout, BasicLayout, PageView } from '@/layouts'
 import { bxAnaalyse } from '@/core/icons'
 
 const RouteView = {
@@ -350,6 +350,27 @@ export const asyncRouterMap = [
         ]
       },
       {
+        path: '/sys',
+        component: RouteView,
+        redirect: '/sys/user',
+        name: 'sys',
+        meta: { title: '系统管理', icon: 'setting', permission: ['user'] },
+        children: [
+          {
+            path: '/sys/user',
+            name: 'sysUser',
+            component: () => import(/* webpackChunkName: "sysUser" */ '@/views/sys/user/index'),
+            meta: { title: '用户列表', permission: ['user'] }
+          },
+          {
+            path: '/sys/role',
+            name: 'sysRole',
+            component: () => import(/* webpackChunkName: "sysRole" */ '@/views/sys/role/index'),
+            meta: { title: '角色列表', permission: ['user'] }
+          }
+        ]
+      },
+      {
         path: '/todo',
         component: RouteView,
         redirect: '/todo/list',
@@ -364,27 +385,27 @@ export const asyncRouterMap = [
             meta: { title: '待办列表', permission: ['user'] }
           }
         ]
-      }
+      },
 
       // other
-      /*
       {
         path: '/other',
         name: 'otherPage',
         component: PageView,
-        meta: { title: '其他组件', icon: 'slack', permission: [ 'dashboard' ] },
+        meta: { title: '其他组件', icon: 'slack', permission: ['dashboard'] },
+        hidden: true,
         redirect: '/other/icon-selector',
         children: [
           {
             path: '/other/icon-selector',
             name: 'TestIconSelect',
             component: () => import('@/views/other/IconSelectorView'),
-            meta: { title: 'IconSelector', icon: 'tool', keepAlive: true, permission: [ 'dashboard' ] }
+            meta: { title: 'IconSelector', icon: 'tool', keepAlive: true, permission: ['dashboard'] }
           },
           {
             path: '/other/list',
             component: RouteView,
-            meta: { title: '业务布局', icon: 'layout', permission: [ 'support' ] },
+            meta: { title: '业务布局', icon: 'layout', permission: ['support'] },
             redirect: '/other/list/tree-list',
             children: [
               {
@@ -427,7 +448,6 @@ export const asyncRouterMap = [
           }
         ]
       }
-      */
     ]
   },
   {
