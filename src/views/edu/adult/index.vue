@@ -50,7 +50,7 @@
 
       <div class="table-operator">
         <a-button type="primary" icon="plus" @click="handleAdd">新建</a-button>
-        <a-button type="danger" icon="delete" @click="handleAdd">删除</a-button>
+        <a-button type="danger" icon="delete" @click="deleteStudent">删除</a-button>
         <a-button type="primary" ghost icon="download">导出数据</a-button>
       </div>
 
@@ -63,10 +63,11 @@
         :alert="true"
         :rowSelection="rowSelection"
         showPagination="auto"
+        :scroll="{ x: 1500 }"
       >
-        <span slot="action">
+        <span slot="action" slot-scope="text, record">
           <template>
-            <a>修改</a>
+            <a @click="handleModify(record)">修改</a>
           </template>
         </span>
       </s-table>
@@ -86,22 +87,23 @@
 <script>
 import moment from 'moment'
 import { STable, Ellipsis } from '@/components'
-import { getRoleList, getServiceList } from '@/api/manage'
+import { getRoleList } from '@/api/manage'
+import { getStudentsList } from '@/api/students'
 
 // import StepByStepModal from './modules/StepByStepModal'
 import CreateForm from './components/CreateForm'
 
 const columns = [
-  { title: '学号', dataIndex: 'no', width: 150 },
-  { title: '姓名', dataIndex: 'description', width: 120 },
+  { title: '学号', dataIndex: 'no', width: 160 },
+  { title: '姓名', dataIndex: 'description', width: 100 },
   { title: '身份证号', dataIndex: 'callNo', width: 170 },
-  { title: '电话号', dataIndex: 'status', width: 100 },
+  { title: '电话号', dataIndex: 'status', width: 140 },
   { title: '年龄', dataIndex: 'age', width: 70 },
   { title: '毕业院校', dataIndex: 'school', width: 150 },
-  { title: '专业', dataIndex: 'zy', width: 150 },
+  { title: '专业', dataIndex: 'zy', width: 140 },
   { title: '毕业时间', dataIndex: 'updatedAt', width: 190 },
   { title: '学分', dataIndex: 'score', width: 80 },
-  { title: '操作', dataIndex: 'action', width: '80px', scopedSlots: { customRender: 'action' } }
+  { title: '操作', dataIndex: 'action', width: 80, fixed: 'right', scopedSlots: { customRender: 'action' } }
 ]
 
 export default {
@@ -126,7 +128,7 @@ export default {
       loadData: parameter => {
         const requestParameters = Object.assign({}, parameter, this.queryParam)
         console.log('loadData request parameters:', requestParameters)
-        return getServiceList(requestParameters).then(res => {
+        return getStudentsList(requestParameters).then(res => {
           return res.result
         })
       },
@@ -152,6 +154,10 @@ export default {
       this.mdl = null
       this.visible = true
     },
+    tableRefresh() {
+      const table = this.$refs.table
+      table.refresh()
+    },
     handleOk() {
       const form = this.$refs.createModal.form
       this.confirmLoading = true
@@ -170,7 +176,7 @@ export default {
               // 重置表单数据
               form.resetFields()
               // 刷新表格
-              this.$refs.table.refresh()
+              this.tableRefresh()
 
               this.$message.info('修改成功')
             })
@@ -186,7 +192,7 @@ export default {
               // 重置表单数据
               form.resetFields()
               // 刷新表格
-              this.$refs.table.refresh()
+              this.tableRefresh()
 
               this.$message.info('新增成功')
             })
@@ -199,6 +205,11 @@ export default {
     // 取消新建
     handleCancel() {
       this.visible = false
+    },
+    // 修改
+    handleModify(record) {
+      this.mdl = record
+      this.visible = true
     },
     // 勾选
     onSelectChange(selectedRowKeys, selectedRows) {
@@ -213,6 +224,24 @@ export default {
       this.queryParam = {
         date: moment(new Date())
       }
+    },
+    // 删除学生
+    deleteStudent() {
+      if (!this.selectedRows.length) {
+        this.$message.warning('至少选择一项')
+        return
+      }
+      this.$confirm({
+        title: '是否确认删除这些数据',
+        content: '请在删除前仔细确定删除数据.确认无误后点击确认按钮删除',
+        onOk: async () => {
+          await new Promise((resolve, reject) => {
+            setTimeout(Math.random() > 0.5 ? resolve : reject, 1000)
+          }).catch(() => console.log('Oops errors!'))
+          await this.tableRefresh()
+        },
+        onCancel() {}
+      })
     }
   }
 }

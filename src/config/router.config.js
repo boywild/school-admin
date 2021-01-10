@@ -22,6 +22,7 @@ export const asyncRouterMap = [
         redirect: '/dashboard/workplace',
         component: RouteView,
         meta: { title: 'menu.dashboard', keepAlive: true, icon: bxAnaalyse, permission: ['dashboard'] },
+        hidden: true,
         children: [
           {
             path: '/dashboard/analysis/:pageNo([1-9]\\d*)?',
@@ -49,6 +50,7 @@ export const asyncRouterMap = [
         redirect: '/form/base-form',
         component: RouteView,
         meta: { title: 'menu.form', icon: 'form', permission: ['form'] },
+        hidden: true,
         children: [
           {
             path: '/form/base-form',
@@ -77,6 +79,7 @@ export const asyncRouterMap = [
         component: RouteView,
         redirect: '/list/table-list',
         meta: { title: 'menu.list', icon: 'table', permission: ['table'] },
+        hidden: true,
         children: [
           {
             path: '/list/table-list/:pageNo([1-9]\\d*)?',
@@ -134,6 +137,7 @@ export const asyncRouterMap = [
         component: RouteView,
         redirect: '/profile/basic',
         meta: { title: 'menu.profile', icon: 'profile', permission: ['profile'] },
+        hidden: true,
         children: [
           {
             path: '/profile/basic',
@@ -157,6 +161,7 @@ export const asyncRouterMap = [
         component: RouteView,
         redirect: '/result/success',
         meta: { title: 'menu.result', icon: 'check-circle-o', permission: ['result'] },
+        hidden: true,
         children: [
           {
             path: '/result/success',
@@ -180,6 +185,7 @@ export const asyncRouterMap = [
         component: RouteView,
         redirect: '/exception/403',
         meta: { title: 'menu.exception', icon: 'warning', permission: ['exception'] },
+        hidden: true,
         children: [
           {
             path: '/exception/403',
@@ -209,6 +215,7 @@ export const asyncRouterMap = [
         redirect: '/account/center',
         name: 'account',
         meta: { title: 'menu.account', icon: 'user', keepAlive: true, permission: ['user'] },
+        hidden: true,
         children: [
           {
             path: '/account/center',
@@ -273,7 +280,7 @@ export const asyncRouterMap = [
         component: RouteView,
         redirect: '/edu/adult',
         name: 'edu',
-        meta: { title: '学历教育', icon: 'user', permission: ['user'] },
+        meta: { title: '学历教育', icon: 'trophy', permission: ['user'] },
         children: [
           {
             path: '/edu/adult',
@@ -294,7 +301,7 @@ export const asyncRouterMap = [
         component: RouteView,
         redirect: '/training/hr',
         name: 'training',
-        meta: { title: '职业培训', icon: 'user', permission: ['user'] },
+        meta: { title: '职业培训', icon: 'customer-service', permission: ['user'] },
         children: [
           {
             path: '/training/hr',
@@ -315,7 +322,7 @@ export const asyncRouterMap = [
         component: RouteView,
         redirect: '/accountant/money',
         name: 'accountant',
-        meta: { title: '财务管理', icon: 'user', permission: ['user'] },
+        meta: { title: '财务管理', icon: 'money-collect', permission: ['user'] },
         hideChildrenInMenu: true,
         children: [
           {
@@ -331,7 +338,7 @@ export const asyncRouterMap = [
         component: RouteView,
         redirect: '/article/list',
         name: 'article',
-        meta: { title: '文章管理', icon: 'user', permission: ['user'] },
+        meta: { title: '文章管理', icon: 'file-text', permission: ['user'] },
         hideChildrenInMenu: true,
         children: [
           {
@@ -347,7 +354,7 @@ export const asyncRouterMap = [
         component: RouteView,
         redirect: '/todo/list',
         name: 'todo',
-        meta: { title: '待办事项', icon: 'user', permission: ['user'] },
+        meta: { title: '待办事项', icon: 'bars', permission: ['user'] },
         hideChildrenInMenu: true,
         children: [
           {

@@ -98,12 +98,16 @@ export default {
     },
     validate(callback) {
       const form = this.$refs.imgInfoForm
-      form.validate((success) => {
+      form.validate(success => {
         this.$emit('validate', { success, data: this.imgInfo })
         if (success) {
           callback && callback(this.imgInfo)
         }
       })
+    },
+    resetForm() {
+      const form = this.$refs.imgInfoForm
+      form.resetFields()
     }
   }
 }

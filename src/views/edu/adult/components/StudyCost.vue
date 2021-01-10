@@ -215,6 +215,10 @@ export default {
           callback && callback(this.studyCost)
         }
       })
+    },
+    resetForm() {
+      const form = this.$refs.studyCostForm
+      form.resetFields()
     }
   }
 }

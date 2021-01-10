@@ -10,7 +10,12 @@
     <a-row>
       <a-col :span="12" :gutter="5" v-for="(item, index) in tab1" :key="index">
         <a-form-model-item :label="item.label" :prop="item.field">
-          <a-input v-if="item.form === 'input'" has-feedback v-model.trim="baseInfo[item.field]" :placeholder="'请输入' + item.label" />
+          <a-input
+            v-if="item.form === 'input'"
+            has-feedback
+            v-model.trim="baseInfo[item.field]"
+            :placeholder="'请输入' + item.label"
+          />
           <a-select v-if="item.form === 'select'" v-model="baseInfo[item.field]" :placeholder="'请输入' + item.label">
             <a-select-option :value="select.value" v-for="(select, count) in selectData[item.field]" :key="count">
               {{ select.name }}
@@ -224,6 +229,10 @@ export default {
           callback && callback(this.baseInfo)
         }
       })
+    },
+    resetForm() {
+      const form = this.$refs.baseInfoForm
+      form.resetFields()
     }
   }
 }

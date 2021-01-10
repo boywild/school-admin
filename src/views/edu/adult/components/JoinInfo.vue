@@ -151,6 +151,10 @@ export default {
           callback && callback(this.joinInfo)
         }
       })
+    },
+    resetForm() {
+      const form = this.$refs.joinInfoForm
+      form.resetFields()
     }
   }
 }

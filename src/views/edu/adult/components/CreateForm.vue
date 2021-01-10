@@ -1,6 +1,6 @@
 <template>
   <a-modal
-    title="新建学生"
+    :title="model && model.id ? '修改学生' : '新建学生'"
     :width="900"
     :visible="visible"
     :mask-closable="false"
@@ -80,6 +80,16 @@ export default {
           break
       }
       return '保存' + btnTxt
+    }
+  },
+  watch: {
+    visible(newVal, oldVal) {
+      if (!newVal) {
+        this.$refs.baseInfo && this.$refs.baseInfo.resetForm()
+        this.$refs.imgInfo && this.$refs.imgInfo.resetForm()
+        this.$refs.joinInfo && this.$refs.joinInfo.resetForm()
+        this.$refs.studyCost && this.$refs.studyCost.resetForm()
+      }
     }
   },
   methods: {
