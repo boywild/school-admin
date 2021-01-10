@@ -51,6 +51,7 @@
       <div class="table-operator">
         <a-button type="primary" icon="plus" @click="handleAdd">新建</a-button>
         <a-button type="danger" icon="delete" @click="handleAdd">删除</a-button>
+        <a-button type="primary" ghost icon="download">导出数据</a-button>
       </div>
 
       <s-table
@@ -146,6 +147,7 @@ export default {
     }
   },
   methods: {
+    // 新建学生
     handleAdd() {
       this.mdl = null
       this.visible = true
@@ -194,9 +196,11 @@ export default {
         }
       })
     },
+    // 取消新建
     handleCancel() {
       this.visible = false
     },
+    // 勾选
     onSelectChange(selectedRowKeys, selectedRows) {
       this.selectedRowKeys = selectedRowKeys
       this.selectedRows = selectedRows
@@ -204,6 +208,7 @@ export default {
     toggleAdvanced() {
       this.advanced = !this.advanced
     },
+    // 重置search条件
     resetSearchForm() {
       this.queryParam = {
         date: moment(new Date())

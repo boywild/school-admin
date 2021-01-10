@@ -19,17 +19,17 @@
   >
     <a-tabs type="card" @change="callback">
       <a-tab-pane key="1" tab="基本信息">
-        <a-spin :spinning="loading"><BaseInfo></BaseInfo> </a-spin>
+        <a-spin :spinning="loading"><BaseInfo ref="baseInfo"></BaseInfo> </a-spin>
       </a-tab-pane>
       <a-tab-pane key="2" tab="图片信息">
-        <a-spin :spinning="loading"><ImgInfo></ImgInfo> </a-spin>
+        <a-spin :spinning="loading"><ImgInfo ref="imgInfo"></ImgInfo> </a-spin>
       </a-tab-pane>
       <a-tab-pane key="3" tab="报名相关信息">
-        <a-spin :spinning="loading"><JoinInfo></JoinInfo> </a-spin>
+        <a-spin :spinning="loading"><JoinInfo ref="joinInfo"></JoinInfo> </a-spin>
       </a-tab-pane>
-      <a-tab-pane key="4" tab="学期管理"><StudyTerm></StudyTerm> </a-tab-pane>
-      <a-tab-pane key="5" tab="学位管理"><StudyDegree></StudyDegree> </a-tab-pane>
-      <a-tab-pane key="6" tab="财务管理"> <StudyCost></StudyCost> </a-tab-pane>
+      <a-tab-pane key="4" tab="学期管理"><StudyTerm ref="studyTerm"></StudyTerm> </a-tab-pane>
+      <a-tab-pane key="5" tab="学位管理"><StudyDegree ref="studyDegree"></StudyDegree> </a-tab-pane>
+      <a-tab-pane key="6" tab="财务管理"> <StudyCost ref="studyCost"></StudyCost> </a-tab-pane>
     </a-tabs>
   </a-modal>
 </template>

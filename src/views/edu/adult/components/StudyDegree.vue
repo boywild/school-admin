@@ -9,8 +9,17 @@
       <a-col :span="8" v-for="(col, ind) in 3" :key="ind">
         <div class="like-label" v-if="ind === 0">{{ item.label }}</div>
         <template v-else>
-          <a-input v-if="item.form === 'input'" v-model="studyDegree[item.field][ind]" />
+          <a-input
+            v-if="item.form === 'input'"
+            v-model="studyDegree[item.field][ind]"
+            :placeholder="'请输入' + item.label"
+          />
           <a-date-picker v-if="item.form === 'date'" v-model="studyDegree[item.field][ind]" />
+          <a-select v-if="item.form === 'select'" v-model="studyDegree[item.field]" :placeholder="'请输入' + item.label">
+            <a-select-option :value="select.value" v-for="(select, count) in selectData[item.field]" :key="count">
+              {{ select.name }}
+            </a-select-option>
+          </a-select>
           <a-radio-group v-if="item.form === 'radio'" v-model="studyDegree[item.field][ind]">
             <a-radio value="1">是 </a-radio>
             <a-radio value="0">否 </a-radio>
@@ -22,6 +31,7 @@
 </template>
 
 <script>
+import { SELECTION_OPTIONS } from '@/config/constant'
 export default {
   name: 'StudyDegree',
   data() {
@@ -41,6 +51,9 @@ export default {
         a: [],
         b: [],
         c: []
+      },
+      selectData: {
+        c: SELECTION_OPTIONS
       },
       tab5: [
         {
@@ -124,7 +137,7 @@ export default {
         {
           label: '领走方式',
           field: 'c',
-          form: 'input',
+          form: 'select',
           rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
         }
       ],

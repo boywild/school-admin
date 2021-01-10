@@ -1,5 +1,5 @@
 <template>
-  <a-form-model class="form-no-margin" ref="imgInfo" :model="imgInfo" :rules="rules">
+  <a-form-model class="form-no-margin" ref="imgInfoForm" :model="imgInfo" :rules="rules">
     <a-row>
       <a-col :span="12" :gutter="5" v-for="(item, index) in tab2" :key="index">
         <a-form-model-item :label="item.label" :prop="item.field">
@@ -53,25 +53,25 @@ export default {
           label: '学生图片',
           field: 'studentImg',
           form: 'upload',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ required: true, message: '请上传学生图片' }]
         },
         {
           label: '身份证图片',
           field: 'cardImg',
           form: 'upload',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ required: true, message: '请上传身份证图片' }]
         },
         {
           label: '学历图片',
           field: 'studyImg',
           form: 'upload',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ required: true, message: '请上传学历图片' }]
         },
         {
           label: '其他图片',
           field: 'otherImg',
           form: 'upload',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ required: true, message: '请上传其他图片' }]
         }
       ]
     }
@@ -95,6 +95,15 @@ export default {
     },
     handleChange({ fileList }) {
       this.fileList = fileList
+    },
+    validate(callback) {
+      const form = this.$refs.imgInfoForm
+      form.validate((success) => {
+        this.$emit('validate', { success, data: this.imgInfo })
+        if (success) {
+          callback && callback(this.imgInfo)
+        }
+      })
     }
   }
 }

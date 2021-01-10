@@ -1,7 +1,7 @@
 <template>
   <a-form-model
     class="form-no-margin"
-    ref="baseInfo"
+    ref="baseInfoForm"
     :model="baseInfo"
     :rules="rules"
     :label-col="labelCol"
@@ -10,8 +10,8 @@
     <a-row>
       <a-col :span="12" :gutter="5" v-for="(item, index) in tab1" :key="index">
         <a-form-model-item :label="item.label" :prop="item.field">
-          <a-input v-if="item.form === 'input'" v-model.trim="baseInfo[item.field]" />
-          <a-select v-if="item.form === 'select'" v-model="baseInfo[item.field]">
+          <a-input v-if="item.form === 'input'" has-feedback v-model.trim="baseInfo[item.field]" :placeholder="'请输入' + item.label" />
+          <a-select v-if="item.form === 'select'" v-model="baseInfo[item.field]" :placeholder="'请输入' + item.label">
             <a-select-option :value="select.value" v-for="(select, count) in selectData[item.field]" :key="count">
               {{ select.name }}
             </a-select-option>
@@ -29,9 +29,30 @@
 </template>
 
 <script>
+import { isEmail, isPhone } from '@/utils/validate'
 import { SELECTION_OPTIONS, MALE } from '@/config/constant'
 export default {
   data() {
+    const validatorEmail = (rule, value, callback) => {
+      if (!value) {
+        return callback(new Error('请输入email'))
+      }
+      if (!isEmail(value)) {
+        return callback(new Error('email格式不正确'))
+      } else {
+        callback()
+      }
+    }
+    const validatorPhone = (rule, value, callback) => {
+      if (!value) {
+        return callback(new Error('请输入联系电话'))
+      }
+      if (!isPhone(value)) {
+        return callback(new Error('联系电话格式不正确'))
+      } else {
+        callback()
+      }
+    }
     return {
       baseInfo: {},
       labelCol: { span: 8 },
@@ -40,7 +61,8 @@ export default {
         card: SELECTION_OPTIONS,
         bookType: SELECTION_OPTIONS,
         mz: SELECTION_OPTIONS,
-        mm: SELECTION_OPTIONS
+        mm: SELECTION_OPTIONS,
+        xz: SELECTION_OPTIONS
       },
       radioData: {
         male: MALE
@@ -50,112 +72,139 @@ export default {
           label: '学生姓名',
           field: 'name',
           form: 'input',
-          rules: [{ required: true, max: 20, message: '请输入至少五个字符的规则描述', trigger: 'blur' }]
+          rules: [
+            { required: true, message: '请输入学生姓名' },
+            { max: 10, message: '限制输入10位' }
+          ]
         },
         {
           label: '联系电话',
           field: 'phone',
           form: 'input',
-          rules: [{ required: true, max: 11, message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ required: true, validator: validatorPhone }]
         },
         {
           label: '证件种类',
           field: 'card',
           form: 'select',
-          rules: [{ required: true, message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ required: true, message: '请输入证件种类' }]
         },
         {
           label: '证件号码',
           field: 'cardNo',
           form: 'input',
-          rules: [{ required: true, max: 15, message: '请输入至少五个字符的规则描述！' }]
+          rules: [
+            { required: true, message: '请输入证件号码' },
+            { max: 18, message: '请输入18位证件号码' }
+          ]
         },
         {
           label: '民族',
           field: 'mz',
           form: 'select',
-          rules: [{ required: true, message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ required: true, message: '请选择民族' }]
         },
         {
           label: '性别',
           field: 'male',
           form: 'radio',
-          rules: [{ required: true, message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ required: true, message: '请选择性别' }]
         },
         {
           label: '出生日期',
           field: 'birth',
           form: 'date',
-          rules: [{ required: true, message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ required: true, message: '请选择出生日期' }]
         },
         {
           label: '所属省市',
           field: 'location',
           form: 'input',
-          rules: [{ required: true, max: 20, message: '请输入至少五个字符的规则描述！' }]
+          rules: [
+            { required: true, message: '请输入所属省市' },
+            { max: 30, message: '限制输入30位' }
+          ]
         },
         {
           label: '户口性质',
           field: 'xz',
-          form: 'input',
-          rules: [{ required: true, max: 20, message: '请输入至少五个字符的规则描述！' }]
+          form: 'select',
+          rules: [{ required: true, message: '请输入户口性质' }]
         },
         {
           label: '职业',
           field: 'zy',
           form: 'input',
-          rules: [{ required: true, max: 20, message: '请输入至少五个字符的规则描述！' }]
+          rules: [
+            { required: true, max: 20, message: '请输入职业' },
+            { max: 20, message: '限制输入20位' }
+          ]
         },
         {
           label: '政治面貌',
           field: 'mm',
           form: 'select',
-          rules: [{ required: true, max: 20, message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ required: true, max: 20, message: '请选择政治面貌' }]
         },
         {
-          label: '源毕业学校',
+          label: '原毕业学校',
           field: 'school',
           form: 'input',
-          rules: [{ required: true, max: 20, message: '请输入至少五个字符的规则描述！' }]
+          rules: [
+            { required: true, message: '请输入源毕业学校' },
+            { max: 20, message: '限制输入20位' }
+          ]
         },
         {
           label: '原毕业时间',
           field: 'byTime',
           form: 'date',
-          rules: [{ required: true, max: 20, message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ required: true, max: 20, message: '请选择原毕业时间' }]
         },
         {
-          label: '源毕业证书编号',
+          label: '原毕业证书编号',
           field: 'bookNo',
           form: 'input',
-          rules: [{ required: true, max: 20, message: '请输入至少五个字符的规则描述！' }]
+          rules: [
+            { required: true, max: 20, message: '请输入原毕业证书编号' },
+            { max: 15, message: '限制输入15位' }
+          ]
         },
         {
-          label: '源毕业证书类型',
+          label: '原毕业证书类型',
           field: 'bookType',
           form: 'select',
-          rules: [{ required: true, message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ required: true, message: '请输入原毕业证书类型' }]
         },
         {
           label: '通讯地址',
           field: 'address',
           form: 'input',
-          rules: [{ required: true, max: 20, message: '请输入至少五个字符的规则描述！' }]
+          rules: [
+            { required: true, message: '请输入通讯地址' },
+            { max: 30, message: '限制输入30位' }
+          ]
         },
         {
           label: '工作单位',
           field: 'work',
           form: 'input',
-          rules: [{ required: true, max: 20, message: '请输入至少五个字符的规则描述！' }]
+          rules: [
+            { required: true, message: '请输入工作单位' },
+            { max: 20, message: '限制输入20位' }
+          ]
         },
         {
           label: 'email',
           field: 'email',
           form: 'input',
-          rules: [{ required: true, max: 20, message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ required: true, validator: validatorEmail }]
         }
       ]
     }
+  },
+  mounted() {
+    // this.validate()
   },
   computed: {
     rules() {
@@ -164,6 +213,17 @@ export default {
         rules[item.field] = item.rules
       })
       return rules
+    }
+  },
+  methods: {
+    validate(callback) {
+      const form = this.$refs.baseInfoForm
+      form.validate(success => {
+        this.$emit('validate', { success, data: this.baseInfo })
+        if (success) {
+          callback && callback(this.baseInfo)
+        }
+      })
     }
   }
 }

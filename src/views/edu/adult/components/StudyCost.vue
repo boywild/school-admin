@@ -1,7 +1,7 @@
 <template>
   <a-form-model
     class="form-no-margin"
-    ref="studyCost"
+    ref="studyCostForm"
     :model="studyCost"
     :rules="rules"
     :label-col="labelCol"
@@ -10,10 +10,10 @@
     <a-row>
       <a-col :span="12" :gutter="5" v-for="(item, index) in tab6" :key="index">
         <a-form-model-item :label="item.label" :prop="item.field">
-          <a-input v-if="item.form === 'input'" v-model="studyCost[item.field]" />
-          <a-select v-if="item.form === 'select'" v-model="studyCost[item.field]">
-            <a-select-option value="shanghai">
-              Zone one
+          <a-input v-if="item.form === 'input'" v-model="studyCost[item.field]" :placeholder="'请输入' + item.label" />
+          <a-select v-if="item.form === 'select'" v-model="studyCost[item.field]" :placeholder="'请输入' + item.label">
+            <a-select-option :value="select.value" v-for="(select, count) in selectData[item.field]" :key="count">
+              {{ select.name }}
             </a-select-option>
           </a-select>
           <a-date-picker v-if="item.form === 'date'" v-model="studyCost[item.field]" />
@@ -24,145 +24,175 @@
 </template>
 
 <script>
+import { isMoney } from '@/utils/validate'
+import { SELECTION_OPTIONS } from '@/config/constant'
 export default {
   name: 'StudyCost',
   data() {
+    const validatorMoney = text => {
+      return (rule, value, callback) => {
+        if (!value) {
+          return callback(new Error(`请输入${text}`))
+        }
+        if (!isMoney(value)) {
+          return callback(new Error(`${text}格式不正确`))
+        } else {
+          callback()
+        }
+      }
+    }
     return {
       studyCost: {},
       labelCol: { span: 8 },
       wrapperCol: { span: 16 },
+      selectData: {
+        name: SELECTION_OPTIONS,
+        phone: SELECTION_OPTIONS
+      },
       tab6: [
         {
           label: '批次',
           field: 'name',
           form: 'select',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ required: true, message: '请选择批次' }]
         },
         {
           label: '层次',
           field: 'phone',
           form: 'select',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ required: true, message: '请选择层次' }]
         },
         {
           label: '院校',
           field: 'card',
           form: 'input',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
+          rules: [
+            { required: true, message: '请输入院校' },
+            { max: 20, message: '限制输入20位' }
+          ]
         },
         {
           label: '姓名',
           field: 'cardNo',
           form: 'input',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
+          rules: [
+            { required: true, message: '请输入姓名' },
+            { max: 15, message: '限制输入15位' }
+          ]
         },
         {
           label: '专业',
           field: 'mz',
           form: 'input',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
+          rules: [
+            { required: true, message: '请输入专业' },
+            { max: 20, message: '限制输入20位' }
+          ]
         },
         {
           label: '身份证号',
           field: 'meal',
           form: 'input',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
+          rules: [
+            { required: true, message: '请输入身份证号' },
+            { max: 18, message: '限制输入18位' }
+          ]
         },
         {
           label: '录入时间',
           field: 'birth',
           form: 'date',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ required: true, validator: validatorMoney('录入时间') }]
         },
         {
           label: '总学费',
           field: 'location',
           form: 'input',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ required: true, validator: validatorMoney('总学费') }]
         },
         {
           label: '实际学费',
           field: 'xz',
           form: 'input',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ required: true, validator: validatorMoney('实际学费') }]
         },
         {
           label: '欠款',
           field: 'zy',
           form: 'input',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ required: true, validator: validatorMoney('欠款') }]
         },
         {
           label: '第一年交费',
           field: 'mm',
           form: 'input',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ required: true, validator: validatorMoney('第一年交费') }]
         },
         {
           label: '第二年交费',
           field: 'school',
           form: 'input',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ required: true, validator: validatorMoney('第二年交费') }]
         },
         {
           label: '第三年交费',
           field: 'byTime',
           form: 'input',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ required: true, validator: validatorMoney('第三年交费') }]
         },
         {
           label: '第四年交费',
           field: 'bookNo',
           form: 'input',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ required: true, validator: validatorMoney('第四年交费') }]
         },
         {
           label: '第五年交费',
           field: 'bookType',
           form: 'input',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ required: true, validator: validatorMoney('第五年交费') }]
         },
         {
           label: '报考费',
           field: 'address',
           form: 'input',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ required: true, validator: validatorMoney('报考费') }]
         },
         {
           label: '入学考试辅导费',
           field: 'work',
           form: 'input',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ required: true, validator: validatorMoney('入学考试辅导费') }]
         },
         {
           label: '学位报考费',
           field: 'email',
           form: 'input',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ required: true, validator: validatorMoney('学位报考费') }]
         },
         {
           label: '学位辅导费',
-          field: 'email',
+          field: 'aa',
           form: 'input',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ required: true, validator: validatorMoney('学位辅导费') }]
         },
         {
           label: '网课费',
-          field: 'email',
+          field: 'bb',
           form: 'input',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ required: true, validator: validatorMoney('网课费') }]
         },
         {
           label: '论文费',
-          field: 'email',
+          field: 'cc',
           form: 'input',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ required: true, validator: validatorMoney('论文费') }]
         },
         {
           label: '图像采集费',
-          field: 'email',
+          field: 'dd',
           form: 'input',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ required: true, validator: validatorMoney('图像采集费') }]
         }
       ]
     }
@@ -174,6 +204,17 @@ export default {
         rules[item.field] = item.rules
       })
       return rules
+    }
+  },
+  methods: {
+    validate(callback) {
+      const form = this.$refs.studyCostForm
+      form.validate(success => {
+        this.$emit('validate', { success, data: this.studyCost })
+        if (success) {
+          callback && callback(this.studyCost)
+        }
+      })
     }
   }
 }
