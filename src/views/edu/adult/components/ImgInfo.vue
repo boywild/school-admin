@@ -1,7 +1,7 @@
 <template>
   <a-form-model class="form-no-margin" ref="imgInfoForm" :model="imgInfo" :rules="rules">
-    <a-row>
-      <a-col :span="12" :gutter="5" v-for="(item, index) in tab2" :key="index">
+    <a-row :gutter="5">
+      <a-col :span="12" v-for="(item, index) in tab2" :key="index">
         <a-form-model-item :label="item.label" :prop="item.field">
           <a-upload
             action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
