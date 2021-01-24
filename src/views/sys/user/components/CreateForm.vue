@@ -18,7 +18,7 @@
     <a-spin :spinning="loading">
       <a-form-model ref="userInfo" :model="form" :rules="rules" :label-col="labelCol" :wrapper-col="wrapperCol">
         <a-form-model-item label="角色" prop="role">
-          <a-select v-model="form.role" placeholder="请输入角色" default-value="0">
+          <a-select v-model="form.role" placeholder="请输入角色">
             <a-select-option value="0">全部</a-select-option>
             <a-select-option value="1">关闭</a-select-option>
             <a-select-option value="2">运行中</a-select-option>
@@ -73,7 +73,7 @@ export default {
         account: '',
         name: '',
         password: '',
-        confirPassword: [],
+        confirPassword: '',
         phone: '',
         role: '',
         receive: '0',
