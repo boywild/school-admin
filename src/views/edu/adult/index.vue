@@ -176,7 +176,7 @@
             <a-divider type="vertical" />
             <a @click="handleModify(record, 'JoinInfo')">报名</a>
             <a-divider type="vertical" />
-            <a @click="handleModify(record, 'aa')">教务</a>
+            <a @click="handleModify(record, 'EduTask')">教务</a>
             <a-divider type="vertical" />
             <a @click="handleModify(record, 'StudyTerm')">学期</a>
             <a-divider type="vertical" />
@@ -208,6 +208,7 @@ import { STable, Ellipsis } from '@/components'
 import BaseInfo from './components/BaseInfo'
 import ImgInfo from './components/ImgInfo'
 import JoinInfo from './components/JoinInfo'
+import EduTask from './components/EduTask'
 import StudyTerm from './components/StudyTerm'
 import StudyDegree from './components/StudyDegree'
 import StudyCost from './components/StudyCost'
@@ -250,6 +251,7 @@ export default {
     BaseInfo,
     ImgInfo,
     JoinInfo,
+    EduTask,
     StudyTerm,
     StudyDegree,
     StudyCost
@@ -312,9 +314,13 @@ export default {
         case 'JoinInfo':
           titTxt = '报名信息'
           break
+        case 'EduTask':
+          titTxt = '教务信息'
+          break
         case 'StudyTerm':
           titTxt = '学期信息'
           break
+
         case 'StudyDegree':
           titTxt = '学位信息'
           break
