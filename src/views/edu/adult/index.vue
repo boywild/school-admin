@@ -172,7 +172,17 @@
       >
         <span slot="action" slot-scope="text, record">
           <template>
-            <a @click="handleModify(record)">修改</a>
+            <a @click="handleModify(record, 'ImgInfo')">图片</a>
+            <a-divider type="vertical" />
+            <a @click="handleModify(record, 'JoinInfo')">报名</a>
+            <a-divider type="vertical" />
+            <a @click="handleModify(record, 'aa')">教务</a>
+            <a-divider type="vertical" />
+            <a @click="handleModify(record, 'StudyTerm')">学期</a>
+            <a-divider type="vertical" />
+            <a @click="handleModify(record, 'StudyDegree')">学位</a>
+            <a-divider type="vertical" />
+            <a @click="handleModify(record, 'StudyCost')">财务</a>
           </template>
         </span>
       </s-table>
@@ -182,9 +192,12 @@
         :visible="visible"
         :loading="confirmLoading"
         :model="mdl"
+        :title="setDialogTitle"
         @cancel="handleCancel"
         @ok="handleOk"
-      />
+      >
+        <component :is="getForm"></component>
+      </create-form>
     </a-card>
   </page-header-wrapper>
 </template>
@@ -192,6 +205,12 @@
 <script>
 import moment from 'moment'
 import { STable, Ellipsis } from '@/components'
+import BaseInfo from './components/BaseInfo'
+import ImgInfo from './components/ImgInfo'
+import JoinInfo from './components/JoinInfo'
+import StudyTerm from './components/StudyTerm'
+import StudyDegree from './components/StudyDegree'
+import StudyCost from './components/StudyCost'
 import { getRoleList } from '@/api/manage'
 import { getStudentsList } from '@/api/students'
 import {
@@ -207,6 +226,7 @@ import {
 
 // import StepByStepModal from './modules/StepByStepModal'
 import CreateForm from './components/CreateForm'
+// import { type } from 'mockjs2'
 
 const columns = [
   { title: '学号', dataIndex: 'no', width: 160 },
@@ -218,7 +238,7 @@ const columns = [
   { title: '专业', dataIndex: 'zy', width: 140 },
   { title: '毕业时间', dataIndex: 'updatedAt', width: 190 },
   { title: '学分', dataIndex: 'score', width: 80 },
-  { title: '操作', dataIndex: 'action', width: 80, fixed: 'right', scopedSlots: { customRender: 'action' } }
+  { title: '操作', dataIndex: 'action', width: 290, fixed: 'right', scopedSlots: { customRender: 'action' } }
 ]
 
 export default {
@@ -226,7 +246,13 @@ export default {
   components: {
     STable,
     Ellipsis,
-    CreateForm
+    CreateForm,
+    BaseInfo,
+    ImgInfo,
+    JoinInfo,
+    StudyTerm,
+    StudyDegree,
+    StudyCost
   },
   data() {
     this.columns = columns
@@ -240,6 +266,7 @@ export default {
       THESIS_FROM_ENMU,
       REACH_ENMU,
       YESORNO_ENMU,
+      currentForm: 'BaseInfo',
       visible: false,
       confirmLoading: false,
       mdl: null,
@@ -269,6 +296,33 @@ export default {
         selectedRowKeys: this.selectedRowKeys,
         onChange: this.onSelectChange
       }
+    },
+    getForm() {
+      return this.currentForm
+    },
+    setDialogTitle() {
+      let titTxt = ''
+      switch (this.currentForm) {
+        case 'BaseInfo':
+          titTxt = '基本信息'
+          break
+        case 'ImgInfo':
+          titTxt = '图片信息'
+          break
+        case 'JoinInfo':
+          titTxt = '报名信息'
+          break
+        case 'StudyTerm':
+          titTxt = '学期信息'
+          break
+        case 'StudyDegree':
+          titTxt = '学位信息'
+          break
+        case 'StudyCost':
+          titTxt = '财务信息'
+          break
+      }
+      return titTxt
     }
   },
   methods: {
@@ -276,6 +330,7 @@ export default {
     handleAdd() {
       this.mdl = null
       this.visible = true
+      this.currentForm = 'BaseInfo'
     },
     tableRefresh() {
       const table = this.$refs.table
@@ -330,9 +385,10 @@ export default {
       this.visible = false
     },
     // 修改
-    handleModify(record) {
+    handleModify(record, form) {
       this.mdl = record
       this.visible = true
+      this.currentForm = form
     },
     // 勾选
     onSelectChange(selectedRowKeys, selectedRows) {
