@@ -32,7 +32,7 @@ export default {
     const validatorMoney = text => {
       return (rule, value, callback) => {
         if (!value) {
-          return callback(new Error(`请输入${text}`))
+          return callback()
         }
         if (!isMoney(value)) {
           return callback(new Error(`${text}格式不正确`))
@@ -108,91 +108,91 @@ export default {
           label: '总学费',
           field: 'location',
           form: 'input',
-          rules: [{ required: true, validator: validatorMoney('总学费') }]
+          rules: [{ validator: validatorMoney('总学费') }]
         },
         {
           label: '实际学费',
           field: 'xz',
           form: 'input',
-          rules: [{ required: true, validator: validatorMoney('实际学费') }]
+          rules: [{ validator: validatorMoney('实际学费') }]
         },
         {
           label: '欠款',
           field: 'zy',
           form: 'input',
-          rules: [{ required: true, validator: validatorMoney('欠款') }]
+          rules: [{ validator: validatorMoney('欠款') }]
         },
         {
           label: '第一年交费',
           field: 'mm',
           form: 'input',
-          rules: [{ required: true, validator: validatorMoney('第一年交费') }]
+          rules: [{ validator: validatorMoney('第一年交费') }]
         },
         {
           label: '第二年交费',
           field: 'school',
           form: 'input',
-          rules: [{ required: true, validator: validatorMoney('第二年交费') }]
+          rules: [{ validator: validatorMoney('第二年交费') }]
         },
         {
           label: '第三年交费',
           field: 'byTime',
           form: 'input',
-          rules: [{ required: true, validator: validatorMoney('第三年交费') }]
+          rules: [{ validator: validatorMoney('第三年交费') }]
         },
         {
           label: '第四年交费',
           field: 'bookNo',
           form: 'input',
-          rules: [{ required: true, validator: validatorMoney('第四年交费') }]
+          rules: [{ validator: validatorMoney('第四年交费') }]
         },
         {
           label: '第五年交费',
           field: 'bookType',
           form: 'input',
-          rules: [{ required: true, validator: validatorMoney('第五年交费') }]
+          rules: [{ validator: validatorMoney('第五年交费') }]
         },
         {
           label: '报考费',
           field: 'address',
           form: 'input',
-          rules: [{ required: true, validator: validatorMoney('报考费') }]
+          rules: [{ validator: validatorMoney('报考费') }]
         },
         {
           label: '入学考试辅导费',
           field: 'work',
           form: 'input',
-          rules: [{ required: true, validator: validatorMoney('入学考试辅导费') }]
+          rules: [{ validator: validatorMoney('入学考试辅导费') }]
         },
         {
           label: '学位报考费',
           field: 'email',
           form: 'input',
-          rules: [{ required: true, validator: validatorMoney('学位报考费') }]
+          rules: [{ validator: validatorMoney('学位报考费') }]
         },
         {
           label: '学位辅导费',
           field: 'aa',
           form: 'input',
-          rules: [{ required: true, validator: validatorMoney('学位辅导费') }]
+          rules: [{ validator: validatorMoney('学位辅导费') }]
         },
         {
           label: '网课费',
           field: 'bb',
           form: 'input',
-          rules: [{ required: true, validator: validatorMoney('网课费') }]
+          rules: [{ validator: validatorMoney('网课费') }]
         },
         {
           label: '论文费',
           field: 'cc',
           form: 'input',
-          rules: [{ required: true, validator: validatorMoney('论文费') }]
+          rules: [{ validator: validatorMoney('论文费') }]
         },
         {
           label: '图像采集费',
           field: 'dd',
           form: 'input',
-          rules: [{ required: true, validator: validatorMoney('图像采集费') }]
+          rules: [{ validator: validatorMoney('图像采集费') }]
         }
       ]
     }
