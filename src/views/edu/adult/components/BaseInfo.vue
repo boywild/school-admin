@@ -17,13 +17,13 @@
             :placeholder="'请输入' + item.label"
           />
           <a-select v-if="item.form === 'select'" v-model="baseInfo[item.field]" :placeholder="'请输入' + item.label">
-            <a-select-option :value="select.value" v-for="(select, count) in selectData[item.field]" :key="count">
-              {{ select.name }}
+            <a-select-option :value="select.code" v-for="(select, count) in selectData[item.field]" :key="count">
+              {{ select.desc }}
             </a-select-option>
           </a-select>
           <a-radio-group v-if="item.form === 'radio'" v-model="baseInfo[item.field]">
-            <a-radio :value="radio.value" v-for="(radio, count) in radioData[item.field]" :key="count">
-              {{ radio.name }}
+            <a-radio :value="radio.code" v-for="(radio, count) in radioData[item.field]" :key="count">
+              {{ radio.desc }}
             </a-radio>
           </a-radio-group>
           <a-date-picker v-if="item.form === 'date'" v-model="baseInfo[item.field]" />
@@ -35,7 +35,8 @@
 
 <script>
 import { isEmail, isPhone } from '@/utils/validate'
-import { SELECTION_OPTIONS, MALE } from '@/config/constant'
+import { SELECTION_OPTIONS } from '@/config/constant'
+import { YESORNO_ENMU } from '@/config/dict'
 export default {
   data() {
     const validatorEmail = (rule, value, callback) => {
@@ -70,7 +71,7 @@ export default {
         xz: SELECTION_OPTIONS
       },
       radioData: {
-        male: MALE
+        male: YESORNO_ENMU
       },
       tab1: [
         {

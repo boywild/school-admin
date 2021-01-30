@@ -12,13 +12,13 @@
         <a-form-model-item :label="item.label" :prop="item.field">
           <a-input v-if="item.form === 'input'" v-model="joinInfo[item.field]" :placeholder="'请输入' + item.label" />
           <a-select v-if="item.form === 'select'" v-model="joinInfo[item.field]" :placeholder="'请输入' + item.label">
-            <a-select-option :value="select.value" v-for="(select, count) in selectData[item.field]" :key="count">
-              {{ select.name }}
+            <a-select-option :value="select.code" v-for="(select, count) in selectData[item.field]" :key="count">
+              {{ select.desc }}
             </a-select-option>
           </a-select>
           <a-radio-group v-if="item.form === 'radio'" v-model="joinInfo[item.field]">
-            <a-radio :value="radio.value" v-for="(radio, count) in radioData[item.field]" :key="count">
-              {{ radio.name }}
+            <a-radio :value="radio.code" v-for="(radio, count) in radioData[item.field]" :key="count">
+              {{ radio.desc }}
             </a-radio>
           </a-radio-group>
           <a-date-picker v-if="item.form === 'date'" v-model="joinInfo[item.field]" />
@@ -29,7 +29,8 @@
 </template>
 
 <script>
-import { SELECTION_OPTIONS, MALE } from '@/config/constant'
+import { SELECTION_OPTIONS } from '@/config/constant'
+import { STUDENT_FROM_ENMU, STUDY_WAT_ENMU, YESORNO_ENMU } from '@/config/dict'
 export default {
   data() {
     return {
@@ -37,13 +38,16 @@ export default {
       labelCol: { span: 8 },
       wrapperCol: { span: 16 },
       selectData: {
-        name: SELECTION_OPTIONS,
+        name: STUDENT_FROM_ENMU,
+        studyWay: STUDY_WAT_ENMU,
         cardNo: SELECTION_OPTIONS,
         birth: SELECTION_OPTIONS
       },
       radioData: {
-        location: MALE,
-        bookNo: MALE
+        location: YESORNO_ENMU,
+        bookNo: YESORNO_ENMU,
+        tsbk: YESORNO_ENMU,
+        ms: YESORNO_ENMU
       },
       tab3: [
         {
@@ -71,16 +75,10 @@ export default {
           rules: [{ required: true, min: 5, message: '请选择所报层次' }]
         },
         {
-          label: '所报院校',
-          field: 'mz',
-          form: 'input',
-          rules: [{ required: true, min: 5, message: '请输入所报院校' }]
-        },
-        {
-          label: '所报专业',
-          field: 'meal',
-          form: 'input',
-          rules: [{ required: true, min: 5, message: '请输入所报专业' }]
+          label: '所报学习形式',
+          field: 'studyWay',
+          form: 'select',
+          rules: [{ required: true, min: 5, message: '请选择所报学习形式' }]
         },
         {
           label: '学制',
@@ -94,6 +92,7 @@ export default {
           form: 'radio',
           rules: [{ required: true, min: 5, message: '请选择是否本科二学历' }]
         },
+
         {
           label: '何时参加工作',
           field: 'xz',
@@ -101,33 +100,75 @@ export default {
           rules: [{ required: true, min: 5, message: '请选择何时参加工作' }]
         },
         {
-          label: '学习平台',
-          field: 'zy',
+          label: '预报名号',
+          field: 'ybmh',
           form: 'input',
+          rules: [{ required: true, min: 5, message: '请输入预报名号' }]
+        },
+        {
+          label: '所报院校',
+          field: 'mz',
+          form: 'input',
+          rules: [{ required: true, min: 5, message: '请输入所报院校' }]
+        },
+        {
+          label: '所报院校代码',
+          field: 'yxdm',
+          form: 'input',
+          rules: [{ required: true, min: 5, message: '请输入所报院校代码' }]
+        },
+        {
+          label: '所报专业',
+          field: 'meal',
+          form: 'input',
+          rules: [{ required: true, min: 5, message: '请输入所报专业' }]
+        },
+        {
+          label: '专业代码',
+          field: 'mealss',
+          form: 'input',
+          rules: [{ required: true, min: 5, message: '请输入专业代码' }]
+        },
+        {
+          label: '免试',
+          field: 'ms',
+          form: 'radio',
+          rules: [{ required: true, min: 5, message: '请选择免试' }]
+        },
+        {
+          label: '特殊报考',
+          field: 'tsbk',
+          form: 'radio',
           rules: [{ required: true, min: 5, message: '请输入学习平台' }]
         },
         {
-          label: '学号',
-          field: 'mm',
+          label: '特殊报考区',
+          field: 'tsbkq',
           form: 'input',
           rules: [{ required: true, min: 5, message: '请输入学号' }]
         },
         {
-          label: '学习帐号',
+          label: '短信密码',
           field: 'school',
           form: 'input',
           rules: [{ required: true, min: 5, message: '请输入学习帐号' }]
         },
         {
-          label: '登录密码',
+          label: '准考证号',
           field: 'byTime',
           form: 'input',
           rules: [{ required: true, min: 5, message: '请输入登录密码' }]
         },
         {
-          label: '录取结果',
+          label: '考生号',
           field: 'bookNo',
-          form: 'radio',
+          form: 'input',
+          rules: [{ required: true, min: 5, message: '请选择录取结果' }]
+        },
+        {
+          label: '入学考试总分数',
+          field: 'bookNo',
+          form: 'input',
           rules: [{ required: true, min: 5, message: '请选择录取结果' }]
         }
       ]
