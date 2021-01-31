@@ -56,7 +56,7 @@
           </a-row>
         </div>
         <span slot="action" slot-scope="text, record">
-          <a @click="$refs.modal.edit(record)">编辑</a>
+          <a @click="$refs.modal.edit(record)">修改</a>
           <a-divider type="vertical" />
           <a href="javascript:;">禁用</a>
           <a-divider type="vertical" />
@@ -95,24 +95,10 @@ export default {
       queryParam: {},
       // 表头
       columns: [
-        {
-          title: '角色名称',
-          dataIndex: 'name'
-        },
-        {
-          title: '状态',
-          dataIndex: 'status'
-        },
-        {
-          title: '创建时间',
-          dataIndex: 'createTime'
-        },
-        {
-          title: '操作',
-          width: '150px',
-          dataIndex: 'action',
-          scopedSlots: { customRender: 'action' }
-        }
+        { title: '角色名称', dataIndex: 'name' },
+        { title: '状态', dataIndex: 'status' },
+        { title: '创建时间', dataIndex: 'createTime' },
+        { title: '操作', width: '150px', dataIndex: 'action', scopedSlots: { customRender: 'action' } }
       ],
       // 加载数据方法 必须为 Promise 对象
       loadData: parameter => {
@@ -126,7 +112,166 @@ export default {
       },
 
       selectedRowKeys: [],
-      selectedRows: []
+      selectedRows: [],
+      permissionList: [
+        {
+          name: '成人教育',
+          children: [
+            { name: '查询' },
+            { name: '新建' },
+            { name: '删除' },
+            { name: '导出' },
+            { name: '基本信息' },
+            { name: '图片管理' },
+            { name: '报名管理' },
+            { name: '教务管理' },
+            { name: '学期管理' },
+            { name: '学位管理' },
+            { name: '财务管理' }
+          ]
+        },
+        {
+          name: '自学考试',
+          children: [
+            { name: '查询' },
+            { name: '新建' },
+            { name: '删除' },
+            { name: '导出' },
+            { name: '基本信息' },
+            { name: '图片管理' },
+            { name: '教务管理' },
+            { name: '教务添加考期' },
+            { name: '毕业申请' },
+            { name: '学位管理' },
+            { name: '财务管理' }
+          ]
+        },
+        {
+          name: '网络教育',
+          children: [
+            { name: '查询' },
+            { name: '新建' },
+            { name: '删除' },
+            { name: '导出' },
+            { name: '基本信息' },
+            { name: '图片管理' },
+            { name: '报名管理' },
+            { name: '学期管理' },
+            { name: '财务管理' }
+          ]
+        },
+        {
+          name: '开发大学',
+          children: [
+            { name: '查询' },
+            { name: '新建' },
+            { name: '删除' },
+            { name: '导出' },
+            { name: '基本信息' },
+            { name: '图片管理' },
+            { name: '报名管理' },
+            { name: '教务管理' },
+            { name: '财务管理' }
+          ]
+        },
+        {
+          name: '人设局培训',
+          children: [
+            { name: '查询' },
+            { name: '新建' },
+            { name: '删除' },
+            { name: '导出' },
+            { name: '基本信息' },
+            { name: '图片管理' },
+            { name: '报名管理' },
+            { name: '教务管理' },
+            { name: '财务管理' }
+          ]
+        },
+        {
+          name: '安检',
+          children: [
+            { name: '查询' },
+            { name: '新建' },
+            { name: '删除' },
+            { name: '导出' },
+            { name: '基本信息' },
+            { name: '图片管理' },
+            { name: '报名管理' },
+            { name: '教务管理' },
+            { name: '财务管理' }
+          ]
+        },
+        {
+          name: '质检',
+          children: [
+            { name: '查询' },
+            { name: '新建' },
+            { name: '删除' },
+            { name: '导出' },
+            { name: '基本信息' },
+            { name: '图片管理' },
+            { name: '报名管理' },
+            { name: '教务管理' },
+            { name: '财务管理' }
+          ]
+        },
+        {
+          name: '途胜教育',
+          children: [
+            { name: '查询' },
+            { name: '新建' },
+            { name: '删除' },
+            { name: '导出' },
+            { name: '基本信息' },
+            { name: '图片管理' },
+            { name: '报名管理' },
+            { name: '教务管理' },
+            { name: '财务管理' }
+          ]
+        },
+        {
+          name: '医考培训',
+          children: [
+            { name: '查询' },
+            { name: '新建' },
+            { name: '删除' },
+            { name: '导出' },
+            { name: '基本信息' },
+            { name: '图片管理' },
+            { name: '报名管理' },
+            { name: '教务管理' },
+            { name: '财务管理' }
+          ]
+        },
+        {
+          name: '财务管理',
+          children: [{ name: '查询' }]
+        },
+        {
+          name: '用户列表',
+          children: [
+            { name: '查询' },
+            { name: '新建' },
+            { name: '删除' },
+            { name: '修改' },
+            { name: '禁用' },
+            { name: '启用' }
+          ]
+        },
+        {
+          name: '角色列表',
+          children: [
+            { name: '查询' },
+            { name: '新建' },
+            { name: '删除' },
+            { name: '修改' },
+            { name: '禁用' },
+            { name: '启用' }
+          ]
+        },
+        { name: '代办事项', children: [{ name: '查询' }] }
+      ]
     }
   },
   methods: {

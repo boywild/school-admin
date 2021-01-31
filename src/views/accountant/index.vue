@@ -16,6 +16,16 @@
             </a-col>
             <template v-if="advanced">
               <a-col :md="8" :sm="24">
+                <a-form-item label="录入时间">
+                  <a-range-picker v-model="queryParam.date" />
+                </a-form-item>
+              </a-col>
+              <a-col :md="8" :sm="24">
+                <a-form-item label="批次">
+                  <a-input-number v-model="queryParam.aa" placeholder="请输批次" style="width: 100%" />
+                </a-form-item>
+              </a-col>
+              <a-col :md="8" :sm="24">
                 <a-form-item label="院校">
                   <a-input-number v-model="queryParam.callNo" placeholder="请输入院校" style="width: 100%" />
                 </a-form-item>
@@ -23,11 +33,6 @@
               <a-col :md="8" :sm="24">
                 <a-form-item label="专业">
                   <a-input-number v-model="queryParam.callNo" placeholder="请输入专业" style="width: 100%" />
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-form-item label="录入时间">
-                  <a-range-picker v-model="queryParam.date" />
                 </a-form-item>
               </a-col>
             </template>
