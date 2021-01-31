@@ -1,47 +1,15 @@
 <template>
-  <a-form-model
-    class="form-no-margin"
-    ref="joinInfoForm"
-    :model="joinInfo"
-    :rules="rules"
-    :label-col="labelCol"
-    :wrapper-col="wrapperCol"
-  >
-    <a-row>
-      <a-col :span="12" :gutter="5" v-for="(item, index) in tab3" :key="index">
-        <a-form-model-item :label="item.label" :prop="item.field">
-          <a-input v-if="item.form === 'input'" v-model="joinInfo[item.field]" :placeholder="'请输入' + item.label" />
-          <a-select v-if="item.form === 'select'" v-model="joinInfo[item.field]" :placeholder="'请输入' + item.label">
-            <a-select-option :value="select.code" v-for="(select, count) in selectData[item.field]" :key="count">
-              {{ select.desc }}
-            </a-select-option>
-          </a-select>
-          <a-radio-group v-if="item.form === 'radio'" v-model="joinInfo[item.field]">
-            <a-radio :value="radio.code" v-for="(radio, count) in radioData[item.field]" :key="count">
-              {{ radio.desc }}
-            </a-radio>
-          </a-radio-group>
-          <a-date-picker v-if="item.form === 'date'" v-model="joinInfo[item.field]" />
-        </a-form-model-item>
-      </a-col>
-    </a-row>
-  </a-form-model>
+  <div class="edu-adult">
+    <form-generate :fields="tab3"></form-generate>
+  </div>
 </template>
 
 <script>
-import { YESORNO_ENMU } from '@/config/dict'
+import FormGenerate from '@/components/FormGenerate'
 export default {
+  components: { FormGenerate },
   data() {
     return {
-      joinInfo: {},
-      labelCol: { span: 8 },
-      wrapperCol: { span: 16 },
-      selectData: {},
-      radioData: {
-        tzssfyf: YESORNO_ENMU,
-        tzssfyd: YESORNO_ENMU,
-        xb: YESORNO_ENMU
-      },
       tab3: [
         {
           label: '预报名号',
@@ -93,21 +61,24 @@ export default {
           rules: [{ min: 5, message: '请输入加试成绩' }]
         },
         {
-          label: '录取通知书是否已到',
+          label: '录取通知书已到',
           field: 'tzssfyd',
           form: 'radio',
+          radioFrom: 'YESORNO_ENMU',
           rules: [{ min: 5, message: '请选择录取通知书是否已到' }]
         },
         {
-          label: '录取通知书有否已发',
+          label: '录取通知书已发',
           field: 'tzssfyf',
           form: 'radio',
+          radioFrom: 'YESORNO_ENMU',
           rules: [{ min: 5, message: '请选择录取通知书有否已发' }]
         },
         {
-          label: '是否虚报',
+          label: '虚报',
           field: 'xb',
           form: 'radio',
+          radioFrom: 'YESORNO_ENMU',
           rules: [{ min: 5, message: '请输入所报院校代码' }]
         },
         {

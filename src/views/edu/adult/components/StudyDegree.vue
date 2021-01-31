@@ -1,5 +1,5 @@
 <template>
-  <div class="like-table">
+  <div class="edu-adult">
     <a-tabs default-active-key="1">
       <a-tab-pane key="1" tab="第一学期"> </a-tab-pane>
       <a-tab-pane key="2" tab="第二学期"> </a-tab-pane>
