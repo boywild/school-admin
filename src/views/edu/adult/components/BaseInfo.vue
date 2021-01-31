@@ -1,43 +1,15 @@
 <template>
-  <a-form-model
-    class="form-no-margin"
-    ref="baseInfoForm"
-    :model="baseInfo"
-    :rules="rules"
-    :label-col="labelCol"
-    :wrapper-col="wrapperCol"
-  >
-    <a-row>
-      <a-col :span="12" :gutter="5" v-for="(item, index) in tab1" :key="index">
-        <a-form-model-item :label="item.label" :prop="item.field">
-          <a-input
-            v-if="item.form === 'input'"
-            has-feedback
-            v-model.trim="baseInfo[item.field]"
-            :placeholder="'请输入' + item.label"
-          />
-          <a-select v-if="item.form === 'select'" v-model="baseInfo[item.field]" :placeholder="'请输入' + item.label">
-            <a-select-option :value="select.code" v-for="(select, count) in selectData[item.field]" :key="count">
-              {{ select.desc }}
-            </a-select-option>
-          </a-select>
-          <a-radio-group v-if="item.form === 'radio'" v-model="baseInfo[item.field]">
-            <a-radio :value="radio.code" v-for="(radio, count) in radioData[item.field]" :key="count">
-              {{ radio.desc }}
-            </a-radio>
-          </a-radio-group>
-          <a-date-picker v-if="item.form === 'date'" v-model="baseInfo[item.field]" />
-        </a-form-model-item>
-      </a-col>
-    </a-row>
-  </a-form-model>
+  <div class="edu-adult">
+    <form-generate :fields="tab1"></form-generate>
+  </div>
 </template>
 
 <script>
+import FormGenerate from '@/components/FormGenerate'
 import { isEmail, isPhone } from '@/utils/validate'
-import { SELECTION_OPTIONS } from '@/config/constant'
-import { YESORNO_ENMU } from '@/config/dict'
 export default {
+  name: 'BaseInfo',
+  components: { FormGenerate },
   data() {
     const validatorEmail = (rule, value, callback) => {
       if (!value) {
@@ -60,19 +32,6 @@ export default {
       }
     }
     return {
-      baseInfo: {},
-      labelCol: { span: 8 },
-      wrapperCol: { span: 16 },
-      selectData: {
-        card: SELECTION_OPTIONS,
-        bookType: SELECTION_OPTIONS,
-        mz: SELECTION_OPTIONS,
-        mm: SELECTION_OPTIONS,
-        xz: SELECTION_OPTIONS
-      },
-      radioData: {
-        male: YESORNO_ENMU
-      },
       tab1: [
         {
           label: '学生姓名',
@@ -93,6 +52,7 @@ export default {
           label: '证件种类',
           field: 'card',
           form: 'select',
+          selectFrom: 'CARDTYPE_ENMU',
           rules: [{ required: true, message: '请输入证件种类' }]
         },
         {
@@ -108,12 +68,14 @@ export default {
           label: '民族',
           field: 'mz',
           form: 'select',
+          selectFrom: 'MZ_ENMU',
           rules: [{ required: true, message: '请选择民族' }]
         },
         {
           label: '性别',
           field: 'male',
           form: 'radio',
+          radioFrom: 'SEX_ENMU',
           rules: [{ required: true, message: '请选择性别' }]
         },
         {
@@ -135,6 +97,7 @@ export default {
           label: '户口性质',
           field: 'xz',
           form: 'select',
+          selectFrom: 'HK_ENMU',
           rules: [{ required: true, message: '请输入户口性质' }]
         },
         {
@@ -150,6 +113,7 @@ export default {
           label: '政治面貌',
           field: 'mm',
           form: 'select',
+          selectFrom: 'ZZMM_ENMU',
           rules: [{ required: true, max: 20, message: '请选择政治面貌' }]
         },
         {
@@ -179,7 +143,7 @@ export default {
         {
           label: '原毕业证书类型',
           field: 'bookType',
-          form: 'select',
+          form: 'input',
           rules: [{ required: true, message: '请输入原毕业证书类型' }]
         },
         {
@@ -212,15 +176,7 @@ export default {
   mounted() {
     // this.validate()
   },
-  computed: {
-    rules() {
-      const rules = {}
-      this.tab1.forEach(item => {
-        rules[item.field] = item.rules
-      })
-      return rules
-    }
-  },
+  computed: {},
   methods: {
     validate(callback) {
       const form = this.$refs.baseInfoForm

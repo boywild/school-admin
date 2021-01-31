@@ -27,7 +27,23 @@
 </template>
 
 <script>
-import { YESORNO_ENMU, REACH_ENMU, THESIS_FROM_ENMU, HK_ENMU, LANG_ENMU, MZ_ENMU, DEGREE_ENMU } from '@/config/dict'
+import {
+  STUDENT_FROM_ENMU,
+  STUDY_LEVEL_ENMU,
+  STUDY_WAT_ENMU,
+  SUBJECT_ENMU,
+  INFO_GATHER_ENMU,
+  DEGREE_ENMU,
+  THESIS_FROM_ENMU,
+  REACH_ENMU,
+  YESORNO_ENMU,
+  MZ_ENMU,
+  HK_ENMU,
+  LANG_ENMU,
+  SEX_ENMU,
+  ZZMM_ENMU,
+  CARDTYPE_ENMU
+} from '@/config/dict'
 export default {
   name: 'FormGenerate',
   props: { fields: { type: Array, default: () => [] } },
@@ -37,15 +53,23 @@ export default {
       wrapperCol: { span: 16 },
       formData: {},
       selectData: {
+        STUDENT_FROM_ENMU,
+        STUDY_LEVEL_ENMU,
+        STUDY_WAT_ENMU,
+        SUBJECT_ENMU,
+        INFO_GATHER_ENMU,
         THESIS_FROM_ENMU,
         HK_ENMU,
         LANG_ENMU,
         MZ_ENMU,
-        DEGREE_ENMU
+        DEGREE_ENMU,
+        ZZMM_ENMU,
+        CARDTYPE_ENMU
       },
       radioData: {
         YESORNO_ENMU,
-        REACH_ENMU
+        REACH_ENMU,
+        SEX_ENMU
       }
     }
   },

@@ -1,33 +1,15 @@
 <template>
-  <a-form-model
-    class="form-no-margin"
-    ref="studyCostForm"
-    :model="studyCost"
-    :rules="rules"
-    :label-col="labelCol"
-    :wrapper-col="wrapperCol"
-  >
-    <a-row>
-      <a-col :span="12" :gutter="5" v-for="(item, index) in tab6" :key="index">
-        <a-form-model-item :label="item.label" :prop="item.field">
-          <a-input v-if="item.form === 'input'" v-model="studyCost[item.field]" :placeholder="'请输入' + item.label" />
-          <a-select v-if="item.form === 'select'" v-model="studyCost[item.field]" :placeholder="'请输入' + item.label">
-            <a-select-option :value="select.value" v-for="(select, count) in selectData[item.field]" :key="count">
-              {{ select.name }}
-            </a-select-option>
-          </a-select>
-          <a-date-picker v-if="item.form === 'date'" v-model="studyCost[item.field]" />
-        </a-form-model-item>
-      </a-col>
-    </a-row>
-  </a-form-model>
+  <div class="edu-adult">
+    <form-generate :fields="tab6"></form-generate>
+  </div>
 </template>
 
 <script>
+import FormGenerate from '@/components/FormGenerate'
 import { isMoney } from '@/utils/validate'
-import { SELECTION_OPTIONS } from '@/config/constant'
 export default {
   name: 'StudyCost',
+  components: { FormGenerate },
   data() {
     const validatorMoney = text => {
       return (rule, value, callback) => {
@@ -42,67 +24,48 @@ export default {
       }
     }
     return {
-      studyCost: {},
-      labelCol: { span: 8 },
-      wrapperCol: { span: 16 },
-      selectData: {
-        name: SELECTION_OPTIONS,
-        phone: SELECTION_OPTIONS
-      },
       tab6: [
         {
           label: '批次',
           field: 'name',
           form: 'select',
-          rules: [{ required: true, message: '请选择批次' }]
+          rules: [{ message: '请选择批次' }]
         },
         {
           label: '层次',
           field: 'phone',
           form: 'select',
-          rules: [{ required: true, message: '请选择层次' }]
+          rules: [{ message: '请选择层次' }]
         },
         {
           label: '院校',
           field: 'card',
           form: 'input',
-          rules: [
-            { required: true, message: '请输入院校' },
-            { max: 20, message: '限制输入20位' }
-          ]
+          rules: [{ message: '请输入院校' }, { max: 20, message: '限制输入20位' }]
         },
         {
           label: '姓名',
           field: 'cardNo',
           form: 'input',
-          rules: [
-            { required: true, message: '请输入姓名' },
-            { max: 15, message: '限制输入15位' }
-          ]
+          rules: [{ message: '请输入姓名' }, { max: 15, message: '限制输入15位' }]
         },
         {
           label: '专业',
           field: 'mz',
           form: 'input',
-          rules: [
-            { required: true, message: '请输入专业' },
-            { max: 20, message: '限制输入20位' }
-          ]
+          rules: [{ message: '请输入专业' }, { max: 20, message: '限制输入20位' }]
         },
         {
           label: '身份证号',
           field: 'meal',
           form: 'input',
-          rules: [
-            { required: true, message: '请输入身份证号' },
-            { max: 18, message: '限制输入18位' }
-          ]
+          rules: [{ message: '请输入身份证号' }, { max: 18, message: '限制输入18位' }]
         },
         {
           label: '录入时间',
           field: 'birth',
           form: 'date',
-          rules: [{ required: true, validator: validatorMoney('录入时间') }]
+          rules: [{ validator: validatorMoney('录入时间') }]
         },
         {
           label: '总学费',
@@ -197,15 +160,7 @@ export default {
       ]
     }
   },
-  computed: {
-    rules() {
-      const rules = {}
-      this.tab6.forEach(item => {
-        rules[item.field] = item.rules
-      })
-      return rules
-    }
-  },
+  computed: {},
   methods: {
     validate(callback) {
       const form = this.$refs.studyCostForm

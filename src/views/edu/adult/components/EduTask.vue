@@ -7,6 +7,7 @@
 <script>
 import FormGenerate from '@/components/FormGenerate'
 export default {
+  name: 'EduTask',
   components: { FormGenerate },
   data() {
     return {

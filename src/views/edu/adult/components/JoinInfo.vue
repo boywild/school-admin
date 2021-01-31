@@ -1,59 +1,22 @@
 <template>
-  <a-form-model
-    class="form-no-margin"
-    ref="joinInfoForm"
-    :model="joinInfo"
-    :rules="rules"
-    :label-col="labelCol"
-    :wrapper-col="wrapperCol"
-  >
-    <a-row>
-      <a-col :span="12" :gutter="5" v-for="(item, index) in tab3" :key="index">
-        <a-form-model-item :label="item.label" :prop="item.field">
-          <a-input v-if="item.form === 'input'" v-model="joinInfo[item.field]" :placeholder="'请输入' + item.label" />
-          <a-select v-if="item.form === 'select'" v-model="joinInfo[item.field]" :placeholder="'请输入' + item.label">
-            <a-select-option :value="select.code" v-for="(select, count) in selectData[item.field]" :key="count">
-              {{ select.desc }}
-            </a-select-option>
-          </a-select>
-          <a-radio-group v-if="item.form === 'radio'" v-model="joinInfo[item.field]">
-            <a-radio :value="radio.code" v-for="(radio, count) in radioData[item.field]" :key="count">
-              {{ radio.desc }}
-            </a-radio>
-          </a-radio-group>
-          <a-date-picker v-if="item.form === 'date'" v-model="joinInfo[item.field]" />
-        </a-form-model-item>
-      </a-col>
-    </a-row>
-  </a-form-model>
+  <div class="edu-adult">
+    <form-generate :fields="tab3"></form-generate>
+  </div>
 </template>
 
 <script>
-import { SELECTION_OPTIONS } from '@/config/constant'
-import { STUDENT_FROM_ENMU, STUDY_WAT_ENMU, YESORNO_ENMU } from '@/config/dict'
+import FormGenerate from '@/components/FormGenerate'
 export default {
+  name: 'JoinInfo',
+  components: { FormGenerate },
   data() {
     return {
-      joinInfo: {},
-      labelCol: { span: 8 },
-      wrapperCol: { span: 16 },
-      selectData: {
-        name: STUDENT_FROM_ENMU,
-        studyWay: STUDY_WAT_ENMU,
-        cardNo: SELECTION_OPTIONS,
-        birth: SELECTION_OPTIONS
-      },
-      radioData: {
-        location: YESORNO_ENMU,
-        bookNo: YESORNO_ENMU,
-        tsbk: YESORNO_ENMU,
-        ms: YESORNO_ENMU
-      },
       tab3: [
         {
           label: '学生来源',
           field: 'name',
           form: 'select',
+          selectFrom: 'STUDENT_FROM_ENMU',
           rules: [{ required: true, min: 5, message: '请选择学生来源' }]
         },
         {
@@ -72,24 +35,27 @@ export default {
           label: '所报层次',
           field: 'cardNo',
           form: 'select',
+          selectFrom: 'STUDY_LEVEL_ENMU',
           rules: [{ required: true, min: 5, message: '请选择所报层次' }]
         },
         {
           label: '所报学习形式',
           field: 'studyWay',
           form: 'select',
+          selectFrom: 'STUDY_WAT_ENMU',
           rules: [{ required: true, min: 5, message: '请选择所报学习形式' }]
         },
         {
           label: '学制',
           field: 'birth',
-          form: 'select',
+          form: 'input',
           rules: [{ required: true, min: 5, message: '请选择学制' }]
         },
         {
           label: '是否本科二学历',
           field: 'location',
           form: 'radio',
+          radioFrom: 'YESORNO_ENMU',
           rules: [{ required: true, min: 5, message: '请选择是否本科二学历' }]
         },
 
@@ -133,12 +99,14 @@ export default {
           label: '免试',
           field: 'ms',
           form: 'radio',
+          radioFrom: 'YESORNO_ENMU',
           rules: [{ required: true, min: 5, message: '请选择免试' }]
         },
         {
           label: '特殊报考',
           field: 'tsbk',
           form: 'radio',
+          radioFrom: 'YESORNO_ENMU',
           rules: [{ required: true, min: 5, message: '请输入学习平台' }]
         },
         {
@@ -174,15 +142,7 @@ export default {
       ]
     }
   },
-  computed: {
-    rules() {
-      const rules = {}
-      this.tab3.forEach(item => {
-        rules[item.field] = item.rules
-      })
-      return rules
-    }
-  },
+  computed: {},
   methods: {
     validate(callback) {
       const form = this.$refs.joinInfoForm

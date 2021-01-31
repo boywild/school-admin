@@ -25,6 +25,7 @@
 
 <script>
 export default {
+  name: 'ImgInfo',
   data() {
     return {
       previewVisible: false,

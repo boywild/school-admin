@@ -245,7 +245,7 @@ const columns = [
 ]
 
 export default {
-  name: 'TableList',
+  name: 'Adult',
   components: {
     STable,
     Ellipsis,
