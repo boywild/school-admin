@@ -172,6 +172,8 @@
       >
         <span slot="action" slot-scope="text, record">
           <template>
+            <a @click="handleModify(record, 'BaseInfo')">基本信息</a>
+            <a-divider type="vertical" />
             <a @click="handleModify(record, 'ImgInfo')">图片</a>
             <a-divider type="vertical" />
             <a @click="handleModify(record, 'JoinInfo')">报名</a>
@@ -239,7 +241,7 @@ const columns = [
   { title: '专业', dataIndex: 'zy', width: 140 },
   { title: '毕业时间', dataIndex: 'updatedAt', width: 190 },
   { title: '学分', dataIndex: 'score', width: 80 },
-  { title: '操作', dataIndex: 'action', width: 290, fixed: 'right', scopedSlots: { customRender: 'action' } }
+  { title: '操作', dataIndex: 'action', width: 370, fixed: 'right', scopedSlots: { customRender: 'action' } }
 ]
 
 export default {

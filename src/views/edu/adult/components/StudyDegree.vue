@@ -1,147 +1,94 @@
 <template>
   <div class="like-table">
-    <a-row :gutter="30">
-      <a-col :span="8">学期管理 </a-col>
-      <a-col :span="8">第一学期 </a-col>
-      <a-col :span="8">第二学期 </a-col>
-    </a-row>
-    <a-row v-for="(item, index) in tab5" :key="index" :gutter="30">
-      <a-col :span="8" v-for="(col, ind) in 3" :key="ind">
-        <div class="like-label" v-if="ind === 0">{{ item.label }}</div>
-        <template v-else>
-          <a-input
-            v-if="item.form === 'input'"
-            v-model="studyDegree[item.field][ind]"
-            :placeholder="'请输入' + item.label"
-          />
-          <a-date-picker v-if="item.form === 'date'" v-model="studyDegree[item.field][ind]" />
-          <a-select v-if="item.form === 'select'" v-model="studyDegree[item.field]" :placeholder="'请输入' + item.label">
-            <a-select-option :value="select.value" v-for="(select, count) in selectData[item.field]" :key="count">
-              {{ select.name }}
-            </a-select-option>
-          </a-select>
-          <a-radio-group v-if="item.form === 'radio'" v-model="studyDegree[item.field][ind]">
-            <a-radio value="1">是 </a-radio>
-            <a-radio value="0">否 </a-radio>
-          </a-radio-group>
-        </template>
-      </a-col>
-    </a-row>
+    <a-tabs default-active-key="1">
+      <a-tab-pane key="1" tab="第一学期"> </a-tab-pane>
+      <a-tab-pane key="2" tab="第二学期"> </a-tab-pane>
+    </a-tabs>
+    <form-generate :fields="tab5"></form-generate>
   </div>
 </template>
 
 <script>
-import { SELECTION_OPTIONS } from '@/config/constant'
+import FormGenerate from '@/components/FormGenerate'
 export default {
   name: 'StudyDegree',
+  components: { FormGenerate },
   data() {
     return {
-      studyDegree: {
-        isneedXW: [],
-        studyStatus: [],
-        isAchieve: [],
-        isJoin: [],
-        isDeal: [],
-        time: [],
-        address: [],
-        account: [],
-        password: [],
-        enScore: [],
-        coScore: [],
-        a: [],
-        b: [],
-        c: []
-      },
-      selectData: {
-        c: SELECTION_OPTIONS
-      },
+      labelCol: { span: 8 },
+      wrapperCol: { span: 16 },
+      studyDegree: {},
       tab5: [
+        { label: '批次', field: 'isneedXW', form: 'input', rules: [{ message: '请输入至少五个字符的规则描述！' }] },
+        { label: '院校', field: 'studyStatus', form: 'input', rules: [{ message: '请输入至少五个字符的规则描述！' }] },
+        { label: '专业', field: 'isAchieve', form: 'input', rules: [{ message: '请输入至少五个字符的规则描述！' }] },
+        { label: '学制', field: 'isJoin', form: 'input', rules: [{ message: '请输入至少五个字符的规则描述！' }] },
+        { label: '姓名', field: 'isDeal', form: 'input', rules: [{ message: '请输入至少五个字符的规则描述！' }] },
         {
-          label: '是否为学位论文（是/否）',
-          field: 'isneedXW',
-          form: 'radio',
-          rules: [{ required: true }]
-        },
-        {
-          label: '学位论文是否为我司处理（是/否）',
-          field: 'studyStatus',
-          form: 'radio',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
-        },
-        {
-          label: '毕业生登记表填写是否完毕（是/否）',
-          field: 'isAchieve',
-          form: 'radio',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
-        },
-        {
-          label: '毕业信息核实是否完毕',
-          field: 'isJoin',
-          form: 'radio',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
-        },
-        {
-          label: '是否已到',
-          field: 'isDeal',
-          form: 'radio',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
-        },
-        {
-          label: '是否已领走',
+          label: '性别',
           field: 'time',
           form: 'radio',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
+          radioFrom: 'YESORNO_ENMU',
+          rules: [{ message: '请输入至少五个字符的规则描述！' }]
         },
         {
-          label: '领走时间',
+          label: '民族',
           field: 'address',
-          form: 'radio',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
+          form: 'select',
+          selectFrom: 'MZ_ENMU',
+          rules: [{ message: '请输入至少五个字符的规则描述！' }]
         },
         {
-          label: '领走方式',
+          label: '户口性质',
           field: 'account',
-          form: 'radio',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
+          form: 'select',
+          selectFrom: 'HK_ENMU',
+          rules: [{ message: '请输入至少五个字符的规则描述！' }]
         },
+        { label: '证件号码', field: 'password', form: 'input', rules: [{ message: '请输入至少五个字符的规则描述！' }] },
+        { label: '电话', field: 'enScore', form: 'input', rules: [{ message: '请输入至少五个字符的规则描述！' }] },
+        { label: '学号', field: 'coScore', form: 'input', rules: [{ message: '请输入至少五个字符的规则描述！' }] },
         {
-          label: '是否申请学位证书',
-          field: 'password',
-          form: 'radio',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
-        },
-        {
-          label: '是否有学位证书',
-          field: 'enScore',
-          form: 'radio',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
-        },
-        {
-          label: '学位证书是否已到',
-          field: 'coScore',
-          form: 'radio',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
-        },
-        {
-          label: '是否已领走',
+          label: '学位性质',
           field: 'a',
-          form: 'radio',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
+          form: 'select',
+          selectFrom: 'DEGREE_ENMU',
+          rules: [{ message: '请输入至少五个字符的规则描述！' }]
         },
+        { label: '学位准考证号', field: 'b', form: 'input', rules: [{ message: '请输入至少五个字符的规则描述！' }] },
+        { label: '专业代码', field: 'c', form: 'input', rules: [{ message: '请输入至少五个字符的规则描述！' }] },
+
+        { label: '考区', field: 'c', form: 'input', rules: [{ message: '请输入至少五个字符的规则描述！' }] },
         {
-          label: '领走时间',
-          field: 'b',
-          form: 'date',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
-        },
-        {
-          label: '领走方式',
+          label: '语种',
           field: 'c',
           form: 'select',
-          rules: [{ required: true, min: 5, message: '请输入至少五个字符的规则描述！' }]
+          selectFrom: 'LANG_ENMU',
+          rules: [{ message: '请输入至少五个字符的规则描述！' }]
+        },
+        {
+          label: '是否为VIP',
+          field: 'c',
+          form: 'radio',
+          radioFrom: 'YESORNO_ENMU',
+          rules: [{ message: '请输入至少五个字符的规则描述！' }]
+        },
+        { label: 'VIP负责人', field: 'c', form: 'input', rules: [{ message: '请输入至少五个字符的规则描述！' }] },
+        {
+          label: '学位分数',
+          field: 'c',
+          form: 'radio',
+          radioFrom: 'REACH_ENMU',
+          rules: [{ message: '请输入至少五个字符的规则描述！' }]
+        },
+        {
+          label: '毕业论文',
+          field: 'c',
+          form: 'select',
+          selectFrom: 'THESIS_FROM_ENMU',
+          rules: [{ message: '请输入至少五个字符的规则描述！' }]
         }
-      ],
-      rules: []
+      ]
     }
   },
   computed: {}

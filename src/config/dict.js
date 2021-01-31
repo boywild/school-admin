@@ -49,3 +49,20 @@ export const YESORNO_ENMU = [
   { desc: '是', code: '1' },
   { desc: '否', code: '2' }
 ]
+
+export const MZ_ENMU = [
+  { desc: '汉族', code: '1' },
+  { desc: '傣族', code: '2' }
+]
+
+export const HK_ENMU = [
+  { desc: '农业户口', code: '1' },
+  { desc: '城镇户口(居民户口)', code: '2' },
+  { desc: '农村居民户口', code: '3' },
+  { desc: '集体户口', code: '4' }
+]
+
+export const LANG_ENMU = [
+  { desc: '英语', code: '1' },
+  { desc: '汉语', code: '2' }
+]
