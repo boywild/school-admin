@@ -322,7 +322,6 @@ export default {
         case 'StudyTerm':
           titTxt = '学期信息'
           break
-
         case 'StudyDegree':
           titTxt = '学位信息'
           break

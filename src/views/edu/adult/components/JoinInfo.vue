@@ -66,10 +66,10 @@ export default {
           rules: [{ required: true, min: 5, message: '请选择何时参加工作' }]
         },
         {
-          label: '预报名号',
+          label: '考试城市',
           field: 'ybmh',
           form: 'input',
-          rules: [{ required: true, min: 5, message: '请输入预报名号' }]
+          rules: [{ required: true, min: 5, message: '请输入考试城市' }]
         },
         {
           label: '所报院校',
@@ -114,30 +114,6 @@ export default {
           field: 'tsbkq',
           form: 'input',
           rules: [{ required: true, min: 5, message: '请输入学号' }]
-        },
-        {
-          label: '短信密码',
-          field: 'school',
-          form: 'input',
-          rules: [{ required: true, min: 5, message: '请输入学习帐号' }]
-        },
-        {
-          label: '准考证号',
-          field: 'byTime',
-          form: 'input',
-          rules: [{ required: true, min: 5, message: '请输入登录密码' }]
-        },
-        {
-          label: '考生号',
-          field: 'bookNo',
-          form: 'input',
-          rules: [{ required: true, min: 5, message: '请选择录取结果' }]
-        },
-        {
-          label: '入学考试总分数',
-          field: 'bookNo',
-          form: 'input',
-          rules: [{ required: true, min: 5, message: '请选择录取结果' }]
         }
       ]
     }

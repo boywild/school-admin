@@ -34,6 +34,15 @@ export default {
     return {
       tab1: [
         {
+          label: '入学批次',
+          field: 'pc',
+          form: 'input',
+          rules: [
+            { required: true, message: '请输入入学批次' },
+            { max: 10, message: '限制输入10位' }
+          ]
+        },
+        {
           label: '学生姓名',
           field: 'name',
           form: 'input',
@@ -42,12 +51,7 @@ export default {
             { max: 10, message: '限制输入10位' }
           ]
         },
-        {
-          label: '联系电话',
-          field: 'phone',
-          form: 'input',
-          rules: [{ required: true, validator: validatorPhone }]
-        },
+        { label: '联系电话', field: 'phone', form: 'input', rules: [{ required: true, validator: validatorPhone }] },
         {
           label: '证件种类',
           field: 'card',
@@ -78,12 +82,7 @@ export default {
           radioFrom: 'SEX_ENMU',
           rules: [{ required: true, message: '请选择性别' }]
         },
-        {
-          label: '出生日期',
-          field: 'birth',
-          form: 'date',
-          rules: [{ required: true, message: '请选择出生日期' }]
-        },
+        { label: '出生日期', field: 'birth', form: 'date', rules: [{ required: true, message: '请选择出生日期' }] },
         {
           label: '所属省市',
           field: 'location',
@@ -164,12 +163,7 @@ export default {
             { max: 20, message: '限制输入20位' }
           ]
         },
-        {
-          label: 'email',
-          field: 'email',
-          form: 'input',
-          rules: [{ required: true, validator: validatorEmail }]
-        }
+        { label: 'email', field: 'email', form: 'input', rules: [{ required: true, validator: validatorEmail }] }
       ]
     }
   },

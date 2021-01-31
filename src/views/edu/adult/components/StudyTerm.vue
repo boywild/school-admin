@@ -38,13 +38,6 @@ export default {
       },
       tab4: [
         {
-          label: '学期管理',
-          field: 'isneedXW',
-          form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
-          rules: [{ message: '请输入至少五个字符的规则描述！' }]
-        },
-        {
           label: '报考学位',
           field: 'studyStatus',
           form: 'radio',

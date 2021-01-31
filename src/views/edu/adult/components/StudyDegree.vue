@@ -28,7 +28,7 @@ export default {
           label: '性别',
           field: 'time',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'SEX_ENMU',
           rules: [{ message: '请输入至少五个字符的规则描述！' }]
         },
         {
