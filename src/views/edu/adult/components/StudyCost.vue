@@ -1,6 +1,6 @@
 <template>
   <div class="edu-adult">
-    <form-generate :fields="tab6"></form-generate>
+    <form-generate ref="form" :fields="tab6"></form-generate>
   </div>
 </template>
 
@@ -29,43 +29,43 @@ export default {
           label: '批次',
           field: 'name',
           form: 'select',
-          rules: [{ message: '请选择批次' }]
+          rules: [{ max: 15, message: '批次限制输入15位' }]
         },
         {
           label: '层次',
           field: 'phone',
           form: 'select',
-          rules: [{ message: '请选择层次' }]
+          rules: [{ max: 15, message: '层次限制输入15位' }]
         },
         {
           label: '院校',
           field: 'card',
           form: 'input',
-          rules: [{ message: '请输入院校' }, { max: 20, message: '限制输入20位' }]
+          rules: [{ max: 20, message: '院校限制输入20位' }]
         },
         {
           label: '姓名',
           field: 'cardNo',
           form: 'input',
-          rules: [{ message: '请输入姓名' }, { max: 15, message: '限制输入15位' }]
+          rules: [{ max: 15, message: '姓名限制输入15位' }]
         },
         {
           label: '专业',
           field: 'mz',
           form: 'input',
-          rules: [{ message: '请输入专业' }, { max: 20, message: '限制输入20位' }]
+          rules: [{ max: 15, message: '限制输入15位' }]
         },
         {
           label: '身份证号',
           field: 'meal',
           form: 'input',
-          rules: [{ message: '请输入身份证号' }, { max: 18, message: '限制输入18位' }]
+          rules: [{ max: 18, message: '身份证号限制输入18位' }]
         },
         {
           label: '录入时间',
           field: 'birth',
           form: 'date',
-          rules: [{ validator: validatorMoney('录入时间') }]
+          rules: []
         },
         {
           label: '总学费',
@@ -163,17 +163,15 @@ export default {
   computed: {},
   methods: {
     validate(callback) {
-      const form = this.$refs.studyCostForm
-      form.validate(success => {
-        this.$emit('validate', { success, data: this.studyCost })
-        if (success) {
-          callback && callback(this.studyCost)
-        }
+      const form = this.$refs.form
+      form.validate(data => {
+        callback && callback(data)
+        console.log(data)
       })
     },
     resetForm() {
-      const form = this.$refs.studyCostForm
-      form.resetFields()
+      const form = this.$refs.form
+      form.reset()
     }
   }
 }

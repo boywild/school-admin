@@ -1,6 +1,6 @@
 <template>
   <div class="edu-adult">
-    <form-generate :fields="tab1"></form-generate>
+    <form-generate ref="form" :fields="tab1"></form-generate>
   </div>
 </template>
 
@@ -86,11 +86,8 @@ export default {
         {
           label: '所属省市',
           field: 'location',
-          form: 'input',
-          rules: [
-            { required: true, message: '请输入所属省市' },
-            { max: 30, message: '限制输入30位' }
-          ]
+          form: 'cascader',
+          rules: [{ required: true, message: '请输入所属省市' }]
         },
         {
           label: '户口性质',
@@ -128,7 +125,7 @@ export default {
           label: '原毕业时间',
           field: 'byTime',
           form: 'date',
-          rules: [{ required: true, max: 20, message: '请选择原毕业时间' }]
+          rules: [{ required: true, message: '请选择原毕业时间' }]
         },
         {
           label: '原毕业证书编号',
@@ -160,7 +157,7 @@ export default {
           form: 'input',
           rules: [
             { required: true, message: '请输入工作单位' },
-            { max: 20, message: '限制输入20位' }
+            { max: 30, message: '限制输入30位' }
           ]
         },
         { label: 'email', field: 'email', form: 'input', rules: [{ required: true, validator: validatorEmail }] }
@@ -173,17 +170,15 @@ export default {
   computed: {},
   methods: {
     validate(callback) {
-      const form = this.$refs.baseInfoForm
-      form.validate(success => {
-        this.$emit('validate', { success, data: this.baseInfo })
-        if (success) {
-          callback && callback(this.baseInfo)
-        }
+      const form = this.$refs.form
+      form.validate(data => {
+        callback && callback(data)
+        console.log(data)
       })
     },
     resetForm() {
-      const form = this.$refs.baseInfoForm
-      form.resetFields()
+      const form = this.$refs.form
+      form.reset()
     }
   }
 }

@@ -198,7 +198,7 @@
         @cancel="handleCancel"
         @ok="handleOk"
       >
-        <component :is="getForm"></component>
+        <component ref="currentComponent" :is="getForm"></component>
       </create-form>
     </a-card>
   </page-header-wrapper>
@@ -344,51 +344,50 @@ export default {
       table.refresh()
     },
     handleOk() {
-      const form = this.$refs.createModal.form
-      this.confirmLoading = true
-      form.validateFields((errors, values) => {
-        if (!errors) {
-          console.log('values', values)
-          if (values.id > 0) {
-            // 修改 e.g.
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                resolve()
-              }, 1000)
-            }).then(res => {
-              this.visible = false
-              this.confirmLoading = false
-              // 重置表单数据
-              form.resetFields()
-              // 刷新表格
-              this.tableRefresh()
+      const form = this.$refs.currentComponent
 
-              this.$message.info('修改成功')
-            })
-          } else {
-            // 新增
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                resolve()
-              }, 1000)
-            }).then(res => {
-              this.visible = false
-              this.confirmLoading = false
-              // 重置表单数据
-              form.resetFields()
-              // 刷新表格
-              this.tableRefresh()
+      form.validate(values => {
+        console.log('通过', values)
+        this.confirmLoading = true
+        if (values.id > 0) {
+          // 修改 e.g.
+          new Promise((resolve, reject) => {
+            setTimeout(() => {
+              resolve()
+            }, 1000)
+          }).then(res => {
+            this.visible = false
+            this.confirmLoading = false
+            // 重置表单数据
+            form.resetFields()
+            // 刷新表格
+            this.tableRefresh()
 
-              this.$message.info('新增成功')
-            })
-          }
+            this.$message.info('修改成功')
+          })
         } else {
-          this.confirmLoading = false
+          // 新增
+          new Promise((resolve, reject) => {
+            setTimeout(() => {
+              resolve()
+            }, 1000)
+          }).then(res => {
+            this.visible = false
+            this.confirmLoading = false
+            // 重置表单数据
+            form.resetFields()
+            // 刷新表格
+            this.tableRefresh()
+
+            this.$message.info('新增成功')
+          })
         }
       })
     },
     // 取消新建
     handleCancel() {
+      const form = this.$refs.currentComponent
+      form.resetForm()
       this.visible = false
     },
     // 修改

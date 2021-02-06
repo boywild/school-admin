@@ -7,7 +7,7 @@
       <a-tab-pane key="4" tab="第四学期"> </a-tab-pane>
       <a-tab-pane key="5" tab="第五学期"> </a-tab-pane>
     </a-tabs>
-    <form-generate :fields="tab4"></form-generate>
+    <form-generate ref="form" :fields="tab4"></form-generate>
   </div>
 </template>
 
@@ -42,100 +42,113 @@ export default {
           field: 'studyStatus',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
-          rules: [{ message: '请输入至少五个字符的规则描述！' }]
+          rules: []
         },
         {
           label: '填写毕业生登记表',
           field: 'isAchieve',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
-          rules: [{ message: '请输入至少五个字符的规则描述！' }]
+          rules: []
         },
         {
           label: '申请学位',
           field: 'isJoin',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
-          rules: [{ message: '请输入至少五个字符的规则描述！' }]
+          rules: []
         },
         {
           label: '毕业信息采集',
           field: 'isDeal',
           form: 'select',
           selectFrom: 'INFO_GATHER_ENMU',
-          rules: [{ message: '请输入至少五个字符的规则描述！' }]
+          rules: []
         },
         {
           label: '学位成绩',
           field: 'time',
           form: 'select',
           selectFrom: 'REACH_ENMU',
-          rules: [{ message: '请输入至少五个字符的规则描述！' }]
+          rules: []
         },
         {
           label: '毕业纸质照片到我司',
           field: 'address',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
-          rules: [{ message: '请输入至少五个字符的规则描述！' }]
+          rules: []
         },
         {
           label: '学位成绩通过时间',
           field: 'account',
           form: 'date',
-          rules: [{ message: '请输入至少五个字符的规则描述！' }]
+          rules: []
         },
         {
           label: '毕业纸质照片提交院校',
           field: 'password',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
-          rules: [{ message: '请输入至少五个字符的规则描述！' }]
+          rules: []
         },
         {
           label: '期末考试成绩',
           field: 'enScore',
           form: 'input',
-          rules: [{ message: '请输入至少五个字符的规则描述！' }]
+          rules: [{ max: 6, message: '登录密码限制输入6位' }]
         },
         {
           label: '延期毕业',
           field: 'coScore',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
-          rules: [{ message: '请输入至少五个字符的规则描述！' }]
+          rules: []
         },
         {
           label: '填写入学生登记表',
           field: 'coScore',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
-          rules: [{ message: '请输入至少五个字符的规则描述！' }]
+          rules: []
         },
         {
           label: '论文性质',
           field: 'coScore',
           form: 'select',
           selectFrom: 'THESIS_FROM_ENMU',
-          rules: [{ message: '请输入至少五个字符的规则描述！' }]
+          rules: []
         },
         {
           label: '学籍已注册',
           field: 'coScore',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
-          rules: [{ message: '请输入至少五个字符的规则描述！' }]
+          rules: []
         },
         {
           label: '特殊事项',
           field: 'coScore',
           form: 'input',
-          rules: [{ message: '请输入至少五个字符的规则描述！' }]
+          rules: []
         }
       ]
     }
   },
-  computed: {}
+  computed: {},
+  methods: {
+    validate(callback) {
+      const form = this.$refs.form
+      form.validate(data => {
+        callback && callback(data)
+        console.log(data)
+      })
+    },
+    resetForm() {
+      const form = this.$refs.form
+      form.reset()
+    }
+  }
 }
 </script>
 <style lang="less">

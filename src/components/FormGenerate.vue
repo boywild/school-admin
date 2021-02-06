@@ -20,6 +20,12 @@
             </a-radio>
           </a-radio-group>
           <a-date-picker v-if="item.form === 'date'" v-model="formData[item.field]" />
+          <a-cascader
+            v-if="item.form === 'cascader'"
+            v-model="formData[item.field]"
+            :options="cascaderData.CITY"
+            :placeholder="'请选择' + item.label"
+          />
         </a-form-model-item>
       </a-col>
     </a-row>
@@ -44,6 +50,7 @@ import {
   ZZMM_ENMU,
   CARDTYPE_ENMU
 } from '@/config/dict'
+import city from '@/config/city'
 export default {
   name: 'FormGenerate',
   props: { fields: { type: Array, default: () => [] } },
@@ -70,6 +77,9 @@ export default {
         YESORNO_ENMU,
         REACH_ENMU,
         SEX_ENMU
+      },
+      cascaderData: {
+        CITY: city
       }
     }
   },
@@ -80,6 +90,23 @@ export default {
         rules[item.field] = item.rules
       })
       return rules
+    }
+  },
+  methods: {
+    validate(callback) {
+      const form = this.$refs.formGenerate
+      form.validate(success => {
+        // this.$emit('validate', { success, data: this.baseInfo })
+        if (success) {
+          callback && callback(this.baseInfo)
+        }
+      })
+    },
+    reset() {
+      const form = this.$refs.formGenerate
+      // form.resetFields()
+      this.formData = {}
+      form.clearValidate()
     }
   }
 }
