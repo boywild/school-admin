@@ -293,6 +293,18 @@ export const asyncRouterMap = [
             name: 'exam',
             component: () => import(/* webpackChunkName: "exam" */ '@/views/edu/exam/index'),
             meta: { title: '自考教育', permission: ['user'] }
+          },
+          {
+            path: '/edu/online',
+            name: 'online',
+            component: () => import(/* webpackChunkName: "online" */ '@/views/edu/online/index'),
+            meta: { title: '网络教育', permission: ['user'] }
+          },
+          {
+            path: '/edu/program',
+            name: 'program',
+            component: () => import(/* webpackChunkName: "program" */ '@/views/edu/program/index'),
+            meta: { title: '开发大学', permission: ['user'] }
           }
         ]
       },
@@ -307,12 +319,30 @@ export const asyncRouterMap = [
             path: '/training/hr',
             name: 'hr',
             component: () => import(/* webpackChunkName: "training" */ '@/views/training/hr/index'),
-            meta: { title: '人事培训', permission: ['user'] }
+            meta: { title: '人社局培训', permission: ['user'] }
           },
           {
             path: '/training/doctor',
             name: 'doctor',
             component: () => import(/* webpackChunkName: "doctor" */ '@/views/training/doctor/index'),
+            meta: { title: '医考培训', permission: ['user'] }
+          },
+          {
+            path: '/training/security',
+            name: 'security',
+            component: () => import(/* webpackChunkName: "security" */ '@/views/training/security/index'),
+            meta: { title: '安检培训', permission: ['user'] }
+          },
+          {
+            path: '/training/quality',
+            name: 'quality',
+            component: () => import(/* webpackChunkName: "quality" */ '@/views/training/quality/index'),
+            meta: { title: '质检培训', permission: ['user'] }
+          },
+          {
+            path: '/training/tusheng',
+            name: 'tusheng',
+            component: () => import(/* webpackChunkName: "tusheng" */ '@/views/training/tusheng/index'),
             meta: { title: '医考培训', permission: ['user'] }
           }
         ]
