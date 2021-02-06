@@ -128,6 +128,12 @@ export default {
           rules: [{ required: true, message: '请选择原毕业时间' }]
         },
         {
+          label: '原毕业专业',
+          field: 'byTime333',
+          form: 'input',
+          rules: [{ required: true, message: '请输入原毕业专业' }]
+        },
+        {
           label: '原毕业证书编号',
           field: 'bookNo',
           form: 'input',

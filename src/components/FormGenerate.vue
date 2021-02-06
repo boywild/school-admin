@@ -49,7 +49,9 @@ import {
   SEX_ENMU,
   ZZMM_ENMU,
   CARDTYPE_ENMU,
-  HJ_ENMU
+  HJ_ENMU,
+  PLATFORM_ENMU,
+  FEESOURCE_ENMU
 } from '@/config/dict'
 import city from '@/config/city'
 export default {
@@ -72,7 +74,9 @@ export default {
         MZ_ENMU,
         DEGREE_ENMU,
         ZZMM_ENMU,
-        CARDTYPE_ENMU
+        CARDTYPE_ENMU,
+        PLATFORM_ENMU,
+        FEESOURCE_ENMU
       },
       radioData: {
         YESORNO_ENMU,

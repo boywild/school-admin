@@ -29,15 +29,6 @@ export default {
           ]
         },
         {
-          label: '学校负责老师',
-          field: 'card',
-          form: 'input',
-          rules: [
-            { required: true, message: '请输入学校负责老师' },
-            { max: 10, message: '限制输入10位' }
-          ]
-        },
-        {
           label: '所报层次',
           field: 'cardNo',
           form: 'select',
@@ -45,17 +36,30 @@ export default {
           rules: [{ required: true, message: '请选择所报层次' }]
         },
         {
-          label: '所报学习形式',
+          label: '学费来源',
           field: 'studyWay',
           form: 'select',
-          selectFrom: 'STUDY_WAT_ENMU',
-          rules: [{ required: true, message: '请选择所报学习形式' }]
+          selectFrom: 'FEESOURCE_ENMU',
+          rules: [{ required: true, message: '请选择所学费来源' }]
         },
         {
-          label: '学制',
-          field: 'birth',
+          label: '所报专业',
+          field: 'birthcc',
           form: 'input',
-          rules: [{ required: true, message: '请选择学制' }]
+          rules: [{ required: true, message: '请输入所报专业' }]
+        },
+        {
+          label: '电大毕业',
+          field: 'birthaa',
+          form: 'radio',
+          radioFrom: 'YESORNO_ENMU',
+          rules: [{ required: true, message: '请选择是否电大毕业' }]
+        },
+        {
+          label: '证书性质',
+          field: 'birthdd',
+          form: 'input',
+          rules: [{ required: true, message: '请选择证书性质' }]
         },
         {
           label: '是否本科二学历',
@@ -66,72 +70,16 @@ export default {
         },
 
         {
-          label: '何时参加工作',
+          label: '认证编号',
           field: 'xz',
-          form: 'date',
-          rules: [{ required: true, message: '请选择何时参加工作' }]
+          form: 'input',
+          rules: [{ required: true, message: '请输入认证编号' }]
         },
         {
-          label: '考试城市',
+          label: '电子注册备案表编号',
           field: 'ybmh',
-          form: 'cascader',
-          rules: [{ required: true, message: '请输入考试城市' }]
-        },
-        {
-          label: '所报院校',
-          field: 'mz',
           form: 'input',
-          rules: [
-            { required: true, message: '请输入所报院校' },
-            { max: 20, message: '限制输入20位' }
-          ]
-        },
-        {
-          label: '所报院校代码',
-          field: 'yxdm',
-          form: 'input',
-          rules: [
-            { required: true, message: '请输入所报院校代码' },
-            { max: 10, message: '限制输入10位' }
-          ]
-        },
-        {
-          label: '所报专业',
-          field: 'meal',
-          form: 'input',
-          rules: [
-            { required: true, message: '请输入所报专业' },
-            { max: 10, message: '限制输入10位' }
-          ]
-        },
-        {
-          label: '专业代码',
-          field: 'mealss',
-          form: 'input',
-          rules: [
-            { required: true, message: '请输入专业代码' },
-            { max: 10, message: '限制输入10位' }
-          ]
-        },
-        {
-          label: '免试',
-          field: 'ms',
-          form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
-          rules: [{ required: true, message: '请选择免试' }]
-        },
-        {
-          label: '特殊报考',
-          field: 'tsbk',
-          form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
-          rules: [{ required: true, message: '请输入特殊报考' }]
-        },
-        {
-          label: '特殊报考区',
-          field: 'tsbkq',
-          form: 'input',
-          rules: [{ required: true, message: '请输入特殊报考区' }]
+          rules: [{ required: true, message: '请输入电子注册备案表编号' }]
         }
       ]
     }

@@ -13,101 +13,113 @@ export default {
     return {
       tab3: [
         {
-          label: '预报名号',
+          label: '学校负责老师',
           field: 'name',
           form: 'input',
-          rules: [{ max: 10, message: '预报名号限制输入10位' }]
+          rules: [{ max: 10, message: '学校负责老师限制输入10位' }]
         },
         {
-          label: '短信密码',
+          label: '学号',
           field: 'phone',
           form: 'input',
-          rules: [{ max: 6, message: '预报名号输入10位' }]
+          rules: [{ max: 15, message: '学号限制输入15位' }]
         },
         {
-          label: '准考证号',
+          label: '学习帐号',
           field: 'card',
           form: 'input',
-          rules: [{ max: 15, message: '准考证号限制输入15位' }]
+          rules: [{ max: 20, message: '学习帐号限制输入20位' }]
         },
         {
-          label: '考生号',
+          label: '登录密码',
           field: 'cardNo',
           form: 'input',
-          rules: [{ max: 20, message: '准考证号限制输入20位' }]
+          rules: [{ max: 15, message: '登录密码限制输入15位' }]
         },
         {
-          label: '入学考试科目及分数',
-          field: 'studyWay',
-          form: 'input',
-          rules: [{ max: 5, message: '入学考试总分数' }]
+          label: '录取结果',
+          form: 'radio',
+          radioFrom: 'YESORNO_ENMU',
+          rules: []
         },
         {
-          label: '入学考试总分数',
+          label: '有录取通知书',
           field: 'birth',
-          form: 'input',
-          rules: [{ max: 5, message: '入学考试总分数' }]
+          form: 'radio',
+          radioFrom: 'YESORNO_ENMU',
+          rules: []
         },
         {
-          label: '加试时间',
+          label: '如期毕业',
           field: 'location',
-          form: 'input',
+          form: 'radio',
+          radioFrom: 'YESORNO_ENMU',
           rules: []
         },
 
         {
-          label: '加试成绩',
+          label: '未毕业原因',
           field: 'xz',
           form: 'input',
-          rules: [{ max: 6, message: '加试成绩限制输入6位' }]
+          rules: [{ max: 30, message: '未毕业原因限制输入30位' }]
         },
         {
-          label: '录取通知书已到',
+          label: '已有毕业证书',
           field: 'tzssfyd',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
-          label: '录取通知书已发',
+          label: '毕业证书已到',
           field: 'tzssfyf',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
-          label: '虚报',
+          label: '毕业证书已领',
           field: 'xb',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
-          label: '学习平台',
+          label: '领走时间',
           field: 'meal',
-          form: 'input',
-          rules: [{ max: 20, message: '学习平台限制输入20位' }]
+          form: 'date',
+          rules: []
         },
         {
-          label: '学号',
+          label: '领走方式',
           field: 'mealss',
-          form: 'input',
-          rules: [{ max: 15, message: '学号限制输入15位' }]
+          form: 'radio',
+          radioFrom: 'YESORNO_ENMU',
+          rules: []
         },
         {
-          label: '学习帐号',
+          label: '已填毕业生登记表',
           field: 'ms',
-          form: 'input',
-          rules: [{ max: 15, message: '学习帐号限制输入15位' }]
+          form: 'radio',
+          radioFrom: 'YESORNO_ENMU',
+          rules: []
         },
         {
-          label: '登录密码',
+          label: '毕业信息已采集',
           field: 'tsbk',
-          form: 'input',
-          rules: [{ max: 15, message: '登录密码限制输入15位' }]
+          form: 'radio',
+          radioFrom: 'YESORNO_ENMU',
+          rules: []
         },
         {
-          label: '录取结果',
+          label: '毕业纸质照片是否到我司',
+          field: 'tsbkq',
+          form: 'radio',
+          radioFrom: 'YESORNO_ENMU',
+          rules: []
+        },
+        {
+          label: '毕业纸质照片是否提交院校',
           field: 'tsbkq',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',

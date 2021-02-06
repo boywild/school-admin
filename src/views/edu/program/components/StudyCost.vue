@@ -56,7 +56,7 @@ export default {
           rules: [{ max: 15, message: '限制输入15位' }]
         },
         {
-          label: '身份证号',
+          label: '证件号码',
           field: 'meal',
           form: 'input',
           rules: [{ max: 18, message: '身份证号限制输入18位' }]
@@ -98,58 +98,10 @@ export default {
           rules: [{ validator: validatorMoney('第二年交费') }]
         },
         {
-          label: '第三年交费',
-          field: 'byTime',
-          form: 'input',
-          rules: [{ validator: validatorMoney('第三年交费') }]
-        },
-        {
-          label: '第四年交费',
-          field: 'bookNo',
-          form: 'input',
-          rules: [{ validator: validatorMoney('第四年交费') }]
-        },
-        {
-          label: '第五年交费',
-          field: 'bookType',
-          form: 'input',
-          rules: [{ validator: validatorMoney('第五年交费') }]
-        },
-        {
-          label: '报考费',
+          label: '报名费',
           field: 'address',
           form: 'input',
           rules: [{ validator: validatorMoney('报考费') }]
-        },
-        {
-          label: '入学考试辅导费',
-          field: 'work',
-          form: 'input',
-          rules: [{ validator: validatorMoney('入学考试辅导费') }]
-        },
-        {
-          label: '学位报考费',
-          field: 'email',
-          form: 'input',
-          rules: [{ validator: validatorMoney('学位报考费') }]
-        },
-        {
-          label: '学位辅导费',
-          field: 'aa',
-          form: 'input',
-          rules: [{ validator: validatorMoney('学位辅导费') }]
-        },
-        {
-          label: '网课费',
-          field: 'bb',
-          form: 'input',
-          rules: [{ validator: validatorMoney('网课费') }]
-        },
-        {
-          label: '论文费',
-          field: 'cc',
-          form: 'input',
-          rules: [{ validator: validatorMoney('论文费') }]
         },
         {
           label: '图像采集费',

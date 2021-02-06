@@ -91,6 +91,7 @@ export const SEX_ENMU = [
   { desc: '女', code: '2' }
 ]
 
+// 户籍
 export const HJ_ENMU = [
   { desc: '本地', code: '1' },
   { desc: '异地', code: '2' }
@@ -121,4 +122,23 @@ export const CARDTYPE_ENMU = [
   { desc: '驾驶证', code: '4' },
   { desc: '护照', code: '5' },
   { desc: '港澳通行', code: '6' }
+]
+
+// 录入平台
+export const PLATFORM_ENMU = [
+  { desc: '省电大', code: '1' },
+  { desc: '沈阳电大', code: '2' },
+  { desc: '大连电大', code: '3' },
+  { desc: '黑龙江电大', code: '4' },
+  { desc: '吉林电大', code: '5' },
+  { desc: '内蒙电大', code: '6' },
+  { desc: '国家平台', code: '7' },
+  { desc: '自有平台', code: '8' }
+]
+
+// 学费来源
+export const FEESOURCE_ENMU = [
+  { desc: '自筹', code: '1' },
+  { desc: '企业承担', code: '2' },
+  { desc: '国家补贴', code: '3' }
 ]

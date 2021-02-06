@@ -43,6 +43,13 @@ export default {
           ]
         },
         {
+          label: '录入平台',
+          field: 'lrpt',
+          form: 'select',
+          selectFrom: 'PLATFORM_ENMU',
+          rules: [{ required: true, message: '请选择录入平台' }]
+        },
+        {
           label: '学生姓名',
           field: 'name',
           form: 'input',
@@ -94,7 +101,14 @@ export default {
           field: 'xz',
           form: 'select',
           selectFrom: 'HK_ENMU',
-          rules: [{ required: true, message: '请输入户口性质' }]
+          rules: [{ required: true, message: '请选择户口性质' }]
+        },
+        {
+          label: '户籍',
+          field: 'hj',
+          form: 'radio',
+          radioFrom: 'HJ_ENMU',
+          rules: [{ required: true, message: '请选择户籍' }]
         },
         {
           label: '职业',
@@ -113,6 +127,13 @@ export default {
           rules: [{ required: true, max: 20, message: '请选择政治面貌' }]
         },
         {
+          label: '已婚',
+          field: 'mm',
+          form: 'radio',
+          radioFrom: 'YESORNO_ENMU',
+          rules: [{ required: true, max: 20, message: '请选择政治面貌' }]
+        },
+        {
           label: '原毕业学校',
           field: 'school',
           form: 'input',
@@ -126,6 +147,12 @@ export default {
           field: 'byTime',
           form: 'date',
           rules: [{ required: true, message: '请选择原毕业时间' }]
+        },
+        {
+          label: '原毕业专业',
+          field: 'byTimeASDF',
+          form: 'input',
+          rules: [{ required: true, message: '请输入原毕业专业' }]
         },
         {
           label: '原毕业证书编号',

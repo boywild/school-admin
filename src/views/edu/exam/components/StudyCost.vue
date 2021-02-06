@@ -56,7 +56,7 @@ export default {
           rules: [{ max: 15, message: '限制输入15位' }]
         },
         {
-          label: '身份证号',
+          label: '证件号码',
           field: 'meal',
           form: 'input',
           rules: [{ max: 18, message: '身份证号限制输入18位' }]
