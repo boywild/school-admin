@@ -97,6 +97,13 @@ export default {
           rules: [{ required: true, message: '请输入户口性质' }]
         },
         {
+          label: '户籍',
+          field: 'hj',
+          form: 'radio',
+          radioFrom: 'HJ_ENMU',
+          rules: [{ required: true, message: '请选择户籍' }]
+        },
+        {
           label: '职业',
           field: 'zy',
           form: 'input',

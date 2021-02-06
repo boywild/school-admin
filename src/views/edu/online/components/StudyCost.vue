@@ -104,49 +104,49 @@ export default {
           rules: [{ validator: validatorMoney('第三年交费') }]
         },
         {
-          label: '第四年交费',
-          field: 'bookNo',
-          form: 'input',
-          rules: [{ validator: validatorMoney('第四年交费') }]
-        },
-        {
-          label: '第五年交费',
-          field: 'bookType',
-          form: 'input',
-          rules: [{ validator: validatorMoney('第五年交费') }]
-        },
-        {
           label: '报考费',
           field: 'address',
           form: 'input',
           rules: [{ validator: validatorMoney('报考费') }]
         },
         {
-          label: '入学考试辅导费',
+          label: '测试费',
           field: 'work',
           form: 'input',
           rules: [{ validator: validatorMoney('入学考试辅导费') }]
         },
         {
-          label: '学位报考费',
+          label: '统考英语费',
           field: 'email',
           form: 'input',
           rules: [{ validator: validatorMoney('学位报考费') }]
         },
         {
-          label: '学位辅导费',
+          label: '统考计算机费',
           field: 'aa',
           form: 'input',
           rules: [{ validator: validatorMoney('学位辅导费') }]
         },
         {
-          label: '网课费',
+          label: '统考学位英语费',
           field: 'bb',
           form: 'input',
           rules: [{ validator: validatorMoney('网课费') }]
         },
         {
-          label: '论文费',
+          label: '学位论文费',
+          field: 'cc',
+          form: 'input',
+          rules: [{ validator: validatorMoney('论文费') }]
+        },
+        {
+          label: '非学费论文费',
+          field: 'cc',
+          form: 'input',
+          rules: [{ validator: validatorMoney('论文费') }]
+        },
+        {
+          label: '奖励费',
           field: 'cc',
           form: 'input',
           rules: [{ validator: validatorMoney('论文费') }]

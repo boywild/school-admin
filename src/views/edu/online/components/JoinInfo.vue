@@ -45,11 +45,16 @@ export default {
           rules: [{ required: true, message: '请选择所报层次' }]
         },
         {
-          label: '所报学习形式',
-          field: 'studyWay',
-          form: 'select',
-          selectFrom: 'STUDY_WAT_ENMU',
-          rules: [{ required: true, message: '请选择所报学习形式' }]
+          label: '所报院校',
+          field: 'yx',
+          form: 'input',
+          rules: [{ required: true, message: '请选择所报院校' }]
+        },
+        {
+          label: '所报专业',
+          field: 'zy',
+          form: 'input',
+          rules: [{ required: true, message: '请选择所报专业' }]
         },
         {
           label: '学制',
@@ -72,66 +77,47 @@ export default {
           rules: [{ required: true, message: '请选择何时参加工作' }]
         },
         {
-          label: '考试城市',
+          label: '学习平台',
           field: 'ybmh',
-          form: 'cascader',
-          rules: [{ required: true, message: '请输入考试城市' }]
+          form: 'input',
+          rules: [{ required: true, message: '请输入学习平台' }]
         },
         {
-          label: '所报院校',
+          label: '学号',
           field: 'mz',
           form: 'input',
           rules: [
-            { required: true, message: '请输入所报院校' },
+            { required: true, message: '请输入学号' },
             { max: 20, message: '限制输入20位' }
           ]
         },
         {
-          label: '所报院校代码',
+          label: '学习帐号',
           field: 'yxdm',
           form: 'input',
           rules: [
-            { required: true, message: '请输入所报院校代码' },
+            { required: true, message: '请输入学习帐号' },
             { max: 10, message: '限制输入10位' }
           ]
         },
         {
-          label: '所报专业',
+          label: '登录密码',
           field: 'meal',
           form: 'input',
           rules: [
-            { required: true, message: '请输入所报专业' },
+            { required: true, message: '请输入登录密码' },
             { max: 10, message: '限制输入10位' }
           ]
         },
         {
-          label: '专业代码',
+          label: '录取结果',
           field: 'mealss',
-          form: 'input',
+          form: 'radio',
+          radioFrom: 'YESORNO_ENMU',
           rules: [
             { required: true, message: '请输入专业代码' },
             { max: 10, message: '限制输入10位' }
           ]
-        },
-        {
-          label: '免试',
-          field: 'ms',
-          form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
-          rules: [{ required: true, message: '请选择免试' }]
-        },
-        {
-          label: '特殊报考',
-          field: 'tsbk',
-          form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
-          rules: [{ required: true, message: '请输入特殊报考' }]
-        },
-        {
-          label: '特殊报考区',
-          field: 'tsbkq',
-          form: 'input',
-          rules: [{ required: true, message: '请输入特殊报考区' }]
         }
       ]
     }

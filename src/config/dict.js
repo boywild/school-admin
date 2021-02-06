@@ -91,6 +91,11 @@ export const SEX_ENMU = [
   { desc: '女', code: '2' }
 ]
 
+export const HJ_ENMU = [
+  { desc: '本地', code: '1' },
+  { desc: '异地', code: '2' }
+]
+
 // 政治面貌
 export const ZZMM_ENMU = [
   { desc: '中共党员', code: '1' },

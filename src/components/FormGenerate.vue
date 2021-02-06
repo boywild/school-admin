@@ -48,7 +48,8 @@ import {
   LANG_ENMU,
   SEX_ENMU,
   ZZMM_ENMU,
-  CARDTYPE_ENMU
+  CARDTYPE_ENMU,
+  HJ_ENMU
 } from '@/config/dict'
 import city from '@/config/city'
 export default {
@@ -76,7 +77,8 @@ export default {
       radioData: {
         YESORNO_ENMU,
         REACH_ENMU,
-        SEX_ENMU
+        SEX_ENMU,
+        HJ_ENMU
       },
       cascaderData: {
         CITY: city
