@@ -33,8 +33,7 @@
         </a-form>
       </div>
       <div class="table-operator">
-        <a-button type="primary" icon="plus">新建</a-button>
-        <a-button type="danger" icon="delete">删除</a-button>
+        <a-button type="primary" icon="plus" @click="$refs.modal.edit()">新建</a-button>
       </div>
       <s-table ref="table" size="default" :columns="columns" :data="loadData">
         <div slot="expandedRowRender" slot-scope="record" style="margin: 0">
@@ -71,7 +70,7 @@
 
 <script>
 import { STable } from '@/components'
-import RoleModal from '@/views/other/modules/RoleModal'
+import RoleModal from './components/RoleModal'
 
 export default {
   name: 'TableList',
@@ -112,166 +111,7 @@ export default {
       },
 
       selectedRowKeys: [],
-      selectedRows: [],
-      permissionList: [
-        {
-          name: '成人教育',
-          children: [
-            { name: '查询' },
-            { name: '新建' },
-            { name: '删除' },
-            { name: '导出' },
-            { name: '基本信息' },
-            { name: '图片管理' },
-            { name: '报名管理' },
-            { name: '教务管理' },
-            { name: '学期管理' },
-            { name: '学位管理' },
-            { name: '财务管理' }
-          ]
-        },
-        {
-          name: '自学考试',
-          children: [
-            { name: '查询' },
-            { name: '新建' },
-            { name: '删除' },
-            { name: '导出' },
-            { name: '基本信息' },
-            { name: '图片管理' },
-            { name: '教务管理' },
-            { name: '教务添加考期' },
-            { name: '毕业申请' },
-            { name: '学位管理' },
-            { name: '财务管理' }
-          ]
-        },
-        {
-          name: '网络教育',
-          children: [
-            { name: '查询' },
-            { name: '新建' },
-            { name: '删除' },
-            { name: '导出' },
-            { name: '基本信息' },
-            { name: '图片管理' },
-            { name: '报名管理' },
-            { name: '学期管理' },
-            { name: '财务管理' }
-          ]
-        },
-        {
-          name: '开发大学',
-          children: [
-            { name: '查询' },
-            { name: '新建' },
-            { name: '删除' },
-            { name: '导出' },
-            { name: '基本信息' },
-            { name: '图片管理' },
-            { name: '报名管理' },
-            { name: '教务管理' },
-            { name: '财务管理' }
-          ]
-        },
-        {
-          name: '人设局培训',
-          children: [
-            { name: '查询' },
-            { name: '新建' },
-            { name: '删除' },
-            { name: '导出' },
-            { name: '基本信息' },
-            { name: '图片管理' },
-            { name: '报名管理' },
-            { name: '教务管理' },
-            { name: '财务管理' }
-          ]
-        },
-        {
-          name: '安检',
-          children: [
-            { name: '查询' },
-            { name: '新建' },
-            { name: '删除' },
-            { name: '导出' },
-            { name: '基本信息' },
-            { name: '图片管理' },
-            { name: '报名管理' },
-            { name: '教务管理' },
-            { name: '财务管理' }
-          ]
-        },
-        {
-          name: '质检',
-          children: [
-            { name: '查询' },
-            { name: '新建' },
-            { name: '删除' },
-            { name: '导出' },
-            { name: '基本信息' },
-            { name: '图片管理' },
-            { name: '报名管理' },
-            { name: '教务管理' },
-            { name: '财务管理' }
-          ]
-        },
-        {
-          name: '途胜教育',
-          children: [
-            { name: '查询' },
-            { name: '新建' },
-            { name: '删除' },
-            { name: '导出' },
-            { name: '基本信息' },
-            { name: '图片管理' },
-            { name: '报名管理' },
-            { name: '教务管理' },
-            { name: '财务管理' }
-          ]
-        },
-        {
-          name: '医考培训',
-          children: [
-            { name: '查询' },
-            { name: '新建' },
-            { name: '删除' },
-            { name: '导出' },
-            { name: '基本信息' },
-            { name: '图片管理' },
-            { name: '报名管理' },
-            { name: '教务管理' },
-            { name: '财务管理' }
-          ]
-        },
-        {
-          name: '财务管理',
-          children: [{ name: '查询' }]
-        },
-        {
-          name: '用户列表',
-          children: [
-            { name: '查询' },
-            { name: '新建' },
-            { name: '删除' },
-            { name: '修改' },
-            { name: '禁用' },
-            { name: '启用' }
-          ]
-        },
-        {
-          name: '角色列表',
-          children: [
-            { name: '查询' },
-            { name: '新建' },
-            { name: '删除' },
-            { name: '修改' },
-            { name: '禁用' },
-            { name: '启用' }
-          ]
-        },
-        { name: '代办事项', children: [{ name: '查询' }] }
-      ]
+      selectedRows: []
     }
   },
   methods: {

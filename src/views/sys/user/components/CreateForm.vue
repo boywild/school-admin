@@ -39,12 +39,12 @@
         <a-form-model-item label="手机号" prop="phone">
           <a-input has-feedback v-model.trim="form.phone" placeholder="请输入手机号" />
         </a-form-model-item>
-        <a-form-model-item label="接受待办通知" prop="receive">
+        <!-- <a-form-model-item label="接受待办通知" prop="receive">
           <a-radio-group v-model="form.receive" :default-value="0">
             <a-radio :value="1">是 </a-radio>
             <a-radio :value="0">否 </a-radio>
           </a-radio-group>
-        </a-form-model-item>
+        </a-form-model-item> -->
         <a-form-model-item label="备注" prop="remark">
           <a-input has-feedback v-model.trim="form.remark" placeholder="请输入备注" />
         </a-form-model-item>
