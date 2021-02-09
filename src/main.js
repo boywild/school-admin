@@ -9,7 +9,6 @@ import store from './store/'
 import i18n from './locales'
 import { VueAxios } from './utils/request'
 import ProLayout, { PageHeaderWrapper } from '@ant-design-vue/pro-layout'
-import { FormModel, Tree, Cascader } from 'ant-design-vue'
 import themePluginConfig from '../config/themePluginConfig'
 
 // mock
@@ -25,9 +24,6 @@ import './global.less' // global style
 Vue.config.productionTip = false
 
 // mount axios to `Vue.$http` and `this.$http`
-Vue.use(FormModel)
-Vue.use(Tree)
-Vue.use(Cascader)
 Vue.use(VueAxios)
 // use pro-layout components
 Vue.component('pro-layout', ProLayout)

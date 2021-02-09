@@ -280,31 +280,31 @@ export const asyncRouterMap = [
         component: RouteView,
         redirect: '/edu/adult',
         name: 'edu',
-        meta: { title: '学历教育', icon: 'trophy', permission: [] },
+        meta: { title: '学历教育', icon: 'trophy', permission: ['user'] },
         children: [
           {
             path: '/edu/adult',
             name: 'adult',
             component: () => import(/* webpackChunkName: "adult" */ '@/views/edu/adult/index'),
-            meta: { title: '成人教育', permission: [] }
+            meta: { title: '成人教育', permission: ['user'] }
           },
           {
             path: '/edu/exam',
             name: 'exam',
             component: () => import(/* webpackChunkName: "exam" */ '@/views/edu/exam/index'),
-            meta: { title: '自考教育', permission: [] }
+            meta: { title: '自考教育', permission: ['user'] }
           },
           {
             path: '/edu/online',
             name: 'online',
             component: () => import(/* webpackChunkName: "online" */ '@/views/edu/online/index'),
-            meta: { title: '网络教育', permission: [] }
+            meta: { title: '网络教育', permission: ['user'] }
           },
           {
             path: '/edu/program',
             name: 'program',
             component: () => import(/* webpackChunkName: "program" */ '@/views/edu/program/index'),
-            meta: { title: '开发大学', permission: [] }
+            meta: { title: '开发大学', permission: ['user'] }
           }
         ]
       },
@@ -319,31 +319,31 @@ export const asyncRouterMap = [
             path: '/training/hr',
             name: 'hr',
             component: () => import(/* webpackChunkName: "training" */ '@/views/training/hr/index'),
-            meta: { title: '人社局培训', permission: [] }
+            meta: { title: '人社局培训', permission: ['user'] }
           },
           {
             path: '/training/doctor',
             name: 'doctor',
             component: () => import(/* webpackChunkName: "doctor" */ '@/views/training/doctor/index'),
-            meta: { title: '医考培训', permission: [] }
+            meta: { title: '医考培训', permission: ['user'] }
           },
           {
             path: '/training/security',
             name: 'security',
             component: () => import(/* webpackChunkName: "security" */ '@/views/training/security/index'),
-            meta: { title: '安检培训', permission: [] }
+            meta: { title: '安检培训', permission: ['user'] }
           },
           {
             path: '/training/quality',
             name: 'quality',
             component: () => import(/* webpackChunkName: "quality" */ '@/views/training/quality/index'),
-            meta: { title: '质检培训', permission: [] }
+            meta: { title: '质检培训', permission: ['user'] }
           },
           {
             path: '/training/tusheng',
             name: 'tusheng',
             component: () => import(/* webpackChunkName: "tusheng" */ '@/views/training/tusheng/index'),
-            meta: { title: '医考培训', permission: [] }
+            meta: { title: '医考培训', permission: ['user'] }
           }
         ]
       },
@@ -352,14 +352,14 @@ export const asyncRouterMap = [
         component: RouteView,
         redirect: '/accountant/money',
         name: 'accountant',
-        meta: { title: '财务管理', icon: 'money-collect', permission: [] },
+        meta: { title: '财务管理', icon: 'money-collect', permission: ['user'] },
         hideChildrenInMenu: true,
         children: [
           {
             path: '/accountant/money',
             name: 'money',
             component: () => import(/* webpackChunkName: "money" */ '@/views/accountant/index'),
-            meta: { title: '财务列表', permission: [] }
+            meta: { title: '财务列表', permission: ['user'] }
           }
         ]
       },
@@ -368,14 +368,14 @@ export const asyncRouterMap = [
         component: RouteView,
         redirect: '/article/list',
         name: 'article',
-        meta: { title: '文章管理', icon: 'file-text', permission: [] },
+        meta: { title: '文章管理', icon: 'file-text', permission: ['user'] },
         hideChildrenInMenu: true,
         children: [
           {
             path: '/article/list',
             name: 'articleList',
             component: () => import(/* webpackChunkName: "article" */ '@/views/article/index'),
-            meta: { title: '文章列表', permission: [] }
+            meta: { title: '文章列表', permission: ['user'] }
           }
         ]
       },
@@ -384,19 +384,19 @@ export const asyncRouterMap = [
         component: RouteView,
         redirect: '/sys/user',
         name: 'sys',
-        meta: { title: '系统管理', icon: 'setting', permission: [] },
+        meta: { title: '系统管理', icon: 'setting', permission: ['user'] },
         children: [
           {
             path: '/sys/user',
             name: 'sysUser',
             component: () => import(/* webpackChunkName: "sysUser" */ '@/views/sys/user/index'),
-            meta: { title: '用户列表', permission: [] }
+            meta: { title: '用户列表', permission: ['user'] }
           },
           {
             path: '/sys/role',
             name: 'sysRole',
             component: () => import(/* webpackChunkName: "sysRole" */ '@/views/sys/role/index'),
-            meta: { title: '角色列表', permission: [] }
+            meta: { title: '角色列表', permission: ['user'] }
           }
         ]
       },
