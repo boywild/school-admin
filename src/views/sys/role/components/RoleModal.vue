@@ -191,7 +191,19 @@ const permissionList = [
       { title: '启用', key: '11_5' }
     ]
   },
-  { title: '代办事项', key: '12', children: [{ title: '查询', key: '12_0' }] }
+  {
+    title: '角色列表',
+    key: '12',
+    children: [
+      { title: '查询', key: '12_0' },
+      { title: '新建', key: '12_1' },
+      { title: '删除', key: '12_2' },
+      { title: '修改', key: '12_3' },
+      { title: '发布', key: '12_4' },
+      { title: '取消发布', key: '12_5' }
+    ]
+  },
+  { title: '代办事项', key: '13', children: [{ title: '查询', key: '13_0' }] }
 ]
 export default {
   name: 'RoleModal',

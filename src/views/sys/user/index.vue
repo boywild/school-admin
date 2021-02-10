@@ -6,17 +6,17 @@
           <a-row :gutter="48">
             <a-col :md="8" :sm="24">
               <a-form-item label="姓名">
-                <a-input v-model="queryParam.id" placeholder="请输入姓名" />
+                <a-input v-model="queryParam.name" placeholder="请输入姓名" />
               </a-form-item>
             </a-col>
             <a-col :md="8" :sm="24">
               <a-form-item label="手机号">
-                <a-input v-model="queryParam.id" placeholder="请输入手机号" />
+                <a-input v-model="queryParam.phone" placeholder="请输入手机号" />
               </a-form-item>
             </a-col>
             <a-col :md="8" :sm="24">
               <a-form-item label="使用状态">
-                <a-select v-model="queryParam.status" placeholder="请选择热门状态" default-value="0">
+                <a-select v-model="queryParam.allowStatus" placeholder="请选择热门状态" default-value="0">
                   <a-select-option value="0">全部</a-select-option>
                   <a-select-option value="1">关闭</a-select-option>
                   <a-select-option value="2">运行中</a-select-option>
@@ -25,7 +25,7 @@
             </a-col>
             <a-col :md="8" :sm="24">
               <a-form-item label="角色">
-                <a-select v-model="queryParam.status" placeholder="请选择热门状态" default-value="0">
+                <a-select v-model="queryParam.roleId" placeholder="请选择热门状态" default-value="0">
                   <a-select-option value="0">全部</a-select-option>
                   <a-select-option value="1">关闭</a-select-option>
                   <a-select-option value="2">运行中</a-select-option>
@@ -35,7 +35,7 @@
             <template v-if="advanced">
               <a-col :md="8" :sm="24">
                 <a-form-item label="创建日期">
-                  <a-range-picker v-model="queryParam.date" />
+                  <a-range-picker v-model="queryParam.createTime" />
                 </a-form-item>
               </a-col>
             </template>
@@ -71,6 +71,12 @@
         :rowSelection="rowSelection"
         showPagination="auto"
       >
+        <span slot="allowStatus" slot-scope="text">
+          <a-tag :color="text ? 'blue' : 'orange'">{{ text ? '启用' : '禁用' }}</a-tag>
+        </span>
+        <span slot="createTime" slot-scope="text">
+          {{ text | moment }}
+        </span>
         <span slot="action" slot-scope="text, record">
           <template>
             <a @click="handleEdit(record)">修改</a>
@@ -95,24 +101,24 @@
 <script>
 import moment from 'moment'
 import { STable } from '@/components'
-import { getRoleList, getServiceList } from '@/api/manage'
+import { adminList } from '@/api/admin'
 
 // import StepByStepModal from './modules/StepByStepModal'
 import CreateForm from './components/CreateForm'
 
 const columns = [
-  { title: '登录名', dataIndex: 'no' },
-  { title: '姓名', dataIndex: 'description' },
-  { title: '电话号', dataIndex: 'callNo' },
-  { title: '使用状态', dataIndex: 'bbb' },
-  { title: '角色', dataIndex: 'status' },
-  { title: '创建时间', dataIndex: 'updatedAt' },
-  { title: '备注', dataIndex: 'cc' },
+  { title: '登录名', dataIndex: 'loginNo' },
+  { title: '姓名', dataIndex: 'name' },
+  { title: '电话号', dataIndex: 'phone' },
+  { title: '使用状态', dataIndex: 'allowStatus', scopedSlots: { customRender: 'allowStatus' } },
+  { title: '角色', dataIndex: 'roleName' },
+  { title: '创建时间', dataIndex: 'createTime', scopedSlots: { customRender: 'createTime' } },
+  { title: '备注', dataIndex: 'remark' },
   { title: '操作', dataIndex: 'action', width: '150px', scopedSlots: { customRender: 'action' } }
 ]
 
 export default {
-  name: 'ArticleList',
+  name: 'UserList',
   components: {
     STable,
     CreateForm
@@ -132,7 +138,8 @@ export default {
       loadData: parameter => {
         const requestParameters = Object.assign({}, parameter, this.queryParam)
         console.log('loadData request parameters:', requestParameters)
-        return getServiceList(requestParameters).then(res => {
+        return adminList(requestParameters).then(res => {
+          console.log(res)
           return res.result
         })
       },
@@ -142,7 +149,7 @@ export default {
   },
   filters: {},
   created() {
-    getRoleList({ t: new Date() })
+    // adminList({ t: new Date() })
   },
   computed: {
     rowSelection() {

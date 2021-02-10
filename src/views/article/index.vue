@@ -60,6 +60,8 @@
         <span slot="action" slot-scope="text, record">
           <template>
             <a @click="handleEdit(record)">修改</a>
+            <a-divider type="vertical" />
+            <a>发布</a>
           </template>
         </span>
       </s-table>
