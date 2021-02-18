@@ -80,8 +80,6 @@
         <span slot="action" slot-scope="text, record">
           <template>
             <a @click="handleEdit(record)">修改</a>
-            <a-divider type="vertical" />
-            <a @click="handleEdit(record)">禁用</a>
           </template>
         </span>
       </s-table>
@@ -101,7 +99,7 @@
 <script>
 import moment from 'moment'
 import { STable } from '@/components'
-import { adminList } from '@/api/admin'
+import { adminList, adminSave } from '@/api/admin'
 
 // import StepByStepModal from './modules/StepByStepModal'
 import CreateForm from './components/CreateForm'
@@ -109,7 +107,7 @@ import CreateForm from './components/CreateForm'
 const columns = [
   { title: '登录名', dataIndex: 'loginNo' },
   { title: '姓名', dataIndex: 'name' },
-  { title: '电话号', dataIndex: 'phone' },
+  { title: '手机号', dataIndex: 'phone' },
   { title: '使用状态', dataIndex: 'allowStatus', scopedSlots: { customRender: 'allowStatus' } },
   { title: '角色', dataIndex: 'roleName' },
   { title: '创建时间', dataIndex: 'createTime', scopedSlots: { customRender: 'createTime' } },
@@ -139,7 +137,6 @@ export default {
         const requestParameters = Object.assign({}, parameter, this.queryParam)
         console.log('loadData request parameters:', requestParameters)
         return adminList(requestParameters).then(res => {
-          console.log(res)
           return res.result
         })
       },
@@ -168,7 +165,18 @@ export default {
       this.visible = true
       this.mdl = { ...record }
     },
-    handleOk() {},
+    handleOk() {
+      const form = this.$refs.createModal
+      form.validate(async values => {
+        console.log(values)
+        this.confirmLoading = true
+        const { result = {} } = await adminSave(values)
+        this.confirmLoading = false
+        this.handleCancel()
+        this.$refs.table.refresh()
+        console.log(result)
+      })
+    },
     handleCancel() {
       this.visible = false
       this.$refs['createModal'].resetForm()

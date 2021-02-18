@@ -28,7 +28,7 @@ export function roleGet(roleId) {
 export function roleList(parameter) {
   return request({
     url: roleApi.RoleList,
-    method: 'get',
+    method: 'post',
     data: parameter
   })
 }

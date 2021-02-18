@@ -33,9 +33,15 @@
         </a-form>
       </div>
       <div class="table-operator">
-        <a-button type="primary" icon="plus" @click="$refs.modal.edit()">新建</a-button>
+        <a-button type="primary" icon="plus" @click="$refs.roleModal.add()">新建</a-button>
       </div>
       <s-table ref="table" size="default" :columns="columns" :data="loadData">
+        <span slot="status" slot-scope="text">
+          <a-tag :color="text ? 'blue' : 'orange'">{{ text ? '启用' : '禁用' }}</a-tag>
+        </span>
+        <span slot="createTime" slot-scope="text">
+          {{ text | moment }}
+        </span>
         <div slot="expandedRowRender" slot-scope="record" style="margin: 0">
           <a-row :gutter="24" :style="{ marginBottom: '12px' }">
             <a-col
@@ -55,15 +61,19 @@
           </a-row>
         </div>
         <span slot="action" slot-scope="text, record">
-          <a @click="$refs.modal.edit(record)">修改</a>
+          <a @click="$refs.roleModal.edit(record)">修改</a>
           <a-divider type="vertical" />
-          <a href="javascript:;">禁用</a>
+          <a @click="$refs.modal.edit(record)">权限</a>
+          <a-divider type="vertical" />
+          <a href="javascript:;" v-if="record.status">禁用</a>
+          <a href="javascript:;" v-else>启用</a>
           <a-divider type="vertical" />
           <a href="javascript:;">删除</a>
         </span>
       </s-table>
 
-      <role-modal ref="modal" @ok="handleOk"></role-modal>
+      <role-modal ref="roleModal"></role-modal>
+      <role-permission-modal ref="modal" @ok="handleOk"></role-permission-modal>
     </a-card>
   </page-header-wrapper>
 </template>
@@ -71,18 +81,18 @@
 <script>
 import { STable } from '@/components'
 import RoleModal from './components/RoleModal'
+import RolePermissionModal from './components/RolePermissionModal'
 
+import { roleList } from '@/api/role'
 export default {
-  name: 'TableList',
+  name: 'Role',
   components: {
     STable,
-    RoleModal
+    RoleModal,
+    RolePermissionModal
   },
   data() {
     return {
-      description:
-        '列表使用场景：后台管理中的权限管理以及角色管理，可用于基于 RBAC 设计的角色权限控制，颗粒度细到每一个操作类型。',
-
       visible: false,
 
       form: null,
@@ -94,20 +104,19 @@ export default {
       queryParam: {},
       // 表头
       columns: [
-        { title: '角色名称', dataIndex: 'name' },
-        { title: '状态', dataIndex: 'status' },
-        { title: '创建时间', dataIndex: 'createTime' },
-        { title: '操作', width: '150px', dataIndex: 'action', scopedSlots: { customRender: 'action' } }
+        { title: '角色名称', dataIndex: 'roleName' },
+        { title: '状态', dataIndex: 'status', scopedSlots: { customRender: 'status' } },
+        { title: '创建时间', dataIndex: 'createTime', scopedSlots: { customRender: 'createTime' } },
+        { title: '操作', width: '200px', dataIndex: 'action', scopedSlots: { customRender: 'action' } }
       ],
       // 加载数据方法 必须为 Promise 对象
       loadData: parameter => {
-        return this.$http
-          .get('/role', {
-            params: Object.assign(parameter, this.queryParam)
-          })
-          .then(res => {
-            return res.result
-          })
+        const requestParameters = Object.assign({}, parameter, this.queryParam)
+        console.log('loadData request parameters:', requestParameters)
+        return roleList(requestParameters).then(res => {
+          console.log(res.result)
+          return res.result
+        })
       },
 
       selectedRowKeys: [],

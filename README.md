@@ -99,3 +99,11 @@ Modern browsers and IE10.
 
 This project exists thanks to all the people who contribute. 
 <a href="https://github.com/vueComponent/ant-design-vue-pro/graphs/contributors"><img src="https://opencollective.com/ant-design-pro-vue/contributors.svg?width=890&button=false" /></a>
+
+
+1. 管理员详情/角色详情 接口未使用数据放在列表中返回
+2. 管理员模块缺少删除接口
+3. 文章模块/待办事项/财务管理接口缺失
+4. 角色管理模块缺少禁用启用接口、当前角色已有的权限在列表返回
+5. 查询角色列表使用post方法非get方法
+6. allowStatus updSysData 不使用boolean，不好反显

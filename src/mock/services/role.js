@@ -4,7 +4,7 @@ import { builder } from '../util'
 const roleSave = () => {
   return builder(
     {
-      roleId: '60052b72ea0c5120ec4c5410',
+      roleId: '60052b7332ea0c5120ec4c5410',
       roleName: '超级管理员',
       status: true,
       updSysData: true,
@@ -26,10 +26,11 @@ const roleList = () => {
       first: true,
       content: [
         {
-          roleId: '60052b72ea0c5120ec4c5410',
+          roleId: '60052b7332ea0c5120ec4c5410',
           roleName: '超级管理员',
           status: true,
           updSysData: true,
+          createTime: 1612938896703,
           remark: '系统初始化'
         },
         {
@@ -37,6 +38,7 @@ const roleList = () => {
           roleName: '学校管理员',
           status: false,
           updSysData: false,
+          createTime: 1612938896703,
           remark: '新建'
         }
       ]
@@ -164,8 +166,9 @@ const permissionList = () => {
     { 'Custom-Header': Mock.mock('@guid') }
   )
 }
-Mock.mock(/\/role/, 'post', roleSave)
+
 Mock.mock(/\/role\/list/, 'post', roleList)
 Mock.mock(/\/role\/delete/, 'get', builder(true, '', 200))
 Mock.mock(/\/role\/assignAuth/, 'post', builder(true, '', 200))
 Mock.mock(/\/role\/getAuths/, 'get', permissionList)
+Mock.mock(/\/role/, 'post', roleSave)
