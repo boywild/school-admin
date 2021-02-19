@@ -37,7 +37,7 @@
       </div>
       <s-table ref="table" size="default" :columns="columns" :data="loadData">
         <span slot="status" slot-scope="text">
-          <a-tag :color="text ? 'blue' : 'orange'">{{ text ? '启用' : '禁用' }}</a-tag>
+          <a-tag :color="text === '1' ? 'blue' : 'orange'">{{ text === '1' ? '启用' : '禁用' }}</a-tag>
         </span>
         <span slot="createTime" slot-scope="text">
           {{ text | moment }}
@@ -65,15 +65,20 @@
           <a-divider type="vertical" />
           <a @click="$refs.modal.edit(record)">权限</a>
           <a-divider type="vertical" />
-          <a href="javascript:;" v-if="record.status">禁用</a>
-          <a href="javascript:;" v-else>启用</a>
-          <a-divider type="vertical" />
-          <a href="javascript:;">删除</a>
+          <a-popconfirm
+            placement="topLeft"
+            title="删除会导致该角色下管理员无法正常使用，请再三确认！！"
+            ok-text="确认"
+            cancel-text="取消"
+            @confirm="confirmDelete(record)"
+          >
+            <a href="javascript:;">删除</a>
+          </a-popconfirm>
         </span>
       </s-table>
 
-      <role-modal ref="roleModal"></role-modal>
-      <role-permission-modal ref="modal" @ok="handleOk"></role-permission-modal>
+      <role-modal ref="roleModal" @refresh="refreshTable"></role-modal>
+      <role-permission-modal ref="modal" @refresh="refreshTable"></role-permission-modal>
     </a-card>
   </page-header-wrapper>
 </template>
@@ -83,7 +88,7 @@ import { STable } from '@/components'
 import RoleModal from './components/RoleModal'
 import RolePermissionModal from './components/RolePermissionModal'
 
-import { roleList } from '@/api/role'
+import { roleList, roleDelete } from '@/api/role'
 export default {
   name: 'Role',
   components: {
@@ -93,11 +98,6 @@ export default {
   },
   data() {
     return {
-      visible: false,
-
-      form: null,
-      mdl: {},
-
       // 高级搜索 展开/关闭
       advanced: false,
       // 查询参数
@@ -107,7 +107,7 @@ export default {
         { title: '角色名称', dataIndex: 'roleName' },
         { title: '状态', dataIndex: 'status', scopedSlots: { customRender: 'status' } },
         { title: '创建时间', dataIndex: 'createTime', scopedSlots: { customRender: 'createTime' } },
-        { title: '操作', width: '200px', dataIndex: 'action', scopedSlots: { customRender: 'action' } }
+        { title: '操作', width: '180px', dataIndex: 'action', scopedSlots: { customRender: 'action' } }
       ],
       // 加载数据方法 必须为 Promise 对象
       loadData: parameter => {
@@ -124,43 +124,21 @@ export default {
     }
   },
   methods: {
-    handleEdit(record) {
-      this.mdl = Object.assign({}, record)
-
-      this.mdl.permissions.forEach(permission => {
-        permission.actionsOptions = permission.actionEntitySet.map(action => {
-          return { label: action.describe, value: action.action, defaultCheck: action.defaultCheck }
-        })
-      })
-
-      console.log(this.mdl)
-      this.visible = true
-    },
-    handleOk() {
+    refreshTable() {
       // 新增/修改 成功时，重载列表
       this.$refs.table.refresh()
     },
-    onChange(selectedRowKeys, selectedRows) {
-      this.selectedRowKeys = selectedRowKeys
-      this.selectedRows = selectedRows
-    },
+
     toggleAdvanced() {
       this.advanced = !this.advanced
+    },
+    async confirmDelete({ roleId }) {
+      try {
+        await roleDelete(roleId)
+        this.refreshTable()
+      } catch (e) {}
     }
   },
-  watch: {
-    /*
-      'selectedRows': function (selectedRows) {
-        this.needTotalList = this.needTotalList.map(item => {
-          return {
-            ...item,
-            total: selectedRows.reduce( (sum, val) => {
-              return sum + val[item.dataIndex]
-            }, 0)
-          }
-        })
-      }
-      */
-  }
+  watch: {}
 }
 </script>

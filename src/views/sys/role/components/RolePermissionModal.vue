@@ -1,6 +1,6 @@
 <template>
   <a-modal
-    title="角色"
+    title="分配权限"
     :width="900"
     :visible="visible"
     :confirmLoading="confirmLoading"
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { roleSetPremission } from '@/api/role'
 const permissionList = [
   {
     title: '成人教育',
@@ -215,7 +216,8 @@ export default {
       selectedKeys: [],
       treeData: permissionList,
       visible: false,
-      confirmLoading: false
+      confirmLoading: false,
+      roleId: ''
     }
   },
   created() {},
@@ -225,14 +227,23 @@ export default {
     }
   },
   methods: {
-    handleOk() {
-      this.close()
+    async handleOk() {
+      this.confirmLoading = true
+      try {
+        await roleSetPremission(this.roleId, this.expandedKeys)
+        this.confirmLoading = false
+        this.$emit('refresh')
+      } catch (e) {
+        this.confirmLoading = false
+      }
+      this.toggle(false)
     },
     handleCancel() {
-      this.close()
+      this.toggle(false)
     },
     edit(record) {
-      this.visible = true
+      this.roleId = record.roleId
+      this.toggle()
     },
     onExpand(expandedKeys) {
       console.log('onExpand', expandedKeys)
@@ -249,9 +260,8 @@ export default {
       console.log('onSelect', info)
       this.selectedKeys = selectedKeys
     },
-    close() {
-      this.$emit('close')
-      this.visible = false
+    toggle(flag = true) {
+      this.visible = flag
     }
   }
 }

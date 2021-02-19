@@ -1,6 +1,6 @@
 export const YESORNO_ENMU = [
   { desc: '是', code: '1' },
-  { desc: '否', code: '2' }
+  { desc: '否', code: '0' }
 ]
 // 来源
 export const STUDENT_FROM_ENMU = [

@@ -1,6 +1,6 @@
 <template>
   <a-modal
-    title="角色"
+    :title="form.roleId ? '修改角色' : '新建角色'"
     :width="576"
     :visible="visible"
     :confirmLoading="confirmLoading"
@@ -8,7 +8,7 @@
     @cancel="handleCancel"
   >
     <a-spin :spinning="loading">
-      <a-form-model ref="userInfo" :model="form" :rules="rules" :label-col="labelCol" :wrapper-col="wrapperCol">
+      <a-form-model ref="roleInfo" :model="form" :rules="rules" :label-col="labelCol" :wrapper-col="wrapperCol">
         <a-form-model-item label="登录名" prop="roleName">
           <a-input v-model.trim="form.roleName" placeholder="请输入登录名" />
         </a-form-model-item>
@@ -36,6 +36,7 @@
 
 <script>
 import { YESORNO_ENMU } from '@/config/dict'
+import { roleSave } from '@/api/role'
 export default {
   name: 'RoleModal',
   data() {
@@ -63,12 +64,28 @@ export default {
   watch: {},
   methods: {
     handleOk() {
-      this.toggle(false)
+      this.validate(async values => {
+        // this.$emit('save', { ...values })
+        this.confirmLoading = true
+        try {
+          await roleSave(values)
+          this.confirmLoading = false
+          this.$emit('refresh')
+        } catch (e) {
+          this.confirmLoading = false
+        }
+        this.handleCancel()
+      })
     },
     handleCancel() {
+      this.resetForm()
       this.toggle(false)
     },
     edit(record) {
+      this.form = {
+        ...this.form,
+        ...record
+      }
       this.toggle()
     },
     add() {
@@ -76,6 +93,19 @@ export default {
     },
     toggle(flag = true) {
       this.visible = flag
+    },
+    validate(callback) {
+      const form = this.$refs.roleInfo
+      form.validate(success => {
+        if (success) {
+          callback && callback(this.form)
+        }
+      })
+    },
+    resetForm() {
+      const form = this.$refs.roleInfo
+      this.form = {}
+      form.clearValidate()
     }
   }
 }

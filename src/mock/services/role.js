@@ -6,8 +6,8 @@ const roleSave = () => {
     {
       roleId: '60052b7332ea0c5120ec4c5410',
       roleName: '超级管理员',
-      status: true,
-      updSysData: true,
+      status: '0',
+      updSysData: '1',
       remark: '系统初始化'
     },
     '',
@@ -28,16 +28,16 @@ const roleList = () => {
         {
           roleId: '60052b7332ea0c5120ec4c5410',
           roleName: '超级管理员',
-          status: true,
-          updSysData: true,
+          status: '1',
+          updSysData: '1',
           createTime: 1612938896703,
           remark: '系统初始化'
         },
         {
           roleId: '60052b72ea033rc5120ec4c5410',
           roleName: '学校管理员',
-          status: false,
-          updSysData: false,
+          status: '0',
+          updSysData: '0',
           createTime: 1612938896703,
           remark: '新建'
         }

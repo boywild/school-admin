@@ -42,11 +42,12 @@ export function roleDelete(roleId) {
   })
 }
 // 角色-分配权限
-export function roleSetPremission(parameter) {
+export function roleSetPremission(roleId, authIds) {
+  console.log(roleId, authIds)
   return request({
     url: roleApi.RoleDelete,
     method: 'post',
-    data: parameter
+    data: { roleId, authIds }
   })
 }
 // 角色-获取权限
