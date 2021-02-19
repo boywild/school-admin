@@ -16,19 +16,19 @@
             </a-col>
             <a-col :md="8" :sm="24">
               <a-form-item label="使用状态">
-                <a-select v-model="queryParam.allowStatus" placeholder="请选择热门状态" default-value="0">
-                  <a-select-option value="0">全部</a-select-option>
-                  <a-select-option value="1">关闭</a-select-option>
-                  <a-select-option value="2">运行中</a-select-option>
+                <a-select v-model="queryParam.allowStatus" placeholder="请选择使用状态" default-value="0">
+                  <a-select-option :value="item.code" v-for="(item, index) in OPENORCLOSE_ENMU" :key="index">{{
+                    item.desc
+                  }}</a-select-option>
                 </a-select>
               </a-form-item>
             </a-col>
             <a-col :md="8" :sm="24">
               <a-form-item label="角色">
-                <a-select v-model="queryParam.roleId" placeholder="请选择热门状态" default-value="0">
-                  <a-select-option value="0">全部</a-select-option>
-                  <a-select-option value="1">关闭</a-select-option>
-                  <a-select-option value="2">运行中</a-select-option>
+                <a-select v-model="queryParam.roleId" placeholder="请选择角色" default-value="0">
+                  <a-select-option :value="item.roleId" v-for="(item, index) in roleList" :key="index">{{
+                    item.roleName
+                  }}</a-select-option>
                 </a-select>
               </a-form-item>
             </a-col>
@@ -100,9 +100,10 @@
 import moment from 'moment'
 import { STable } from '@/components'
 import { adminList, adminSave } from '@/api/admin'
-
+import { roleList } from '@/api/role'
 // import StepByStepModal from './modules/StepByStepModal'
 import CreateForm from './components/CreateForm'
+import { OPENORCLOSE_ENMU } from '@/config/dict'
 
 const columns = [
   { title: '登录名', dataIndex: 'loginNo' },
@@ -125,6 +126,7 @@ export default {
     this.columns = columns
     return {
       // create model
+      OPENORCLOSE_ENMU,
       visible: false,
       confirmLoading: false,
       mdl: null,
@@ -141,12 +143,14 @@ export default {
         })
       },
       selectedRowKeys: [],
-      selectedRows: []
+      selectedRows: [],
+      roleList: []
     }
   },
   filters: {},
   created() {
     // adminList({ t: new Date() })
+    this.getRole()
   },
   computed: {
     rowSelection() {
@@ -157,6 +161,10 @@ export default {
     }
   },
   methods: {
+    async getRole() {
+      const { result = {} } = await roleList()
+      this.roleList = result.content
+    },
     handleAdd() {
       this.mdl = null
       this.visible = true

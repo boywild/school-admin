@@ -12,9 +12,9 @@
             <a-col :md="6" :sm="24">
               <a-form-item label="角色状态">
                 <a-select placeholder="请选择角色状态">
-                  <a-select-option value="0">全部</a-select-option>
-                  <a-select-option value="1">正常</a-select-option>
-                  <a-select-option value="2">禁用</a-select-option>
+                  <a-select-option :value="item.code" v-for="(item, index) in OPENORCLOSE_ENMU" :key="index">{{
+                    item.desc
+                  }}</a-select-option>
                 </a-select>
               </a-form-item>
             </a-col>
@@ -87,6 +87,7 @@
 import { STable } from '@/components'
 import RoleModal from './components/RoleModal'
 import RolePermissionModal from './components/RolePermissionModal'
+import { OPENORCLOSE_ENMU } from '@/config/dict'
 
 import { roleList, roleDelete } from '@/api/role'
 export default {
@@ -98,6 +99,7 @@ export default {
   },
   data() {
     return {
+      OPENORCLOSE_ENMU,
       // 高级搜索 展开/关闭
       advanced: false,
       // 查询参数

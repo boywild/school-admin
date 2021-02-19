@@ -313,7 +313,7 @@ export const asyncRouterMap = [
         component: RouteView,
         redirect: '/training/hr',
         name: 'training',
-        meta: { title: '职业培训', icon: 'customer-service', permission: [] },
+        meta: { title: '职业培训', icon: 'customer-service' },
         children: [
           {
             path: '/training/hr',
