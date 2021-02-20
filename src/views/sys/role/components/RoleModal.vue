@@ -111,19 +111,4 @@ export default {
 }
 </script>
 
-<style lang="less">
-.permission-tree {
-  // color: #fff;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  > li {
-    width: 25%;
-    margin-bottom: 15px;
-    > .ant-tree-node-content-wrapper {
-      font-weight: bold;
-      color: #000;
-    }
-  }
-}
-</style>
+<style lang="less"></style>

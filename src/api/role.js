@@ -3,7 +3,9 @@ import request from '@/utils/request'
 const roleApi = {
   Role: '/role',
   RoleList: '/role/list',
-  RoleDelete: '/role/delete'
+  RoleDelete: '/role/delete',
+  RoleSetAuth: '/role/assignAuth',
+  RoleGetAuth: '/role/getAuths'
 }
 
 // 角色-保存
@@ -41,11 +43,11 @@ export function roleDelete(roleId) {
     data: { roleId }
   })
 }
+
 // 角色-分配权限
 export function roleSetPremission(roleId, authIds) {
-  console.log(roleId, authIds)
   return request({
-    url: roleApi.RoleDelete,
+    url: roleApi.RoleSetAuth,
     method: 'post',
     data: { roleId, authIds }
   })
@@ -53,7 +55,7 @@ export function roleSetPremission(roleId, authIds) {
 // 角色-获取权限
 export function roleGetPremission(roleId) {
   return request({
-    url: roleApi.RoleDelete,
+    url: roleApi.RoleGetAuth,
     method: 'get',
     data: { roleId }
   })
