@@ -25,8 +25,7 @@ export const STUDY_LEVEL_ENMU = [
 export const STUDY_LEVEL_ENMU2 = [
   { desc: '初', code: '1' },
   { desc: '中', code: '2' },
-  { desc: '高', code: '3' },
-  { desc: '本升本', code: '4' }
+  { desc: '高', code: '3' }
 ]
 
 // 学习形式

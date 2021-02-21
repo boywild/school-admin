@@ -343,7 +343,7 @@ export const asyncRouterMap = [
             path: '/training/tusheng',
             name: 'tusheng',
             component: () => import(/* webpackChunkName: "tusheng" */ '@/views/training/tusheng/index'),
-            meta: { title: '医考培训', permission: ['user'] }
+            meta: { title: '途胜教育', permission: ['user'] }
           }
         ]
       },
