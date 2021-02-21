@@ -52,7 +52,7 @@ export default {
         {
           label: '补贴到账时间',
           field: 'school',
-          form: 'input',
+          form: 'date',
           rules: [{ validator: validatorMoney('补贴到账时间') }]
         },
         {
