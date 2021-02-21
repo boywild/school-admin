@@ -21,6 +21,11 @@
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
+                <a-form-item label="录入平台">
+                  <a-input v-model="queryParam.lupt" placeholder="请输入录入平台" style="width: 100%" />
+                </a-form-item>
+              </a-col>
+              <a-col :md="8" :sm="24">
                 <a-form-item label="学生来源">
                   <a-select v-model="queryParam.from" placeholder="请选择学生来源">
                     <a-select-option :value="item.code" v-for="(item, index) in STUDENT_FROM_ENMU" :key="index">{{
@@ -32,6 +37,11 @@
               <a-col :md="8" :sm="24">
                 <a-form-item label="负责人">
                   <a-input v-model="queryParam.useStatus" placeholder="请输负责人" style="width: 100%" />
+                </a-form-item>
+              </a-col>
+              <a-col :md="8" :sm="24">
+                <a-form-item label="学校负责老师">
+                  <a-input v-model="queryParam.ren" placeholder="请输入学校负责老师" style="width: 100%" />
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
@@ -51,88 +61,6 @@
               <a-col :md="8" :sm="24">
                 <a-form-item label="所报专业">
                   <a-input v-model="queryParam.useStatus" placeholder="请输入所报专业" style="width: 100%" />
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-form-item label="免试">
-                  <a-select v-model="queryParam.ms" placeholder="请选择免试">
-                    <a-select-option :value="item.code" v-for="(item, index) in YESORNO_ENMU" :key="index">{{
-                      item.desc
-                    }}</a-select-option>
-                  </a-select>
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-form-item label="入学考试科目">
-                  <a-select v-model="queryParam.km" placeholder="请选择入学考试科目">
-                    <a-select-option :value="item.code" v-for="(item, index) in SUBJECT_ENMU" :key="index">{{
-                      item.desc
-                    }}</a-select-option>
-                  </a-select>
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-form-item label="入学考试总分数">
-                  <a-input v-model="queryParam.useStatus" placeholder="请输入学考试总分数" style="width: 100%" />
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-form-item label="发放录取通知书">
-                  <a-select v-model="queryParam.ff" placeholder="请选择发放录取通知书">
-                    <a-select-option :value="item.code" v-for="(item, index) in YESORNO_ENMU" :key="index">{{
-                      item.desc
-                    }}</a-select-option>
-                  </a-select>
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-form-item label="录取结果">
-                  <a-input v-model="queryParam.useStatus" placeholder="请输入录取结果" style="width: 100%" />
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-form-item label="是否报考学位">
-                  <a-select v-model="queryParam.bk" placeholder="请选择是否报考学位">
-                    <a-select-option :value="item.code" v-for="(item, index) in YESORNO_ENMU" :key="index">{{
-                      item.desc
-                    }}</a-select-option>
-                  </a-select>
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-form-item label="学位成绩">
-                  <a-select v-model="queryParam.xwcj" placeholder="请选择学位成绩">
-                    <a-select-option :value="item.code" v-for="(item, index) in REACH_ENMU" :key="index">{{
-                      item.desc
-                    }}</a-select-option>
-                  </a-select>
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-form-item label="毕业信息采集">
-                  <a-select v-model="queryParam.byxxcj" placeholder="请选择毕业信息采集">
-                    <a-select-option :value="item.code" v-for="(item, index) in INFO_GATHER_ENMU" :key="index">{{
-                      item.desc
-                    }}</a-select-option>
-                  </a-select>
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-form-item label="是否延期毕业">
-                  <a-select v-model="queryParam.yqby" placeholder="请选择是否延期毕业">
-                    <a-select-option :value="item.code" v-for="(item, index) in YESORNO_ENMU" :key="index">{{
-                      item.desc
-                    }}</a-select-option>
-                  </a-select>
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-form-item label="论文性质">
-                  <a-select v-model="queryParam.lwxz" placeholder="请选择论文性质">
-                    <a-select-option :value="item.code" v-for="(item, index) in THESIS_FROM_ENMU" :key="index">{{
-                      item.desc
-                    }}</a-select-option>
-                  </a-select>
                 </a-form-item>
               </a-col>
             </template>

@@ -112,14 +112,14 @@ export default {
           rules: []
         },
         {
-          label: '毕业纸质照片是否到我司',
+          label: '毕业纸质照片已到我司',
           field: 'tsbkq',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
-          label: '毕业纸质照片是否提交院校',
+          label: '毕业纸质照片已提交院校',
           field: 'tsbkq',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',

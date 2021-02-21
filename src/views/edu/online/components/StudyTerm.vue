@@ -151,31 +151,37 @@ export default {
           rules: []
         },
         {
-          label: '已到',
+          label: '已有毕业证书',
+          field: 'coScoresss',
+          form: 'radio',
+          radioFrom: 'YESORNO_ENMU',
+          rules: []
+        },
+
+        {
+          label: '毕业证书已到',
           field: 'coScore',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
-          label: '已领走',
+          label: '毕业证书已领走',
           field: 'coScore',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
-          label: '领走时间',
+          label: '毕业证书领走时间',
           field: 'coScore',
-          form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          form: 'date',
           rules: []
         },
         {
-          label: '领走方式',
+          label: '毕业证书领走方式',
           field: 'coScore',
-          form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          form: 'select',
           rules: []
         },
         {
@@ -200,24 +206,22 @@ export default {
           rules: []
         },
         {
-          label: '已领走',
+          label: '学位证已领走',
           field: 'coScore',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
-          label: '领走时间',
+          label: '学位证领走时间',
           field: 'coScore',
-          form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          form: 'date',
           rules: []
         },
         {
-          label: '领走方式',
+          label: '学位证领走方式',
           field: 'coScore',
-          form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          form: 'select',
           rules: []
         }
       ]
