@@ -1,5 +1,5 @@
 <template>
-  <div class="edu-adult">
+  <div class="edu-exam">
     <form-generate ref="form" :fields="tab1"></form-generate>
   </div>
 </template>

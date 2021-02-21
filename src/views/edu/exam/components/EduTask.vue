@@ -1,5 +1,5 @@
 <template>
-  <div class="edu-adult">
+  <div class="edu-exam">
     <form-generate ref="form" :fields="tab3"></form-generate>
   </div>
 </template>
@@ -13,102 +13,82 @@ export default {
     return {
       tab3: [
         {
-          label: '预报名号',
+          label: '学生来源',
           field: 'name',
           form: 'input',
           rules: [{ max: 10, message: '预报名号限制输入10位' }]
         },
         {
-          label: '短信密码',
+          label: '所报院校',
           field: 'phone',
           form: 'input',
-          rules: [{ max: 6, message: '预报名号输入10位' }]
+          rules: [{ max: 15, message: '所报院校限制输入15位' }]
+        },
+        {
+          label: '所报专业',
+          field: 'card',
+          form: 'input',
+          rules: [{ max: 15, message: '所报专业限制输入15位' }]
+        },
+        {
+          label: '专科入学时间',
+          field: 'cardNo',
+          form: 'date',
+          rules: []
+        },
+        {
+          label: '是否有证书',
+          field: 'studyWay',
+          form: 'radio',
+          radioFrom: 'YESORNO_ENMU',
+          rules: []
+        },
+        {
+          label: '是否为我司证书',
+          form: 'radio',
+          radioFrom: 'YESORNO_ENMU',
+          rules: []
+        },
+        {
+          label: '负责老师',
+          field: 'location',
+          form: 'input',
+          rules: [{ max: 10, message: '负责老师限制输入10位' }]
+        },
+
+        {
+          label: '注册流水号',
+          field: 'xz',
+          form: 'input',
+          rules: [{ max: 20, message: '注册流水号限制输入20位' }]
         },
         {
           label: '准考证号',
-          field: 'card',
+          field: 'tzssfyd',
           form: 'input',
           rules: [{ max: 15, message: '准考证号限制输入15位' }]
         },
         {
-          label: '考生号',
-          field: 'cardNo',
-          form: 'input',
-          rules: [{ max: 20, message: '准考证号限制输入20位' }]
-        },
-        {
-          label: '入学考试科目及分数',
-          field: 'studyWay',
-          form: 'input',
-          rules: [{ max: 5, message: '入学考试总分数' }]
-        },
-        {
-          label: '入学考试总分数',
-          field: 'birth',
-          form: 'input',
-          rules: [{ max: 5, message: '入学考试总分数' }]
-        },
-        {
-          label: '加试时间',
-          field: 'location',
-          form: 'input',
-          rules: []
-        },
-
-        {
-          label: '加试成绩',
-          field: 'xz',
-          form: 'input',
-          rules: [{ max: 6, message: '加试成绩限制输入6位' }]
-        },
-        {
-          label: '录取通知书已到',
-          field: 'tzssfyd',
-          form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
-          rules: []
-        },
-        {
-          label: '录取通知书已发',
+          label: '初始密码',
           field: 'tzssfyf',
-          form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
-          rules: []
+          form: 'input',
+          rules: [{ max: 12, message: '初始密码限制输入12位' }]
         },
         {
-          label: '虚报',
+          label: '专业代码',
           field: 'xb',
-          form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
-          rules: []
+          form: 'input',
+          rules: [{ max: 20, message: '专业代码限制输入20位' }]
         },
         {
-          label: '学习平台',
+          label: '考区',
           field: 'meal',
           form: 'input',
-          rules: [{ max: 20, message: '学习平台限制输入20位' }]
+          rules: [{ max: 20, message: '考区限制输入20位' }]
         },
         {
-          label: '学号',
+          label: 'VIP',
           field: 'mealss',
-          form: 'input',
-          rules: [{ max: 15, message: '学号限制输入15位' }]
-        },
-        {
-          label: '学习帐号',
-          field: 'ms',
-          form: 'input',
-          rules: [{ max: 15, message: '学习帐号限制输入15位' }]
-        },
-        {
-          label: '登录密码',
-          field: 'tsbk',
-          form: 'input',
-          rules: [{ max: 15, message: '登录密码限制输入15位' }]
-        },
-        {
-          label: '录取结果',
-          field: 'tsbkq',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []

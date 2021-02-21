@@ -147,3 +147,11 @@ export const FEESOURCE_ENMU = [
   { desc: '企业承担', code: '2' },
   { desc: '国家补贴', code: '3' }
 ]
+
+// 成绩查询
+export const SCOREQUERY_ENMU = [
+  { desc: '及格', code: '1' },
+  { desc: '缺考', code: '2' },
+  { desc: '0分', code: '3' },
+  { desc: '违规', code: '3' }
+]

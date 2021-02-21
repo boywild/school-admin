@@ -51,7 +51,8 @@ import {
   CARDTYPE_ENMU,
   HJ_ENMU,
   PLATFORM_ENMU,
-  FEESOURCE_ENMU
+  FEESOURCE_ENMU,
+  SCOREQUERY_ENMU
 } from '@/config/dict'
 import city from '@/config/city'
 export default {
@@ -76,7 +77,8 @@ export default {
         ZZMM_ENMU,
         CARDTYPE_ENMU,
         PLATFORM_ENMU,
-        FEESOURCE_ENMU
+        FEESOURCE_ENMU,
+        SCOREQUERY_ENMU
       },
       radioData: {
         YESORNO_ENMU,

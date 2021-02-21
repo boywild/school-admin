@@ -1,5 +1,5 @@
 <template>
-  <div class="edu-adult">
+  <div class="edu-exam">
     <form-generate ref="form" :fields="tab6"></form-generate>
   </div>
 </template>
@@ -86,76 +86,15 @@ export default {
           rules: [{ validator: validatorMoney('欠款') }]
         },
         {
-          label: '第一年交费',
-          field: 'mm',
-          form: 'input',
-          rules: [{ validator: validatorMoney('第一年交费') }]
-        },
-        {
-          label: '第二年交费',
-          field: 'school',
-          form: 'input',
-          rules: [{ validator: validatorMoney('第二年交费') }]
-        },
-        {
-          label: '第三年交费',
-          field: 'byTime',
-          form: 'input',
-          rules: [{ validator: validatorMoney('第三年交费') }]
-        },
-        {
-          label: '第四年交费',
-          field: 'bookNo',
-          form: 'input',
-          rules: [{ validator: validatorMoney('第四年交费') }]
-        },
-        {
-          label: '第五年交费',
-          field: 'bookType',
-          form: 'input',
-          rules: [{ validator: validatorMoney('第五年交费') }]
-        },
-        {
-          label: '报考费',
-          field: 'address',
-          form: 'input',
-          rules: [{ validator: validatorMoney('报考费') }]
-        },
-        {
-          label: '入学考试辅导费',
-          field: 'work',
-          form: 'input',
-          rules: [{ validator: validatorMoney('入学考试辅导费') }]
-        },
-        {
-          label: '学位报考费',
-          field: 'email',
-          form: 'input',
-          rules: [{ validator: validatorMoney('学位报考费') }]
+          label: '欠款结算时间',
+          field: 'zy',
+          form: 'date'
         },
         {
           label: '学位辅导费',
-          field: 'aa',
-          form: 'input',
-          rules: [{ validator: validatorMoney('学位辅导费') }]
-        },
-        {
-          label: '网课费',
-          field: 'bb',
-          form: 'input',
-          rules: [{ validator: validatorMoney('网课费') }]
-        },
-        {
-          label: '论文费',
-          field: 'cc',
-          form: 'input',
-          rules: [{ validator: validatorMoney('论文费') }]
-        },
-        {
-          label: '图像采集费',
           field: 'dd',
           form: 'input',
-          rules: [{ validator: validatorMoney('图像采集费') }]
+          rules: [{ validator: validatorMoney('学位辅导费') }]
         }
       ]
     }

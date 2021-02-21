@@ -14,128 +14,7 @@
                 <a-input v-model="queryParam.status" placeholder="请输入证件号码" />
               </a-form-item>
             </a-col>
-            <template v-if="advanced">
-              <a-col :md="8" :sm="24">
-                <a-form-item label="入学批次">
-                  <a-input v-model="queryParam.callNo" placeholder="请输入入学批次" style="width: 100%" />
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-form-item label="学生来源">
-                  <a-select v-model="queryParam.from" placeholder="请选择学生来源">
-                    <a-select-option :value="item.code" v-for="(item, index) in STUDENT_FROM_ENMU" :key="index">{{
-                      item.desc
-                    }}</a-select-option>
-                  </a-select>
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-form-item label="负责人">
-                  <a-input v-model="queryParam.useStatus" placeholder="请输负责人" style="width: 100%" />
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-form-item label="所报层次">
-                  <a-select v-model="queryParam.cc" placeholder="请选择所报层次">
-                    <a-select-option :value="item.code" v-for="(item, index) in STUDY_LEVEL_ENMU" :key="index">{{
-                      item.desc
-                    }}</a-select-option>
-                  </a-select>
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-form-item label="所报院校">
-                  <a-input v-model="queryParam.useStatus" placeholder="请输入所报院校" style="width: 100%" />
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-form-item label="所报专业">
-                  <a-input v-model="queryParam.useStatus" placeholder="请输入所报专业" style="width: 100%" />
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-form-item label="免试">
-                  <a-select v-model="queryParam.ms" placeholder="请选择免试">
-                    <a-select-option :value="item.code" v-for="(item, index) in YESORNO_ENMU" :key="index">{{
-                      item.desc
-                    }}</a-select-option>
-                  </a-select>
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-form-item label="入学考试科目">
-                  <a-select v-model="queryParam.km" placeholder="请选择入学考试科目">
-                    <a-select-option :value="item.code" v-for="(item, index) in SUBJECT_ENMU" :key="index">{{
-                      item.desc
-                    }}</a-select-option>
-                  </a-select>
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-form-item label="入学考试总分数">
-                  <a-input v-model="queryParam.useStatus" placeholder="请输入学考试总分数" style="width: 100%" />
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-form-item label="发放录取通知书">
-                  <a-select v-model="queryParam.ff" placeholder="请选择发放录取通知书">
-                    <a-select-option :value="item.code" v-for="(item, index) in YESORNO_ENMU" :key="index">{{
-                      item.desc
-                    }}</a-select-option>
-                  </a-select>
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-form-item label="录取结果">
-                  <a-input v-model="queryParam.useStatus" placeholder="请输入录取结果" style="width: 100%" />
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-form-item label="是否报考学位">
-                  <a-select v-model="queryParam.bk" placeholder="请选择是否报考学位">
-                    <a-select-option :value="item.code" v-for="(item, index) in YESORNO_ENMU" :key="index">{{
-                      item.desc
-                    }}</a-select-option>
-                  </a-select>
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-form-item label="学位成绩">
-                  <a-select v-model="queryParam.xwcj" placeholder="请选择学位成绩">
-                    <a-select-option :value="item.code" v-for="(item, index) in REACH_ENMU" :key="index">{{
-                      item.desc
-                    }}</a-select-option>
-                  </a-select>
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-form-item label="毕业信息采集">
-                  <a-select v-model="queryParam.byxxcj" placeholder="请选择毕业信息采集">
-                    <a-select-option :value="item.code" v-for="(item, index) in INFO_GATHER_ENMU" :key="index">{{
-                      item.desc
-                    }}</a-select-option>
-                  </a-select>
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-form-item label="是否延期毕业">
-                  <a-select v-model="queryParam.yqby" placeholder="请选择是否延期毕业">
-                    <a-select-option :value="item.code" v-for="(item, index) in YESORNO_ENMU" :key="index">{{
-                      item.desc
-                    }}</a-select-option>
-                  </a-select>
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
-                <a-form-item label="论文性质">
-                  <a-select v-model="queryParam.lwxz" placeholder="请选择论文性质">
-                    <a-select-option :value="item.code" v-for="(item, index) in THESIS_FROM_ENMU" :key="index">{{
-                      item.desc
-                    }}</a-select-option>
-                  </a-select>
-                </a-form-item>
-              </a-col>
-            </template>
+            <template v-if="advanced"> </template>
             <a-col :md="(!advanced && 8) || 24" :sm="24">
               <span
                 class="table-page-search-submitButtons"
@@ -176,11 +55,12 @@
             <a-divider type="vertical" />
             <a @click="handleModify(record, 'ImgInfo')">图片</a>
             <a-divider type="vertical" />
-            <a @click="handleModify(record, 'JoinInfo')">报名</a>
-            <a-divider type="vertical" />
+
             <a @click="handleModify(record, 'EduTask')">教务</a>
             <a-divider type="vertical" />
-            <a @click="handleModify(record, 'StudyTerm')">学期</a>
+            <a @click="handleModify(record, 'ExamTerm')">教务考期</a>
+            <a-divider type="vertical" />
+            <a @click="handleModify(record, 'GraduationApply')">毕业申请</a>
             <a-divider type="vertical" />
             <a @click="handleModify(record, 'StudyDegree')">学位</a>
             <a-divider type="vertical" />
@@ -209,10 +89,12 @@ import moment from 'moment'
 import { STable, Ellipsis } from '@/components'
 import BaseInfo from './components/BaseInfo'
 import ImgInfo from './components/ImgInfo'
-import JoinInfo from './components/JoinInfo'
+// import JoinInfo from './components/JoinInfo'
 import EduTask from './components/EduTask'
-import StudyTerm from './components/StudyTerm'
+// import StudyTerm from './components/StudyTerm'
 import StudyDegree from './components/StudyDegree'
+import ExamTerm from './components/ExamTerm'
+import GraduationApply from './components/GraduationApply'
 import StudyCost from './components/StudyCost'
 import { getRoleList } from '@/api/manage'
 import { getStudentsList } from '@/api/students'
@@ -241,7 +123,7 @@ const columns = [
   { title: '专业', dataIndex: 'zy', width: 140 },
   { title: '毕业时间', dataIndex: 'updatedAt', width: 190 },
   { title: '学分', dataIndex: 'score', width: 80 },
-  { title: '操作', dataIndex: 'action', width: 370, fixed: 'right', scopedSlots: { customRender: 'action' } }
+  { title: '操作', dataIndex: 'action', width: 390, fixed: 'right', scopedSlots: { customRender: 'action' } }
 ]
 
 export default {
@@ -252,10 +134,12 @@ export default {
     CreateForm,
     BaseInfo,
     ImgInfo,
-    JoinInfo,
+    // JoinInfo,
     EduTask,
-    StudyTerm,
+    // StudyTerm,
     StudyDegree,
+    ExamTerm,
+    GraduationApply,
     StudyCost
   },
   data() {
@@ -313,14 +197,17 @@ export default {
         case 'ImgInfo':
           titTxt = '图片信息'
           break
-        case 'JoinInfo':
-          titTxt = '报名信息'
-          break
+        // case 'JoinInfo':
+        //   titTxt = '报名信息'
+        //   break
         case 'EduTask':
           titTxt = '教务信息'
           break
-        case 'StudyTerm':
-          titTxt = '学期信息'
+        case 'ExamTerm':
+          titTxt = '添加教务考期'
+          break
+        case 'GraduationApply':
+          titTxt = '毕业申请'
           break
         case 'StudyDegree':
           titTxt = '学位信息'
