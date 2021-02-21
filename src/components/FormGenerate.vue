@@ -52,7 +52,11 @@ import {
   HJ_ENMU,
   PLATFORM_ENMU,
   FEESOURCE_ENMU,
-  SCOREQUERY_ENMU
+  SCOREQUERY_ENMU,
+  STUDY_LEVEL_ENMU2,
+  TRAINING_ENMU,
+  TEACHMETHOD_ENMU,
+  CLASSTYPE_ENMU
 } from '@/config/dict'
 import city from '@/config/city'
 export default {
@@ -66,6 +70,7 @@ export default {
       selectData: {
         STUDENT_FROM_ENMU,
         STUDY_LEVEL_ENMU,
+        STUDY_LEVEL_ENMU2,
         STUDY_WAT_ENMU,
         SUBJECT_ENMU,
         INFO_GATHER_ENMU,
@@ -78,7 +83,10 @@ export default {
         CARDTYPE_ENMU,
         PLATFORM_ENMU,
         FEESOURCE_ENMU,
-        SCOREQUERY_ENMU
+        SCOREQUERY_ENMU,
+        TRAINING_ENMU,
+        TEACHMETHOD_ENMU,
+        CLASSTYPE_ENMU
       },
       radioData: {
         YESORNO_ENMU,

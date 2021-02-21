@@ -33,7 +33,7 @@
               <a-col :md="8" :sm="24">
                 <a-form-item label="报考层次">
                   <a-select v-model="queryParam.cc" placeholder="请选择报考层次">
-                    <a-select-option :value="item.code" v-for="(item, index) in STUDY_LEVEL_ENMU" :key="index">{{
+                    <a-select-option :value="item.code" v-for="(item, index) in STUDY_LEVEL_ENMU2" :key="index">{{
                       item.desc
                     }}</a-select-option>
                   </a-select>
@@ -46,7 +46,11 @@
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="授课方式">
-                  <a-input v-model="queryParam.useStatus" placeholder="请输入授课方式" style="width: 100%" />
+                  <a-select v-model="queryParam.skfs" placeholder="请选择授课方式">
+                    <a-select-option :value="item.code" v-for="(item, index) in TEACHMETHOD_ENMU" :key="index">{{
+                      item.desc
+                    }}</a-select-option>
+                  </a-select>
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
@@ -151,7 +155,9 @@ import {
   INFO_GATHER_ENMU,
   THESIS_FROM_ENMU,
   REACH_ENMU,
-  YESORNO_ENMU
+  YESORNO_ENMU,
+  STUDY_LEVEL_ENMU2,
+  TEACHMETHOD_ENMU
 } from '@/config/dict'
 
 // import StepByStepModal from './modules/StepByStepModal'
@@ -195,6 +201,8 @@ export default {
       THESIS_FROM_ENMU,
       REACH_ENMU,
       YESORNO_ENMU,
+      STUDY_LEVEL_ENMU2,
+      TEACHMETHOD_ENMU,
       currentForm: 'BaseInfo',
       visible: false,
       confirmLoading: false,

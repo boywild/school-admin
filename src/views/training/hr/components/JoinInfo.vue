@@ -37,11 +37,11 @@ export default {
           ]
         },
         {
-          label: '所报层次',
+          label: '报考层次',
           field: 'cardNo',
           form: 'select',
           selectFrom: 'STUDY_LEVEL_ENMU',
-          rules: [{ required: true, message: '请选择所报层次' }]
+          rules: [{ required: true, message: '请选择报考层次' }]
         },
         {
           label: '报考时间',

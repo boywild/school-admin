@@ -13,18 +13,6 @@ export default {
     return {
       tab3: [
         {
-          label: '预报名号',
-          field: 'name',
-          form: 'input',
-          rules: [{ max: 10, message: '预报名号限制输入10位' }]
-        },
-        {
-          label: '短信密码',
-          field: 'phone',
-          form: 'input',
-          rules: [{ max: 6, message: '预报名号输入10位' }]
-        },
-        {
           label: '准考证号',
           field: 'card',
           form: 'input',
@@ -37,80 +25,80 @@ export default {
           rules: [{ max: 20, message: '准考证号限制输入20位' }]
         },
         {
-          label: '入学考试科目及分数',
+          label: '考试成绩',
           field: 'studyWay',
           form: 'input',
-          rules: [{ max: 5, message: '入学考试总分数' }]
+          rules: [{ max: 5, message: '考试成绩' }]
         },
         {
-          label: '入学考试总分数',
-          field: 'birth',
-          form: 'input',
-          rules: [{ max: 5, message: '入学考试总分数' }]
-        },
-        {
-          label: '加试时间',
+          label: '考试时间',
           field: 'location',
-          form: 'input',
+          form: 'date',
           rules: []
         },
 
         {
-          label: '加试成绩',
+          label: '证书发放时间',
           field: 'xz',
-          form: 'input',
-          rules: [{ max: 6, message: '加试成绩限制输入6位' }]
-        },
-        {
-          label: '录取通知书已到',
-          field: 'tzssfyd',
-          form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          form: 'date',
           rules: []
         },
         {
-          label: '录取通知书已发',
+          label: '学习实效',
+          field: 'tzssfyd',
+          form: 'input',
+          rules: []
+        },
+        {
+          label: '报考情况',
           field: 'tzssfyf',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
-          label: '虚报',
+          label: '特殊操作',
           field: 'xb',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
-          label: '学习平台',
+          label: '报考次数',
           field: 'meal',
           form: 'input',
-          rules: [{ max: 20, message: '学习平台限制输入20位' }]
+          rules: [{ max: 2, message: '报考次数限制输入2位' }]
         },
         {
-          label: '学号',
+          label: '教材领取',
           field: 'mealss',
-          form: 'input',
-          rules: [{ max: 15, message: '学号限制输入15位' }]
-        },
-        {
-          label: '学习帐号',
-          field: 'ms',
-          form: 'input',
-          rules: [{ max: 15, message: '学习帐号限制输入15位' }]
-        },
-        {
-          label: '登录密码',
-          field: 'tsbk',
-          form: 'input',
-          rules: [{ max: 15, message: '登录密码限制输入15位' }]
-        },
-        {
-          label: '录取结果',
-          field: 'tsbkq',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
+          rules: []
+        },
+        {
+          label: '是否退费',
+          field: 'ms',
+          form: 'radio',
+          radioFrom: 'YESORNO_ENMU',
+          rules: []
+        },
+        {
+          label: '退费时间',
+          field: 'tsbk',
+          form: 'date',
+          rules: []
+        },
+        {
+          label: '退费途径',
+          field: 'tsbkq',
+          form: 'input',
+          rules: []
+        },
+        {
+          label: '沟通一',
+          field: 'tsbkq',
+          form: 'input',
           rules: []
         }
       ]
