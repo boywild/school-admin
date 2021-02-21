@@ -41,7 +41,7 @@
       <s-table
         ref="table"
         size="default"
-        rowKey="key"
+        rowKey="studentId"
         :columns="columns"
         :data="loadData"
         :alert="true"
@@ -97,7 +97,8 @@ import ExamTerm from './components/ExamTerm'
 import GraduationApply from './components/GraduationApply'
 import StudyCost from './components/StudyCost'
 import { getRoleList } from '@/api/manage'
-import { getStudentsList } from '@/api/students'
+// import { getStudentsList } from '@/api/students'
+import { studentList } from '@/api/student'
 import {
   STUDENT_FROM_ENMU,
   STUDY_LEVEL_ENMU,
@@ -166,7 +167,7 @@ export default {
       loadData: parameter => {
         const requestParameters = Object.assign({}, parameter, this.queryParam)
         console.log('loadData request parameters:', requestParameters)
-        return getStudentsList(requestParameters).then(res => {
+        return studentList(requestParameters).then(res => {
           return res.result
         })
       },

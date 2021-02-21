@@ -6,26 +6,34 @@ const studentList = () => {
     {
       pageNum: 1,
       pageSize: 30,
-      totalElements: 300,
-      totalPages: 1,
+      totalElements: 0,
+      totalPages: 0,
       last: true,
       first: true,
       content: [
         {
-          adminId: '6004ea41ea0c514170d80874',
-          loginNo: '000',
-          name: '超级管理员',
-          phone: '13312345678',
-          allowStatus: true,
-          remark: '首个'
+          studentId: '4291d7da9005377ec9aec4a71ea837f',
+          studentNo: '001',
+          studentName: '哈哈',
+          idNumber: '424151525252525252',
+          phone: '18827032021',
+          age: '23',
+          graduateSchool: '23',
+          major: '23',
+          graduateTime: 1613911570038,
+          score: '23'
         },
         {
-          adminId: '6004ea41ea0c514170d80874',
-          loginNo: '001',
-          name: '学校管理员',
+          studentId: '4291d7d2323a9005377ec9aec4a71ea837f',
+          studentNo: '110',
+          studentName: '哈哈',
+          idNumber: '424151525252525252',
           phone: '18827032021',
-          allowStatus: false,
-          remark: '首个'
+          age: '23',
+          graduateSchool: '23',
+          major: '23',
+          graduateTime: 1613911570038,
+          score: '23'
         }
       ]
     },

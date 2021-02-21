@@ -25,30 +25,17 @@ export default {
       INFO_GATHER_ENMU,
       REACH_ENMU,
       THESIS_FROM_ENMU,
-      studyTimeRange: {
-        isneedXW: [],
-        studyStatus: [],
-        isAchieve: [],
-        isJoin: [],
-        isDeal: [],
-        time: [],
-        address: [],
-        account: [],
-        password: [],
-        enScore: [],
-        coScore: []
-      },
       tab4: [
         {
           label: '报考学位',
-          field: 'studyStatus',
+          field: 'wantDegreeFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '填写毕业生登记表',
-          field: 'isAchieve',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
@@ -56,115 +43,115 @@ export default {
 
         {
           label: '有毕业证书',
-          field: 'isAchievesss',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '毕业证书已到',
-          field: 'isAchievesss23',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '毕业证书已领走',
-          field: 'isAchievesss5',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '毕业证书领走时间',
-          field: 'isAchievesss4',
+          field: 'xxxx',
           form: 'date',
           rules: []
         },
         {
           label: '毕业证书领走方式',
-          field: 'isAchievesss3',
+          field: 'xxxx',
           form: 'input',
           rules: []
         },
         {
           label: '申请学位',
-          field: 'isJoin',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '毕业信息采集',
-          field: 'isDeal',
+          field: 'xxxx',
           form: 'select',
           selectFrom: 'INFO_GATHER_ENMU',
           rules: []
         },
         {
           label: '学位成绩',
-          field: 'time',
+          field: 'xxxx',
           form: 'select',
           selectFrom: 'REACH_ENMU',
           rules: []
         },
         {
           label: '毕业纸质照片到我司',
-          field: 'address',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '学位成绩通过时间',
-          field: 'account',
+          field: 'xxxx',
           form: 'date',
           rules: []
         },
         {
           label: '毕业纸质照片提交院校',
-          field: 'password',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '期末考试成绩',
-          field: 'enScore',
+          field: 'xxxx',
           form: 'input',
           rules: [{ max: 6, message: '登录密码限制输入6位' }]
         },
         {
           label: '延期毕业',
-          field: 'coScore',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '填写入学生登记表',
-          field: 'coScore',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '论文性质',
-          field: 'coScore',
+          field: 'xxxx',
           form: 'select',
           selectFrom: 'THESIS_FROM_ENMU',
           rules: []
         },
         {
           label: '学籍已注册',
-          field: 'coScore',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '特殊事项',
-          field: 'coScore',
+          field: 'xxxx',
           form: 'input',
           rules: []
         }

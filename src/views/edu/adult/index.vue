@@ -6,12 +6,12 @@
           <a-row :gutter="48">
             <a-col :md="8" :sm="24">
               <a-form-item label="学生姓名">
-                <a-input v-model="queryParam.id" placeholder="请输入学生姓名" />
+                <a-input v-model="queryParam.studentName" placeholder="请输入学生姓名" />
               </a-form-item>
             </a-col>
             <a-col :md="8" :sm="24">
               <a-form-item label="证件号码">
-                <a-input v-model="queryParam.status" placeholder="请输入证件号码" />
+                <a-input v-model="queryParam.idNumber" placeholder="请输入证件号码" />
               </a-form-item>
             </a-col>
             <template v-if="advanced">
@@ -162,7 +162,7 @@
       <s-table
         ref="table"
         size="default"
-        rowKey="key"
+        rowKey="studentId"
         :columns="columns"
         :data="loadData"
         :alert="true"
@@ -170,6 +170,9 @@
         showPagination="auto"
         :scroll="{ x: 1500 }"
       >
+        <span slot="graduateTime" slot-scope="text">
+          {{ text | moment }}
+        </span>
         <span slot="action" slot-scope="text, record">
           <template>
             <a @click="handleModify(record, 'BaseInfo')">基本信息</a>
@@ -215,7 +218,9 @@ import StudyTerm from './components/StudyTerm'
 import StudyDegree from './components/StudyDegree'
 import StudyCost from './components/StudyCost'
 import { getRoleList } from '@/api/manage'
-import { getStudentsList } from '@/api/students'
+// import { getStudentsList } from '@/api/students'
+import { studentList } from '@/api/student'
+
 import {
   STUDENT_FROM_ENMU,
   STUDY_LEVEL_ENMU,
@@ -232,14 +237,14 @@ import CreateForm from './components/CreateForm'
 // import { type } from 'mockjs2'
 
 const columns = [
-  { title: '学号', dataIndex: 'no', width: 160 },
-  { title: '姓名', dataIndex: 'description', width: 100 },
-  { title: '身份证号', dataIndex: 'callNo', width: 170 },
-  { title: '电话号', dataIndex: 'status', width: 140 },
+  { title: '学号', dataIndex: 'studentNo', width: 160 },
+  { title: '姓名', dataIndex: 'studentName', width: 100 },
+  { title: '身份证号', dataIndex: 'idNumber', width: 180 },
+  { title: '电话号', dataIndex: 'phone', width: 140 },
   { title: '年龄', dataIndex: 'age', width: 70 },
-  { title: '毕业院校', dataIndex: 'school', width: 150 },
-  { title: '专业', dataIndex: 'zy', width: 140 },
-  { title: '毕业时间', dataIndex: 'updatedAt', width: 190 },
+  { title: '毕业院校', dataIndex: 'graduateSchool', width: 150 },
+  { title: '专业', dataIndex: 'major', width: 140 },
+  { title: '毕业时间', dataIndex: 'graduateTime', width: 190, scopedSlots: { customRender: 'graduateTime' } },
   { title: '学分', dataIndex: 'score', width: 80 },
   { title: '操作', dataIndex: 'action', width: 370, fixed: 'right', scopedSlots: { customRender: 'action' } }
 ]
@@ -282,7 +287,8 @@ export default {
       loadData: parameter => {
         const requestParameters = Object.assign({}, parameter, this.queryParam)
         console.log('loadData request parameters:', requestParameters)
-        return getStudentsList(requestParameters).then(res => {
+        return studentList(requestParameters).then(res => {
+          console.log(res)
           return res.result
         })
       },
