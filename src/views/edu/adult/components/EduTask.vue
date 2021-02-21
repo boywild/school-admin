@@ -36,12 +36,91 @@ export default {
           form: 'input',
           rules: [{ max: 20, message: '准考证号限制输入20位' }]
         },
+        // {
+        //   label: '入学考试科目及分数',
+        //   field: 'studyWay',
+        //   form: 'input',
+        //   rules: [{ max: 5, message: '入学考试总分数' }]
+        // },
         {
-          label: '入学考试科目及分数',
+          label: '语文分数',
           field: 'studyWay',
           form: 'input',
-          rules: [{ max: 5, message: '入学考试总分数' }]
+          rules: [{ max: 5, message: '数学分数' }]
         },
+        {
+          label: '数学分数（高中起点）',
+          field: 'studyWay',
+          form: 'input',
+          rules: [{ max: 5, message: '数学分数' }]
+        },
+        {
+          label: '英语分数（高中起点）',
+          field: 'studyWay',
+          form: 'input',
+          rules: [{ max: 5, message: '英语分数' }]
+        },
+        {
+          label: '政治分数',
+          field: 'studyWay',
+          form: 'input',
+          rules: [{ max: 5, message: 'studyWay' }]
+        },
+        {
+          label: '大学语文分数',
+          field: 'studyWay',
+          form: 'input',
+          rules: [{ max: 5, message: '大学语文分数' }]
+        },
+        {
+          label: '高等数学一分数',
+          field: 'studyWay',
+          form: 'input',
+          rules: [{ max: 5, message: '高等数学一分数' }]
+        },
+        {
+          label: '高等数学二分数',
+          field: 'studyWay',
+          form: 'input',
+          rules: [{ max: 5, message: '高等数学二分数' }]
+        },
+        {
+          label: '物理化学分数',
+          field: 'studyWay',
+          form: 'input',
+          rules: [{ max: 5, message: '物理化学分数' }]
+        },
+        {
+          label: '教育理论分数',
+          field: 'studyWay',
+          form: 'input',
+          rules: [{ max: 5, message: '教育理论分数' }]
+        },
+        {
+          label: '医学综合分数',
+          field: 'studyWay',
+          form: 'input',
+          rules: [{ max: 5, message: '医学综合分数' }]
+        },
+        {
+          label: '民法分数',
+          field: 'studyWay',
+          form: 'input',
+          rules: [{ max: 5, message: '民法分数' }]
+        },
+        {
+          label: '历史地理分数',
+          field: 'studyWay',
+          form: 'input',
+          rules: [{ max: 5, message: '历史地理分数' }]
+        },
+        {
+          label: '艺术概论分数',
+          field: 'studyWay',
+          form: 'input',
+          rules: [{ max: 5, message: '艺术概论分数' }]
+        },
+
         {
           label: '入学考试总分数',
           field: 'birth',
@@ -54,7 +133,6 @@ export default {
           form: 'input',
           rules: []
         },
-
         {
           label: '加试成绩',
           field: 'xz',

@@ -1,11 +1,7 @@
 <template>
   <div class="edu-adult">
-    <a-tabs default-active-key="1">
-      <a-tab-pane key="1" tab="第一学期"> </a-tab-pane>
-      <a-tab-pane key="2" tab="第二学期"> </a-tab-pane>
-      <a-tab-pane key="３" tab="第三学期"> </a-tab-pane>
-      <a-tab-pane key="4" tab="第四学期"> </a-tab-pane>
-      <a-tab-pane key="5" tab="第五学期"> </a-tab-pane>
+    <a-tabs v-model="activeKey" type="editable-card" @edit="onEdit">
+      <a-tab-pane v-for="pane in panes" :key="pane.key" :tab="pane.title" :closable="pane.closable"> </a-tab-pane>
     </a-tabs>
     <form-generate ref="form" :fields="tab4"></form-generate>
   </div>
@@ -18,7 +14,13 @@ export default {
   name: 'StudyTerm',
   components: { FormGenerate },
   data() {
+    const panes = [
+      { title: '第1学期', content: '', key: '1' },
+      { title: '第2学期', content: '', key: '2' }
+    ]
     return {
+      activeKey: panes[0].key,
+      panes,
       YESORNO_ENMU,
       INFO_GATHER_ENMU,
       REACH_ENMU,
@@ -49,6 +51,40 @@ export default {
           field: 'isAchieve',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
+          rules: []
+        },
+
+        {
+          label: '有毕业证书',
+          field: 'isAchievesss',
+          form: 'radio',
+          radioFrom: 'YESORNO_ENMU',
+          rules: []
+        },
+        {
+          label: '毕业证书已到',
+          field: 'isAchievesss23',
+          form: 'radio',
+          radioFrom: 'YESORNO_ENMU',
+          rules: []
+        },
+        {
+          label: '毕业证书已领走',
+          field: 'isAchievesss5',
+          form: 'radio',
+          radioFrom: 'YESORNO_ENMU',
+          rules: []
+        },
+        {
+          label: '毕业证书领走时间',
+          field: 'isAchievesss4',
+          form: 'date',
+          rules: []
+        },
+        {
+          label: '毕业证书领走方式',
+          field: 'isAchievesss3',
+          form: 'input',
           rules: []
         },
         {
@@ -147,6 +183,45 @@ export default {
     resetForm() {
       const form = this.$refs.form
       form.reset()
+    },
+    onEdit(targetKey, action) {
+      console.log(targetKey, action)
+      this[action](targetKey)
+    },
+    add() {
+      const panes = this.panes
+      const activeKey = `${this.panes.length + 1}`
+      console.log(activeKey)
+      panes.push({
+        title: `第${activeKey}学期`,
+        content: '',
+        key: activeKey
+      })
+      this.panes = panes
+    },
+    remove(targetKey) {
+      let activeKey = this.activeKey
+      let lastIndex
+      if (this.panes.length === 1) {
+        this.$message.warning('至少保留１一个学期')
+        return
+      }
+      this.panes.forEach((pane, i) => {
+        console.log(pane.key, targetKey)
+        if (pane.key === targetKey) {
+          lastIndex = i - 1
+        }
+      })
+      const panes = this.panes.filter(pane => pane.key !== targetKey)
+      if (panes.length && activeKey === targetKey) {
+        if (lastIndex >= 0) {
+          activeKey = panes[lastIndex].key
+        } else {
+          activeKey = panes[0].key
+        }
+      }
+      this.panes = panes
+      this.activeKey = activeKey
     }
   }
 }

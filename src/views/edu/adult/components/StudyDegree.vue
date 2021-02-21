@@ -1,8 +1,7 @@
 <template>
   <div class="edu-adult">
-    <a-tabs default-active-key="1">
-      <a-tab-pane key="1" tab="第一学期"> </a-tab-pane>
-      <a-tab-pane key="2" tab="第二学期"> </a-tab-pane>
+    <a-tabs v-model="activeKey" type="card">
+      <a-tab-pane v-for="pane in panes" :key="pane.key" :tab="pane.title" :closable="pane.closable"> </a-tab-pane>
     </a-tabs>
     <form-generate ref="form" :fields="tab5"></form-generate>
   </div>
@@ -14,7 +13,13 @@ export default {
   name: 'StudyDegree',
   components: { FormGenerate },
   data() {
+    const panes = [
+      { title: '第1学期', content: '', key: '1' },
+      { title: '第2学期', content: '', key: '2' }
+    ]
     return {
+      activeKey: panes[0].key,
+      panes,
       labelCol: { span: 8 },
       wrapperCol: { span: 16 },
       studyDegree: {},
@@ -55,7 +60,12 @@ export default {
           selectFrom: 'HK_ENMU',
           rules: []
         },
-        { label: '证件号码', field: 'password', form: 'input', rules: [{ max: '20', message: '证件号码限制输入20位' }] },
+        {
+          label: '证件号码',
+          field: 'password',
+          form: 'input',
+          rules: [{ max: '20', message: '证件号码限制输入20位' }]
+        },
         { label: '电话', field: 'enScore', form: 'input', rules: [{ max: '11', message: '电话限制输入11位' }] },
         { label: '学号', field: 'coScore', form: 'input', rules: [{ max: '20', message: '学号限制输入20位' }] },
         {
@@ -65,7 +75,12 @@ export default {
           selectFrom: 'DEGREE_ENMU',
           rules: []
         },
-        { label: '学位准考证号', field: 'b', form: 'input', rules: [{ max: '20', message: '学位准考证号限制输入20位' }] },
+        {
+          label: '学位准考证号',
+          field: 'b',
+          form: 'input',
+          rules: [{ max: '20', message: '学位准考证号限制输入20位' }]
+        },
         { label: '专业代码', field: 'c', form: 'input', rules: [{ max: '20', message: '专业代码限制输入20位' }] },
 
         { label: '考区', field: 'c', form: 'input', rules: [{ max: '15', message: '考区限制输入15位' }] },
