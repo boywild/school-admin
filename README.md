@@ -108,3 +108,5 @@ This project exists thanks to all the people who contribute.
 5. 查询角色列表搜索条件增加-角色状态 创建时间范围
 6. allowStatus updSysData 不使用boolean，不好反显
 7. authId-key/authName-title/list-children
+
+8. 需要可以添加学期/添加教务考期，学位和学期对应
