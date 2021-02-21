@@ -34,15 +34,6 @@ export default {
     return {
       tab1: [
         {
-          label: '入学批次',
-          field: 'pc',
-          form: 'input',
-          rules: [
-            { required: true, message: '请输入入学批次' },
-            { max: 10, message: '限制输入10位' }
-          ]
-        },
-        {
           label: '学生姓名',
           field: 'name',
           form: 'input',
@@ -113,6 +104,12 @@ export default {
           rules: [{ required: true, max: 20, message: '请选择政治面貌' }]
         },
         {
+          label: '学历层次',
+          field: 'mm',
+          form: 'select',
+          rules: [{ required: true, max: 20, message: '请选择学历层次' }]
+        },
+        {
           label: '原毕业学校',
           field: 'school',
           form: 'input',
@@ -122,35 +119,15 @@ export default {
           ]
         },
         {
-          label: '原毕业时间',
-          field: 'byTime',
-          form: 'date',
-          rules: [{ required: true, message: '请选择原毕业时间' }]
-        },
-        {
-          label: '原毕业证书编号',
-          field: 'bookNo',
-          form: 'input',
-          rules: [
-            { required: true, max: 20, message: '请输入原毕业证书编号' },
-            { max: 15, message: '限制输入15位' }
-          ]
-        },
-        {
-          label: '原毕业证书类型',
-          field: 'bookType',
-          form: 'input',
-          rules: [{ required: true, message: '请输入原毕业证书类型' }]
-        },
-        {
           label: '通讯地址',
           field: 'address',
           form: 'input',
           rules: [
             { required: true, message: '请输入通讯地址' },
-            { max: 30, message: '限制输入30位' }
+            { max: 20, message: '限制输入20位' }
           ]
         },
+        { label: 'email', field: 'email', form: 'input', rules: [{ required: true, validator: validatorEmail }] },
         {
           label: '工作单位',
           field: 'work',
@@ -160,7 +137,15 @@ export default {
             { max: 30, message: '限制输入30位' }
           ]
         },
-        { label: 'email', field: 'email', form: 'input', rules: [{ required: true, validator: validatorEmail }] }
+        {
+          label: '保险缴纳时限',
+          field: 'work2323',
+          form: 'input',
+          rules: [
+            { required: true, message: '请输入保险缴纳时限' },
+            { max: 30, message: '限制输入30位' }
+          ]
+        }
       ]
     }
   },

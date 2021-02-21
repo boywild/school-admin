@@ -13,27 +13,26 @@ export default {
     return {
       tab3: [
         {
-          label: '学生来源',
+          label: '入学批次',
           field: 'name',
-          form: 'select',
-          selectFrom: 'STUDENT_FROM_ENMU',
-          rules: [{ required: true, message: '请选择学生来源' }]
+          form: 'date',
+          rules: [{ required: true, message: '请选择入学批次' }]
         },
         {
-          label: '负责人',
+          label: '渠道来源',
           field: 'phone',
           form: 'input',
           rules: [
-            { required: true, message: '请输入负责人' },
+            { required: true, message: '请输入渠道来源' },
             { max: 10, message: '限制输入10位' }
           ]
         },
         {
-          label: '学校负责老师',
+          label: '报考工种',
           field: 'card',
           form: 'input',
           rules: [
-            { required: true, message: '请输入学校负责老师' },
+            { required: true, message: '请输入报考工种' },
             { max: 10, message: '限制输入10位' }
           ]
         },
@@ -45,93 +44,36 @@ export default {
           rules: [{ required: true, message: '请选择所报层次' }]
         },
         {
-          label: '所报学习形式',
+          label: '报考时间',
           field: 'studyWay',
-          form: 'select',
-          selectFrom: 'STUDY_WAT_ENMU',
-          rules: [{ required: true, message: '请选择所报学习形式' }]
+          form: 'date',
+          rules: [{ required: true, message: '请选择报考时间' }]
         },
         {
-          label: '学制',
+          label: '授课方式',
           field: 'birth',
           form: 'input',
-          rules: [{ required: true, message: '请选择学制' }]
+          rules: [{ required: true, message: '请输入授课方式' }]
         },
         {
-          label: '是否本科二学历',
+          label: '首次培训/复培',
           field: 'location',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
-          rules: [{ required: true, message: '请选择是否本科二学历' }]
+          rules: [{ required: true, message: '请选择首次培训/复培' }]
         },
 
         {
-          label: '何时参加工作',
+          label: '招生老师',
           field: 'xz',
-          form: 'date',
-          rules: [{ required: true, message: '请选择何时参加工作' }]
+          form: 'input',
+          rules: [{ required: true, message: '请输入招生老师' }]
         },
         {
-          label: '考试城市',
+          label: '班主任',
           field: 'ybmh',
-          form: 'cascader',
-          rules: [{ required: true, message: '请输入考试城市' }]
-        },
-        {
-          label: '所报院校',
-          field: 'mz',
           form: 'input',
-          rules: [
-            { required: true, message: '请输入所报院校' },
-            { max: 20, message: '限制输入20位' }
-          ]
-        },
-        {
-          label: '所报院校代码',
-          field: 'yxdm',
-          form: 'input',
-          rules: [
-            { required: true, message: '请输入所报院校代码' },
-            { max: 10, message: '限制输入10位' }
-          ]
-        },
-        {
-          label: '所报专业',
-          field: 'meal',
-          form: 'input',
-          rules: [
-            { required: true, message: '请输入所报专业' },
-            { max: 10, message: '限制输入10位' }
-          ]
-        },
-        {
-          label: '专业代码',
-          field: 'mealss',
-          form: 'input',
-          rules: [
-            { required: true, message: '请输入专业代码' },
-            { max: 10, message: '限制输入10位' }
-          ]
-        },
-        {
-          label: '免试',
-          field: 'ms',
-          form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
-          rules: [{ required: true, message: '请选择免试' }]
-        },
-        {
-          label: '特殊报考',
-          field: 'tsbk',
-          form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
-          rules: [{ required: true, message: '请输入特殊报考' }]
-        },
-        {
-          label: '特殊报考区',
-          field: 'tsbkq',
-          form: 'input',
-          rules: [{ required: true, message: '请输入特殊报考区' }]
+          rules: [{ required: true, message: '请输入班主任' }]
         }
       ]
     }

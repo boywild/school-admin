@@ -180,10 +180,6 @@
             <a-divider type="vertical" />
             <a @click="handleModify(record, 'EduTask')">教务</a>
             <a-divider type="vertical" />
-            <a @click="handleModify(record, 'StudyTerm')">学期</a>
-            <a-divider type="vertical" />
-            <a @click="handleModify(record, 'StudyDegree')">学位</a>
-            <a-divider type="vertical" />
             <a @click="handleModify(record, 'StudyCost')">财务</a>
           </template>
         </span>
@@ -211,8 +207,6 @@ import BaseInfo from './components/BaseInfo'
 import ImgInfo from './components/ImgInfo'
 import JoinInfo from './components/JoinInfo'
 import EduTask from './components/EduTask'
-import StudyTerm from './components/StudyTerm'
-import StudyDegree from './components/StudyDegree'
 import StudyCost from './components/StudyCost'
 import { getRoleList } from '@/api/manage'
 import { getStudentsList } from '@/api/students'
@@ -241,7 +235,7 @@ const columns = [
   { title: '专业', dataIndex: 'zy', width: 140 },
   { title: '毕业时间', dataIndex: 'updatedAt', width: 190 },
   { title: '学分', dataIndex: 'score', width: 80 },
-  { title: '操作', dataIndex: 'action', width: 370, fixed: 'right', scopedSlots: { customRender: 'action' } }
+  { title: '操作', dataIndex: 'action', width: 280, fixed: 'right', scopedSlots: { customRender: 'action' } }
 ]
 
 export default {
@@ -254,8 +248,6 @@ export default {
     ImgInfo,
     JoinInfo,
     EduTask,
-    StudyTerm,
-    StudyDegree,
     StudyCost
   },
   data() {
@@ -318,12 +310,6 @@ export default {
           break
         case 'EduTask':
           titTxt = '教务信息'
-          break
-        case 'StudyTerm':
-          titTxt = '学期信息'
-          break
-        case 'StudyDegree':
-          titTxt = '学位信息'
           break
         case 'StudyCost':
           titTxt = '财务信息'
