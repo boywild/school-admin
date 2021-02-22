@@ -1,16 +1,35 @@
 <template>
-  <div class="edu-adult">
-    <form-generate ref="form" :fields="tab3"></form-generate>
-  </div>
+  <a-modal
+    title="教务信息"
+    :width="900"
+    :visible="value"
+    :mask-closable="false"
+    :confirmLoading="loading"
+    okText="保存教务信息"
+    @ok="handleOk"
+    @cancel="handleCancel"
+  >
+    <div class="edu-adult">
+      <form-generate ref="form" :fields="tab3"></form-generate>
+    </div>
+  </a-modal>
 </template>
 
 <script>
 import FormGenerate from '@/components/FormGenerate'
 export default {
   name: 'EduTask',
+  props: {
+    value: { type: Boolean, required: true }
+  },
+  model: {
+    prop: 'value',
+    event: 'change'
+  },
   components: { FormGenerate },
   data() {
     return {
+      loading: false,
       tab3: [
         {
           label: '预报名号',
@@ -204,6 +223,7 @@ export default {
     }
   },
   methods: {
+    async saveEduTask() {},
     validate(callback) {
       const form = this.$refs.form
       form.validate(data => {
@@ -214,6 +234,11 @@ export default {
     resetForm() {
       const form = this.$refs.form
       form.reset()
+    },
+    handleOk() {},
+    handleCancel() {
+      this.$emit('change', false)
+      this.resetForm()
     }
   }
 }

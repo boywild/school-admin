@@ -1,7 +1,18 @@
 <template>
-  <div class="edu-adult">
-    <form-generate ref="form" :fields="tab1"></form-generate>
-  </div>
+  <a-modal
+    title="基本信息"
+    :width="900"
+    :visible="value"
+    :mask-closable="false"
+    :confirmLoading="loading"
+    okText="保存基本信息"
+    @ok="handleOk"
+    @cancel="handleCancel"
+  >
+    <div class="edu-adult">
+      <form-generate ref="form" :fields="tab1"></form-generate>
+    </div>
+  </a-modal>
 </template>
 
 <script>
@@ -9,6 +20,13 @@ import FormGenerate from '@/components/FormGenerate'
 import { isEmail, isPhone } from '@/utils/validate'
 export default {
   name: 'BaseInfo',
+  props: {
+    value: { type: Boolean, required: true }
+  },
+  model: {
+    prop: 'value',
+    event: 'change'
+  },
   components: { FormGenerate },
   data() {
     const validatorEmail = (rule, value, callback) => {
@@ -32,6 +50,7 @@ export default {
       }
     }
     return {
+      loading: false,
       tab1: [
         {
           label: '入学批次',
@@ -169,6 +188,7 @@ export default {
   },
   computed: {},
   methods: {
+    async saveBaseInfo() {},
     validate(callback) {
       const form = this.$refs.form
       form.validate(data => {
@@ -179,6 +199,11 @@ export default {
     resetForm() {
       const form = this.$refs.form
       form.reset()
+    },
+    handleOk() {},
+    handleCancel() {
+      this.$emit('change', false)
+      this.resetForm()
     }
   }
 }

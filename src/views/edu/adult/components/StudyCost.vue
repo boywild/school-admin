@@ -1,7 +1,18 @@
 <template>
-  <div class="edu-adult">
-    <form-generate ref="form" :fields="tab6"></form-generate>
-  </div>
+  <a-modal
+    title="财务信息"
+    :width="900"
+    :visible="value"
+    :mask-closable="false"
+    :confirmLoading="loading"
+    okText="保存财务信息"
+    @ok="handleOk"
+    @cancel="handleCancel"
+  >
+    <div class="edu-adult">
+      <form-generate ref="form" :fields="tab6"></form-generate>
+    </div>
+  </a-modal>
 </template>
 
 <script>
@@ -9,6 +20,13 @@ import FormGenerate from '@/components/FormGenerate'
 import { isMoney } from '@/utils/validate'
 export default {
   name: 'StudyCost',
+  props: {
+    value: { type: Boolean, required: true }
+  },
+  model: {
+    prop: 'value',
+    event: 'change'
+  },
   components: { FormGenerate },
   data() {
     const validatorMoney = text => {
@@ -24,6 +42,7 @@ export default {
       }
     }
     return {
+      loading: false,
       tab6: [
         {
           label: '批次',
@@ -162,6 +181,7 @@ export default {
   },
   computed: {},
   methods: {
+    async saveStudyCost() {},
     validate(callback) {
       const form = this.$refs.form
       form.validate(data => {
@@ -172,6 +192,11 @@ export default {
     resetForm() {
       const form = this.$refs.form
       form.reset()
+    },
+    handleOk() {},
+    handleCancel() {
+      this.$emit('change', false)
+      this.resetForm()
     }
   }
 }

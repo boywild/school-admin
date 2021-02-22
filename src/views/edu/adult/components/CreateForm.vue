@@ -18,7 +18,6 @@ export default {
   props: {
     visible: { type: Boolean, required: true },
     loading: { type: Boolean, default: () => false },
-    model: { type: Object, default: () => null },
     title: { type: String, default: () => '' }
   },
   components: {},

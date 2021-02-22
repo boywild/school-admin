@@ -1,10 +1,21 @@
 <template>
-  <div class="edu-adult">
-    <a-tabs v-model="activeKey" type="editable-card" @edit="onEdit">
-      <a-tab-pane v-for="pane in panes" :key="pane.key" :tab="pane.title" :closable="pane.closable"> </a-tab-pane>
-    </a-tabs>
-    <form-generate ref="form" :fields="tab4"></form-generate>
-  </div>
+  <a-modal
+    title="学期信息"
+    :width="900"
+    :visible="value"
+    :mask-closable="false"
+    :confirmLoading="loading"
+    okText="保存学期信息"
+    @ok="handleOk"
+    @cancel="handleCancel"
+  >
+    <div class="edu-adult">
+      <a-tabs v-model="activeKey" type="editable-card" @edit="onEdit">
+        <a-tab-pane v-for="pane in panes" :key="pane.key" :tab="pane.title" :closable="pane.closable"> </a-tab-pane>
+      </a-tabs>
+      <form-generate ref="form" :fields="tab4"></form-generate>
+    </div>
+  </a-modal>
 </template>
 
 <script>
@@ -12,6 +23,13 @@ import FormGenerate from '@/components/FormGenerate'
 import { YESORNO_ENMU, INFO_GATHER_ENMU, REACH_ENMU, THESIS_FROM_ENMU } from '@/config/dict'
 export default {
   name: 'StudyTerm',
+  props: {
+    value: { type: Boolean, required: true }
+  },
+  model: {
+    prop: 'value',
+    event: 'change'
+  },
   components: { FormGenerate },
   data() {
     const panes = [
@@ -19,6 +37,7 @@ export default {
       { title: '第2学期', content: '', key: '2' }
     ]
     return {
+      loading: false,
       activeKey: panes[0].key,
       panes,
       YESORNO_ENMU,
@@ -160,6 +179,7 @@ export default {
   },
   computed: {},
   methods: {
+    async saveStudyTerm() {},
     validate(callback) {
       const form = this.$refs.form
       form.validate(data => {
@@ -209,6 +229,11 @@ export default {
       }
       this.panes = panes
       this.activeKey = activeKey
+    },
+    handleOk() {},
+    handleCancel() {
+      this.$emit('change', false)
+      this.resetForm()
     }
   }
 }

@@ -191,24 +191,29 @@
           </template>
         </span>
       </s-table>
-
-      <create-form
+      <BaseInfo v-model="visibleBaseInfo"></BaseInfo>
+      <ImgInfo v-model="visibleImgInfo"></ImgInfo>
+      <JoinInfo v-model="visibleJoinInfo"></JoinInfo>
+      <EduTask v-model="visibleEduTask"></EduTask>
+      <StudyTerm v-model="visibleStudyTerm"></StudyTerm>
+      <StudyDegree v-model="visibleStudyDegree"></StudyDegree>
+      <StudyCost v-model="visibleStudyCost"></StudyCost>
+      <!-- <create-form
         ref="createModal"
         :visible="visible"
         :loading="confirmLoading"
-        :model="mdl"
         :title="setDialogTitle"
         @cancel="handleCancel"
         @ok="handleOk"
       >
         <component ref="currentComponent" :is="getForm"></component>
-      </create-form>
+      </create-form> -->
     </a-card>
   </page-header-wrapper>
 </template>
 
 <script>
-import moment from 'moment'
+// import moment from 'moment'
 import { STable, Ellipsis } from '@/components'
 import BaseInfo from './components/BaseInfo'
 import ImgInfo from './components/ImgInfo'
@@ -239,7 +244,7 @@ import CreateForm from './components/CreateForm'
 const columns = [
   { title: '学号', dataIndex: 'studentNo', width: 160 },
   { title: '姓名', dataIndex: 'studentName', width: 100 },
-  { title: '身份证号', dataIndex: 'idNumber', width: 180 },
+  { title: '身份证号', dataIndex: 'idNumber', width: 220 },
   { title: '电话号', dataIndex: 'phone', width: 140 },
   { title: '年龄', dataIndex: 'age', width: 70 },
   { title: '毕业院校', dataIndex: 'graduateSchool', width: 150 },
@@ -276,9 +281,15 @@ export default {
       REACH_ENMU,
       YESORNO_ENMU,
       currentForm: 'BaseInfo',
-      visible: false,
+      visibleBaseInfo: false,
+      visibleImgInfo: false,
+      visibleJoinInfo: false,
+      visibleEduTask: false,
+      visibleStudyTerm: false,
+      visibleStudyDegree: false,
+      visibleStudyCost: false,
       confirmLoading: false,
-      mdl: null,
+      // mdl: null,
       // 高级搜索 展开/关闭
       advanced: false,
       // 查询参数
@@ -306,100 +317,58 @@ export default {
         selectedRowKeys: this.selectedRowKeys,
         onChange: this.onSelectChange
       }
-    },
-    getForm() {
-      return this.currentForm
-    },
-    setDialogTitle() {
-      let titTxt = ''
-      switch (this.currentForm) {
-        case 'BaseInfo':
-          titTxt = '基本信息'
-          break
-        case 'ImgInfo':
-          titTxt = '图片信息'
-          break
-        case 'JoinInfo':
-          titTxt = '报名信息'
-          break
-        case 'EduTask':
-          titTxt = '教务信息'
-          break
-        case 'StudyTerm':
-          titTxt = '学期信息'
-          break
-        case 'StudyDegree':
-          titTxt = '学位信息'
-          break
-        case 'StudyCost':
-          titTxt = '财务信息'
-          break
-      }
-      return titTxt
     }
+    // getForm() {
+    //   return this.currentForm
+    // },
+    // setDialogTitle() {
+    //   let titTxt = ''
+    //   switch (this.currentForm) {
+    //     case 'BaseInfo':
+    //       titTxt = '基本信息'
+    //       break
+    //     case 'ImgInfo':
+    //       titTxt = '图片信息'
+    //       break
+    //     case 'JoinInfo':
+    //       titTxt = '报名信息'
+    //       break
+    //     case 'EduTask':
+    //       titTxt = '教务信息'
+    //       break
+    //     case 'StudyTerm':
+    //       titTxt = '学期信息'
+    //       break
+    //     case 'StudyDegree':
+    //       titTxt = '学位信息'
+    //       break
+    //     case 'StudyCost':
+    //       titTxt = '财务信息'
+    //       break
+    //   }
+    //   return titTxt
+    // }
   },
   methods: {
     // 新建学生
     handleAdd() {
-      this.mdl = null
-      this.visible = true
+      // this.visible = true
       this.currentForm = 'BaseInfo'
     },
     tableRefresh() {
       const table = this.$refs.table
       table.refresh()
     },
-    handleOk() {
-      const form = this.$refs.currentComponent
 
-      form.validate(values => {
-        console.log('通过', values)
-        this.confirmLoading = true
-        if (values.id > 0) {
-          // 修改 e.g.
-          new Promise((resolve, reject) => {
-            setTimeout(() => {
-              resolve()
-            }, 1000)
-          }).then(res => {
-            this.visible = false
-            this.confirmLoading = false
-            // 重置表单数据
-            form.resetFields()
-            // 刷新表格
-            this.tableRefresh()
-
-            this.$message.info('修改成功')
-          })
-        } else {
-          // 新增
-          new Promise((resolve, reject) => {
-            setTimeout(() => {
-              resolve()
-            }, 1000)
-          }).then(res => {
-            this.visible = false
-            this.confirmLoading = false
-            // 重置表单数据
-            form.resetFields()
-            // 刷新表格
-            this.tableRefresh()
-
-            this.$message.info('新增成功')
-          })
-        }
-      })
-    },
-    // 取消新建
-    handleCancel() {
-      const form = this.$refs.currentComponent
-      form.resetForm()
-      this.visible = false
+    // 保存成功
+    actionSuccess(text) {
+      // 刷新表格
+      this.tableRefresh()
+      this.$message.info(text)
     },
     // 修改
     handleModify(record, form) {
-      this.mdl = record
-      this.visible = true
+      this[`visible${form}`] = true
       this.currentForm = form
     },
     // 勾选
@@ -412,9 +381,7 @@ export default {
     },
     // 重置search条件
     resetSearchForm() {
-      this.queryParam = {
-        date: moment(new Date())
-      }
+      this.queryParam = {}
     },
     // 删除学生
     deleteStudent() {

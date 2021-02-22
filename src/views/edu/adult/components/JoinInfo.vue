@@ -1,16 +1,35 @@
 <template>
-  <div class="edu-adult">
-    <form-generate ref="form" :fields="tab3"></form-generate>
-  </div>
+  <a-modal
+    title="报名信息"
+    :width="900"
+    :visible="value"
+    :mask-closable="false"
+    :confirmLoading="loading"
+    okText="保存报名信息"
+    @ok="handleOk"
+    @cancel="handleCancel"
+  >
+    <div class="edu-adult">
+      <form-generate ref="form" :fields="tab3"></form-generate>
+    </div>
+  </a-modal>
 </template>
 
 <script>
 import FormGenerate from '@/components/FormGenerate'
 export default {
   name: 'JoinInfo',
+  props: {
+    value: { type: Boolean, required: true }
+  },
+  model: {
+    prop: 'value',
+    event: 'change'
+  },
   components: { FormGenerate },
   data() {
     return {
+      loading: false,
       tab3: [
         {
           label: '学生来源',
@@ -138,6 +157,7 @@ export default {
   },
   computed: {},
   methods: {
+    async savJoinInfo() {},
     validate(callback) {
       const form = this.$refs.form
       form.validate(data => {
@@ -148,6 +168,11 @@ export default {
     resetForm() {
       const form = this.$refs.form
       form.reset()
+    },
+    handleOk() {},
+    handleCancel() {
+      this.$emit('change', false)
+      this.resetForm()
     }
   }
 }
