@@ -123,6 +123,9 @@ export default {
       // form.resetFields()
       this.formData = {}
       form.clearValidate()
+    },
+    setData(data) {
+      this.formData = data
     }
   }
 }

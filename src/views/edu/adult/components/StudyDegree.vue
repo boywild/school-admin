@@ -13,17 +13,21 @@
       <a-tabs v-model="activeKey" type="card">
         <a-tab-pane v-for="pane in panes" :key="pane.key" :tab="pane.title" :closable="pane.closable"> </a-tab-pane>
       </a-tabs>
-      <form-generate ref="form" :fields="tab5"></form-generate>
+      <a-spin :spinning="loadingData">
+        <form-generate ref="form" :fields="tab5"></form-generate>
+      </a-spin>
     </div>
   </a-modal>
 </template>
 
 <script>
 import FormGenerate from '@/components/FormGenerate'
+import { getDegree, studentDegree } from '@/api/student'
 export default {
   name: 'StudyDegree',
   props: {
-    value: { type: Boolean, required: true }
+    value: { type: Boolean, required: true },
+    studentId: { type: String, default: '' }
   },
   model: {
     prop: 'value',
@@ -37,6 +41,7 @@ export default {
     ]
     return {
       loading: false,
+      loadingData: false,
       activeKey: panes[0].key,
       panes,
       labelCol: { span: 8 },
@@ -135,9 +140,31 @@ export default {
       ]
     }
   },
+  mounted() {
+    this.$watch('value', val => {
+      if (val) {
+        this.getStudyDegree()
+      }
+    })
+  },
   computed: {},
   methods: {
-    async saveStudyDegree() {},
+    async getStudyDegree() {
+      this.loadingData = true
+      const { result } = await getDegree(this.studentId)
+      const form = this.$refs.form
+      form.setData(result[0])
+      this.loadingData = false
+    },
+    async saveStudyDegree() {
+      this.validate(async values => {
+        this.loading = true
+        await studentDegree({ ...values, studentId: this.studentId })
+        this.loading = false
+        this.handleCancel()
+        this.$emit('update')
+      })
+    },
     validate(callback) {
       const form = this.$refs.form
       form.validate(data => {
@@ -149,7 +176,9 @@ export default {
       const form = this.$refs.form
       form.reset()
     },
-    handleOk() {},
+    handleOk() {
+      this.saveStudyDegree()
+    },
     handleCancel() {
       this.$emit('change', false)
       this.resetForm()

@@ -191,23 +191,13 @@
           </template>
         </span>
       </s-table>
-      <BaseInfo v-model="visibleBaseInfo"></BaseInfo>
-      <ImgInfo v-model="visibleImgInfo"></ImgInfo>
-      <JoinInfo v-model="visibleJoinInfo"></JoinInfo>
-      <EduTask v-model="visibleEduTask"></EduTask>
-      <StudyTerm v-model="visibleStudyTerm"></StudyTerm>
-      <StudyDegree v-model="visibleStudyDegree"></StudyDegree>
-      <StudyCost v-model="visibleStudyCost"></StudyCost>
-      <!-- <create-form
-        ref="createModal"
-        :visible="visible"
-        :loading="confirmLoading"
-        :title="setDialogTitle"
-        @cancel="handleCancel"
-        @ok="handleOk"
-      >
-        <component ref="currentComponent" :is="getForm"></component>
-      </create-form> -->
+      <BaseInfo v-model="visibleBaseInfo" :studentId="mdl&&mdl.studentId" @update="tableRefresh"></BaseInfo>
+      <ImgInfo v-model="visibleImgInfo" :studentId="mdl&&mdl.studentId" @update="tableRefresh"></ImgInfo>
+      <JoinInfo v-model="visibleJoinInfo" :studentId="mdl&&mdl.studentId" @update="tableRefresh"></JoinInfo>
+      <EduTask v-model="visibleEduTask" :studentId="mdl&&mdl.studentId" @update="tableRefresh"></EduTask>
+      <StudyTerm v-model="visibleStudyTerm" :studentId="mdl&&mdl.studentId" @update="tableRefresh"></StudyTerm>
+      <StudyDegree v-model="visibleStudyDegree" :studentId="mdl&&mdl.studentId" @update="tableRefresh"></StudyDegree>
+      <StudyCost v-model="visibleStudyCost" :studentId="mdl&&mdl.studentId" @update="tableRefresh"></StudyCost>
     </a-card>
   </page-header-wrapper>
 </template>
@@ -289,7 +279,7 @@ export default {
       visibleStudyDegree: false,
       visibleStudyCost: false,
       confirmLoading: false,
-      // mdl: null,
+      mdl: null,
       // 高级搜索 展开/关闭
       advanced: false,
       // 查询参数
@@ -318,42 +308,12 @@ export default {
         onChange: this.onSelectChange
       }
     }
-    // getForm() {
-    //   return this.currentForm
-    // },
-    // setDialogTitle() {
-    //   let titTxt = ''
-    //   switch (this.currentForm) {
-    //     case 'BaseInfo':
-    //       titTxt = '基本信息'
-    //       break
-    //     case 'ImgInfo':
-    //       titTxt = '图片信息'
-    //       break
-    //     case 'JoinInfo':
-    //       titTxt = '报名信息'
-    //       break
-    //     case 'EduTask':
-    //       titTxt = '教务信息'
-    //       break
-    //     case 'StudyTerm':
-    //       titTxt = '学期信息'
-    //       break
-    //     case 'StudyDegree':
-    //       titTxt = '学位信息'
-    //       break
-    //     case 'StudyCost':
-    //       titTxt = '财务信息'
-    //       break
-    //   }
-    //   return titTxt
-    // }
   },
   methods: {
     // 新建学生
     handleAdd() {
-      // this.visible = true
-      this.currentForm = 'BaseInfo'
+      this.mdl = null
+      this['visibleBaseInfo'] = true
     },
     tableRefresh() {
       const table = this.$refs.table
@@ -363,13 +323,13 @@ export default {
     // 保存成功
     actionSuccess(text) {
       // 刷新表格
-      this.tableRefresh()
       this.$message.info(text)
+      this.tableRefresh()
     },
     // 修改
     handleModify(record, form) {
+      this.mdl = record
       this[`visible${form}`] = true
-      this.currentForm = form
     },
     // 勾选
     onSelectChange(selectedRowKeys, selectedRows) {

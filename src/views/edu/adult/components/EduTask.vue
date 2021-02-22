@@ -10,17 +10,22 @@
     @cancel="handleCancel"
   >
     <div class="edu-adult">
-      <form-generate ref="form" :fields="tab3"></form-generate>
+      <a-spin :spinning="loadingData">
+        <form-generate ref="form" :fields="tab3"></form-generate>
+      </a-spin>
     </div>
   </a-modal>
 </template>
 
 <script>
 import FormGenerate from '@/components/FormGenerate'
+import { studentBaseInfo, getBaseInfo } from '@/api/student'
+
 export default {
   name: 'EduTask',
   props: {
-    value: { type: Boolean, required: true }
+    value: { type: Boolean, required: true },
+    studentId: { type: String, default: '' }
   },
   model: {
     prop: 'value',
@@ -30,6 +35,7 @@ export default {
   data() {
     return {
       loading: false,
+      loadingData: false,
       tab3: [
         {
           label: '预报名号',
@@ -213,6 +219,13 @@ export default {
       ]
     }
   },
+  mounted() {
+    this.$watch('value', val => {
+      if (val && this.studentId) {
+        this.getEduTask()
+      }
+    })
+  },
   computed: {
     rules() {
       const rules = {}
@@ -223,7 +236,22 @@ export default {
     }
   },
   methods: {
-    async saveEduTask() {},
+    async getEduTask() {
+      this.loadingData = true
+      const { result } = await getBaseInfo(this.studentId)
+      const form = this.$refs.form
+      form.setData(result)
+      this.loadingData = false
+    },
+    async saveEduTask() {
+      this.validate(async values => {
+        this.loading = true
+        await studentBaseInfo({ ...values, studentId: this.studentId })
+        this.loading = false
+        this.handleCancel()
+        this.$emit('update')
+      })
+    },
     validate(callback) {
       const form = this.$refs.form
       form.validate(data => {
@@ -235,7 +263,9 @@ export default {
       const form = this.$refs.form
       form.reset()
     },
-    handleOk() {},
+    handleOk() {
+      this.saveEduTask()
+    },
     handleCancel() {
       this.$emit('change', false)
       this.resetForm()

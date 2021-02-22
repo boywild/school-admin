@@ -10,7 +10,9 @@
     @cancel="handleCancel"
   >
     <div class="edu-adult">
-      <form-generate ref="form" :fields="tab6"></form-generate>
+      <a-spin :spinning="loadingData">
+        <form-generate ref="form" :fields="tab6"></form-generate>
+      </a-spin>
     </div>
   </a-modal>
 </template>
@@ -18,6 +20,8 @@
 <script>
 import FormGenerate from '@/components/FormGenerate'
 import { isMoney } from '@/utils/validate'
+import { financeDetail, financeSave } from '@/api/finance'
+
 export default {
   name: 'StudyCost',
   props: {
@@ -43,6 +47,7 @@ export default {
     }
     return {
       loading: false,
+      loadingData: false,
       tab6: [
         {
           label: '批次',
@@ -179,9 +184,31 @@ export default {
       ]
     }
   },
+  mounted() {
+    this.$watch('value', val => {
+      if (val) {
+        this.getStudyCost()
+      }
+    })
+  },
   computed: {},
   methods: {
-    async saveStudyCost() {},
+    async getStudyCost() {
+      this.loadingData = true
+      const { result } = await financeDetail(this.studentId)
+      const form = this.$refs.form
+      form.setData(result[0])
+      this.loadingData = false
+    },
+    async saveStudyCost() {
+      this.validate(async values => {
+        this.loading = true
+        await financeSave({ ...values, studentId: this.studentId })
+        this.loading = false
+        this.handleCancel()
+        this.$emit('update')
+      })
+    },
     validate(callback) {
       const form = this.$refs.form
       form.validate(data => {
@@ -193,7 +220,9 @@ export default {
       const form = this.$refs.form
       form.reset()
     },
-    handleOk() {},
+    handleOk() {
+      this.saveStudyCost()
+    },
     handleCancel() {
       this.$emit('change', false)
       this.resetForm()

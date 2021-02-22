@@ -13,7 +13,9 @@
       <a-tabs v-model="activeKey" type="editable-card" @edit="onEdit">
         <a-tab-pane v-for="pane in panes" :key="pane.key" :tab="pane.title" :closable="pane.closable"> </a-tab-pane>
       </a-tabs>
-      <form-generate ref="form" :fields="tab4"></form-generate>
+      <a-spin :spinning="loadingData">
+        <form-generate ref="form" :fields="tab4"></form-generate>
+      </a-spin>
     </div>
   </a-modal>
 </template>
@@ -21,10 +23,13 @@
 <script>
 import FormGenerate from '@/components/FormGenerate'
 import { YESORNO_ENMU, INFO_GATHER_ENMU, REACH_ENMU, THESIS_FROM_ENMU } from '@/config/dict'
+import { studentTerm, getTerm } from '@/api/student'
+
 export default {
   name: 'StudyTerm',
   props: {
-    value: { type: Boolean, required: true }
+    value: { type: Boolean, required: true },
+    studentId: { type: String, default: '' }
   },
   model: {
     prop: 'value',
@@ -38,6 +43,7 @@ export default {
     ]
     return {
       loading: false,
+      loadingData: false,
       activeKey: panes[0].key,
       panes,
       YESORNO_ENMU,
@@ -177,9 +183,31 @@ export default {
       ]
     }
   },
+  mounted() {
+    this.$watch('value', val => {
+      if (val) {
+        this.getStudyTerm()
+      }
+    })
+  },
   computed: {},
   methods: {
-    async saveStudyTerm() {},
+    async getStudyTerm() {
+      this.loadingData = true
+      const { result } = await getTerm(this.studentId)
+      const form = this.$refs.form
+      form.setData(result[0])
+      this.loadingData = false
+    },
+    async saveStudyTerm() {
+      this.validate(async values => {
+        this.loading = true
+        await studentTerm({ ...values, studentId: this.studentId })
+        this.loading = false
+        this.handleCancel()
+        this.$emit('update')
+      })
+    },
     validate(callback) {
       const form = this.$refs.form
       form.validate(data => {
@@ -230,7 +258,9 @@ export default {
       this.panes = panes
       this.activeKey = activeKey
     },
-    handleOk() {},
+    handleOk() {
+      this.saveStudyTerm()
+    },
     handleCancel() {
       this.$emit('change', false)
       this.resetForm()

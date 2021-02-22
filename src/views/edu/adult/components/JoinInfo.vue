@@ -10,17 +10,22 @@
     @cancel="handleCancel"
   >
     <div class="edu-adult">
-      <form-generate ref="form" :fields="tab3"></form-generate>
+      <a-spin :spinning="loadingData">
+        <form-generate ref="form" :fields="tab3"></form-generate>
+      </a-spin>
     </div>
   </a-modal>
 </template>
 
 <script>
 import FormGenerate from '@/components/FormGenerate'
+import { getApply, studentApply } from '@/api/student'
+
 export default {
   name: 'JoinInfo',
   props: {
-    value: { type: Boolean, required: true }
+    value: { type: Boolean, required: true },
+    studentId: { type: String, default: '' }
   },
   model: {
     prop: 'value',
@@ -30,6 +35,7 @@ export default {
   data() {
     return {
       loading: false,
+      loadingData: false,
       tab3: [
         {
           label: '学生来源',
@@ -155,9 +161,32 @@ export default {
       ]
     }
   },
+  created() {},
+  mounted() {
+    this.$watch('value', val => {
+      if (val) {
+        this.getJoinInfo()
+      }
+    })
+  },
   computed: {},
   methods: {
-    async savJoinInfo() {},
+    async getJoinInfo() {
+      this.loadingData = true
+      const { result } = await getApply()
+      const form = this.$refs.form
+      form.setData(result)
+      this.loadingData = false
+    },
+    async saveJoinInfo() {
+      this.validate(async values => {
+        this.loading = true
+        await studentApply(values)
+        this.loading = false
+        this.handleCancel()
+        this.$emit('update')
+      })
+    },
     validate(callback) {
       const form = this.$refs.form
       form.validate(data => {
@@ -169,7 +198,9 @@ export default {
       const form = this.$refs.form
       form.reset()
     },
-    handleOk() {},
+    handleOk() {
+      this.saveJoinInfo()
+    },
     handleCancel() {
       this.$emit('change', false)
       this.resetForm()
