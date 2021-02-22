@@ -39,6 +39,7 @@ const assetsCDN = {
 
 // vue.config.js
 const vueConfig = {
+  // publicPath: '/school-admin/',
   configureWebpack: {
     // webpack plugins
     plugins: [
