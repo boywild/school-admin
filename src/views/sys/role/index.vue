@@ -6,12 +6,12 @@
           <a-row :gutter="10">
             <a-col :md="6" :sm="24">
               <a-form-item label="角色名称">
-                <a-input placeholder="请输入角色名称" />
+                <a-input v-model="queryParam.roleName" placeholder="请输入角色名称" />
               </a-form-item>
             </a-col>
             <a-col :md="6" :sm="24">
               <a-form-item label="角色状态">
-                <a-select placeholder="请选择角色状态">
+                <a-select placeholder="请选择角色状态" v-model="queryParam.status">
                   <a-select-option :value="item.code" v-for="(item, index) in OPENORCLOSE_ENMU" :key="index">{{
                     item.desc
                   }}</a-select-option>
@@ -20,7 +20,7 @@
             </a-col>
             <a-col :md="6" :sm="24">
               <a-form-item label="创建时间">
-                <a-range-picker v-model="queryParam.date" />
+                <a-range-picker v-model="queryParam.timeRange" />
               </a-form-item>
             </a-col>
             <a-col :md="6" :sm="24">
@@ -113,6 +113,13 @@ export default {
       ],
       // 加载数据方法 必须为 Promise 对象
       loadData: parameter => {
+        if (this.queryParam.timeRange) {
+          this.queryParam = {
+            ...this.queryParam,
+            startTime: this.queryParam.timeRange[0] || '',
+            endTime: this.queryParam.timeRange[1] || ''
+          }
+        }
         const requestParameters = Object.assign({}, parameter, this.queryParam)
         console.log('loadData request parameters:', requestParameters)
         return roleList(requestParameters).then(res => {

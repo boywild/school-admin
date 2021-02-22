@@ -6,33 +6,33 @@
           <a-row :gutter="48">
             <a-col :md="8" :sm="24">
               <a-form-item label="姓名">
-                <a-input v-model="queryParam.id" placeholder="请输入姓名" />
+                <a-input v-model="queryParam.studentName" placeholder="请输入姓名" />
               </a-form-item>
             </a-col>
             <a-col :md="8" :sm="24">
               <a-form-item label="证件号">
-                <a-input-number v-model="queryParam.status" placeholder="请输入证件号" style="width: 100%" />
+                <a-input-number v-model="queryParam.idNumber" placeholder="请输入证件号" style="width: 100%" />
               </a-form-item>
             </a-col>
             <template v-if="advanced">
               <a-col :md="8" :sm="24">
                 <a-form-item label="录入时间">
-                  <a-range-picker v-model="queryParam.date" />
+                  <a-range-picker v-model="queryParam.timeRange" />
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="批次">
-                  <a-input-number v-model="queryParam.aa" placeholder="请输批次" style="width: 100%" />
+                  <a-input-number v-model="queryParam.degreeLevel" placeholder="请输批次" style="width: 100%" />
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="院校">
-                  <a-input-number v-model="queryParam.callNo" placeholder="请输入院校" style="width: 100%" />
+                  <a-input-number v-model="queryParam.graduateSchool" placeholder="请输入院校" style="width: 100%" />
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="专业">
-                  <a-input-number v-model="queryParam.callNo" placeholder="请输入专业" style="width: 100%" />
+                  <a-input-number v-model="queryParam.major" placeholder="请输入专业" style="width: 100%" />
                 </a-form-item>
               </a-col>
             </template>
@@ -62,6 +62,9 @@
         showPagination="auto"
         :scroll="{ x: 1500 }"
       >
+        <span slot="registerDateTime" slot-scope="text">
+          {{ text | moment }}
+        </span>
       </s-table>
     </a-card>
   </page-header-wrapper>
@@ -70,34 +73,35 @@
 <script>
 import moment from 'moment'
 import { STable } from '@/components'
-import { getRoleList, getServiceList } from '@/api/manage'
+// import { getRoleList } from '@/api/manage'
+import { financeList } from '@/api/finance'
 
 // import StepByStepModal from './modules/StepByStepModal'
 // import CreateForm from './components/CreateForm'
 
 const columns = [
-  { title: '批次', dataIndex: 'no', width: 160 },
-  { title: '层次', dataIndex: 'description', width: 160 },
-  { title: '院校', dataIndex: 'callNo', width: 160 },
-  { title: '专业', dataIndex: 'status', width: 160 },
-  { title: '姓名', dataIndex: 'updatedAt', width: 160 },
-  { title: '证件号码', dataIndex: 'no', width: 160 },
-  { title: '录入时间', dataIndex: 'description', width: 160 },
-  { title: '总学费', dataIndex: 'callNo', width: 160 },
-  { title: '实缴学费', dataIndex: 'status', width: 160 },
-  { title: '欠款', dataIndex: 'updatedAt', width: 160 },
-  { title: '第一年交费', dataIndex: 'no', width: 160 },
-  { title: '第二年', dataIndex: 'description', width: 160 },
-  { title: '第三年', dataIndex: 'callNo', width: 160 },
-  { title: '第四年', dataIndex: 'status', width: 160 },
-  { title: '第五年', dataIndex: 'updatedAt', width: 160 },
-  { title: '报考费', dataIndex: 'no', width: 160 },
-  { title: '入学考试辅导费', dataIndex: 'description', width: 160 },
-  { title: '学位报考费', dataIndex: 'callNo', width: 160 },
-  { title: '学位辅导费', dataIndex: 'status', width: 160 },
-  { title: '网课费', dataIndex: 'updatedAt', width: 160 },
-  { title: '论文费', dataIndex: 'status', width: 160 },
-  { title: '图像采集费', dataIndex: 'updatedAt', width: 160 }
+  { title: '批次', dataIndex: 'degreeLevel', width: 120 },
+  { title: '层次', dataIndex: 'layer', width: 100 },
+  { title: '院校', dataIndex: 'graduateSchool', width: 160 },
+  { title: '专业', dataIndex: 'major', width: 160 },
+  { title: '姓名', dataIndex: 'studentName', width: 120 },
+  { title: '证件号码', dataIndex: 'idNumber', width: 210 },
+  { title: '录入时间', dataIndex: 'registerDateTime', width: 220, scopedSlots: { customRender: 'registerDateTime' } },
+  { title: '总学费', dataIndex: 'totalExpense', width: 120 },
+  { title: '实缴学费', dataIndex: 'realExpense', width: 120 },
+  { title: '欠款', dataIndex: 'oweExpense', width: 120 },
+  { title: '第一年交费', dataIndex: 'xxxx1', width: 120 },
+  { title: '第二年', dataIndex: 'xxxx2', width: 120 },
+  { title: '第三年', dataIndex: 'xxxx3', width: 120 },
+  { title: '第四年', dataIndex: 'xxxx4', width: 120 },
+  { title: '第五年', dataIndex: 'xxxx5', width: 120 },
+  { title: '报考费', dataIndex: 'xxxx6', width: 120 },
+  { title: '入学考试辅导费', dataIndex: 'xxxx7', width: 140 },
+  { title: '学位报考费', dataIndex: 'xxxx8', width: 120 },
+  { title: '学位辅导费', dataIndex: 'xxxx9', width: 120 },
+  { title: '网课费', dataIndex: 'xxxx10', width: 120 },
+  { title: '论文费', dataIndex: 'xxxx11', width: 120 },
+  { title: '图像采集费', dataIndex: 'xxxx12', width: 120 }
 ]
 
 export default {
@@ -118,9 +122,16 @@ export default {
       queryParam: {},
       // 加载数据方法 必须为 Promise 对象
       loadData: parameter => {
+        if (this.queryParam.timeRange) {
+          this.queryParam = {
+            ...this.queryParam,
+            startTime: this.queryParam.timeRange[0] || '',
+            endTime: this.queryParam.timeRange[1] || ''
+          }
+        }
         const requestParameters = Object.assign({}, parameter, this.queryParam)
         console.log('loadData request parameters:', requestParameters)
-        return getServiceList(requestParameters).then(res => {
+        return financeList(requestParameters).then(res => {
           return res.result
         })
       },
@@ -130,7 +141,7 @@ export default {
   },
   filters: {},
   created() {
-    getRoleList({ t: new Date() })
+    // getRoleList({ t: new Date() })
   },
   computed: {
     rowSelection() {

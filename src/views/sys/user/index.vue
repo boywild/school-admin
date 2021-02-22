@@ -35,7 +35,7 @@
             <template v-if="advanced">
               <a-col :md="8" :sm="24">
                 <a-form-item label="创建日期">
-                  <a-range-picker v-model="queryParam.createTime" />
+                  <a-range-picker v-model="queryParam.timeRange" />
                 </a-form-item>
               </a-col>
             </template>
@@ -136,9 +136,17 @@ export default {
       queryParam: {},
       // 加载数据方法 必须为 Promise 对象
       loadData: parameter => {
+        if (this.queryParam.timeRange) {
+          this.queryParam = {
+            ...this.queryParam,
+            startTime: this.queryParam.timeRange[0] || '',
+            endTime: this.queryParam.timeRange[1] || ''
+          }
+        }
         const requestParameters = Object.assign({}, parameter, this.queryParam)
         console.log('loadData request parameters:', requestParameters)
         return adminList(requestParameters).then(res => {
+          console.log(res)
           return res.result
         })
       },
