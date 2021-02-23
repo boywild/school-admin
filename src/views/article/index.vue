@@ -59,9 +59,9 @@
       >
         <span slot="action" slot-scope="text, record">
           <template>
-            <a @click="handleEdit(record)">修改</a>
+            <a>详情</a>
             <a-divider type="vertical" />
-            <a>发布</a>
+            <a @click="handleEdit(record)">修改</a>
           </template>
         </span>
       </s-table>
@@ -81,7 +81,7 @@
 <script>
 import moment from 'moment'
 import { STable } from '@/components'
-import { getRoleList, getServiceList } from '@/api/manage'
+import { getServiceList } from '@/api/manage'
 
 // import StepByStepModal from './modules/StepByStepModal'
 import CreateForm from './components/CreateForm'
@@ -126,7 +126,7 @@ export default {
   },
   filters: {},
   created() {
-    getRoleList({ t: new Date() })
+    // getRoleList({ t: new Date() })
   },
   computed: {
     rowSelection() {

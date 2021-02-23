@@ -38,8 +38,11 @@ const financeDetail = () => {
     {
       financeId: '60068367ea0c513f343e144b',
       studentId: '60054737ea0c51177873f92e',
+      degreeLevel: '第一批',
+      layer: '第一层',
       graduateSchool: '家里蹲大学',
       studentName: '测试一号',
+      major: '修电脑',
       idNumber: '111111',
       registerDateTime: 1610958646966,
       totalExpense: 1500,
