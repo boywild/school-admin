@@ -1,18 +1,10 @@
 import Mock from 'mockjs2'
 import { builder, getQueryParameters } from '../util'
 
-const titles = [
-  'Alipay',
-  'Angular',
-  'Ant Design',
-  'Ant Design Pro',
-  'Bootstrap',
-  'React',
-  'Vue',
-  'Webpack'
-]
+const titles = ['Alipay', 'Angular', 'Ant Design', 'Ant Design Pro', 'Bootstrap', 'React', 'Vue', 'Webpack']
 
-const avatar = ['https://gw.alipayobjects.com/zos/rmsportal/WdGqmHpayyMjiEhcKoVE.png',
+const avatar = [
+  'https://gw.alipayobjects.com/zos/rmsportal/WdGqmHpayyMjiEhcKoVE.png',
   'https://gw.alipayobjects.com/zos/rmsportal/zOsKZmFRdUtvpqCImOVY.png',
   'https://gw.alipayobjects.com/zos/rmsportal/dURIMkkrRFpPgTuzkwnB.png',
   'https://gw.alipayobjects.com/zos/rmsportal/sfjbOqnsXXJgNCjCzDBL.png',
@@ -26,19 +18,15 @@ const covers = [
   'https://gw.alipayobjects.com/zos/rmsportal/gLaIAoVWTtLbBWZNYEMg.png'
 ]
 
-const owner = [
-  '付小小',
-  '吴加好',
-  '周星星',
-  '林东东',
-  '曲丽丽'
-]
+const owner = ['付小小', '吴加好', '周星星', '林东东', '曲丽丽']
 
-const content = '段落示意：蚂蚁金服设计平台 ant.design，用最小的工作量，无缝接入蚂蚁金服生态，提供跨越设计与开发的体验解决方案。蚂蚁金服设计平台 ant.design，用最小的工作量，无缝接入蚂蚁金服生态，提供跨越设计与开发的体验解决方案。'
-const description = '在中台产品的研发过程中，会出现不同的设计规范和实现方式，但其中往往存在很多类似的页面和组件，这些类似的组件会被抽离成一套标准规范。'
+const content =
+  '段落示意：蚂蚁金服设计平台 ant.design，用最小的工作量，无缝接入蚂蚁金服生态，提供跨越设计与开发的体验解决方案。蚂蚁金服设计平台 ant.design，用最小的工作量，无缝接入蚂蚁金服生态，提供跨越设计与开发的体验解决方案。'
+const description =
+  '在中台产品的研发过程中，会出现不同的设计规范和实现方式，但其中往往存在很多类似的页面和组件，这些类似的组件会被抽离成一套标准规范。'
 const href = 'https://ant.design'
 
-const article = (options) => {
+const article = options => {
   const queryParameters = getQueryParameters(options)
   console.log('queryParameters', queryParameters)
   if (queryParameters && !queryParameters.count) {
@@ -59,7 +47,7 @@ const article = (options) => {
       message: Mock.mock('@integer(1, 999)'),
       description: description,
       href: href,
-      title: titles[ i % 8 ],
+      title: titles[i % 8],
       updatedAt: Mock.mock('@datetime'),
       members: [
         {
@@ -85,5 +73,35 @@ const article = (options) => {
   }
   return builder(data)
 }
+const articleList = () => {
+  return builder(
+    {
+      pageNum: 1,
+      pageSize: 30,
+      totalElements: 1,
+      totalPages: 1,
+      last: true,
+      first: true,
+      content: [
+        {
+          id: '6034b954ea0c510be4309ccf',
+          title: '第一篇文章',
+          hotFlag: 1,
+          clickCnt: 300,
+          commentCnt: 200,
+          introduce: '第一篇介绍',
+          content: '<p>第一个测试内容</p>',
+          status: 1,
+          crtDateTime: 1614072297954
+        }
+      ]
+    },
+    '',
+    200,
+    { 'Custom-Header': Mock.mock('@guid') }
+  )
+}
 
 Mock.mock(/\/list\/article/, 'get', article)
+Mock.mock(/\/article\/pageList/, 'post', articleList)
+Mock.mock(/\/article/, 'post', builder(true, '', 200))

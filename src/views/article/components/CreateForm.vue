@@ -1,19 +1,11 @@
 <template>
   <a-modal
-    title="新建文章"
+    :title="form.id ? '修改文章' : '新增文章'"
     :width="800"
     :visible="visible"
     :confirmLoading="loading"
-    @ok="
-      () => {
-        $emit('ok')
-      }
-    "
-    @cancel="
-      () => {
-        $emit('cancel')
-      }
-    "
+    @ok="handleOk"
+    @cancel="handleCancel"
   >
     <a-spin :spinning="loading">
       <a-form-model ref="articleInfo" :model="form" :rules="rules">
@@ -24,8 +16,8 @@
             </a-form-model-item>
           </a-col>
           <a-col :span="12">
-            <a-form-model-item label="介绍" prop="desc">
-              <a-textarea v-model="form.desc" showCount :auto-size="{ minRows: 4, maxRows: 4 }" />
+            <a-form-model-item label="介绍" prop="introduce">
+              <a-textarea v-model="form.introduce" showCount :auto-size="{ minRows: 4, maxRows: 4 }" />
             </a-form-model-item>
           </a-col>
         </a-row>
@@ -49,17 +41,18 @@
             </a-form-model-item>
           </a-col>
           <a-col :span="12">
-            <a-form-model-item label="热门" prop="hot">
-              <a-radio-group v-model="form.hot">
-                <a-radio :value="1">是 </a-radio>
-                <a-radio :value="0">否 </a-radio>
+            <a-form-model-item label="热门" prop="hotFlag">
+              <a-radio-group v-model="form.hotFlag">
+                <a-radio :value="item.code" v-for="(item, index) in YESORNO_ENMU" :key="index">
+                  {{ item.desc }}
+                </a-radio>
               </a-radio-group>
             </a-form-model-item>
           </a-col>
         </a-row>
 
         <a-form-model-item label="内容" prop="content" :labelCol="{ span: 24 }" :wrapperCol="{ span: 24 }">
-          <WangEditor></WangEditor>
+          <WangEditor :value="form.content" @change="editorContent"></WangEditor>
         </a-form-model-item>
       </a-form-model>
     </a-spin>
@@ -68,10 +61,9 @@
 
 <script>
 import WangEditor from '@/components/Editor/WangEditor'
-
+import { YESORNO_ENMU } from '@/config/dict'
 export default {
   props: {
-    visible: { type: Boolean, required: true },
     loading: { type: Boolean, default: () => false },
     model: { type: Object, default: () => null }
   },
@@ -88,13 +80,9 @@ export default {
       }
     }
     return {
-      form: {
-        title: '',
-        desc: '',
-        images: [],
-        hot: '',
-        content: ''
-      },
+      YESORNO_ENMU,
+      visible: false,
+      form: {},
       imgInfo: [
         {
           uid: '-1',
@@ -111,14 +99,23 @@ export default {
       ],
       rules: {
         title: [{ required: true, message: '文章标题不能为空' }],
-        desc: [{ required: true, message: '文章描述不能为空' }],
+        introduce: [{ required: true, message: '文章描述不能为空' }],
         images: [{ required: true, message: '文章图片不能为空' }],
-        hot: [{ required: true, message: '请选择是否热门' }],
+        hotFlag: [{ required: true, message: '请选择是否热门' }],
         content: [{ required: true, message: '文章内容不能为空' }]
       }
     }
   },
-  created() {},
+  mounted() {
+    this.$watch('model', val => {
+      setTimeout(() => {
+        this.form = {
+          ...this.form,
+          ...val
+        }
+      }, 300)
+    })
+  },
   methods: {
     async handlePreview(file) {
       if (!file.url && !file.preview) {
@@ -131,7 +128,27 @@ export default {
       this.fileList = fileList
     },
     resetForm() {
+      this.form = {}
       this.$refs['articleInfo'].resetFields()
+    },
+    handleOk() {
+      this.close()
+    },
+    handleCancel() {
+      this.close()
+      this.resetForm()
+    },
+    close() {
+      this.toggle(false)
+    },
+    open() {
+      this.toggle()
+    },
+    toggle(flag = true) {
+      this.visible = flag
+    },
+    editorContent(val) {
+      this.form.content = val
     }
   }
 }
