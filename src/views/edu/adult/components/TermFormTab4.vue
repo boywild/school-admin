@@ -1,0 +1,107 @@
+<template>
+  <div>
+    <form-generate ref="form" :fields="tab4"></form-generate>
+    <div class="ant-modal-footer">
+      <div>
+        <button type="button" class="ant-btn"><span>取 消</span></button
+        ><button type="button" class="ant-btn ant-btn-primary"><span>保存学期信息</span></button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import FormGenerate from '@/components/FormGenerate'
+import { YESORNO_ENMU, INFO_GATHER_ENMU, THESIS_FROM_ENMU } from '@/config/dict'
+
+export default {
+  name: 'StudyTerm',
+  props: {
+    studentId: { type: String, default: '' }
+  },
+
+  components: { FormGenerate },
+  data() {
+    return {
+      YESORNO_ENMU,
+      INFO_GATHER_ENMU,
+      THESIS_FROM_ENMU,
+      tab4: [
+        {
+          label: '填写毕业生登记表',
+          field: 'xxxx',
+          form: 'radio',
+          radioFrom: 'YESORNO_ENMU',
+          rules: []
+        },
+
+        {
+          label: '毕业信息采集',
+          field: 'xxxx',
+          form: 'select',
+          selectFrom: 'INFO_GATHER_ENMU',
+          rules: []
+        },
+
+        {
+          label: '毕业纸质照片到我司',
+          field: 'xxxx',
+          form: 'radio',
+          radioFrom: 'YESORNO_ENMU',
+          rules: []
+        },
+
+        {
+          label: '毕业纸质照片提交院校',
+          field: 'xxxx',
+          form: 'radio',
+          radioFrom: 'YESORNO_ENMU',
+          rules: []
+        },
+        {
+          label: '延期毕业',
+          field: 'xxxx',
+          form: 'radio',
+          radioFrom: 'YESORNO_ENMU',
+          rules: []
+        },
+        {
+          label: '论文性质',
+          field: 'xxxx',
+          form: 'select',
+          selectFrom: 'THESIS_FROM_ENMU',
+          rules: []
+        },
+        {
+          label: '特殊事项',
+          field: 'xxxx',
+          form: 'input',
+          rules: []
+        }
+      ]
+    }
+  },
+  mounted() {},
+  computed: {},
+  methods: {
+    validate(callback) {
+      const form = this.$refs.form
+      form.validate(data => {
+        callback && callback(data)
+        console.log(data)
+      })
+    },
+    resetForm() {
+      const form = this.$refs.form
+      form.reset()
+    }
+  }
+}
+</script>
+<style lang="less">
+.like-table {
+  .ant-row {
+    padding: 7px 0;
+  }
+}
+</style>

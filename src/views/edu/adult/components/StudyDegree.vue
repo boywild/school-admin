@@ -37,7 +37,10 @@ export default {
   data() {
     const panes = [
       { title: '第1学期', content: '', key: '1' },
-      { title: '第2学期', content: '', key: '2' }
+      { title: '第2学期', content: '', key: '2' },
+      { title: '第3学期', content: '', key: '3' },
+      { title: '第4学期', content: '', key: '4' },
+      { title: '第5学期', content: '', key: '5' }
     ]
     return {
       loading: false,
@@ -50,7 +53,7 @@ export default {
       tab5: [
         {
           label: '批次',
-          field: 'xxxx',
+          field: 'takeWay',
           form: 'input',
           rules: [{ max: '10', message: '批次限制输入10位' }]
         },
@@ -153,7 +156,7 @@ export default {
       this.loadingData = true
       const { result } = await getDegree(this.studentId)
       const form = this.$refs.form
-      form.setData(result[0])
+      form.setData(result)
       this.loadingData = false
     },
     async saveStudyDegree() {
