@@ -280,31 +280,31 @@ export const asyncRouterMap = [
         component: RouteView,
         redirect: '/edu/adult',
         name: 'edu',
-        meta: { title: '学历教育', icon: 'trophy', permission: ['user'] },
+        meta: { title: '学历教育', icon: 'trophy', permission: ['XLJY'] },
         children: [
           {
             path: '/edu/adult',
             name: 'adult',
             component: () => import(/* webpackChunkName: "adult" */ '@/views/edu/adult/index'),
-            meta: { title: '成人教育', permission: ['user'] }
+            meta: { title: '成人教育', permission: ['0'] }
           },
           {
             path: '/edu/exam',
             name: 'exam',
             component: () => import(/* webpackChunkName: "exam" */ '@/views/edu/exam/index'),
-            meta: { title: '自考教育', permission: ['user'] }
+            meta: { title: '自考教育', permission: ['1'] }
           },
           {
             path: '/edu/online',
             name: 'online',
             component: () => import(/* webpackChunkName: "online" */ '@/views/edu/online/index'),
-            meta: { title: '网络教育', permission: ['user'] }
+            meta: { title: '网络教育', permission: ['2'] }
           },
           {
             path: '/edu/program',
             name: 'program',
             component: () => import(/* webpackChunkName: "program" */ '@/views/edu/program/index'),
-            meta: { title: '开发大学', permission: ['user'] }
+            meta: { title: '开发大学', permission: ['3'] }
           }
         ]
       },
@@ -313,37 +313,37 @@ export const asyncRouterMap = [
         component: RouteView,
         redirect: '/training/hr',
         name: 'training',
-        meta: { title: '职业培训', icon: 'customer-service' },
+        meta: { title: '职业培训', icon: 'customer-service', permission: ['ZYPX'] },
         children: [
           {
             path: '/training/hr',
             name: 'hr',
             component: () => import(/* webpackChunkName: "training" */ '@/views/training/hr/index'),
-            meta: { title: '人社局培训', permission: ['user'] }
+            meta: { title: '人社局培训', permission: ['4'] }
           },
           {
             path: '/training/doctor',
             name: 'doctor',
             component: () => import(/* webpackChunkName: "doctor" */ '@/views/training/doctor/index'),
-            meta: { title: '医考培训', permission: ['user'] }
+            meta: { title: '医考培训', permission: ['8'] }
           },
           {
             path: '/training/security',
             name: 'security',
             component: () => import(/* webpackChunkName: "security" */ '@/views/training/security/index'),
-            meta: { title: '安检培训', permission: ['user'] }
+            meta: { title: '安检培训', permission: ['5'] }
           },
           {
             path: '/training/quality',
             name: 'quality',
             component: () => import(/* webpackChunkName: "quality" */ '@/views/training/quality/index'),
-            meta: { title: '质检培训', permission: ['user'] }
+            meta: { title: '质检培训', permission: ['6'] }
           },
           {
             path: '/training/tusheng',
             name: 'tusheng',
             component: () => import(/* webpackChunkName: "tusheng" */ '@/views/training/tusheng/index'),
-            meta: { title: '途胜教育', permission: ['user'] }
+            meta: { title: '途胜教育', permission: ['7'] }
           }
         ]
       },
@@ -352,14 +352,14 @@ export const asyncRouterMap = [
         component: RouteView,
         redirect: '/accountant/money',
         name: 'accountant',
-        meta: { title: '财务管理', icon: 'money-collect', permission: ['user'] },
+        meta: { title: '财务管理', icon: 'money-collect', permission: ['9'] },
         hideChildrenInMenu: true,
         children: [
           {
             path: '/accountant/money',
             name: 'money',
             component: () => import(/* webpackChunkName: "money" */ '@/views/accountant/index'),
-            meta: { title: '财务列表', permission: ['user'] }
+            meta: { title: '财务列表', permission: ['9'] }
           }
         ]
       },
@@ -368,14 +368,14 @@ export const asyncRouterMap = [
         component: RouteView,
         redirect: '/article/list',
         name: 'article',
-        meta: { title: '文章管理', icon: 'file-text', permission: ['user'] },
+        meta: { title: '文章管理', icon: 'file-text', permission: ['12'] },
         hideChildrenInMenu: true,
         children: [
           {
             path: '/article/list',
             name: 'articleList',
             component: () => import(/* webpackChunkName: "article" */ '@/views/article/index'),
-            meta: { title: '文章列表', permission: ['user'] }
+            meta: { title: '文章列表', permission: ['12'] }
           }
         ]
       },
@@ -384,19 +384,19 @@ export const asyncRouterMap = [
         component: RouteView,
         redirect: '/sys/user',
         name: 'sys',
-        meta: { title: '系统管理', icon: 'setting', permission: ['user'] },
+        meta: { title: '系统管理', icon: 'setting', permission: ['XTGL'] },
         children: [
           {
             path: '/sys/user',
             name: 'sysUser',
             component: () => import(/* webpackChunkName: "sysUser" */ '@/views/sys/user/index'),
-            meta: { title: '用户列表', permission: ['user'] }
+            meta: { title: '用户列表', permission: ['10'] }
           },
           {
             path: '/sys/role',
             name: 'sysRole',
             component: () => import(/* webpackChunkName: "sysRole" */ '@/views/sys/role/index'),
-            meta: { title: '角色列表', permission: ['user'] }
+            meta: { title: '角色列表', permission: ['11'] }
           }
         ]
       },
@@ -405,14 +405,14 @@ export const asyncRouterMap = [
         component: RouteView,
         redirect: '/todo/list',
         name: 'todo',
-        meta: { title: '待办事项', icon: 'bars', permission: ['user'] },
+        meta: { title: '待办事项', icon: 'bars', permission: ['13'] },
         hideChildrenInMenu: true,
         children: [
           {
             path: '/todo/list',
             name: 'todoList',
             component: () => import(/* webpackChunkName: "todo" */ '@/views/todo/index'),
-            meta: { title: '待办列表', permission: ['user'] }
+            meta: { title: '待办列表', permission: ['13'] }
           }
         ]
       }

@@ -55,6 +55,22 @@ const adminList = () => {
     { 'Custom-Header': Mock.mock('@guid') }
   )
 }
-
+const adminLogin = () => {
+  return builder(
+    {
+      name: '超级管理员',
+      adminType: '0',
+      phone: '18827032021',
+      roleId: '001',
+      remark: '测试使用',
+      authIds: ['XLJY', '0', '1', '2', '3', 'ZYPX', '4', '5', '6', '7', '8', '9', '10', '11', 'XTGL', '12', '13'],
+      jsessionId: '4291d7da9005377ec9aec4a71ea837f'
+    },
+    '',
+    200,
+    { 'Custom-Header': Mock.mock('@guid') }
+  )
+}
 Mock.mock(/\/admin\/list/, 'post', adminList)
+Mock.mock(/\/admin\/login/, 'post', adminLogin)
 Mock.mock(/\/admin/, 'post', adminSave)

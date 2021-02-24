@@ -110,7 +110,7 @@ export default {
     // this.requiredTwoStepCaptcha = true
   },
   methods: {
-    ...mapActions(['Login', 'Logout']),
+    ...mapActions(['Login2', 'Logout']),
     // handler
     handleUsernameOrEmail(rule, value, callback) {
       const { state } = this
@@ -132,7 +132,7 @@ export default {
         form: { validateFields },
         state,
         customActiveKey,
-        Login
+        Login2
       } = this
 
       state.loginBtn = true
@@ -146,7 +146,7 @@ export default {
           delete loginParams.username
           loginParams[!state.loginType ? 'email' : 'username'] = values.username
           loginParams.password = md5(values.password)
-          Login(loginParams)
+          Login2(loginParams)
             .then(res => this.loginSuccess(res))
             .catch(err => this.requestFailed(err))
             .finally(() => {
