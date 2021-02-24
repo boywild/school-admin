@@ -207,7 +207,7 @@ const permissionList = () => {
       {
         title: '财务管理',
         key: '9',
-        children: [{ title: '查询', key: '9_0' }]
+        children: [{ title: '财务查询', key: '9_0' }]
       },
       {
         title: '系统管理',
@@ -220,9 +220,7 @@ const permissionList = () => {
               { title: '查询', key: '10_0' },
               { title: '新建', key: '10_1' },
               { title: '删除', key: '10_2' },
-              { title: '修改', key: '10_3' },
-              { title: '禁用', key: '10_4' },
-              { title: '启用', key: '10_5' }
+              { title: '修改', key: '10_3' }
             ]
           },
           {
@@ -233,8 +231,7 @@ const permissionList = () => {
               { title: '新建', key: '11_1' },
               { title: '删除', key: '11_2' },
               { title: '修改', key: '11_3' },
-              { title: '禁用', key: '11_4' },
-              { title: '启用', key: '11_5' }
+              { title: '分配权限', key: '11_3' }
             ]
           }
         ]

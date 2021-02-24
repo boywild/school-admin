@@ -19,7 +19,7 @@ const adminSave = () => {
 const adminList = () => {
   return builder(
     {
-      pageNum: 1,
+      pageNum: 0,
       pageSize: 30,
       totalElements: 300,
       totalPages: 1,

@@ -11,7 +11,7 @@
             </a-col>
             <a-col :md="8" :sm="24">
               <a-form-item label="证件号">
-                <a-input-number v-model="queryParam.idNumber" placeholder="请输入证件号" style="width: 100%" />
+                <a-input v-model="queryParam.idNumber" placeholder="请输入证件号" style="width: 100%" />
               </a-form-item>
             </a-col>
             <template v-if="advanced">
@@ -22,17 +22,17 @@
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="批次">
-                  <a-input-number v-model="queryParam.degreeLevel" placeholder="请输批次" style="width: 100%" />
+                  <a-input v-model="queryParam.degreeLevel" placeholder="请输批次" style="width: 100%" />
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="院校">
-                  <a-input-number v-model="queryParam.graduateSchool" placeholder="请输入院校" style="width: 100%" />
+                  <a-input v-model="queryParam.graduateSchool" placeholder="请输入院校" style="width: 100%" />
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="专业">
-                  <a-input-number v-model="queryParam.major" placeholder="请输入专业" style="width: 100%" />
+                  <a-input v-model="queryParam.major" placeholder="请输入专业" style="width: 100%" />
                 </a-form-item>
               </a-col>
             </template>
