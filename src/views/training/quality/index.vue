@@ -73,7 +73,7 @@
                 </a-form-item>
               </a-col>
             </template>
-            <a-col :md="(!advanced && 8) || 24" :sm="24">
+            <a-col :md="(!advanced && 8) || 24" :sm="24" v-if="$auth('T059')">
               <span
                 class="table-page-search-submitButtons"
                 :style="(advanced && { float: 'right', overflow: 'hidden' }) || {}"
@@ -91,9 +91,9 @@
       </div>
 
       <div class="table-operator">
-        <a-button type="primary" icon="plus" @click="handleAdd">新建</a-button>
-        <a-button type="danger" icon="delete" @click="deleteStudent">删除</a-button>
-        <a-button type="primary" ghost icon="download">导出数据</a-button>
+        <a-button type="primary" icon="plus" v-action:T060 @click="handleAdd">新建</a-button>
+        <a-button type="danger" icon="delete" v-action:T061 @click="deleteStudent">删除</a-button>
+        <a-button type="primary" ghost icon="download" v-action:T062>导出数据</a-button>
       </div>
 
       <s-table
@@ -109,15 +109,15 @@
       >
         <span slot="action" slot-scope="text, record">
           <template>
-            <a @click="handleModify(record, 'BaseInfo')">基本信息</a>
-            <a-divider type="vertical" />
-            <a @click="handleModify(record, 'ImgInfo')">图片</a>
-            <a-divider type="vertical" />
-            <a @click="handleModify(record, 'JoinInfo')">报名</a>
-            <a-divider type="vertical" />
-            <a @click="handleModify(record, 'EduTask')">教务</a>
-            <a-divider type="vertical" />
-            <a @click="handleModify(record, 'StudyCost')">财务</a>
+            <a v-action:T063 @click="handleModify(record, 'BaseInfo')">基本信息</a>
+            <a-divider v-action:T058 type="vertical" />
+            <a v-action:T064 @click="handleModify(record, 'ImgInfo')">图片</a>
+            <a-divider v-action:T058 type="vertical" />
+            <a v-action:T065 @click="handleModify(record, 'JoinInfo')">报名</a>
+            <a-divider v-action:T058 type="vertical" />
+            <a v-action:T066 @click="handleModify(record, 'EduTask')">教务</a>
+            <a-divider v-action:T058 type="vertical" />
+            <a v-action:T067 @click="handleModify(record, 'StudyCost')">财务</a>
           </template>
         </span>
       </s-table>

@@ -25,7 +25,7 @@
                 </a-form-item>
               </a-col>
             </template>
-            <a-col :md="(!advanced && 8) || 24" :sm="24">
+            <a-col :md="(!advanced && 8) || 24" :sm="24" v-if="$auth('S013')">
               <span
                 class="table-page-search-submitButtons"
                 :style="(advanced && { float: 'right', overflow: 'hidden' }) || {}"
@@ -43,8 +43,8 @@
       </div>
 
       <div class="table-operator">
-        <a-button type="primary" icon="plus" @click="$refs['createModal'].open()">新建</a-button>
-        <a-button type="danger" icon="delete">删除</a-button>
+        <a-button type="primary" icon="plus" v-action:S014 @click="$refs['createModal'].open()">新建</a-button>
+        <a-button type="danger" icon="delete" v-action:S015>删除</a-button>
       </div>
 
       <s-table
@@ -62,9 +62,9 @@
         </span>
         <span slot="action" slot-scope="text, record">
           <template>
-            <a @click="handleEdit(record, true)">详情</a>
-            <a-divider type="vertical" />
-            <a @click="handleEdit(record)">修改</a>
+            <a v-action:S017 @click="handleEdit(record, true)">详情</a>
+            <a-divider v-action:S014 type="vertical" />
+            <a v-action:S016 @click="handleEdit(record)">修改</a>
           </template>
         </span>
       </s-table>

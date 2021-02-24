@@ -39,7 +39,7 @@
                 </a-form-item>
               </a-col>
             </template>
-            <a-col :md="(!advanced && 8) || 24" :sm="24">
+            <a-col :md="(!advanced && 8) || 24" :sm="24" v-if="$auth('T086')">
               <span
                 class="table-page-search-submitButtons"
                 :style="(advanced && { float: 'right', overflow: 'hidden' }) || {}"
@@ -57,8 +57,8 @@
       </div>
 
       <div class="table-operator">
-        <a-button type="primary" icon="plus" @click="handleAdd">新建</a-button>
-        <a-button type="danger" icon="delete">删除</a-button>
+        <a-button type="primary" icon="plus" v-action:T087 @click="handleAdd">新建</a-button>
+        <a-button type="danger" icon="delete" v-action:T088>删除</a-button>
       </div>
 
       <s-table
@@ -79,7 +79,7 @@
         </span>
         <span slot="action" slot-scope="text, record">
           <template>
-            <a @click="handleEdit(record)">修改</a>
+            <a v-action:T089 @click="handleEdit(record)">修改</a>
           </template>
         </span>
       </s-table>

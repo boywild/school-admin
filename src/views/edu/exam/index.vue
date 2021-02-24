@@ -15,7 +15,7 @@
               </a-form-item>
             </a-col>
             <template v-if="advanced"> </template>
-            <a-col :md="(!advanced && 8) || 24" :sm="24">
+            <a-col :md="(!advanced && 8) || 24" :sm="24" v-if="$auth('T012')">
               <span
                 class="table-page-search-submitButtons"
                 :style="(advanced && { float: 'right', overflow: 'hidden' }) || {}"
@@ -33,9 +33,9 @@
       </div>
 
       <div class="table-operator">
-        <a-button type="primary" icon="plus" @click="handleAdd">新建</a-button>
-        <a-button type="danger" icon="delete" @click="deleteStudent">删除</a-button>
-        <a-button type="primary" ghost icon="download">导出数据</a-button>
+        <a-button type="primary" icon="plus" v-action:T013 @click="handleAdd">新建</a-button>
+        <a-button type="danger" icon="delete" v-action:T014 @click="deleteStudent">删除</a-button>
+        <a-button type="primary" ghost icon="download" v-action:T015>导出数据</a-button>
       </div>
 
       <s-table
@@ -51,20 +51,19 @@
       >
         <span slot="action" slot-scope="text, record">
           <template>
-            <a @click="handleModify(record, 'BaseInfo')">基本信息</a>
-            <a-divider type="vertical" />
-            <a @click="handleModify(record, 'ImgInfo')">图片</a>
-            <a-divider type="vertical" />
-
-            <a @click="handleModify(record, 'EduTask')">教务</a>
-            <a-divider type="vertical" />
-            <a @click="handleModify(record, 'ExamTerm')">教务考期</a>
-            <a-divider type="vertical" />
-            <a @click="handleModify(record, 'GraduationApply')">毕业申请</a>
-            <a-divider type="vertical" />
-            <a @click="handleModify(record, 'StudyDegree')">学位</a>
-            <a-divider type="vertical" />
-            <a @click="handleModify(record, 'StudyCost')">财务</a>
+            <a v-action:T016 @click="handleModify(record, 'BaseInfo')">基本信息</a>
+            <a-divider v-action:T017 type="vertical" />
+            <a v-action:T017 @click="handleModify(record, 'ImgInfo')">图片</a>
+            <a-divider v-action:T018 type="vertical" />
+            <a v-action:T018 @click="handleModify(record, 'EduTask')">教务</a>
+            <a-divider v-action:T019 type="vertical" />
+            <a v-action:T019 @click="handleModify(record, 'ExamTerm')">教务考期</a>
+            <a-divider v-action:T020 type="vertical" />
+            <a v-action:T020 @click="handleModify(record, 'GraduationApply')">毕业申请</a>
+            <a-divider v-action:T021 type="vertical" />
+            <a v-action:T021 @click="handleModify(record, 'StudyDegree')">学位</a>
+            <a-divider v-action:T022 type="vertical" />
+            <a v-action:T022 @click="handleModify(record, 'StudyCost')">财务</a>
           </template>
         </span>
       </s-table>

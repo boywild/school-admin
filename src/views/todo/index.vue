@@ -23,7 +23,7 @@
                 <a-input v-model="queryParam.id" placeholder="请输入待办内容" />
               </a-form-item>
             </a-col>
-            <a-col :md="24" :sm="24">
+            <a-col :md="24" :sm="24" v-if="$auth('S018')">
               <span class="table-page-search-submitButtons" :style="{ float: 'right', overflow: 'hidden' }">
                 <a-button type="primary" @click="$refs.table.refresh(true)">查询</a-button>
                 <a-button style="margin-left: 8px" @click="() => (this.queryParam = {})">重置</a-button>

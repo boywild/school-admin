@@ -23,7 +23,7 @@
                 <a-range-picker v-model="queryParam.timeRange" />
               </a-form-item>
             </a-col>
-            <a-col :md="6" :sm="24">
+            <a-col :md="6" :sm="24" v-if="$auth('T090')">
               <span class="table-page-search-submitButtons">
                 <a-button type="primary">查询</a-button>
                 <a-button style="margin-left: 8px">重置</a-button>
@@ -33,7 +33,7 @@
         </a-form>
       </div>
       <div class="table-operator">
-        <a-button type="primary" icon="plus" @click="$refs.roleModal.add()">新建</a-button>
+        <a-button type="primary" icon="plus" v-action:T091 @click="$refs.roleModal.add()">新建</a-button>
       </div>
       <s-table ref="table" size="default" rowKey="roleId" :columns="columns" :data="loadData">
         <span slot="status" slot-scope="text">
@@ -61,11 +61,12 @@
           </a-row>
         </div>
         <span slot="action" slot-scope="text, record">
-          <a @click="$refs.roleModal.edit(record)">修改</a>
-          <a-divider type="vertical" />
-          <a @click="$refs.modal.edit(record)">权限</a>
-          <a-divider type="vertical" />
+          <a v-action:T093 @click="$refs.roleModal.edit(record)">修改</a>
+          <a-divider v-action:T094 type="vertical" />
+          <a v-action:T094 @click="$refs.modal.edit(record)">权限</a>
+          <a-divider v-action:T092 type="vertical" />
           <a-popconfirm
+            v-if="$auth('T092')"
             placement="topLeft"
             title="删除会导致该角色下管理员无法正常使用，请再三确认！！"
             ok-text="确认"
