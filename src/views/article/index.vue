@@ -21,7 +21,7 @@
             <template v-if="advanced">
               <a-col :md="8" :sm="24">
                 <a-form-item label="更新日期">
-                  <a-range-picker v-model="queryParam.date" />
+                  <a-range-picker v-model="queryParam.timeRange" />
                 </a-form-item>
               </a-col>
             </template>
@@ -62,14 +62,20 @@
         </span>
         <span slot="action" slot-scope="text, record">
           <template>
-            <a>详情</a>
+            <a @click="handleEdit(record, true)">详情</a>
             <a-divider type="vertical" />
             <a @click="handleEdit(record)">修改</a>
           </template>
         </span>
       </s-table>
 
-      <create-form ref="createModal" :visible="visible" :loading="confirmLoading" :model="mdl" />
+      <create-form
+        ref="createModal"
+        :visible="visible"
+        :loading="confirmLoading"
+        :model="mdl"
+        @refresh="refreshTable"
+      />
     </a-card>
   </page-header-wrapper>
 </template>
@@ -77,7 +83,7 @@
 <script>
 import moment from 'moment'
 import { STable } from '@/components'
-import { articleList, articleSave } from '@/api/article'
+import { articleList } from '@/api/article'
 import { YESORNO_ENMU } from '@/config/dict'
 // import StepByStepModal from './modules/StepByStepModal'
 import CreateForm from './components/CreateForm'
@@ -111,6 +117,13 @@ export default {
       queryParam: {},
       // 加载数据方法 必须为 Promise 对象
       loadData: parameter => {
+        if (this.queryParam.timeRange) {
+          this.queryParam = {
+            ...this.queryParam,
+            startTime: this.queryParam.timeRange[0].valueOf() || '',
+            endTime: this.queryParam.timeRange[1].valueOf() || ''
+          }
+        }
         const requestParameters = Object.assign({}, parameter, this.queryParam)
         console.log('loadData request parameters:', requestParameters)
         return articleList(requestParameters).then(res => {
@@ -134,16 +147,13 @@ export default {
     }
   },
   methods: {
-    async save() {
-      await articleSave()
-    },
     handleAdd() {
       this.mdl = null
       this.visible = true
     },
-    handleEdit(record) {
+    handleEdit(record, disabled = false) {
       this.visible = true
-      this.mdl = { ...record }
+      this.mdl = { ...record, disabled }
       this.$refs['createModal'].open()
     },
     onSelectChange(selectedRowKeys, selectedRows) {
@@ -157,6 +167,10 @@ export default {
       this.queryParam = {
         date: [moment(new Date()), moment(new Date())]
       }
+    },
+    refreshTable() {
+      // 新增/修改 成功时，重载列表
+      this.$refs.table.refresh()
     }
   }
 }

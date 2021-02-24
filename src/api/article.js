@@ -14,6 +14,7 @@ export function articleList(parameter) {
 }
 
 export function articleSave(parameter) {
+  console.log(parameter)
   return request({
     url: articleApi.articleSave,
     method: 'post',

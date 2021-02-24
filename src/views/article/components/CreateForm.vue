@@ -3,7 +3,9 @@
     :title="form.id ? '修改文章' : '新增文章'"
     :width="800"
     :visible="visible"
-    :confirmLoading="loading"
+    :confirmLoading="confirmLoading"
+    :ok-button-props="{ props: { disabled: form.disabled } }"
+    :cancel-button-props="{ props: { disabled: form.disabled } }"
     @ok="handleOk"
     @cancel="handleCancel"
   >
@@ -23,15 +25,15 @@
         </a-row>
         <a-row :gutter="10">
           <a-col :span="12">
-            <a-form-model-item label="图片" prop="images">
+            <a-form-model-item label="图片" prop="imgInfo">
               <a-upload
                 action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
                 list-type="picture-card"
-                :file-list="imgInfo"
+                :file-list="form.imgInfo"
                 @preview="handlePreview"
                 @change="handleChange"
               >
-                <div v-if="imgInfo.length < 2">
+                <div v-if="form.imgInfo && form.imgInfo.length < 2">
                   <a-icon type="plus" />
                   <div class="ant-upload-text">
                     上传图片
@@ -62,6 +64,7 @@
 <script>
 import WangEditor from '@/components/Editor/WangEditor'
 import { YESORNO_ENMU } from '@/config/dict'
+import { articleSave } from '@/api/article'
 export default {
   props: {
     loading: { type: Boolean, default: () => false },
@@ -82,21 +85,24 @@ export default {
     return {
       YESORNO_ENMU,
       visible: false,
-      form: {},
-      imgInfo: [
-        {
-          uid: '-1',
-          name: 'image.png',
-          status: 'done',
-          url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
-        },
-        {
-          uid: '-2',
-          name: 'image.png',
-          status: 'done',
-          url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
-        }
-      ],
+      confirmLoading: false,
+      form: {
+        imgInfo: [
+          {
+            uid: '-1',
+            name: 'image.png',
+            status: 'done',
+            url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
+          },
+          {
+            uid: '-2',
+            name: 'image.png',
+            status: 'done',
+            url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
+          }
+        ]
+      },
+
       rules: {
         title: [{ required: true, message: '文章标题不能为空' }],
         introduce: [{ required: true, message: '文章描述不能为空' }],
@@ -127,12 +133,17 @@ export default {
     handleChange({ fileList }) {
       this.fileList = fileList
     },
-    resetForm() {
-      this.form = {}
-      this.$refs['articleInfo'].resetFields()
-    },
     handleOk() {
-      this.close()
+      this.handleSave()
+    },
+    async handleSave() {
+      this.validate(async value => {
+        this.confirmLoading = true
+        await articleSave(this.form)
+        this.confirmLoading = false
+        this.handleCancel()
+        this.$emit('refresh')
+      })
     },
     handleCancel() {
       this.close()
@@ -149,6 +160,19 @@ export default {
     },
     editorContent(val) {
       this.form.content = val
+    },
+    validate(callback) {
+      const form = this.$refs.articleInfo
+      form.validate(success => {
+        if (success) {
+          callback && callback(this.baseInfo)
+        }
+      })
+    },
+    resetForm() {
+      const form = this.$refs.articleInfo
+      this.form = {}
+      form.clearValidate()
     }
   }
 }

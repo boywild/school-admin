@@ -116,8 +116,8 @@ export default {
         if (this.queryParam.timeRange) {
           this.queryParam = {
             ...this.queryParam,
-            startTime: this.queryParam.timeRange[0] || '',
-            endTime: this.queryParam.timeRange[1] || ''
+            startTime: this.queryParam.timeRange[0].valueOf() || '',
+            endTime: this.queryParam.timeRange[1].valueOf() || ''
           }
         }
         const requestParameters = Object.assign({}, parameter, this.queryParam)
