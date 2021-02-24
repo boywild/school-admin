@@ -21,14 +21,14 @@ export const asyncRouterMap = [
         name: 'dashboard',
         redirect: '/dashboard/workplace',
         component: RouteView,
-        meta: { title: 'menu.dashboard', keepAlive: true, icon: bxAnaalyse, permission: ['dashboard'] },
+        meta: { title: 'menu.dashboard', keepAlive: true, icon: bxAnaalyse },
         hidden: true,
         children: [
           {
             path: '/dashboard/analysis/:pageNo([1-9]\\d*)?',
             name: 'Analysis',
             component: () => import('@/views/dashboard/Analysis'),
-            meta: { title: 'menu.dashboard.analysis', keepAlive: false, permission: ['dashboard'] }
+            meta: { title: 'menu.dashboard.analysis', keepAlive: false }
           },
           // 外部链接
           {
@@ -40,7 +40,7 @@ export const asyncRouterMap = [
             path: '/dashboard/workplace',
             name: 'Workplace',
             component: () => import('@/views/dashboard/Workplace'),
-            meta: { title: 'menu.dashboard.workplace', keepAlive: true, permission: ['dashboard'] }
+            meta: { title: 'menu.dashboard.workplace', keepAlive: true }
           }
         ]
       },
@@ -214,20 +214,20 @@ export const asyncRouterMap = [
         component: RouteView,
         redirect: '/account/center',
         name: 'account',
-        meta: { title: 'menu.account', icon: 'user', keepAlive: true, permission: ['user'] },
+        meta: { title: 'menu.account', icon: 'user', keepAlive: true },
         hidden: true,
         children: [
           {
             path: '/account/center',
             name: 'center',
             component: () => import('@/views/account/center'),
-            meta: { title: 'menu.account.center', keepAlive: true, permission: ['user'] }
+            meta: { title: 'menu.account.center', keepAlive: true }
           },
           {
             path: '/account/settings',
             name: 'settings',
             component: () => import('@/views/account/settings/Index'),
-            meta: { title: 'menu.account.settings', hideHeader: true, permission: ['user'] },
+            meta: { title: 'menu.account.settings', hideHeader: true },
             redirect: '/account/settings/basic',
             hideChildrenInMenu: true,
             children: [
@@ -235,7 +235,7 @@ export const asyncRouterMap = [
                 path: '/account/settings/basic',
                 name: 'BasicSettings',
                 component: () => import('@/views/account/settings/BasicSetting'),
-                meta: { title: 'account.settings.menuMap.basic', hidden: true, permission: ['user'] }
+                meta: { title: 'account.settings.menuMap.basic', hidden: true }
               },
               {
                 path: '/account/settings/security',
