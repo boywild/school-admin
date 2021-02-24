@@ -33,7 +33,7 @@ export default {
     return {
       expandedKeys: [],
       autoExpandParent: true,
-      checkedKeys: ['XLJY', '0', '0_0'],
+      checkedKeys: [],
       selectedKeys: [],
       treeData: [],
       visible: false,
@@ -51,10 +51,11 @@ export default {
   methods: {
     async getPremission() {
       this.loading = true
-      const { result = [] } = await roleGetPremission(this.roleId)
+      const { result = {} } = await roleGetPremission(this.roleId)
       this.loading = false
-      this.treeData = result
-      this.expandedKeys = result.map(ele => ele.key)
+      this.treeData = result.children
+      this.checkedKeys = result.hasAuthIds
+      this.expandedKeys = result.children.map(ele => ele.key)
     },
     async handleOk() {
       this.confirmLoading = true
