@@ -136,7 +136,7 @@
                 </a-form-item>
               </a-col>
             </template>
-            <a-col :md="(!advanced && 8) || 24" :sm="24">
+            <a-col :md="(!advanced && 8) || 24" :sm="24" v-if="$auth('T001')">
               <span
                 class="table-page-search-submitButtons"
                 :style="(advanced && { float: 'right', overflow: 'hidden' }) || {}"
@@ -154,9 +154,9 @@
       </div>
 
       <div class="table-operator">
-        <a-button type="primary" icon="plus" @click="handleAdd">新建</a-button>
-        <a-button type="danger" icon="delete" @click="deleteStudent">删除</a-button>
-        <a-button type="primary" ghost icon="download">导出数据</a-button>
+        <a-button type="primary" icon="plus" v-action:T002 @click="handleAdd">新建</a-button>
+        <a-button type="danger" icon="delete" v-action:T003 @click="deleteStudent">删除</a-button>
+        <a-button type="primary" ghost icon="download" v-action:T004>导出数据</a-button>
       </div>
 
       <s-table
@@ -175,29 +175,29 @@
         </span>
         <span slot="action" slot-scope="text, record">
           <template>
-            <a @click="handleModify(record, 'BaseInfo')">基本信息</a>
-            <a-divider type="vertical" />
-            <a @click="handleModify(record, 'ImgInfo')">图片</a>
-            <a-divider type="vertical" />
-            <a @click="handleModify(record, 'JoinInfo')">报名</a>
-            <a-divider type="vertical" />
-            <a @click="handleModify(record, 'EduTask')">教务</a>
-            <a-divider type="vertical" />
-            <a @click="handleModify(record, 'StudyTerm')">学期</a>
-            <a-divider type="vertical" />
-            <a @click="handleModify(record, 'StudyDegree')">学位</a>
-            <a-divider type="vertical" />
-            <a @click="handleModify(record, 'StudyCost')">财务</a>
+            <a v-action:T005 @click="handleModify(record, 'BaseInfo')">基本信息</a>
+            <a-divider v-action:T006 type="vertical" />
+            <a v-action:T006 @click="handleModify(record, 'ImgInfo')">图片</a>
+            <a-divider v-action:T007 type="vertical" />
+            <a v-action:T007 @click="handleModify(record, 'JoinInfo')">报名</a>
+            <a-divider v-action:T008 type="vertical" />
+            <a v-action:T008 @click="handleModify(record, 'EduTask')">教务</a>
+            <a-divider v-action:T009 type="vertical" />
+            <a v-action:T009 @click="handleModify(record, 'StudyTerm')">学期</a>
+            <a-divider v-action:T010 type="vertical" />
+            <a v-action:T010 @click="handleModify(record, 'StudyDegree')">学位</a>
+            <a-divider v-action:T011 type="vertical" />
+            <a v-action:T011 @click="handleModify(record, 'StudyCost')">财务</a>
           </template>
         </span>
       </s-table>
-      <BaseInfo v-model="visibleBaseInfo" :studentId="mdl&&mdl.studentId" @update="tableRefresh"></BaseInfo>
-      <ImgInfo v-model="visibleImgInfo" :studentId="mdl&&mdl.studentId" @update="tableRefresh"></ImgInfo>
-      <JoinInfo v-model="visibleJoinInfo" :studentId="mdl&&mdl.studentId" @update="tableRefresh"></JoinInfo>
-      <EduTask v-model="visibleEduTask" :studentId="mdl&&mdl.studentId" @update="tableRefresh"></EduTask>
-      <StudyTerm v-model="visibleStudyTerm" :studentId="mdl&&mdl.studentId" @update="tableRefresh"></StudyTerm>
-      <StudyDegree v-model="visibleStudyDegree" :studentId="mdl&&mdl.studentId" @update="tableRefresh"></StudyDegree>
-      <StudyCost v-model="visibleStudyCost" :studentId="mdl&&mdl.studentId" @update="tableRefresh"></StudyCost>
+      <BaseInfo v-model="visibleBaseInfo" :studentId="mdl && mdl.studentId" @update="tableRefresh"></BaseInfo>
+      <ImgInfo v-model="visibleImgInfo" :studentId="mdl && mdl.studentId" @update="tableRefresh"></ImgInfo>
+      <JoinInfo v-model="visibleJoinInfo" :studentId="mdl && mdl.studentId" @update="tableRefresh"></JoinInfo>
+      <EduTask v-model="visibleEduTask" :studentId="mdl && mdl.studentId" @update="tableRefresh"></EduTask>
+      <StudyTerm v-model="visibleStudyTerm" :studentId="mdl && mdl.studentId" @update="tableRefresh"></StudyTerm>
+      <StudyDegree v-model="visibleStudyDegree" :studentId="mdl && mdl.studentId" @update="tableRefresh"></StudyDegree>
+      <StudyCost v-model="visibleStudyCost" :studentId="mdl && mdl.studentId" @update="tableRefresh"></StudyCost>
     </a-card>
   </page-header-wrapper>
 </template>

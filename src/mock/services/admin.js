@@ -64,6 +64,8 @@ const adminLogin = () => {
       roleId: '001',
       remark: '测试使用',
       authIds: [
+        'T001',
+        'T005',
         'F001',
         'S001',
         'S002',
