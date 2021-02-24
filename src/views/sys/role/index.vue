@@ -35,7 +35,7 @@
       <div class="table-operator">
         <a-button type="primary" icon="plus" @click="$refs.roleModal.add()">新建</a-button>
       </div>
-      <s-table ref="table" size="default" :columns="columns" :data="loadData">
+      <s-table ref="table" size="default" rowKey="roleId" :columns="columns" :data="loadData">
         <span slot="status" slot-scope="text">
           <a-tag :color="text === '1' ? 'blue' : 'orange'">{{ text === '1' ? '启用' : '禁用' }}</a-tag>
         </span>
