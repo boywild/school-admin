@@ -117,6 +117,7 @@ const user = {
             commit('SET_TOKEN', '')
             commit('SET_ROLES', [])
             storage.remove(ACCESS_TOKEN)
+            storage.remove(PERMISSION)
             resolve()
           })
           .catch(() => {

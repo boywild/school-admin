@@ -56,202 +56,202 @@ const permissionList = () => {
       children: [
         {
           title: '学历教育',
-          key: 'XLJY',
+          key: 'F001',
           children: [
             {
               title: '成人教育',
-              key: '0',
+              key: 'S001',
               children: [
-                { title: '查询', key: '0_0' },
-                { title: '新建', key: '0_1' },
-                { title: '删除', key: '0_2' },
-                { title: '导出', key: '0_3' },
-                { title: '基本信息', key: '0_4' },
-                { title: '图片管理', key: '0_5' },
-                { title: '报名管理', key: '0_6' },
-                { title: '教务管理', key: '0_7' },
-                { title: '学期管理', key: '0_8' },
-                { title: '学位管理', key: '0_9' },
-                { title: '财务管理', key: '0_10' }
+                { title: '查询', key: 'T001' },
+                { title: '新建', key: 'T002' },
+                { title: '删除', key: 'T003' },
+                { title: '导出', key: 'T004' },
+                { title: '基本信息', key: 'T005' },
+                { title: '图片管理', key: 'T006' },
+                { title: '报名管理', key: 'T007' },
+                { title: '教务管理', key: 'T008' },
+                { title: '学期管理', key: 'T009' },
+                { title: '学位管理', key: 'T010' },
+                { title: '财务管理', key: 'T011' }
               ]
             },
             {
               title: '自学考试',
-              key: '1',
+              key: 'S002',
               children: [
-                { title: '查询', key: '1_0' },
-                { title: '新建', key: '1_1' },
-                { title: '删除', key: '1_2' },
-                { title: '导出', key: '1_3' },
-                { title: '基本信息', key: '1_4' },
-                { title: '图片管理', key: '1_5' },
-                { title: '教务管理', key: '1_6' },
-                { title: '教务添加考期', key: '1_7' },
-                { title: '毕业申请', key: '1_8' },
-                { title: '学位管理', key: '1_9' },
-                { title: '财务管理', key: '1_10' }
+                { title: '查询', key: 'T012' },
+                { title: '新建', key: 'T013' },
+                { title: '删除', key: 'T014' },
+                { title: '导出', key: 'T015' },
+                { title: '基本信息', key: 'T016' },
+                { title: '图片管理', key: 'T017' },
+                { title: '教务管理', key: 'T018' },
+                { title: '教务添加考期', key: 'T019' },
+                { title: '毕业申请', key: 'T020' },
+                { title: '学位管理', key: 'T021' },
+                { title: '财务管理', key: 'T022' }
               ]
             },
             {
               title: '网络教育',
-              key: '2',
+              key: 'S003',
               children: [
-                { title: '查询', key: '2_0' },
-                { title: '新建', key: '2_1' },
-                { title: '删除', key: '2_2' },
-                { title: '导出', key: '2_3' },
-                { title: '基本信息', key: '2_4' },
-                { title: '图片管理', key: '2_5' },
-                { title: '报名管理', key: '2_6' },
-                { title: '学期管理', key: '2_7' },
-                { title: '财务管理', key: '2_8' }
+                { title: '查询', key: 'T023' },
+                { title: '新建', key: 'T024' },
+                { title: '删除', key: 'T025' },
+                { title: '导出', key: 'T026' },
+                { title: '基本信息', key: 'T027' },
+                { title: '图片管理', key: 'T028' },
+                { title: '报名管理', key: 'T029' },
+                { title: '学期管理', key: 'T030' },
+                { title: '财务管理', key: 'T031' }
               ]
             },
             {
               title: '开发大学',
-              key: '3',
+              key: 'S004',
               children: [
-                { title: '查询', key: '3_0' },
-                { title: '新建', key: '3_1' },
-                { title: '删除', key: '3_2' },
-                { title: '导出', key: '3_3' },
-                { title: '基本信息', key: '3_4' },
-                { title: '图片管理', key: '3_5' },
-                { title: '报名管理', key: '3_6' },
-                { title: '教务管理', key: '3_7' },
-                { title: '财务管理', key: '3_8' }
+                { title: '查询', key: 'T032' },
+                { title: '新建', key: 'T033' },
+                { title: '删除', key: 'T034' },
+                { title: '导出', key: 'T035' },
+                { title: '基本信息', key: 'T036' },
+                { title: '图片管理', key: 'T037' },
+                { title: '报名管理', key: 'T038' },
+                { title: '教务管理', key: 'T039' },
+                { title: '财务管理', key: 'T040' }
               ]
             }
           ]
         },
         {
           title: '职业培训',
-          key: 'ZYPX',
+          key: 'F002',
           children: [
             {
               title: '人设局培训',
-              key: '4',
+              key: 'S005',
               children: [
-                { title: '查询', key: '4_0' },
-                { title: '新建', key: '4_1' },
-                { title: '删除', key: '4_2' },
-                { title: '导出', key: '4_3' },
-                { title: '基本信息', key: '4_4' },
-                { title: '图片管理', key: '4_5' },
-                { title: '报名管理', key: '4_6' },
-                { title: '教务管理', key: '4_7' },
-                { title: '财务管理', key: '4_8' }
+                { title: '查询', key: 'T041' },
+                { title: '新建', key: 'T042' },
+                { title: '删除', key: 'T043' },
+                { title: '导出', key: 'T044' },
+                { title: '基本信息', key: 'T045' },
+                { title: '图片管理', key: 'T046' },
+                { title: '报名管理', key: 'T047' },
+                { title: '教务管理', key: 'T048' },
+                { title: '财务管理', key: 'T049' }
               ]
             },
             {
               title: '安检',
-              key: '5',
+              key: 'S006',
               children: [
-                { title: '查询', key: '5_0' },
-                { title: '新建', key: '5_1' },
-                { title: '删除', key: '5_2' },
-                { title: '导出', key: '5_3' },
-                { title: '基本信息', key: '5_4' },
-                { title: '图片管理', key: '5_5' },
-                { title: '报名管理', key: '5_6' },
-                { title: '教务管理', key: '5_7' },
-                { title: '财务管理', key: '5_8' }
+                { title: '查询', key: 'T050' },
+                { title: '新建', key: 'T051' },
+                { title: '删除', key: 'T052' },
+                { title: '导出', key: 'T053' },
+                { title: '基本信息', key: 'T054' },
+                { title: '图片管理', key: 'T055' },
+                { title: '报名管理', key: 'T056' },
+                { title: '教务管理', key: 'T057' },
+                { title: '财务管理', key: 'T058' }
               ]
             },
             {
               title: '质检',
-              key: '6',
+              key: 'S007',
               children: [
-                { title: '查询', key: '6_0' },
-                { title: '新建', key: '6_1' },
-                { title: '删除', key: '6_2' },
-                { title: '导出', key: '6_3' },
-                { title: '基本信息', key: '6_4' },
-                { title: '图片管理', key: '6_5' },
-                { title: '报名管理', key: '6_6' },
-                { title: '教务管理', key: '6_7' },
-                { title: '财务管理', key: '6_8' }
+                { title: '查询', key: 'T059' },
+                { title: '新建', key: 'T060' },
+                { title: '删除', key: 'T061' },
+                { title: '导出', key: 'T062' },
+                { title: '基本信息', key: 'T063' },
+                { title: '图片管理', key: 'T064' },
+                { title: '报名管理', key: 'T065' },
+                { title: '教务管理', key: 'T066' },
+                { title: '财务管理', key: 'T067' }
               ]
             },
             {
               title: '途胜教育',
-              key: '7',
+              key: 'S008',
               children: [
-                { title: '查询', key: '7_0' },
-                { title: '新建', key: '7_1' },
-                { title: '删除', key: '7_2' },
-                { title: '导出', key: '7_3' },
-                { title: '基本信息', key: '7_4' },
-                { title: '图片管理', key: '7_5' },
-                { title: '报名管理', key: '7_6' },
-                { title: '教务管理', key: '7_7' },
-                { title: '财务管理', key: '7_8' }
+                { title: '查询', key: 'T068' },
+                { title: '新建', key: 'T069' },
+                { title: '删除', key: 'T070' },
+                { title: '导出', key: 'T071' },
+                { title: '基本信息', key: 'T072' },
+                { title: '图片管理', key: 'T073' },
+                { title: '报名管理', key: 'T074' },
+                { title: '教务管理', key: 'T075' },
+                { title: '财务管理', key: 'T076' }
               ]
             },
             {
               title: '医考培训',
-              key: '8',
+              key: 'S009',
               children: [
-                { title: '查询', key: '8_0' },
-                { title: '新建', key: '8_1' },
-                { title: '删除', key: '8_2' },
-                { title: '导出', key: '8_3' },
-                { title: '基本信息', key: '8_4' },
-                { title: '图片管理', key: '8_5' },
-                { title: '报名管理', key: '8_6' },
-                { title: '教务管理', key: '8_7' },
-                { title: '财务管理', key: '8_8' }
+                { title: '查询', key: 'T077' },
+                { title: '新建', key: 'T078' },
+                { title: '删除', key: 'T079' },
+                { title: '导出', key: 'T080' },
+                { title: '基本信息', key: 'T081' },
+                { title: '图片管理', key: 'T082' },
+                { title: '报名管理', key: 'T083' },
+                { title: '教务管理', key: 'T084' },
+                { title: '财务管理', key: 'T085' }
               ]
             }
           ]
         },
         {
           title: '财务管理',
-          key: '9',
-          children: [{ title: '财务查询', key: '9_0' }]
+          key: 'F003',
+          children: [{ title: '财务查询', key: 'S010' }]
         },
         {
           title: '系统管理',
-          key: 'XTGL',
+          key: 'F004',
           children: [
             {
               title: '用户列表',
-              key: '10',
+              key: 'S011',
               children: [
-                { title: '查询', key: '10_0' },
-                { title: '新建', key: '10_1' },
-                { title: '删除', key: '10_2' },
-                { title: '修改', key: '10_3' }
+                { title: '查询', key: 'T086' },
+                { title: '新建', key: 'T087' },
+                { title: '删除', key: 'T088' },
+                { title: '修改', key: 'T089' }
               ]
             },
             {
               title: '角色列表',
-              key: '11',
+              key: 'S012',
               children: [
-                { title: '查询', key: '11_0' },
-                { title: '新建', key: '11_1' },
-                { title: '删除', key: '11_2' },
-                { title: '修改', key: '11_3' },
-                { title: '分配权限', key: '11_3' }
+                { title: '查询', key: 'T090' },
+                { title: '新建', key: 'T091' },
+                { title: '删除', key: 'T092' },
+                { title: '修改', key: 'T093' },
+                { title: '分配权限', key: 'T094' }
               ]
             }
           ]
         },
         {
           title: '文章管理',
-          key: '12',
+          key: 'F005',
           children: [
-            { title: '查询', key: '12_0' },
-            { title: '新建', key: '12_1' },
-            { title: '删除', key: '12_2' },
-            { title: '修改', key: '12_3' },
-            { title: '发布', key: '12_4' },
-            { title: '取消发布', key: '12_5' }
+            { title: '查询', key: 'S013' },
+            { title: '新建', key: 'S014' },
+            { title: '删除', key: 'S015' },
+            { title: '修改', key: 'S016' },
+            { title: '发布', key: 'S017' },
+            { title: '取消发布', key: 'S018' }
           ]
         },
-        { title: '代办事项', key: '13', children: [{ title: '查询', key: '13_0' }] }
+        { title: '代办事项', key: 'F006', children: [{ title: '查询', key: 'S006' }] }
       ],
-      hasAuthIds: ['XLJY', '0', '0_0', '0_1', '0_2']
+      hasAuthIds: ['F001', 'S001', 'T001', 'T002', 'T003']
     },
     '',
     200,
