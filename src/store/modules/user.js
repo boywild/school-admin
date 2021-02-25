@@ -1,7 +1,7 @@
 import storage from 'store'
 import { login, getInfo } from '@/api/login'
 import { adminLogin } from '@/api/admin'
-import { ACCESS_TOKEN, PERMISSION, ADMINTYPE } from '@/store/mutation-types'
+import { ACCESS_TOKEN, PERMISSION, ADMINTYPE, USERNAME } from '@/store/mutation-types'
 import { welcome } from '@/utils/util'
 
 const user = {
@@ -66,6 +66,7 @@ const user = {
             storage.set(ACCESS_TOKEN, result.jsessionId, 8 * 60 * 60 * 1000)
             storage.set(PERMISSION, result.authIds || [], 7 * 24 * 60 * 60 * 1000)
             storage.set(ADMINTYPE, result.adminType, 7 * 24 * 60 * 60 * 1000)
+            storage.set(USERNAME, result.name)
             commit('SET_TOKEN', result.jsessionId)
             commit('SET_NAME', { name: result.name, welcome: welcome() })
             commit('SET_INFO', result)
@@ -140,6 +141,7 @@ const user = {
         commit('SET_INFO', {})
         commit('SET_PERMISSIONLIST', [])
         commit('SET_ADMINTYPE', '')
+        commit('SET_ROUTERS', [])
         storage.remove(ACCESS_TOKEN)
         storage.remove(PERMISSION)
         storage.remove(ADMINTYPE)

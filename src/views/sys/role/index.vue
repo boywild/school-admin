@@ -61,9 +61,9 @@
           </a-row>
         </div>
         <span slot="action" slot-scope="text, record">
-          <a v-action:T093 @click="$refs.roleModal.edit(record)">修改</a>
+          <a v-action:T093 :disabled="record.updSysData===1" @click="$refs.roleModal.edit(record)">修改</a>
           <a-divider v-action:T094 type="vertical" />
-          <a v-action:T094 @click="$refs.modal.edit(record)">权限</a>
+          <a v-action:T094 :disabled="record.updSysData===1" @click="$refs.modal.edit(record)">权限</a>
           <a-divider v-action:T092 type="vertical" />
           <a-popconfirm
             v-if="$auth('T092')"
@@ -73,7 +73,7 @@
             cancel-text="取消"
             @confirm="confirmDelete(record)"
           >
-            <a href="javascript:;">删除</a>
+            <a :disabled="record.updSysData===1" href="javascript:;">删除</a>
           </a-popconfirm>
         </span>
       </s-table>

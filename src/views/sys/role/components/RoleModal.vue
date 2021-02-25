@@ -9,8 +9,8 @@
   >
     <a-spin :spinning="loading">
       <a-form-model ref="roleInfo" :model="form" :rules="rules" :label-col="labelCol" :wrapper-col="wrapperCol">
-        <a-form-model-item label="登录名" prop="roleName">
-          <a-input v-model.trim="form.roleName" placeholder="请输入登录名" />
+        <a-form-model-item label="角色名称" prop="roleName">
+          <a-input v-model.trim="form.roleName" placeholder="请输入角色名称" />
         </a-form-model-item>
         <a-form-model-item label="是否可用" prop="status">
           <a-radio-group v-model="form.status">
@@ -20,7 +20,7 @@
           </a-radio-group>
         </a-form-model-item>
         <a-form-model-item label="是否系统数据" prop="updSysData">
-          <a-radio-group v-model="form.updSysData">
+          <a-radio-group v-model="form.updSysData" disabled>
             <a-radio :value="radio.code" v-for="(radio, count) in YESORNO_ENMU" :key="count">
               {{ radio.desc }}
             </a-radio>
@@ -50,7 +50,7 @@ export default {
       form: {
         roleName: '',
         status: '',
-        updSysData: '',
+        updSysData: 0,
         remark: ''
       },
       rules: {

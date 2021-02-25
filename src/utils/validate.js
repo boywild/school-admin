@@ -29,3 +29,12 @@ export const isSpecialCharacter = value => {
 export const isMoney = value => {
   return /((^[1-9]\d*)|^0)(\.\d{0,2}){0,1}$/.test(value)
 }
+export const isPassword = value => {
+  return /^[0-9a-z]{6,12}$/gi.test(value)
+}
+export const isLoginName = value => {
+  return /^[0-9a-z]+$/gi.test(value)
+}
+export const isChinese = value => {
+  return /^[0-9\u4e00-\u9fa5]+$/gi.test(value)
+}

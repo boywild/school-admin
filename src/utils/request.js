@@ -14,14 +14,21 @@ const request = axios.create({
 
 // 异常拦截处理器
 const errorHandler = error => {
+  console.log(error.response)
   if (error.response) {
     const data = error.response.data
     // 从 localstorage 获取 token
     const token = storage.get(ACCESS_TOKEN)
+    if (error.response.status === 400) {
+      notification.error({
+        message: '错误',
+        description: data.error_msg
+      })
+    }
     if (error.response.status === 403) {
       notification.error({
         message: 'Forbidden',
-        description: data.message
+        description: data.error_msg
       })
     }
     if (error.response.status === 401 && !(data.result && data.result.isLogin)) {
