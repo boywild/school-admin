@@ -1,7 +1,7 @@
 import storage from 'store'
 import { login, getInfo, logout } from '@/api/login'
 import { adminLogin } from '@/api/admin'
-import { ACCESS_TOKEN, PERMISSION } from '@/store/mutation-types'
+import { ACCESS_TOKEN, PERMISSION, ADMINTYPE } from '@/store/mutation-types'
 import { welcome } from '@/utils/util'
 
 const user = {
@@ -12,6 +12,7 @@ const user = {
     avatar: '',
     roles: [],
     permissionList: [],
+    adminType: '',
     info: {}
   },
 
@@ -31,6 +32,9 @@ const user = {
     },
     SET_INFO: (state, info) => {
       state.info = info
+    },
+    SET_ADMINTYPE: (state, adminType) => {
+      state.adminType = adminType
     },
     SET_PERMISSIONLIST: (state, permissionList) => {
       state.permissionList = permissionList
@@ -60,10 +64,12 @@ const user = {
             const result = response.result
             storage.set(ACCESS_TOKEN, result.jsessionId, 8 * 60 * 60 * 1000)
             storage.set(PERMISSION, result.authIds, 7 * 24 * 60 * 60 * 1000)
+            storage.set(ADMINTYPE, result.adminType, 7 * 24 * 60 * 60 * 1000)
             commit('SET_TOKEN', result.jsessionId)
             commit('SET_NAME', { name: result.name, welcome: welcome() })
             commit('SET_INFO', result)
             commit('SET_PERMISSIONLIST', result.authIds)
+            commit('SET_ADMINTYPE', result.adminType)
             resolve(response)
           })
           .catch(error => {
@@ -118,6 +124,7 @@ const user = {
             commit('SET_ROLES', [])
             storage.remove(ACCESS_TOKEN)
             storage.remove(PERMISSION)
+            storage.remove(ADMINTYPE)
             resolve()
           })
           .catch(() => {

@@ -3,9 +3,9 @@ import store from './store'
 import storage from 'store'
 import NProgress from 'nprogress' // progress bar
 import '@/components/NProgress/nprogress.less' // progress bar custom style
-// import notification from 'ant-design-vue/es/notification'
+import notification from 'ant-design-vue/es/notification'
 import { setDocumentTitle, domTitle } from '@/utils/domUtil'
-import { ACCESS_TOKEN, PERMISSION } from '@/store/mutation-types'
+import { ACCESS_TOKEN, PERMISSION, ADMINTYPE } from '@/store/mutation-types'
 import { i18nRender } from '@/locales'
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
@@ -26,8 +26,21 @@ router.beforeEach((to, from, next) => {
     } else {
       // check login user.roles is null
       if (store.getters.addRouters.length === 0) {
+        if (!storage.get(PERMISSION) || !storage.get(ADMINTYPE)) {
+          notification.error({
+            message: '错误',
+            description: '用户信息失效，请重新登录'
+          })
+          // 失败时，获取用户信息失败时，调用登出，来清空历史保留信息
+          store.dispatch('Logout').then(() => {
+            next({ path: loginRoutePath, query: { redirect: to.fullPath } })
+          })
+        }
         if (storage.get(PERMISSION)) {
           store.commit('SET_PERMISSIONLIST', storage.get(PERMISSION))
+        }
+        if (storage.get(ADMINTYPE)) {
+          store.commit('SET_ADMINTYPE', storage.get(ADMINTYPE))
         }
         store.dispatch('GenerateRoutes', store.getters.permissionList).then(() => {
           // 动态添加可访问路由表
@@ -38,10 +51,8 @@ router.beforeEach((to, from, next) => {
           const redirect = decodeURIComponent(from.query.redirect || to.path)
           if (to.path === redirect) {
             // set the replace: true so the navigation will not leave a history record
-            console.log(redirect)
             next({ ...to, replace: true })
           } else {
-            console.log(redirect)
             // 跳转到目的路由
             next({ path: redirect })
           }
@@ -49,16 +60,6 @@ router.beforeEach((to, from, next) => {
       } else {
         next()
       }
-      // else {
-      //   notification.error({
-      //     message: '错误',
-      //     description: '请求用户信息失败，请重试'
-      //   })
-      //   // 失败时，获取用户信息失败时，调用登出，来清空历史保留信息
-      //   store.dispatch('Logout').then(() => {
-      //     next({ path: loginRoutePath, query: { redirect: to.fullPath } })
-      //   })
-      // }
     }
   } else {
     if (allowList.includes(to.name)) {
