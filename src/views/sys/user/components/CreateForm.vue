@@ -108,8 +108,8 @@ export default {
   },
   methods: {
     async getRole() {
-      const { result = {} } = await roleList()
-      this.roleList = result.content
+      const { content = [] } = await roleList({ pageNo: 1, pageSize: 100 })
+      this.roleList = content
     },
     validate(callback) {
       const form = this.$refs.userInfo

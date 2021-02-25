@@ -60,6 +60,12 @@
         <span slot="crtDateTime" slot-scope="text">
           {{ text | moment }}
         </span>
+        <span slot="clickCnt" slot-scope="text">
+          {{ text || 0 }}
+        </span>
+        <span slot="commentCnt" slot-scope="text">
+          {{ text || 0 }}
+        </span>
         <span slot="action" slot-scope="text, record">
           <template>
             <a v-action:S017 @click="handleEdit(record, true)">详情</a>
@@ -91,8 +97,8 @@ import CreateForm from './components/CreateForm'
 const columns = [
   { title: '标题', dataIndex: 'title' },
   { title: '热门', dataIndex: 'hotFlag' },
-  { title: '点击量', dataIndex: 'clickCnt' },
-  { title: '评论量', dataIndex: 'commentCnt' },
+  { title: '点击量', dataIndex: 'clickCnt', scopedSlots: { customRender: 'clickCnt' } },
+  { title: '评论量', dataIndex: 'commentCnt', scopedSlots: { customRender: 'commentCnt' } },
   { title: '更新时间', dataIndex: 'crtDateTime', scopedSlots: { customRender: 'crtDateTime' } },
   { title: '操作', dataIndex: 'action', width: '150px', scopedSlots: { customRender: 'action' } }
 ]
@@ -127,7 +133,7 @@ export default {
         const requestParameters = Object.assign({}, parameter, this.queryParam)
         console.log('loadData request parameters:', requestParameters)
         return articleList(requestParameters).then(res => {
-          return res.result
+          return res
         })
       },
       selectedRowKeys: [],

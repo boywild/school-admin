@@ -54,7 +54,7 @@
         </a-row>
 
         <a-form-model-item label="内容" prop="content" :labelCol="{ span: 24 }" :wrapperCol="{ span: 24 }">
-          <WangEditor :value="form.content" @change="editorContent"></WangEditor>
+          <WangEditor ref="wangEditor" :value="form.content" @change="editorContent"></WangEditor>
         </a-form-model-item>
       </a-form-model>
     </a-spin>
@@ -171,6 +171,7 @@ export default {
     },
     resetForm() {
       const form = this.$refs.articleInfo
+      this.$refs['wangEditor'].clearText()
       this.form = {}
       form.clearValidate()
     }

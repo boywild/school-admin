@@ -1,5 +1,5 @@
 import storage from 'store'
-import { login, getInfo, logout } from '@/api/login'
+import { login, getInfo } from '@/api/login'
 import { adminLogin } from '@/api/admin'
 import { ACCESS_TOKEN, PERMISSION, ADMINTYPE } from '@/store/mutation-types'
 import { welcome } from '@/utils/util'
@@ -61,14 +61,15 @@ const user = {
       return new Promise((resolve, reject) => {
         adminLogin(userInfo)
           .then(response => {
-            const result = response.result
+            console.log(response)
+            const result = response
             storage.set(ACCESS_TOKEN, result.jsessionId, 8 * 60 * 60 * 1000)
-            storage.set(PERMISSION, result.authIds, 7 * 24 * 60 * 60 * 1000)
+            storage.set(PERMISSION, result.authIds || [], 7 * 24 * 60 * 60 * 1000)
             storage.set(ADMINTYPE, result.adminType, 7 * 24 * 60 * 60 * 1000)
             commit('SET_TOKEN', result.jsessionId)
             commit('SET_NAME', { name: result.name, welcome: welcome() })
             commit('SET_INFO', result)
-            commit('SET_PERMISSIONLIST', result.authIds)
+            commit('SET_PERMISSIONLIST', result.authIds || [])
             commit('SET_ADMINTYPE', result.adminType)
             resolve(response)
           })
@@ -118,19 +119,31 @@ const user = {
     // 登出
     Logout({ commit, state }) {
       return new Promise(resolve => {
-        logout(state.token)
-          .then(() => {
-            commit('SET_TOKEN', '')
-            commit('SET_ROLES', [])
-            storage.remove(ACCESS_TOKEN)
-            storage.remove(PERMISSION)
-            storage.remove(ADMINTYPE)
-            resolve()
-          })
-          .catch(() => {
-            resolve()
-          })
-          .finally(() => {})
+        // logout(state.token)
+        //   .then(() => {
+        //     commit('SET_TOKEN', '')
+        //     commit('SET_ROLES', [])
+        //     commit('SET_INFO', {})
+        //     commit('SET_PERMISSIONLIST', [])
+        //     commit('SET_ADMINTYPE', '')
+        //     storage.remove(ACCESS_TOKEN)
+        //     storage.remove(PERMISSION)
+        //     storage.remove(ADMINTYPE)
+        //     resolve()
+        //   })
+        //   .catch(() => {
+        //     resolve()
+        //   })
+        //   .finally(() => {})
+        commit('SET_TOKEN', '')
+        commit('SET_ROLES', [])
+        commit('SET_INFO', {})
+        commit('SET_PERMISSIONLIST', [])
+        commit('SET_ADMINTYPE', '')
+        storage.remove(ACCESS_TOKEN)
+        storage.remove(PERMISSION)
+        storage.remove(ADMINTYPE)
+        resolve()
       })
     }
   }

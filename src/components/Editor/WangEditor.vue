@@ -43,6 +43,9 @@ export default {
         this.$emit('change', this.editorContent)
       }
       this.editor.create()
+    },
+    clearText() {
+      this.editor.txt.clear()
     }
   }
 }

@@ -51,7 +51,7 @@ export default {
   methods: {
     async getPremission() {
       this.loading = true
-      const { result = {} } = await roleGetPremission(this.roleId)
+      const result = await roleGetPremission(this.roleId)
       this.loading = false
       this.treeData = result.children
       this.checkedKeys = result.hasAuthIds
@@ -60,7 +60,7 @@ export default {
     async handleOk() {
       this.confirmLoading = true
       try {
-        await roleSetPremission(this.roleId, this.expandedKeys)
+        await roleSetPremission(this.roleId, this.checkedKeys.checked)
         this.confirmLoading = false
         this.$emit('refresh')
       } catch (e) {

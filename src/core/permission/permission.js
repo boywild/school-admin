@@ -26,7 +26,8 @@ function plugin(Vue) {
           const _this = this
           return permissions => {
             const permissionList = _this.$store.getters.permissionList
-            return permissionList.includes(permissions)
+            const adminType = _this.$store.getters.adminType
+            return permissionList.includes(permissions) || adminType === '0'
           }
         }
       }

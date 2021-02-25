@@ -64,7 +64,7 @@
       <s-table
         ref="table"
         size="default"
-        rowKey="key"
+        rowKey="adminId"
         :columns="columns"
         :data="loadData"
         :alert="true"
@@ -147,7 +147,7 @@ export default {
         console.log('loadData request parameters:', requestParameters)
         return adminList(requestParameters).then(res => {
           console.log(res)
-          return res.result
+          return res
         })
       },
       selectedRowKeys: [],
@@ -170,8 +170,8 @@ export default {
   },
   methods: {
     async getRole() {
-      const { result = {} } = await roleList()
-      this.roleList = result.content
+      const { content = [] } = await roleList({ pageNo: 1, pageSize: 100 })
+      this.roleList = content
     },
     handleAdd() {
       this.mdl = null

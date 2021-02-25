@@ -25,8 +25,8 @@
             </a-col>
             <a-col :md="6" :sm="24" v-if="$auth('T090')">
               <span class="table-page-search-submitButtons">
-                <a-button type="primary">查询</a-button>
-                <a-button style="margin-left: 8px">重置</a-button>
+                <a-button type="primary" @click="$refs.table.refresh(true)">查询</a-button>
+                <a-button style="margin-left: 8px" @click="() => (this.queryParam = {})">重置</a-button>
               </span>
             </a-col>
           </a-row>
@@ -37,7 +37,7 @@
       </div>
       <s-table ref="table" size="default" rowKey="roleId" :columns="columns" :data="loadData">
         <span slot="status" slot-scope="text">
-          <a-tag :color="text === '1' ? 'blue' : 'orange'">{{ text === '1' ? '启用' : '禁用' }}</a-tag>
+          <a-tag :color="text === 1 ? 'blue' : 'orange'">{{ text === 1 ? '启用' : '禁用' }}</a-tag>
         </span>
         <span slot="createTime" slot-scope="text">
           {{ text | moment }}
@@ -124,8 +124,8 @@ export default {
         const requestParameters = Object.assign({}, parameter, this.queryParam)
         console.log('loadData request parameters:', requestParameters)
         return roleList(requestParameters).then(res => {
-          console.log(res.result)
-          return res.result
+          console.log(res)
+          return res
         })
       },
 

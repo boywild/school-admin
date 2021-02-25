@@ -22,7 +22,7 @@ export function roleGet(roleId) {
   return request({
     url: roleApi.Role,
     method: 'get',
-    data: { roleId }
+    params: { roleId }
   })
 }
 
@@ -37,10 +37,11 @@ export function roleList(parameter) {
 
 // 角色-删除
 export function roleDelete(roleId) {
+  console.log(roleId)
   return request({
     url: roleApi.RoleDelete,
     method: 'get',
-    data: { roleId }
+    params: { roleId }
   })
 }
 
@@ -57,6 +58,6 @@ export function roleGetPremission(roleId) {
   return request({
     url: roleApi.RoleGetAuth,
     method: 'get',
-    data: { roleId }
+    params: { roleId }
   })
 }

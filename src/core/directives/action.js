@@ -18,10 +18,11 @@ const action = Vue.directive('action', {
   inserted: function(el, binding, vnode) {
     const actionName = binding.arg
     const permissionList = store.getters.permissionList
+    const adminType = store.getters.adminType
     const elVal = vnode.context.$route.meta.permission
     const permissionId = (elVal instanceof String && [elVal]) || elVal
     permissionList.forEach(code => {
-      if (!permissionId.includes(code)) {
+      if (!permissionId.includes(code) || adminType === '0') {
         return
       }
       if (!permissionList.includes(actionName)) {
