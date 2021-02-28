@@ -58,15 +58,6 @@ export default {
       loadingData: false,
       tab1: [
         {
-          label: '入学批次',
-          field: 'entranceDate',
-          form: 'input',
-          rules: [
-            { required: true, message: '请输入入学批次' },
-            { max: 10, message: '限制输入10位' }
-          ]
-        },
-        {
           label: '学生姓名',
           field: 'studentName',
           form: 'input',
@@ -200,7 +191,7 @@ export default {
   methods: {
     async getBaseInfo() {
       this.loadingData = true
-      const { result } = await getBaseInfo(this.studentId)
+      const result = await getBaseInfo(this.studentId)
       const form = this.$refs.form
       form.setData(result)
       this.loadingData = false

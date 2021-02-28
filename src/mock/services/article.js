@@ -74,32 +74,27 @@ const article = options => {
   return builder(data)
 }
 const articleList = () => {
-  return builder(
-    {
-      pageNum: 1,
-      pageSize: 30,
-      totalElements: 1,
-      totalPages: 1,
-      last: true,
-      first: true,
-      content: [
-        {
-          id: '6034b954ea0c510be4309ccf',
-          title: '第一篇文章',
-          hotFlag: 1,
-          clickCnt: 300,
-          commentCnt: 200,
-          introduce: '第一篇介绍',
-          content: '<p>第一个测试内容</p>',
-          status: 1,
-          crtDateTime: 1614072297954
-        }
-      ]
-    },
-    '',
-    200,
-    { 'Custom-Header': Mock.mock('@guid') }
-  )
+  return {
+    pageNum: 1,
+    pageSize: 30,
+    totalElements: 1,
+    totalPages: 1,
+    last: true,
+    first: true,
+    content: [
+      {
+        id: '6034b954ea0c510be4309ccf',
+        title: '第一篇文章',
+        hotFlag: 1,
+        clickCnt: 300,
+        commentCnt: 200,
+        introduce: '第一篇介绍',
+        content: '<p>第一个测试内容</p>',
+        status: 1,
+        crtDateTime: 1614072297954
+      }
+    ]
+  }
 }
 
 Mock.mock(/\/list\/article/, 'get', article)

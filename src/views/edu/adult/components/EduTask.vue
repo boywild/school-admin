@@ -238,7 +238,7 @@ export default {
   methods: {
     async getEduTask() {
       this.loadingData = true
-      const { result } = await getBaseInfo(this.studentId)
+      const result = await getBaseInfo(this.studentId)
       const form = this.$refs.form
       form.setData(result)
       this.loadingData = false

@@ -205,7 +205,7 @@ export default {
   methods: {
     async getStudyTerm() {
       this.loadingData = true
-      const { result } = await getTerm(this.studentId)
+      const result = await getTerm(this.studentId)
       // const form = this.$refs.form
       // form.setData(result[0])
       console.log(result)

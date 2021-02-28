@@ -196,7 +196,7 @@ export default {
   methods: {
     async getStudyCost() {
       this.loadingData = true
-      const { result } = await financeDetail(this.studentId)
+      const result = await financeDetail(this.studentId)
       const form = this.$refs.form
       form.setData({ ...result, registerDateTime: moment(result.registerDateTime) })
       this.loadingData = false

@@ -290,7 +290,7 @@ export default {
         console.log('loadData request parameters:', requestParameters)
         return studentList(requestParameters).then(res => {
           console.log(res)
-          return res.result
+          return res
         })
       },
       selectedRowKeys: [],

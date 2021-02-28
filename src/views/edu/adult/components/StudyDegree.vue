@@ -154,7 +154,7 @@ export default {
   methods: {
     async getStudyDegree() {
       this.loadingData = true
-      const { result } = await getDegree(this.studentId)
+      const result = await getDegree(this.studentId)
       const form = this.$refs.form
       form.setData(result)
       this.loadingData = false
