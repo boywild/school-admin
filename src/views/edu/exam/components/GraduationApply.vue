@@ -38,14 +38,14 @@ export default {
       tab4: [
         {
           label: '申请毕业',
-          field: 'studyStatus',
+          field: 'graduateApplyFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '毕业证书已到',
-          field: 'isAchieve',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
@@ -53,20 +53,20 @@ export default {
 
         {
           label: '已领走',
-          field: 'isAchievesss',
+          field: 'takeDiplomaFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '领走时间',
-          field: 'isAchievesss23',
+          field: 'takeDiplomaDate',
           form: 'date',
           rules: []
         },
         {
           label: '领走方式',
-          field: 'isAchievesss5',
+          field: 'takeWay',
           form: 'input',
           rules: []
         }

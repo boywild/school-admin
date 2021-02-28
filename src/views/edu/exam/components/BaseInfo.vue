@@ -33,15 +33,15 @@ export default {
     }
     return {
       tab1: [
-        {
-          label: '入学批次',
-          field: 'pc',
-          form: 'input',
-          rules: [
-            { required: true, message: '请输入入学批次' },
-            { max: 10, message: '限制输入10位' }
-          ]
-        },
+        // {
+        //   label: '入学批次',
+        //   field: 'pc',
+        //   form: 'input',
+        //   rules: [
+        //     { required: true, message: '请输入入学批次' },
+        //     { max: 10, message: '限制输入10位' }
+        //   ]
+        // },
         {
           label: '学生姓名',
           field: 'studentName',
