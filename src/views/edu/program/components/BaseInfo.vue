@@ -34,24 +34,15 @@ export default {
     return {
       tab1: [
         {
-          label: '入学批次',
-          field: 'pc',
-          form: 'input',
-          rules: [
-            { required: true, message: '请输入入学批次' },
-            { max: 10, message: '限制输入10位' }
-          ]
-        },
-        {
           label: '录入平台',
-          field: 'lrpt',
+          field: 'xxxx',
           form: 'select',
           selectFrom: 'PLATFORM_ENMU',
           rules: [{ required: true, message: '请选择录入平台' }]
         },
         {
           label: '学生姓名',
-          field: 'name',
+          field: 'studentName',
           form: 'input',
           rules: [
             { required: true, message: '请输入学生姓名' },
@@ -61,14 +52,14 @@ export default {
         { label: '联系电话', field: 'phone', form: 'input', rules: [{ required: true, validator: validatorPhone }] },
         {
           label: '证件种类',
-          field: 'card',
+          field: 'idType',
           form: 'select',
           selectFrom: 'CARDTYPE_ENMU',
           rules: [{ required: true, message: '请输入证件种类' }]
         },
         {
           label: '证件号码',
-          field: 'cardNo',
+          field: 'idNumber',
           form: 'input',
           rules: [
             { required: true, message: '请输入证件号码' },
@@ -77,19 +68,19 @@ export default {
         },
         {
           label: '民族',
-          field: 'mz',
+          field: 'nation',
           form: 'select',
           selectFrom: 'MZ_ENMU',
           rules: [{ required: true, message: '请选择民族' }]
         },
         {
           label: '性别',
-          field: 'male',
+          field: 'gender',
           form: 'radio',
           radioFrom: 'SEX_ENMU',
           rules: [{ required: true, message: '请选择性别' }]
         },
-        { label: '出生日期', field: 'birth', form: 'date', rules: [{ required: true, message: '请选择出生日期' }] },
+        { label: '出生日期', field: 'birthDay', form: 'date', rules: [{ required: true, message: '请选择出生日期' }] },
         {
           label: '所属省市',
           field: 'location',
@@ -98,21 +89,21 @@ export default {
         },
         {
           label: '户口性质',
-          field: 'xz',
+          field: 'householdType',
           form: 'select',
           selectFrom: 'HK_ENMU',
           rules: [{ required: true, message: '请选择户口性质' }]
         },
         {
           label: '户籍',
-          field: 'hj',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'HJ_ENMU',
           rules: [{ required: true, message: '请选择户籍' }]
         },
         {
           label: '职业',
-          field: 'zy',
+          field: 'profession',
           form: 'input',
           rules: [
             { required: true, max: 20, message: '请输入职业' },
@@ -121,21 +112,21 @@ export default {
         },
         {
           label: '政治面貌',
-          field: 'mm',
+          field: 'politicsStatus',
           form: 'select',
           selectFrom: 'ZZMM_ENMU',
           rules: [{ required: true, max: 20, message: '请选择政治面貌' }]
         },
         {
           label: '已婚',
-          field: 'mm',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: [{ required: true, max: 20, message: '请选择政治面貌' }]
         },
         {
           label: '原毕业学校',
-          field: 'school',
+          field: 'graduateSchool',
           form: 'input',
           rules: [
             { required: true, message: '请输入源毕业学校' },
@@ -144,19 +135,19 @@ export default {
         },
         {
           label: '原毕业时间',
-          field: 'byTime',
+          field: 'graduateTime',
           form: 'date',
           rules: [{ required: true, message: '请选择原毕业时间' }]
         },
         {
           label: '原毕业专业',
-          field: 'byTimeASDF',
+          field: 'xxxx',
           form: 'input',
           rules: [{ required: true, message: '请输入原毕业专业' }]
         },
         {
           label: '原毕业证书编号',
-          field: 'bookNo',
+          field: 'diplomaNo',
           form: 'input',
           rules: [
             { required: true, max: 20, message: '请输入原毕业证书编号' },
@@ -165,13 +156,13 @@ export default {
         },
         {
           label: '原毕业证书类型',
-          field: 'bookType',
+          field: 'diplomaType',
           form: 'input',
           rules: [{ required: true, message: '请输入原毕业证书类型' }]
         },
         {
           label: '通讯地址',
-          field: 'address',
+          field: 'contactAddr',
           form: 'input',
           rules: [
             { required: true, message: '请输入通讯地址' },
@@ -180,7 +171,7 @@ export default {
         },
         {
           label: '工作单位',
-          field: 'work',
+          field: 'workLocation',
           form: 'input',
           rules: [
             { required: true, message: '请输入工作单位' },

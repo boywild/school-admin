@@ -13,15 +13,24 @@ export default {
     return {
       tab3: [
         {
+          label: '入学批次',
+          field: 'pc',
+          form: 'input',
+          rules: [
+            { required: true, message: '请输入入学批次' },
+            { max: 10, message: '限制输入10位' }
+          ]
+        },
+        {
           label: '学生来源',
-          field: 'name',
+          field: 'sourceType',
           form: 'select',
           selectFrom: 'STUDENT_FROM_ENMU',
           rules: [{ required: true, message: '请选择学生来源' }]
         },
         {
           label: '负责人',
-          field: 'phone',
+          field: 'principalGuy',
           form: 'input',
           rules: [
             { required: true, message: '请输入负责人' },
@@ -30,40 +39,40 @@ export default {
         },
         {
           label: '所报层次',
-          field: 'cardNo',
+          field: 'xxxx',
           form: 'select',
           selectFrom: 'STUDY_LEVEL_ENMU',
           rules: [{ required: true, message: '请选择所报层次' }]
         },
         {
           label: '学费来源',
-          field: 'studyWay',
+          field: 'xxxx',
           form: 'select',
           selectFrom: 'FEESOURCE_ENMU',
           rules: [{ required: true, message: '请选择所学费来源' }]
         },
         {
           label: '所报专业',
-          field: 'birthcc',
+          field: 'applyMajor',
           form: 'input',
           rules: [{ required: true, message: '请输入所报专业' }]
         },
         {
           label: '电大毕业',
-          field: 'birthaa',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: [{ required: true, message: '请选择是否电大毕业' }]
         },
         {
           label: '证书性质',
-          field: 'birthdd',
+          field: 'xxxx',
           form: 'input',
           rules: [{ required: true, message: '请选择证书性质' }]
         },
         {
           label: '是否本科二学历',
-          field: 'location',
+          field: 'bachelorSecondFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: [{ required: true, message: '请选择是否本科二学历' }]
@@ -71,13 +80,13 @@ export default {
 
         {
           label: '认证编号',
-          field: 'xz',
+          field: 'xxxx',
           form: 'input',
           rules: [{ required: true, message: '请输入认证编号' }]
         },
         {
           label: '电子注册备案表编号',
-          field: 'ybmh',
+          field: 'xxxx',
           form: 'input',
           rules: [{ required: true, message: '请输入电子注册备案表编号' }]
         }
