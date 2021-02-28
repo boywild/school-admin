@@ -58,7 +58,7 @@
 
       <div class="table-operator">
         <a-button type="primary" icon="plus" v-action:T087 @click="handleAdd">新建</a-button>
-        <a-button type="danger" icon="delete" v-action:T088>删除</a-button>
+        <a-button type="danger" icon="delete" v-action:T088 @click="deleteAdmin">删除</a-button>
       </div>
 
       <s-table
@@ -99,7 +99,7 @@
 <script>
 import moment from 'moment'
 import { STable } from '@/components'
-import { adminList, adminSave } from '@/api/admin'
+import { adminList, adminSave, adminRemove } from '@/api/admin'
 import { roleList } from '@/api/role'
 // import StepByStepModal from './modules/StepByStepModal'
 import CreateForm from './components/CreateForm'
@@ -208,6 +208,22 @@ export default {
       this.queryParam = {
         date: [moment(new Date()), moment(new Date())]
       }
+    },
+    // 删除管理员
+    deleteAdmin() {
+      if (!this.selectedRows.length) {
+        this.$message.warning('至少选择一项')
+        return
+      }
+      this.$confirm({
+        title: '是否确认删除这些数据',
+        content: '请在删除前仔细确定删除数据.确认无误后点击确认按钮删除',
+        onOk: async () => {
+          await adminRemove(this.selectedRowKeys)
+          await this.tableRefresh()
+        },
+        onCancel() {}
+      })
     }
   }
 }

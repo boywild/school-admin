@@ -2,7 +2,8 @@ import request from '@/utils/request'
 
 const articleApi = {
   articleList: '/article/pageList',
-  articleSave: '/article'
+  articleSave: '/article',
+  articleRemove: '/article/delete'
 }
 
 export function articleList(parameter) {
@@ -10,6 +11,15 @@ export function articleList(parameter) {
     url: articleApi.articleList,
     method: 'post',
     data: parameter
+  })
+}
+
+// 管理员－删除
+export function articleRemove(articleId) {
+  return request({
+    url: articleApi.articleRemove,
+    method: 'post',
+    data: { articleId }
   })
 }
 

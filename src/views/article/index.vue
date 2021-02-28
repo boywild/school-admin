@@ -44,7 +44,7 @@
 
       <div class="table-operator">
         <a-button type="primary" icon="plus" v-action:S014 @click="$refs['createModal'].open()">新建</a-button>
-        <a-button type="danger" icon="delete" v-action:S015>删除</a-button>
+        <a-button type="danger" icon="delete" v-action:S015 @click="deleteArticle">删除</a-button>
       </div>
 
       <s-table
@@ -89,7 +89,7 @@
 <script>
 import moment from 'moment'
 import { STable } from '@/components'
-import { articleList } from '@/api/article'
+import { articleList, articleRemove } from '@/api/article'
 import { YESORNO_ENMU } from '@/config/dict'
 // import StepByStepModal from './modules/StepByStepModal'
 import CreateForm from './components/CreateForm'
@@ -177,6 +177,22 @@ export default {
     refreshTable() {
       // 新增/修改 成功时，重载列表
       this.$refs.table.refresh()
+    },
+    // 删除文章
+    deleteArticle() {
+      if (!this.selectedRows.length) {
+        this.$message.warning('至少选择一项')
+        return
+      }
+      this.$confirm({
+        title: '是否确认删除这些数据',
+        content: '请在删除前仔细确定删除数据.确认无误后点击确认按钮删除',
+        onOk: async () => {
+          await articleRemove(this.selectedRowKeys)
+          await this.tableRefresh()
+        },
+        onCancel() {}
+      })
     }
   }
 }
