@@ -39,91 +39,91 @@ export default {
       tab4: [
         {
           label: '要学位',
-          field: 'studyStatus',
+          field: 'wantDegreeFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '本学期学习情况',
-          field: 'isAchieve',
+          field: 'situation',
           form: 'input',
           rules: []
         },
         {
           label: '学分达到学位要求',
-          field: 'isJoin',
+          field: 'degreeRequire',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '报考统考',
-          field: 'isDeal',
+          field: 'applyUnifyFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '统考由我司处理',
-          field: 'time',
+          field: 'unifyDealFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '统考考试时间',
-          field: 'address',
+          field: 'unifyDate',
           form: 'date',
           rules: []
         },
         {
           label: '统考地点',
-          field: 'account',
+          field: 'unifyLocation',
           form: 'input',
           rules: []
         },
         {
           label: '统考账号',
-          field: 'password',
+          field: 'unifyAccount',
           form: 'input',
           rules: []
         },
         {
           label: '统考密码',
-          field: 'enScore',
+          field: 'unifyPassword',
           form: 'input',
           rules: [{ max: 6, message: '登录密码限制输入6位' }]
         },
         {
           label: '统考英语分数',
-          field: 'coScore',
+          field: 'englishScore',
           form: 'input',
           rules: []
         },
         {
           label: '统考计算机分数',
-          field: 'coScore',
+          field: 'computerScore',
           form: 'input',
           rules: []
         },
         {
           label: '学位论文',
-          field: 'coScore',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '学位论文由我司处理',
-          field: 'coScore',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '毕业生登记表已填写',
-          field: 'coScore',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
@@ -131,28 +131,28 @@ export default {
 
         {
           label: '毕业信息已核实',
-          field: 'coScore',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '图像采集已完成',
-          field: 'coScore',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '延期毕业',
-          field: 'coScore',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '已有毕业证书',
-          field: 'coScoresss',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
@@ -160,67 +160,67 @@ export default {
 
         {
           label: '毕业证书已到',
-          field: 'coScore',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '毕业证书已领走',
-          field: 'coScore',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '毕业证书领走时间',
-          field: 'coScore',
+          field: 'xxxx',
           form: 'date',
           rules: []
         },
         {
           label: '毕业证书领走方式',
-          field: 'coScore',
+          field: 'xxxx',
           form: 'select',
           rules: []
         },
         {
           label: '申请学位证书',
-          field: 'coScore',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '有学位证书',
-          field: 'coScore',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '学位证书已到',
-          field: 'coScore',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '学位证已领走',
-          field: 'coScore',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '学位证领走时间',
-          field: 'coScore',
+          field: 'xxxx',
           form: 'date',
           rules: []
         },
         {
           label: '学位证领走方式',
-          field: 'coScore',
+          field: 'xxxx',
           form: 'select',
           rules: []
         }

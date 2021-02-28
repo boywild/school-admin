@@ -14,12 +14,12 @@ export function articleList(parameter) {
   })
 }
 
-// 管理员－删除
+// 文章－删除
 export function articleRemove(articleId) {
   return request({
     url: articleApi.articleRemove,
     method: 'post',
-    data: { articleId }
+    data: articleId
   })
 }
 

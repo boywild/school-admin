@@ -30,7 +30,7 @@ export function adminRemove(adminId) {
   return request({
     url: adminApi.AdminRemove,
     method: 'post',
-    data: { adminId }
+    data: adminId
   })
 }
 
