@@ -19,50 +19,50 @@ export default {
       wrapperCol: { span: 16 },
       studyDegree: {},
       tab5: [
-        {
-          label: '批次',
-          field: 'xxxx',
-          form: 'input',
-          rules: [{ max: '10', message: '批次限制输入10位' }]
-        },
-        {
-          label: '院校',
-          field: 'xxxx',
-          form: 'input',
-          rules: [{ max: '20', message: '院校限制输入20位' }]
-        },
-        { label: '专业', field: 'xxxx', form: 'input', rules: [{ max: '10', message: '专业制输入10位' }] },
+        // {
+        //   label: '批次',
+        //   field: 'xxxx',
+        //   form: 'input',
+        //   rules: [{ max: '10', message: '批次限制输入10位' }]
+        // },
+        // {
+        //   label: '院校',
+        //   field: 'xxxx',
+        //   form: 'input',
+        //   rules: [{ max: '20', message: '院校限制输入20位' }]
+        // },
+        // { label: '专业', field: 'xxxx', form: 'input', rules: [{ max: '10', message: '专业制输入10位' }] },
         // { label: '学制', field: 'isJoin', form: 'input', rules: [{ max: '10', message: '学制限制输入10位' }] },
-        { label: '姓名', field: 'xxxx', form: 'input', rules: [{ max: '10', message: '姓名限制输入20位' }] },
-        {
-          label: '性别',
-          field: 'xxxx',
-          form: 'radio',
-          radioFrom: 'SEX_ENMU',
-          rules: []
-        },
-        {
-          label: '民族',
-          field: 'xxxx',
-          form: 'select',
-          selectFrom: 'MZ_ENMU',
-          rules: []
-        },
-        {
-          label: '户口性质',
-          field: 'xxxx',
-          form: 'select',
-          selectFrom: 'HK_ENMU',
-          rules: []
-        },
-        {
-          label: '证件号码',
-          field: 'xxxx',
-          form: 'input',
-          rules: [{ max: '20', message: '证件号码限制输入20位' }]
-        },
-        { label: '电话', field: 'enScore', form: 'input', rules: [{ max: '11', message: '电话限制输入11位' }] },
-        { label: 'Email', field: 'enScore222', form: 'input', rules: [{ max: '11', message: 'Email限制输入15位' }] },
+        // { label: '姓名', field: 'xxxx', form: 'input', rules: [{ max: '10', message: '姓名限制输入20位' }] },
+        // {
+        //   label: '性别',
+        //   field: 'xxxx',
+        //   form: 'radio',
+        //   radioFrom: 'SEX_ENMU',
+        //   rules: []
+        // },
+        // {
+        //   label: '民族',
+        //   field: 'xxxx',
+        //   form: 'select',
+        //   selectFrom: 'MZ_ENMU',
+        //   rules: []
+        // },
+        // {
+        //   label: '户口性质',
+        //   field: 'xxxx',
+        //   form: 'select',
+        //   selectFrom: 'HK_ENMU',
+        //   rules: []
+        // },
+        // {
+        //   label: '证件号码',
+        //   field: 'xxxx',
+        //   form: 'input',
+        //   rules: [{ max: '20', message: '证件号码限制输入20位' }]
+        // },
+        // { label: '电话', field: 'enScore', form: 'input', rules: [{ max: '11', message: '电话限制输入11位' }] },
+        // { label: 'Email', field: 'enScore222', form: 'input', rules: [{ max: '11', message: 'Email限制输入15位' }] },
         // { label: '学号', field: 'coScore', form: 'input', rules: [{ max: '20', message: '学号限制输入20位' }] },
         {
           label: '学位性质',
