@@ -14,90 +14,90 @@ export default {
       tab3: [
         {
           label: '准考证号',
-          field: 'card',
+          field: 'xxxx',
           form: 'input',
           rules: [{ max: 15, message: '准考证号限制输入15位' }]
         },
         {
           label: '考生号',
-          field: 'cardNo',
+          field: 'xxxx',
           form: 'input',
           rules: [{ max: 20, message: '准考证号限制输入20位' }]
         },
         {
           label: '考试成绩',
-          field: 'studyWay',
+          field: 'xxxx',
           form: 'input',
           rules: [{ max: 5, message: '考试成绩' }]
         },
         {
           label: '考试时间',
-          field: 'location',
+          field: 'xxxx',
           form: 'date',
           rules: []
         },
 
         {
           label: '证书发放时间',
-          field: 'xz',
+          field: 'xxxx',
           form: 'date',
           rules: []
         },
         {
           label: '学习实效',
-          field: 'tzssfyd',
+          field: 'xxxx',
           form: 'input',
           rules: []
         },
         {
           label: '报考情况',
-          field: 'tzssfyf',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '特殊操作',
-          field: 'xb',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '报考次数',
-          field: 'meal',
+          field: 'xxxx',
           form: 'input',
           rules: [{ max: 2, message: '报考次数限制输入2位' }]
         },
         {
           label: '教材领取',
-          field: 'mealss',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
-          label: '是否退费',
-          field: 'ms',
+          label: '退费',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '退费时间',
-          field: 'tsbk',
+          field: 'xxxx',
           form: 'date',
           rules: []
         },
         {
           label: '退费途径',
-          field: 'tsbkq',
+          field: 'xxxx',
           form: 'input',
           rules: []
         },
         {
           label: '沟通一',
-          field: 'tsbkq',
+          field: 'xxxx',
           form: 'input',
           rules: []
         }

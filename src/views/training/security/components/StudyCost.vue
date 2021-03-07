@@ -27,37 +27,37 @@ export default {
       tab6: [
         {
           label: '培训费',
-          field: 'location',
+          field: 'xxxx',
           form: 'input',
           rules: [{ validator: validatorMoney('培训费') }]
         },
         {
           label: '实际缴费',
-          field: 'xz',
+          field: 'xxxx',
           form: 'input',
           rules: [{ validator: validatorMoney('实际缴费') }]
         },
         {
           label: '欠费',
-          field: 'zy',
+          field: 'oweExpense',
           form: 'input',
           rules: [{ validator: validatorMoney('欠费') }]
         },
         {
           label: '补贴费用',
-          field: 'mm',
+          field: 'xxxx',
           form: 'input',
           rules: [{ validator: validatorMoney('补贴费用') }]
         },
         {
           label: '补贴到账时间',
-          field: 'school',
+          field: 'xxxx',
           form: 'date',
           rules: [{ validator: validatorMoney('补贴到账时间') }]
         },
         {
           label: '备注',
-          field: 'byTime',
+          field: 'xxxx',
           form: 'input',
           rules: []
         }
