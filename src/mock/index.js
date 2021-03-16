@@ -20,6 +20,7 @@ if (process.env.NODE_ENV !== 'production' || process.env.VUE_APP_PREVIEW === 'tr
   require('./services/role')
   require('./services/student')
   require('./services/finance')
+  require('./services/dict')
 
   Mock.setup({
     timeout: 800 // setter delay time
