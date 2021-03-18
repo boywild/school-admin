@@ -80,7 +80,7 @@ export default {
         },
         {
           label: '所报学习形式',
-          field: 'xxx',
+          field: 'learnStyle',
           form: 'select',
           selectFrom: 'STUDY_WAT_ENMU',
           rules: [{ required: true, message: '请选择所报学习形式' }]
@@ -101,13 +101,13 @@ export default {
 
         {
           label: '何时参加工作',
-          field: 'xxxx',
+          field: 'workStartTime',
           form: 'date',
           rules: [{ required: true, message: '请选择何时参加工作' }]
         },
         {
           label: '考试城市',
-          field: 'xxxx',
+          field: 'examCity',
           form: 'cascader',
           rules: [{ required: true, message: '请输入考试城市' }]
         },
@@ -122,7 +122,7 @@ export default {
         },
         {
           label: '所报院校代码',
-          field: 'xxxx',
+          field: 'applySchoolCode',
           form: 'input',
           rules: [
             { required: true, message: '请输入所报院校代码' },
@@ -140,7 +140,7 @@ export default {
         },
         {
           label: '专业代码',
-          field: 'xxxx',
+          field: 'applyMajorCode',
           form: 'input',
           rules: [
             { required: true, message: '请输入专业代码' },
@@ -149,21 +149,21 @@ export default {
         },
         {
           label: '免试',
-          field: 'xxxx',
+          field: 'testFree',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: [{ required: true, message: '请选择免试' }]
         },
         {
           label: '特殊报考',
-          field: 'xxxx',
+          field: 'specialApply',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: [{ required: true, message: '请输入特殊报考' }]
         },
         {
           label: '特殊报考区',
-          field: 'xxxx',
+          field: 'specialApplyDistrict',
           form: 'input',
           rules: [{ required: true, message: '请输入特殊报考区' }]
         }

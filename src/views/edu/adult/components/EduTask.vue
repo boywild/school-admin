@@ -39,179 +39,179 @@ export default {
       tab3: [
         {
           label: '预报名号',
-          field: 'name',
+          field: 'xxxx',
           form: 'input',
           rules: [{ max: 10, message: '预报名号限制输入10位' }]
         },
         {
           label: '短信密码',
-          field: 'phone',
+          field: 'xxxx',
           form: 'input',
           rules: [{ max: 6, message: '预报名号输入10位' }]
         },
         {
           label: '准考证号',
-          field: 'card',
+          field: 'xxxx',
           form: 'input',
           rules: [{ max: 15, message: '准考证号限制输入15位' }]
         },
         {
           label: '考生号',
-          field: 'cardNo',
+          field: 'xxxx',
           form: 'input',
           rules: [{ max: 20, message: '准考证号限制输入20位' }]
         },
         // {
         //   label: '入学考试科目及分数',
-        //   field: 'studyWay',
+        //   field: 'xxxx',
         //   form: 'input',
         //   rules: [{ max: 5, message: '入学考试总分数' }]
         // },
         {
           label: '语文分数',
-          field: 'studyWay',
+          field: 'xxxx',
           form: 'input',
           rules: [{ max: 5, message: '数学分数' }]
         },
         {
           label: '数学分数（高中起点）',
-          field: 'studyWay',
+          field: 'xxxx',
           form: 'input',
           rules: [{ max: 5, message: '数学分数' }]
         },
         {
           label: '英语分数（高中起点）',
-          field: 'studyWay',
+          field: 'xxxx',
           form: 'input',
           rules: [{ max: 5, message: '英语分数' }]
         },
         {
           label: '政治分数',
-          field: 'studyWay',
+          field: 'xxxx',
           form: 'input',
-          rules: [{ max: 5, message: 'studyWay' }]
+          rules: [{ max: 5, message: 'xxxx' }]
         },
         {
           label: '大学语文分数',
-          field: 'studyWay',
+          field: 'xxxx',
           form: 'input',
           rules: [{ max: 5, message: '大学语文分数' }]
         },
         {
           label: '高等数学一分数',
-          field: 'studyWay',
+          field: 'xxxx',
           form: 'input',
           rules: [{ max: 5, message: '高等数学一分数' }]
         },
         {
           label: '高等数学二分数',
-          field: 'studyWay',
+          field: 'xxxx',
           form: 'input',
           rules: [{ max: 5, message: '高等数学二分数' }]
         },
         {
           label: '物理化学分数',
-          field: 'studyWay',
+          field: 'xxxx',
           form: 'input',
           rules: [{ max: 5, message: '物理化学分数' }]
         },
         {
           label: '教育理论分数',
-          field: 'studyWay',
+          field: 'xxxx',
           form: 'input',
           rules: [{ max: 5, message: '教育理论分数' }]
         },
         {
           label: '医学综合分数',
-          field: 'studyWay',
+          field: 'xxxx',
           form: 'input',
           rules: [{ max: 5, message: '医学综合分数' }]
         },
         {
           label: '民法分数',
-          field: 'studyWay',
+          field: 'xxxx',
           form: 'input',
           rules: [{ max: 5, message: '民法分数' }]
         },
         {
           label: '历史地理分数',
-          field: 'studyWay',
+          field: 'xxxx',
           form: 'input',
           rules: [{ max: 5, message: '历史地理分数' }]
         },
         {
           label: '艺术概论分数',
-          field: 'studyWay',
+          field: 'xxxx',
           form: 'input',
           rules: [{ max: 5, message: '艺术概论分数' }]
         },
 
         {
           label: '入学考试总分数',
-          field: 'birth',
+          field: 'xxxx',
           form: 'input',
           rules: [{ max: 5, message: '入学考试总分数' }]
         },
         {
           label: '加试时间',
-          field: 'location',
+          field: 'xxxx',
           form: 'input',
           rules: []
         },
         {
           label: '加试成绩',
-          field: 'xz',
+          field: 'xxxx',
           form: 'input',
           rules: [{ max: 6, message: '加试成绩限制输入6位' }]
         },
         {
           label: '录取通知书已到',
-          field: 'tzssfyd',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '录取通知书已发',
-          field: 'tzssfyf',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '虚报',
-          field: 'xb',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '学习平台',
-          field: 'meal',
+          field: 'xxxx',
           form: 'input',
           rules: [{ max: 20, message: '学习平台限制输入20位' }]
         },
         {
           label: '学号',
-          field: 'mealss',
+          field: 'xxxx',
           form: 'input',
           rules: [{ max: 15, message: '学号限制输入15位' }]
         },
         {
           label: '学习帐号',
-          field: 'ms',
+          field: 'xxxx',
           form: 'input',
           rules: [{ max: 15, message: '学习帐号限制输入15位' }]
         },
         {
           label: '登录密码',
-          field: 'tsbk',
+          field: 'xxxx',
           form: 'input',
           rules: [{ max: 15, message: '登录密码限制输入15位' }]
         },
         {
           label: '录取结果',
-          field: 'tsbkq',
+          field: 'xxxx',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
