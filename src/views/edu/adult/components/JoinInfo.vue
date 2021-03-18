@@ -73,7 +73,7 @@ export default {
         },
         {
           label: '所报层次',
-          field: 'xxx',
+          field: 'studentApplyLevel',
           form: 'select',
           selectFrom: 'STUDY_LEVEL_ENMU',
           rules: [{ required: true, message: '请选择所报层次' }]

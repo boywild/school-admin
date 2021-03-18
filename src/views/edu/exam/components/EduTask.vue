@@ -45,7 +45,8 @@ export default {
         },
         {
           label: '是否为我司证书',
-          form: 'myCertificateFlag',
+          field: 'myCertificateFlag',
+          form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
