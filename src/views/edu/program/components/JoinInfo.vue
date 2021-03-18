@@ -14,7 +14,7 @@ export default {
       tab3: [
         {
           label: '入学批次',
-          field: 'pc',
+          field: 'entranceDate',
           form: 'input',
           rules: [
             { required: true, message: '请输入入学批次' },
@@ -39,7 +39,7 @@ export default {
         },
         {
           label: '所报层次',
-          field: 'xxxx',
+          field: 'studentApplyLevel',
           form: 'select',
           selectFrom: 'STUDY_LEVEL_ENMU',
           rules: [{ required: true, message: '请选择所报层次' }]

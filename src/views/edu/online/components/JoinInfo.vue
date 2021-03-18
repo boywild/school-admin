@@ -81,7 +81,7 @@ export default {
 
         {
           label: '何时参加工作',
-          field: 'xxxx',
+          field: 'workStartTime',
           form: 'date',
           rules: [{ required: true, message: '请选择何时参加工作' }]
         },

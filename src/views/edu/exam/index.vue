@@ -123,7 +123,7 @@ const columns = [
   { title: '专业', dataIndex: 'zy', width: 140 },
   { title: '毕业时间', dataIndex: 'updatedAt', width: 190 },
   { title: '学分', dataIndex: 'score', width: 80 },
-  { title: '操作', dataIndex: 'action', width: 390, fixed: 'right', scopedSlots: { customRender: 'action' } }
+  { title: '操作', dataIndex: 'action', width: 420, fixed: 'right', scopedSlots: { customRender: 'action' } }
 ]
 
 export default {
