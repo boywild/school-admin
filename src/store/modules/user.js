@@ -38,6 +38,17 @@ const user = {
     },
     SET_PERMISSIONLIST: (state, permissionList) => {
       state.permissionList = permissionList
+    },
+    RESET_DATA: state => {
+      state.token = ''
+      state.roles = []
+      state.info = {}
+      state.permissionList = []
+      state.adminType = ''
+      state.permission.addRouters = []
+      storage.remove(ACCESS_TOKEN)
+      storage.remove(PERMISSION)
+      storage.remove(ADMINTYPE)
     }
   },
 
@@ -136,15 +147,7 @@ const user = {
         //     resolve()
         //   })
         //   .finally(() => {})
-        commit('SET_TOKEN', '')
-        commit('SET_ROLES', [])
-        commit('SET_INFO', {})
-        commit('SET_PERMISSIONLIST', [])
-        commit('SET_ADMINTYPE', '')
-        commit('SET_ROUTERS', [])
-        storage.remove(ACCESS_TOKEN)
-        storage.remove(PERMISSION)
-        storage.remove(ADMINTYPE)
+        commit('RESET_DATA')
         resolve()
       })
     }

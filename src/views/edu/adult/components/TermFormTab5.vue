@@ -27,41 +27,41 @@ export default {
       tab4: [
         {
           label: '有毕业证书',
-          field: 'xxxx',
+          field: 'diplomaFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '毕业证书已到',
-          field: 'xxxx',
+          field: 'diplomaReachFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '毕业证书已领走',
-          field: 'xxxx',
+          field: 'diplomaTakeFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '毕业证书领走时间',
-          field: 'xxxx',
+          field: 'diplomaTakeTime',
           form: 'date',
           rules: []
         },
         {
           label: '毕业证书领走方式',
-          field: 'xxxx',
+          field: 'diplomaTakeWay',
           form: 'input',
           rules: []
         },
 
         {
           label: '特殊事项',
-          field: 'xxxx',
+          field: 'specialItem',
           form: 'input',
           rules: []
         }

@@ -39,25 +39,25 @@ export default {
       tab3: [
         {
           label: '预报名号',
-          field: 'xxxx',
+          field: 'preApplyNo',
           form: 'input',
           rules: [{ max: 10, message: '预报名号限制输入10位' }]
         },
         {
           label: '短信密码',
-          field: 'xxxx',
+          field: 'smsPassword',
           form: 'input',
           rules: [{ max: 6, message: '预报名号输入10位' }]
         },
         {
           label: '准考证号',
-          field: 'xxxx',
+          field: 'examNo',
           form: 'input',
           rules: [{ max: 15, message: '准考证号限制输入15位' }]
         },
         {
           label: '考生号',
-          field: 'xxxx',
+          field: 'studentNo',
           form: 'input',
           rules: [{ max: 20, message: '准考证号限制输入20位' }]
         },
@@ -166,52 +166,52 @@ export default {
         },
         {
           label: '录取通知书已到',
-          field: 'xxxx',
+          field: 'admitLetterReachFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '录取通知书已发',
-          field: 'xxxx',
+          field: 'admitLetterSendFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '虚报',
-          field: 'xxxx',
+          field: 'cheatFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '学习平台',
-          field: 'xxxx',
+          field: 'studyPlatform',
           form: 'input',
           rules: [{ max: 20, message: '学习平台限制输入20位' }]
         },
         {
           label: '学号',
-          field: 'xxxx',
+          field: 'studyNo',
           form: 'input',
           rules: [{ max: 15, message: '学号限制输入15位' }]
         },
         {
           label: '学习帐号',
-          field: 'xxxx',
+          field: 'accountNo',
           form: 'input',
           rules: [{ max: 15, message: '学习帐号限制输入15位' }]
         },
         {
           label: '登录密码',
-          field: 'xxxx',
+          field: 'loginPsd',
           form: 'input',
           rules: [{ max: 15, message: '登录密码限制输入15位' }]
         },
         {
           label: '录取结果',
-          field: 'xxxx',
+          field: 'admitFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []

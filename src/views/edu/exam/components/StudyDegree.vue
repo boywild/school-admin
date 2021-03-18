@@ -66,45 +66,45 @@ export default {
         // { label: '学号', field: 'coScore', form: 'input', rules: [{ max: '20', message: '学号限制输入20位' }] },
         {
           label: '学位性质',
-          field: 'xxxx',
+          field: 'studentDegreeType',
           form: 'select',
           selectFrom: 'DEGREE_ENMU',
           rules: []
         },
         {
           label: '学位准考证号',
-          field: 'xxxx',
+          field: 'degreeExamNo',
           form: 'input',
           rules: [{ max: '20', message: '学位准考证号限制输入20位' }]
         },
-        { label: '专业代码', field: 'xxxx', form: 'input', rules: [{ max: '20', message: '专业代码限制输入20位' }] },
+        { label: '专业代码', field: 'majorCode', form: 'input', rules: [{ max: '20', message: '专业代码限制输入20位' }] },
 
-        { label: '考区', field: 'xxxx', form: 'input', rules: [{ max: '15', message: '考区限制输入15位' }] },
+        { label: '考区', field: 'examLocation', form: 'input', rules: [{ max: '15', message: '考区限制输入15位' }] },
         {
           label: '语种',
-          field: 'xxxx',
+          field: 'language',
           form: 'select',
           selectFrom: 'LANG_ENMU',
           rules: []
         },
         {
           label: '是否为VIP',
-          field: 'xxxx',
+          field: 'vipFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
-        { label: 'VIP负责人', field: 'xxxx', form: 'input', rules: [{ max: '15', message: 'VIP负责人限制输入15位' }] },
+        { label: 'VIP负责人', field: 'vipDutyTeacher', form: 'input', rules: [{ max: '15', message: 'VIP负责人限制输入15位' }] },
         {
           label: '学位分数',
-          field: 'xxxx',
+          field: 'passStatus',
           form: 'radio',
           radioFrom: 'REACH_ENMU',
           rules: []
         },
         {
           label: '毕业论文',
-          field: 'xxxx',
+          field: 'paper',
           form: 'select',
           selectFrom: 'THESIS_FROM_ENMU',
           rules: []

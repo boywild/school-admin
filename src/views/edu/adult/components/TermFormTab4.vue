@@ -29,7 +29,7 @@ export default {
       tab4: [
         {
           label: '填写毕业生登记表',
-          field: 'xxxx',
+          field: 'graduateRegisterSheet',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
@@ -37,7 +37,7 @@ export default {
 
         {
           label: '毕业信息采集',
-          field: 'xxxx',
+          field: 'graduateGather',
           form: 'select',
           selectFrom: 'INFO_GATHER_ENMU',
           rules: []
@@ -45,7 +45,7 @@ export default {
 
         {
           label: '毕业纸质照片到我司',
-          field: 'xxxx',
+          field: 'graduatePictureReachEntFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
@@ -53,28 +53,28 @@ export default {
 
         {
           label: '毕业纸质照片提交院校',
-          field: 'xxxx',
+          field: 'graduatePicturePostSchoolFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '延期毕业',
-          field: 'xxxx',
+          field: 'delayGraduateFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '论文性质',
-          field: 'xxxx',
+          field: 'studentPaper',
           form: 'select',
           selectFrom: 'THESIS_FROM_ENMU',
           rules: []
         },
         {
           label: '特殊事项',
-          field: 'xxxx',
+          field: 'specialItem',
           form: 'input',
           rules: []
         }
