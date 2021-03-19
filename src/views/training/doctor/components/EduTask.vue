@@ -14,13 +14,13 @@ export default {
       tab3: [
         {
           label: '准考证号',
-          field: 'xxxx',
+          field: 'examNo',
           form: 'input',
           rules: [{ max: 15, message: '准考证号限制输入15位' }]
         },
         {
           label: '考生号',
-          field: 'xxxx',
+          field: 'studyNo',
           form: 'input',
           rules: [{ max: 20, message: '准考证号限制输入20位' }]
         },
