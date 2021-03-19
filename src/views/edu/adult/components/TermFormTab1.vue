@@ -1,23 +1,20 @@
 <template>
   <div>
     <form-generate ref="form" :fields="tab4"></form-generate>
-    <div class="ant-modal-footer">
-      <div>
-        <button type="button" class="ant-btn"><span>取 消</span></button
-        ><button type="button" class="ant-btn ant-btn-primary"><span>保存学期信息</span></button>
-      </div>
-    </div>
   </div>
 </template>
 
 <script>
+import moment from 'moment'
 import FormGenerate from '@/components/FormGenerate'
 import { YESORNO_ENMU, REACH_ENMU } from '@/config/dict'
+
 import termFormConfig from './termFormConfig'
 export default {
   name: 'StudyTerm',
   props: {
-    studentId: { type: String, default: '' }
+    studentId: { type: String, default: '' },
+    content: { type: Object, default: () => {} }
   },
 
   components: { FormGenerate },
@@ -29,7 +26,15 @@ export default {
     }
   },
   mounted() {},
-  computed: {},
+  watch: {
+    content(newVal, oldVal) {
+      if (newVal) {
+        const form = this.$refs.form
+        console.log(newVal)
+        form.setData({ ...newVal, degreeInformTime: moment(newVal.degreeInformTime) })
+      }
+    }
+  },
   methods: {
     validate(callback) {
       const form = this.$refs.form

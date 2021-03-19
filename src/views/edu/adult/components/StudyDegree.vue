@@ -5,12 +5,12 @@
     :visible="value"
     :mask-closable="false"
     :confirmLoading="loading"
-    okText="保存学位信息"
+    :okText="`保存${(panes[activeKey - 1] && panes[activeKey - 1].title) || '学期'}学位信息`"
     @ok="handleOk"
     @cancel="handleCancel"
   >
     <div class="edu-adult">
-      <a-tabs v-model="activeKey" type="card">
+      <a-tabs v-model="activeKey" type="card" @change="handleChange">
         <a-tab-pane v-for="pane in panes" :key="pane.key" :tab="pane.title" :closable="pane.closable"> </a-tab-pane>
       </a-tabs>
       <a-spin :spinning="loadingData">
@@ -108,7 +108,12 @@ export default {
           form: 'input',
           rules: [{ max: '20', message: '学位准考证号限制输入20位' }]
         },
-        { label: '专业代码', field: 'majorCode', form: 'input', rules: [{ max: '20', message: '专业代码限制输入20位' }] },
+        {
+          label: '专业代码',
+          field: 'majorCode',
+          form: 'input',
+          rules: [{ max: '20', message: '专业代码限制输入20位' }]
+        },
 
         { label: '考区', field: 'examLocation', form: 'input', rules: [{ max: '15', message: '考区限制输入15位' }] },
         {
@@ -156,7 +161,7 @@ export default {
       this.loadingData = true
       const result = await getDegree(this.studentId)
       const form = this.$refs.form
-      form.setData(result)
+      form.setData(result[this.activeKey - 1] || result[0])
       this.loadingData = false
     },
     async saveStudyDegree() {
@@ -178,6 +183,10 @@ export default {
     resetForm() {
       const form = this.$refs.form
       form.reset()
+    },
+    async handleChange() {
+      await this.resetForm()
+      this.getStudyDegree()
     },
     handleOk() {
       this.saveStudyDegree()

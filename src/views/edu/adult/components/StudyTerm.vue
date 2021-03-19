@@ -5,16 +5,20 @@
     :visible="value"
     :mask-closable="false"
     :confirmLoading="loading"
-    :footer="null"
-    okText="保存学期信息"
+    :okText="`保存${(panes[activeKey - 1] && panes[activeKey - 1].title) || '学期'}信息`"
     @ok="handleOk"
     @cancel="handleCancel"
   >
     <div class="edu-adult">
-      <a-tabs v-model="activeKey" type="card">
-        <a-tab-pane v-for="(pane, index) in panes" :key="pane.key" :tab="pane.title">
+      <a-tabs v-model="activeKey" type="card" @change="getStudyTerm">
+        <a-tab-pane v-for="pane in panes" :key="pane.key" :tab="pane.title">
           <a-spin :spinning="loadingData">
-            <component ref="form" :is="`TermFormTab${index + 1}`"></component>
+            <!-- <component ref="form" :is="`TermFormTab${index + 1}`" :content="contentData"></component> -->
+            <term-form-tab1 v-if="activeKey === '1'" :content="contentData"></term-form-tab1>
+            <term-form-tab2 v-else-if="activeKey === '2'" :content="contentData"></term-form-tab2>
+            <term-form-tab3 v-else-if="activeKey === '3'" :content="contentData"></term-form-tab3>
+            <term-form-tab4 v-else-if="activeKey === '4'" :content="contentData"></term-form-tab4>
+            <term-form-tab5 v-else :content="contentData"></term-form-tab5>
             <!-- <form-generate ref="form" :fields="tab4"></form-generate> -->
           </a-spin>
         </a-tab-pane>
@@ -56,7 +60,8 @@ export default {
       loading: false,
       loadingData: false,
       activeKey: panes[0].key,
-      panes
+      panes,
+      contentData: {}
       // YESORNO_ENMU,
       // INFO_GATHER_ENMU,
       // REACH_ENMU,
@@ -205,9 +210,16 @@ export default {
   methods: {
     async getStudyTerm() {
       this.loadingData = true
+      this.contentData = {}
       const result = await getTerm(this.studentId)
-      // const form = this.$refs.form
-      // form.setData(result[0])
+      if (result[this.activeKey - 1]) {
+        // const form = this.$refs.form
+        // form.setData(result[this.activeKey])
+        console.log(result[this.activeKey - 1])
+        this.contentData = result[this.activeKey - 1]
+      } else {
+        this.contentData = result[0]
+      }
       console.log(result)
       this.loadingData = false
     },
@@ -275,7 +287,8 @@ export default {
     },
     handleCancel() {
       this.$emit('change', false)
-      this.resetForm()
+      this.activeKey = '1'
+      // this.resetForm()
     }
   }
 }

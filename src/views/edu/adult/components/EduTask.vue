@@ -19,7 +19,7 @@
 
 <script>
 import FormGenerate from '@/components/FormGenerate'
-import { studentBaseInfo, getBaseInfo } from '@/api/student'
+import { studentEduTask, studentGetEduTask, getSubjectScore } from '@/api/student'
 
 export default {
   name: 'EduTask',
@@ -223,6 +223,7 @@ export default {
     this.$watch('value', val => {
       if (val && this.studentId) {
         this.getEduTask()
+        this.getSbuject()
       }
     })
   },
@@ -238,7 +239,7 @@ export default {
   methods: {
     async getEduTask() {
       this.loadingData = true
-      const result = await getBaseInfo(this.studentId)
+      const result = await studentGetEduTask(this.studentId)
       const form = this.$refs.form
       form.setData(result)
       this.loadingData = false
@@ -246,11 +247,31 @@ export default {
     async saveEduTask() {
       this.validate(async values => {
         this.loading = true
-        await studentBaseInfo({ ...values, studentId: this.studentId })
+        await studentEduTask({ ...values, studentId: this.studentId })
         this.loading = false
         this.handleCancel()
         this.$emit('update')
       })
+    },
+    async getSbuject() {
+      const result = await getSubjectScore(this.studentId)
+      const field = [
+        'chineseScore',
+        'mathScore',
+        'englishScore',
+        'politicsScore',
+        'universityChineseScore',
+        'highMathScore1',
+        'highMathScore2',
+        'physicsScore',
+        'educationScore',
+        'medicineScore',
+        'civillawScore',
+        'historyGeographyScore',
+        'artScore',
+        'totalScore'
+      ]
+      console.log(result)
     },
     validate(callback) {
       const form = this.$refs.form
