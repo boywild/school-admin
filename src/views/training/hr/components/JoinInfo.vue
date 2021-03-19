@@ -38,7 +38,7 @@ export default {
         },
         {
           label: '报考层次',
-          field: 'xxxx',
+          field: 'studentApplyLevel',
           form: 'select',
           selectFrom: 'STUDY_LEVEL_ENMU',
           rules: [{ required: true, message: '请选择报考层次' }]
@@ -65,7 +65,7 @@ export default {
 
         {
           label: '招生老师',
-          field: 'xxxx',
+          field: 'principalTeacher',
           form: 'input',
           rules: [{ required: true, message: '请输入招生老师' }]
         },
