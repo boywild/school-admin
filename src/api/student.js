@@ -1,27 +1,31 @@
 import request from '@/utils/request'
 
 const studentApi = {
-  StudentList: '/student/list',
+  StudentList: '/student/list', // 学生列表
 
-  StudentBaseInfo: '/student/saveBase',
-  StudentGetBaseInfo: '/student/base',
+  StudentBaseInfo: '/student/saveBase', // 基本信息-保存
+  StudentGetBaseInfo: '/student/base', // 基本信息-获取
 
-  StudentPic: '/student/uploadPicture',
-  StudentGetPic: '/student/picture',
+  StudentPic: '/student/uploadPicture', // 图片-保存
+  StudentGetPic: '/student/picture', // 图片-列表
 
-  StudentApply: '/student/apply',
-  StudentGetApply: '/student/getApplyInfo',
+  StudentApply: '/student/apply', // 报名-保存
+  StudentGetApply: '/student/getApplyInfo', // 报名-获取
 
-  StudentTerm: '/student/saveTerm',
-  StudentGetTerm: '/student/termList',
+  StudentTerm: '/student/saveTerm', // 学期-保存
+  StudentGetTerm: '/student/termList', // 学期-获取
 
-  StudentDegree: '/student/saveDegreeInfo',
-  StudentGetDegree: '/student/degreeInfo',
+  StudentDegree: '/student/saveDegreeInfo', // 学位-保存
+  StudentGetDegree: '/student/degreeInfo', // 学位-获取
 
-  StudentExam: '/student/saveExam',
-  StudentGetExam: '/student/subjectDetail',
+  StudentExam: '/student/saveExam', // 教务考期-保存
+  StudentGetExam: '/student/subjectDetail', // 教务考期-获取
 
-  StudentGraduate: '/student/graduateApply'
+  StudentEduTask: '/student/saveAcademic', // 教务-保存
+  StudentGetEduTask: '/student/academicInfo', // 教务-获取
+
+  StudentGraduate: '/student/graduateApply', // 毕业申请
+  StudentScore: '/student/subjectList' // 科目成绩列表
 }
 
 // 学生-列表

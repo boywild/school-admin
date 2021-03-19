@@ -24,47 +24,47 @@ export default {
       tab4: [
         {
           label: '科目编码',
-          field: 'studyStatus',
+          field: 'subjectCode',
           form: 'input',
           rules: []
         },
         {
           label: '考试科目',
-          field: 'isAchieve',
+          field: 'subjectName',
           form: 'input',
           rules: []
         },
 
         {
           label: '考试时间',
-          field: 'isAchievesss',
+          field: 'examTime',
           form: 'date',
           rules: []
         },
         {
           label: '报考',
-          field: 'isAchievesss23',
+          field: 'applyFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '复习资料已发放',
-          field: 'isAchievesss5',
+          field: 'assignReviewDataFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '辅导课已通知',
-          field: 'isAchievesss4',
+          field: 'tutorialInformFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '成绩查询',
-          field: 'isAchievesss3',
+          field: 'grade',
           form: 'select',
           selectFrom: 'SCOREQUERY_ENMU',
           rules: []
