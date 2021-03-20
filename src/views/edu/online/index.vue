@@ -173,14 +173,14 @@ import CreateForm from './components/CreateForm'
 // import { type } from 'mockjs2'
 
 const columns = [
-  { title: '学号', dataIndex: 'no', width: 160 },
-  { title: '姓名', dataIndex: 'description', width: 100 },
-  { title: '证件号', dataIndex: 'callNo', width: 170 },
-  { title: '电话号', dataIndex: 'status', width: 140 },
+  { title: '学号', dataIndex: 'studentNo', width: 160 },
+  { title: '姓名', dataIndex: 'studentName', width: 100 },
+  { title: '证件号', dataIndex: 'idNumber', width: 170 },
+  { title: '电话号', dataIndex: 'phone', width: 140 },
   { title: '年龄', dataIndex: 'age', width: 70 },
-  { title: '毕业院校', dataIndex: 'school', width: 150 },
-  { title: '专业', dataIndex: 'zy', width: 140 },
-  { title: '毕业时间', dataIndex: 'updatedAt', width: 190 },
+  { title: '毕业院校', dataIndex: 'graduateSchool', width: 150 },
+  { title: '专业', dataIndex: 'major', width: 140 },
+  { title: '毕业时间', dataIndex: 'graduateTime', width: 190 },
   { title: '操作', dataIndex: 'action', width: 280, fixed: 'right', scopedSlots: { customRender: 'action' } }
 ]
 
