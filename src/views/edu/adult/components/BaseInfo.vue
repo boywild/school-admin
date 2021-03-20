@@ -18,9 +18,12 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import moment from 'moment'
 import FormGenerate from '@/components/FormGenerate'
 import { isEmail, isPhone } from '@/utils/validate'
 import { studentBaseInfo, getBaseInfo } from '@/api/student'
+
 export default {
   name: 'BaseInfo',
   props: {
@@ -71,7 +74,7 @@ export default {
           label: '证件种类',
           field: 'idType',
           form: 'select',
-          selectFrom: 'CARDTYPE_ENMU',
+          selectFrom: 'IdTypeEnum',
           rules: [{ required: true, message: '请输入证件种类' }]
         },
         {
@@ -87,14 +90,14 @@ export default {
           label: '民族',
           field: 'nation',
           form: 'select',
-          selectFrom: 'MZ_ENMU',
+          selectFrom: 'NationEnum',
           rules: [{ required: true, message: '请选择民族' }]
         },
         {
           label: '性别',
           field: 'gender',
           form: 'radio',
-          radioFrom: 'SEX_ENMU',
+          radioFrom: 'GenderTypeEnum',
           rules: [{ required: true, message: '请选择性别' }]
         },
         { label: '出生日期', field: 'birthDay', form: 'date', rules: [{ required: true, message: '请选择出生日期' }] },
@@ -108,7 +111,7 @@ export default {
           label: '户口性质',
           field: 'householdType',
           form: 'select',
-          selectFrom: 'HK_ENMU',
+          selectFrom: 'HouseholdEnum',
           rules: [{ required: true, message: '请输入户口性质' }]
         },
         {
@@ -124,7 +127,7 @@ export default {
           label: '政治面貌',
           field: 'politicsStatus',
           form: 'select',
-          selectFrom: 'ZZMM_ENMU',
+          selectFrom: 'PoliticsEnum',
           rules: [{ required: true, max: 20, message: '请选择政治面貌' }]
         },
         {
@@ -187,13 +190,21 @@ export default {
       }
     })
   },
-  computed: {},
+  computed: {
+    ...mapState({
+      IdTypeEnum: state => state.dict.IdTypeEnum,
+      GenderTypeEnum: state => state.dict.GenderTypeEnum,
+      NationEnum: state => state.dict.NationEnum,
+      HouseholdEnum: state => state.dict.HouseholdEnum,
+      PoliticsEnum: state => state.dict.PoliticsEnum
+    })
+  },
   methods: {
     async getBaseInfo() {
       this.loadingData = true
       const result = await getBaseInfo(this.studentId)
       const form = this.$refs.form
-      form.setData(result)
+      form.setData({ ...result, birthDay: moment(result.birthDay), graduateTime: moment(result.birthDay) })
       this.loadingData = false
       console.log(result)
     },

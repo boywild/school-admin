@@ -10,12 +10,13 @@
             :placeholder="'请输入' + item.label"
           />
           <a-select v-if="item.form === 'select'" v-model="formData[item.field]" :placeholder="'请输入' + item.label">
-            <a-select-option :value="select.code" v-for="(select, count) in selectData[item.selectFrom]" :key="count">
+            <a-select-option :value="select.code" v-for="(select, count) in dict[item.selectFrom]" :key="count">
               {{ select.desc }}
             </a-select-option>
           </a-select>
+
           <a-radio-group v-if="item.form === 'radio'" v-model="formData[item.field]">
-            <a-radio :value="radio.code" v-for="(radio, count) in radioData[item.radioFrom]" :key="count">
+            <a-radio :value="radio.code" v-for="(radio, count) in dict[item.radioFrom]" :key="count">
               {{ radio.desc }}
             </a-radio>
           </a-radio-group>
@@ -33,6 +34,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import {
   STUDENT_FROM_ENMU,
   STUDY_LEVEL_ENMU,
@@ -100,6 +102,9 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+      dict: state => state.dict.dict
+    }),
     formRules() {
       const rules = {}
       this.fields.forEach(item => {

@@ -25,21 +25,21 @@ export default {
           label: '有毕业证书',
           field: 'diplomaFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '毕业证书已到',
           field: 'diplomaReachFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '毕业证书已领走',
           field: 'diplomaTakeFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {

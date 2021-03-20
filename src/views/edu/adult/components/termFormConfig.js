@@ -3,14 +3,14 @@ export default [
     label: '报考学位',
     field: 'wantDegreeFlag',
     form: 'radio',
-    radioFrom: 'YESORNO_ENMU',
+    radioFrom: 'YesOrNoEnum',
     rules: []
   },
   {
     label: '申请学位',
     field: 'applyDegree',
     form: 'radio',
-    radioFrom: 'YESORNO_ENMU',
+    radioFrom: 'YesOrNoEnum',
     rules: []
   },
   {
@@ -23,7 +23,7 @@ export default [
     label: '学位成绩',
     field: 'degreeScore',
     form: 'select',
-    selectFrom: 'REACH_ENMU',
+    selectFrom: 'ScoreResultEnum',
     rules: []
   },
   {
@@ -36,14 +36,14 @@ export default [
     label: '填写入学生登记表',
     field: 'graduateRegisterSheet',
     form: 'radio',
-    radioFrom: 'YESORNO_ENMU',
+    radioFrom: 'YesOrNoEnum',
     rules: []
   },
   {
     label: '学籍已注册',
     field: 'studentRegisterFlag',
     form: 'radio',
-    radioFrom: 'YESORNO_ENMU',
+    radioFrom: 'YesOrNoEnum',
     rules: []
   },
   {

@@ -51,7 +51,7 @@ export default {
           label: '学生来源',
           field: 'sourceType',
           form: 'select',
-          selectFrom: 'STUDENT_FROM_ENMU',
+          selectFrom: 'StudentSourceTypeEnum',
           rules: [{ required: true, message: '请选择学生来源' }]
         },
         {
@@ -76,14 +76,14 @@ export default {
           label: '所报层次',
           field: 'studentApplyLevel',
           form: 'select',
-          selectFrom: 'STUDY_LEVEL_ENMU',
+          selectFrom: 'StudentApplyLevelEnum',
           rules: [{ required: true, message: '请选择所报层次' }]
         },
         {
           label: '所报学习形式',
           field: 'learnStyle',
           form: 'select',
-          selectFrom: 'STUDY_WAT_ENMU',
+          selectFrom: 'StudentLearnStyleEnum',
           rules: [{ required: true, message: '请选择所报学习形式' }]
         },
         {
@@ -96,7 +96,7 @@ export default {
           label: '是否本科二学历',
           field: 'bachelorSecondFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: [{ required: true, message: '请选择是否本科二学历' }]
         },
 
@@ -152,14 +152,14 @@ export default {
           label: '免试',
           field: 'testFree',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: [{ required: true, message: '请选择免试' }]
         },
         {
           label: '特殊报考',
           field: 'specialApply',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: [{ required: true, message: '请输入特殊报考' }]
         },
         {

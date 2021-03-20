@@ -1,20 +1,45 @@
 import { dict as dictRequest } from '@/api/dict'
 
 function setEnum({ commit, state }, type) {
-  if (state[type].length > 0) return
+  if (state.dict[type].length > 0) return
   dictRequest(type).then(res => {
     commit('SET_ENUM', { type, res })
   })
 }
 const dict = {
   state: {
-    YesOrNoEnum: [],
-    OpenOrCloseEnum: [],
-    AdmitPlatformEnum: []
+    dict: {
+      YesOrNoEnum: [],
+      OpenOrCloseEnum: [],
+      PoliticsEnum: [],
+      StudentSubjectEnum: [],
+      AdmitPlatformEnum: [],
+      StudentLearnStyleEnum: [],
+      ClassTypeEnum: [],
+      FeeSourceTypeEnum: [],
+      GenderTypeEnum: [],
+      GraduateGatherEnum: [],
+      HouseholdEnum: [],
+      HuJiEnum: [],
+      IdTypeEnum: [],
+      LanuageEnum: [],
+      LessonStyleEnum: [],
+      NationEnum: [],
+      ScoreResultEnum: [],
+      StudentApplyLevel2Enum: [],
+      StudentApplyLevelEnum: [],
+      StudentDegreeLevelEnum: [],
+      StudentDegreeTypeEnum: [],
+      StudentPaperEnum: [],
+      StudentPassEnum: [],
+      StudentSourceTypeEnum: [],
+      StudentStudyWayEnum: [],
+      TraningTypeEnum: []
+    }
   },
   mutations: {
     SET_ENUM(state, { type, res }) {
-      state[type] = res
+      state.dict[type] = res
     }
   },
   actions: {

@@ -26,7 +26,7 @@ export default {
           label: '填写毕业生登记表',
           field: 'graduateRegisterSheet',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
 
@@ -34,7 +34,7 @@ export default {
           label: '毕业信息采集',
           field: 'graduateGather',
           form: 'select',
-          selectFrom: 'INFO_GATHER_ENMU',
+          selectFrom: 'GraduateGatherEnum',
           rules: []
         },
 
@@ -42,7 +42,7 @@ export default {
           label: '毕业纸质照片到我司',
           field: 'graduatePictureReachEntFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
 
@@ -50,21 +50,21 @@ export default {
           label: '毕业纸质照片提交院校',
           field: 'graduatePicturePostSchoolFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '延期毕业',
           field: 'delayGraduateFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '论文性质',
           field: 'studentPaper',
           form: 'select',
-          selectFrom: 'THESIS_FROM_ENMU',
+          selectFrom: 'StudentPaperEnum',
           rules: []
         },
         {

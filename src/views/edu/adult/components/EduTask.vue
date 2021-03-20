@@ -69,86 +69,86 @@ export default {
         // },
         {
           label: '语文分数',
-          field: 'xxxx',
+          field: 'chineseScore',
           form: 'input',
           rules: [{ max: 5, message: '数学分数' }]
         },
         {
           label: '数学分数（高中起点）',
-          field: 'xxxx',
+          field: 'mathScore',
           form: 'input',
           rules: [{ max: 5, message: '数学分数' }]
         },
         {
           label: '英语分数（高中起点）',
-          field: 'xxxx',
+          field: 'englishScore',
           form: 'input',
           rules: [{ max: 5, message: '英语分数' }]
         },
         {
           label: '政治分数',
-          field: 'xxxx',
+          field: 'politicsScore',
           form: 'input',
           rules: [{ max: 5, message: 'xxxx' }]
         },
         {
           label: '大学语文分数',
-          field: 'xxxx',
+          field: 'universityChineseScore',
           form: 'input',
           rules: [{ max: 5, message: '大学语文分数' }]
         },
         {
           label: '高等数学一分数',
-          field: 'xxxx',
+          field: 'highMathScore1',
           form: 'input',
           rules: [{ max: 5, message: '高等数学一分数' }]
         },
         {
           label: '高等数学二分数',
-          field: 'xxxx',
+          field: 'highMathScore2',
           form: 'input',
           rules: [{ max: 5, message: '高等数学二分数' }]
         },
         {
           label: '物理化学分数',
-          field: 'xxxx',
+          field: 'physicsScore',
           form: 'input',
           rules: [{ max: 5, message: '物理化学分数' }]
         },
         {
           label: '教育理论分数',
-          field: 'xxxx',
+          field: 'educationScore',
           form: 'input',
           rules: [{ max: 5, message: '教育理论分数' }]
         },
         {
           label: '医学综合分数',
-          field: 'xxxx',
+          field: 'medicineScore',
           form: 'input',
           rules: [{ max: 5, message: '医学综合分数' }]
         },
         {
           label: '民法分数',
-          field: 'xxxx',
+          field: 'civillawScore',
           form: 'input',
           rules: [{ max: 5, message: '民法分数' }]
         },
         {
           label: '历史地理分数',
-          field: 'xxxx',
+          field: 'historyGeographyScore',
           form: 'input',
           rules: [{ max: 5, message: '历史地理分数' }]
         },
         {
           label: '艺术概论分数',
-          field: 'xxxx',
+          field: 'artScore',
           form: 'input',
           rules: [{ max: 5, message: '艺术概论分数' }]
         },
 
         {
           label: '入学考试总分数',
-          field: 'xxxx',
+          field: 'totalScore',
           form: 'input',
           rules: [{ max: 5, message: '入学考试总分数' }]
         },
@@ -168,21 +168,21 @@ export default {
           label: '录取通知书已到',
           field: 'admitLetterReachFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '录取通知书已发',
           field: 'admitLetterSendFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '虚报',
           field: 'cheatFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
@@ -222,7 +222,9 @@ export default {
   mounted() {
     this.$watch('value', val => {
       if (val && this.studentId) {
-        this.getEduTask()
+        this.getSbuject().then(res => {
+          this.getEduTask(res)
+        })
         this.getSbuject()
       }
     })
@@ -237,11 +239,11 @@ export default {
     }
   },
   methods: {
-    async getEduTask() {
+    async getEduTask(subject = {}) {
       this.loadingData = true
       const result = await studentGetEduTask(this.studentId)
       const form = this.$refs.form
-      form.setData(result)
+      form.setData({ ...result, ...subject })
       this.loadingData = false
     },
     async saveEduTask() {
@@ -271,7 +273,12 @@ export default {
         'artScore',
         'totalScore'
       ]
-      console.log(result)
+      const formObj = {}
+      field.forEach((ele, index) => {
+        formObj[ele] = result[index] ? result[index].grade : 0
+      })
+      console.log(formObj)
+      return formObj
     },
     validate(callback) {
       const form = this.$refs.form

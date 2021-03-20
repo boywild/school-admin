@@ -99,7 +99,7 @@ export default {
           label: '学位性质',
           field: 'studentDegreeType',
           form: 'select',
-          selectFrom: 'DEGREE_ENMU',
+          selectFrom: 'StudentDegreeLevelEnum',
           rules: []
         },
         {
@@ -120,29 +120,29 @@ export default {
           label: '语种',
           field: 'language',
           form: 'select',
-          selectFrom: 'LANG_ENMU',
+          selectFrom: 'LanuageEnum',
           rules: []
         },
         {
           label: '是否为VIP',
           field: 'vipFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         { label: 'VIP负责人', field: 'xxxx', form: 'input', rules: [{ max: '15', message: 'VIP负责人限制输入15位' }] },
         {
           label: '学位分数',
           field: 'passStatus',
-          form: 'radio',
-          radioFrom: 'REACH_ENMU',
+          form: 'input',
+          radioFrom: 'StudentPassEnum',
           rules: []
         },
         {
           label: '毕业论文',
           field: 'paper',
           form: 'select',
-          selectFrom: 'THESIS_FROM_ENMU',
+          selectFrom: 'StudentPaperEnum',
           rules: []
         }
       ]

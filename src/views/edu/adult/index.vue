@@ -23,9 +23,12 @@
               <a-col :md="8" :sm="24">
                 <a-form-item label="学生来源">
                   <a-select v-model="queryParam.from" placeholder="请选择学生来源">
-                    <a-select-option :value="item.code" v-for="(item, index) in STUDENT_FROM_ENMU" :key="index">{{
-                      item.desc
-                    }}</a-select-option>
+                    <a-select-option
+                      :value="item.code"
+                      v-for="(item, index) in dict.StudentSourceTypeEnum"
+                      :key="index"
+                      >{{ item.desc }}</a-select-option
+                    >
                   </a-select>
                 </a-form-item>
               </a-col>
@@ -37,9 +40,12 @@
               <a-col :md="8" :sm="24">
                 <a-form-item label="所报层次">
                   <a-select v-model="queryParam.cc" placeholder="请选择所报层次">
-                    <a-select-option :value="item.code" v-for="(item, index) in STUDY_LEVEL_ENMU" :key="index">{{
-                      item.desc
-                    }}</a-select-option>
+                    <a-select-option
+                      :value="item.code"
+                      v-for="(item, index) in dict.StudentApplyLevelEnum"
+                      :key="index"
+                      >{{ item.desc }}</a-select-option
+                    >
                   </a-select>
                 </a-form-item>
               </a-col>
@@ -56,21 +62,21 @@
               <a-col :md="8" :sm="24">
                 <a-form-item label="免试">
                   <a-select v-model="queryParam.ms" placeholder="请选择免试">
-                    <a-select-option :value="item.code" v-for="(item, index) in YESORNO_ENMU" :key="index">{{
+                    <a-select-option :value="item.code" v-for="(item, index) in dict.YesOrNoEnum" :key="index">{{
                       item.desc
                     }}</a-select-option>
                   </a-select>
                 </a-form-item>
               </a-col>
-              <a-col :md="8" :sm="24">
+              <!-- <a-col :md="8" :sm="24">
                 <a-form-item label="入学考试科目">
                   <a-select v-model="queryParam.km" placeholder="请选择入学考试科目">
-                    <a-select-option :value="item.code" v-for="(item, index) in SUBJECT_ENMU" :key="index">{{
+                    <a-select-option :value="item.code" v-for="(item, index) in dict.YesOrNoEnum" :key="index">{{
                       item.desc
                     }}</a-select-option>
                   </a-select>
                 </a-form-item>
-              </a-col>
+              </a-col> -->
               <a-col :md="8" :sm="24">
                 <a-form-item label="入学考试总分数">
                   <a-input v-model="queryParam.useStatus" placeholder="请输入学考试总分数" style="width: 100%" />
@@ -79,7 +85,7 @@
               <a-col :md="8" :sm="24">
                 <a-form-item label="发放录取通知书">
                   <a-select v-model="queryParam.ff" placeholder="请选择发放录取通知书">
-                    <a-select-option :value="item.code" v-for="(item, index) in YESORNO_ENMU" :key="index">{{
+                    <a-select-option :value="item.code" v-for="(item, index) in dict.YesOrNoEnum" :key="index">{{
                       item.desc
                     }}</a-select-option>
                   </a-select>
@@ -93,7 +99,7 @@
               <a-col :md="8" :sm="24">
                 <a-form-item label="是否报考学位">
                   <a-select v-model="queryParam.bk" placeholder="请选择是否报考学位">
-                    <a-select-option :value="item.code" v-for="(item, index) in YESORNO_ENMU" :key="index">{{
+                    <a-select-option :value="item.code" v-for="(item, index) in dict.YesOrNoEnum" :key="index">{{
                       item.desc
                     }}</a-select-option>
                   </a-select>
@@ -102,7 +108,7 @@
               <a-col :md="8" :sm="24">
                 <a-form-item label="学位成绩">
                   <a-select v-model="queryParam.xwcj" placeholder="请选择学位成绩">
-                    <a-select-option :value="item.code" v-for="(item, index) in REACH_ENMU" :key="index">{{
+                    <a-select-option :value="item.code" v-for="(item, index) in dict.ScoreResultEnum" :key="index">{{
                       item.desc
                     }}</a-select-option>
                   </a-select>
@@ -111,7 +117,7 @@
               <a-col :md="8" :sm="24">
                 <a-form-item label="毕业信息采集">
                   <a-select v-model="queryParam.byxxcj" placeholder="请选择毕业信息采集">
-                    <a-select-option :value="item.code" v-for="(item, index) in INFO_GATHER_ENMU" :key="index">{{
+                    <a-select-option :value="item.code" v-for="(item, index) in dict.GraduateGatherEnum" :key="index">{{
                       item.desc
                     }}</a-select-option>
                   </a-select>
@@ -120,7 +126,7 @@
               <a-col :md="8" :sm="24">
                 <a-form-item label="是否延期毕业">
                   <a-select v-model="queryParam.yqby" placeholder="请选择是否延期毕业">
-                    <a-select-option :value="item.code" v-for="(item, index) in YESORNO_ENMU" :key="index">{{
+                    <a-select-option :value="item.code" v-for="(item, index) in dict.YesOrNoEnum" :key="index">{{
                       item.desc
                     }}</a-select-option>
                   </a-select>
@@ -129,7 +135,7 @@
               <a-col :md="8" :sm="24">
                 <a-form-item label="论文性质">
                   <a-select v-model="queryParam.lwxz" placeholder="请选择论文性质">
-                    <a-select-option :value="item.code" v-for="(item, index) in THESIS_FROM_ENMU" :key="index">{{
+                    <a-select-option :value="item.code" v-for="(item, index) in dict.StudentPaperEnum" :key="index">{{
                       item.desc
                     }}</a-select-option>
                   </a-select>
@@ -204,6 +210,7 @@
 
 <script>
 // import moment from 'moment'
+import { mapState, mapActions } from 'vuex'
 import { STable, Ellipsis } from '@/components'
 import BaseInfo from './components/BaseInfo'
 import ImgInfo from './components/ImgInfo'
@@ -300,8 +307,25 @@ export default {
 
   created() {
     getRoleList({ t: new Date() })
+    this.YesOrNoEnum()
+    this.IdTypeEnum()
+    this.GenderTypeEnum()
+    this.NationEnum()
+    this.HouseholdEnum()
+    this.PoliticsEnum()
+    this.StudentSourceTypeEnum()
+    this.StudentApplyLevelEnum()
+    this.StudentLearnStyleEnum()
+    this.StudentPaperEnum()
+    this.GraduateGatherEnum()
+    this.StudentPassEnum()
+    this.LanuageEnum()
+    this.StudentDegreeLevelEnum()
   },
   computed: {
+    ...mapState({
+      dict: state => state.dict.dict
+    }),
     rowSelection() {
       return {
         selectedRowKeys: this.selectedRowKeys,
@@ -310,6 +334,22 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'IdTypeEnum',
+      'GenderTypeEnum',
+      'NationEnum',
+      'HouseholdEnum',
+      'PoliticsEnum',
+      'StudentSourceTypeEnum',
+      'StudentApplyLevelEnum',
+      'StudentLearnStyleEnum',
+      'YesOrNoEnum',
+      'StudentPaperEnum',
+      'GraduateGatherEnum',
+      'StudentPassEnum',
+      'LanuageEnum',
+      'StudentDegreeLevelEnum'
+    ]),
     // 新建学生
     handleAdd() {
       this.mdl = null
