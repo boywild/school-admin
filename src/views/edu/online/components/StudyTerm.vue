@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import moment from 'moment'
 import FormGenerate from '@/components/FormGenerate'
 
 // import { YESORNO_ENMU, INFO_GATHER_ENMU, REACH_ENMU, THESIS_FROM_ENMU } from '@/config/dict'
@@ -256,13 +257,10 @@ export default {
       this.loadingData = true
       this.contentData = {}
       const result = await getTerm(this.studentId)
-      if (result[this.activeKey - 1]) {
-        // const form = this.$refs.form
-        // form.setData(result[this.activeKey])
-        this.contentData = result[this.activeKey - 1]
-      } else {
-        this.contentData = result[0]
-      }
+      const form = this.$refs.form[0]
+      console.log(form)
+      const data = result[this.activeKey - 1] || result[0]
+      form.setData({ ...data, unifyDate: moment(data.unifyDate), diplomaTakeTime: moment(data.diplomaTakeTime) })
       this.loadingData = false
     },
     async saveStudyTerm() {
