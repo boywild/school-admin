@@ -30,22 +30,32 @@ const financeList = () => {
 
 const financeDetail = () => {
   return {
-    financeId: '60068367ea0c513f343e144b',
-    studentId: '60054737ea0c51177873f92e',
-    degreeLevel: '第一批',
-    layer: '第一层',
-    graduateSchool: '家里蹲大学',
-    studentName: '测试一号',
-    major: '修电脑',
-    idNumber: '111111',
-    registerDateTime: 1610958646966,
-    totalExpense: 1500,
-    realExpense: 1300,
-    oweExpense: 200,
-    expenseTypeInfos: [
-      { expenseType: 'apply', expenseAmt: 1000, realAmt: 900, expenseDateTime: '2021-01-19T15:07:32.286' },
-      { expenseType: 'degreeTutor', expenseAmt: 500, realAmt: 400, expenseDateTime: '2021-01-19T15:07:32.287' }
-    ]
+    oweClearTime: 1616139128276,
+    totalExpense: 100,
+    realExpense: 100,
+    oweExpense: 100,
+    status: 100,
+    first: 100,
+    second: 100,
+    third: 100,
+    fourth: 100,
+    fifth: 100,
+    apply: 100,
+    test: 100,
+    unifyEnglish: 100,
+    unifyComputer: 100,
+    unifyDegreeEnglish: 100,
+    degreePaper: 100,
+    nonDegreePaper: 100,
+    reward: 100,
+    entranceTutor: 100,
+    degreeApply: 100,
+    degreeTutor: 100,
+    eCourse: 100,
+    paper: 100,
+    imageCollect: 100,
+    specialApply: 100,
+    bonus: 100
   }
 }
 Mock.mock(/\/finance\/list/, 'post', financeList)

@@ -127,15 +127,6 @@ export function getDegree(studentId) {
   })
 }
 
-// 学生-添加考期信息
-export function studentExam(parameter) {
-  return request({
-    url: studentApi.StudentExam,
-    method: 'post',
-    data: parameter
-  })
-}
-
 // 学生-保存教务信息
 export function studentEduTask(parameter) {
   return request({
@@ -153,6 +144,16 @@ export function studentGetEduTask(studentId) {
     data: { studentId }
   })
 }
+
+// 学生-添加考期信息
+export function studentExam(parameter) {
+  return request({
+    url: studentApi.StudentExam,
+    method: 'post',
+    data: parameter
+  })
+}
+
 // 学生-获取考期信息
 export function getExam(studentId) {
   return request({
@@ -161,6 +162,7 @@ export function getExam(studentId) {
     data: { studentId }
   })
 }
+
 // 获取科目成绩
 export function getSubjectScore(studentId) {
   return request({
