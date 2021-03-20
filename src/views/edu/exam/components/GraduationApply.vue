@@ -21,7 +21,7 @@
 import { mapState } from 'vuex'
 import moment from 'moment'
 import FormGenerate from '@/components/FormGenerate'
-import { studentGetEduTask, studentExam } from '@/api/student'
+import { studentGraduate, studentGetGraduate } from '@/api/student'
 // import { YESORNO_ENMU, INFO_GATHER_ENMU, REACH_ENMU, THESIS_FROM_ENMU } from '@/config/dict'
 export default {
   name: 'StudyTerm',
@@ -66,14 +66,14 @@ export default {
           label: '申请毕业',
           field: 'graduateApplyFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '毕业证书已到',
           field: 'xxxx',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
 
@@ -81,7 +81,7 @@ export default {
           label: '已领走',
           field: 'takeDiplomaFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
@@ -118,16 +118,16 @@ export default {
   methods: {
     async getBaseInfo() {
       this.loadingData = true
-      const result = await studentGetEduTask(this.studentId)
+      const result = await studentGetGraduate(this.studentId)
       const form = this.$refs.form
-      form.setData({ ...result, birthDay: moment(result.birthDay), graduateTime: moment(result.birthDay) })
+      form.setData({ ...result, takeDiplomaDate: moment(result.takeDiplomaDate) })
       this.loadingData = false
       console.log(result)
     },
     saveBaseInfo() {
       this.validate(async values => {
         this.loading = true
-        await studentExam({ applyType: 'S001', ...values, studentId: this.studentId })
+        await studentGraduate({ applyType: 'S001', ...values, studentId: this.studentId })
         this.loading = false
         this.handleCancel()
         this.$emit('update')

@@ -137,7 +137,11 @@ export default {
       this.loadingData = true
       const result = await financeDetail(this.studentId)
       const form = this.$refs.form
-      form.setData({ ...result, registerDateTime: moment(result.registerDateTime) })
+      form.setData({
+        ...result,
+        registerDateTime: moment(result.registerDateTime),
+        oweClearTime: moment(result.oweClearTime)
+      })
       this.loadingData = false
     },
     async saveStudyCost() {

@@ -171,11 +171,19 @@ export function getSubjectScore(studentId) {
     data: { studentId }
   })
 }
-// 学生-毕业申请
+// 学生-保存毕业申请
 export function studentGraduate(parameter) {
   return request({
     url: studentApi.StudentGraduate,
     method: 'post',
     data: parameter
+  })
+}
+// 学生-获取毕业申请
+export function studentGetGraduate(studentId) {
+  return request({
+    url: studentApi.StudentGraduate,
+    method: 'get',
+    data: { studentId }
   })
 }

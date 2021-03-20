@@ -213,7 +213,7 @@ export default {
           label: '录取结果',
           field: 'admitFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         }
       ]

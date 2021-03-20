@@ -23,6 +23,7 @@
 <script>
 import FormGenerate from '@/components/FormGenerate'
 import { getDegree, studentDegree } from '@/api/student'
+import moment from 'moment'
 export default {
   name: 'StudyDegree',
   components: { FormGenerate },
@@ -221,7 +222,8 @@ export default {
       this.loadingData = true
       const result = await getDegree(this.studentId)
       const form = this.$refs.form
-      form.setData(result[this.activeKey - 1] || result[0])
+      const data = result[this.activeKey - 1] || result[0]
+      form.setData({ ...data, takeDiplomaDate: moment(data.takeDiplomaDate) })
       this.loadingData = false
     },
     async saveStudyDegree() {

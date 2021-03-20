@@ -270,6 +270,16 @@ const academicInfo = () => {
     admitFlag: '1'
   }
 }
+const graduateApply = () => {
+  return {
+    degreeId: '89890809809',
+    graduateApplyFlag: '1',
+    takeDiplomaFlag: '1',
+    takeDiplomaDate: 1616139128276,
+    takeWay: '邮寄'
+  }
+}
+
 const subjectList = () => {
   return [
     {
@@ -310,4 +320,5 @@ Mock.mock(/\/student\/saveAcademic/, 'post', builder(true, '', 200)) // 教务-�
 Mock.mock(/\/student\/academicInfo/, 'get', academicInfo) // 教务-获取
 
 Mock.mock(/\/student\/graduateApply/, 'post', builder(true, '', 200)) // 毕业申请
+Mock.mock(/\/student\/graduateApply/, 'get', graduateApply) // 毕业申请
 Mock.mock(/\/student\/subjectList/, 'get', subjectList) // 科目成绩列表

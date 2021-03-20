@@ -20,6 +20,7 @@
 <script>
 import FormGenerate from '@/components/FormGenerate'
 import { studentEduTask, studentGetEduTask, getSubjectScore } from '@/api/student'
+import moment from 'moment'
 export default {
   name: 'EduTask',
   components: { FormGenerate },
@@ -64,14 +65,14 @@ export default {
           label: '是否有证书',
           field: 'certificateFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '是否为我司证书',
           field: 'myCertificateFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
@@ -115,7 +116,7 @@ export default {
           label: 'VIP',
           field: 'vipFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         }
       ]
@@ -145,7 +146,7 @@ export default {
       this.loadingData = true
       const result = await studentGetEduTask(this.studentId)
       const form = this.$refs.form
-      form.setData({ ...result, ...subject })
+      form.setData({ ...result, ...subject, entranceTime: moment(result.entranceTime) })
       this.loadingData = false
     },
     async saveEduTask() {

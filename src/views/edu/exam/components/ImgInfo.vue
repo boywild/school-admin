@@ -46,6 +46,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       previewVisible: false,
       previewImage: '',
       imgInfo: {
