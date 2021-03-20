@@ -1,41 +1,57 @@
 <template>
-  <div class="edu-adult">
-    <a-tabs default-active-key="1">
-      <a-tab-pane key="1" tab="第一学期"> </a-tab-pane>
-      <a-tab-pane key="2" tab="第二学期"> </a-tab-pane>
-      <a-tab-pane key="３" tab="第三学期"> </a-tab-pane>
-      <a-tab-pane key="4" tab="第四学期"> </a-tab-pane>
-      <a-tab-pane key="5" tab="第五学期"> </a-tab-pane>
-    </a-tabs>
-    <form-generate ref="form" :fields="tab4"></form-generate>
-  </div>
+  <a-modal
+    title="学期信息"
+    :width="900"
+    :visible="value"
+    :mask-closable="false"
+    :confirmLoading="loading"
+    :okText="`保存${(panes[activeKey - 1] && panes[activeKey - 1].title) || '学期'}信息`"
+    @ok="handleOk"
+    @cancel="handleCancel"
+  >
+    <div class="edu-adult">
+      <a-tabs v-model="activeKey" type="card" @change="getStudyTerm">
+        <a-tab-pane v-for="pane in panes" :key="pane.key" :tab="pane.title">
+          <a-spin :spinning="loadingData">
+            <form-generate ref="form" :fields="tab4"></form-generate>
+          </a-spin>
+        </a-tab-pane>
+      </a-tabs>
+    </div>
+  </a-modal>
 </template>
 
 <script>
 import FormGenerate from '@/components/FormGenerate'
-import { YESORNO_ENMU, INFO_GATHER_ENMU, REACH_ENMU, THESIS_FROM_ENMU } from '@/config/dict'
+
+// import { YESORNO_ENMU, INFO_GATHER_ENMU, REACH_ENMU, THESIS_FROM_ENMU } from '@/config/dict'
+import { studentTerm, getTerm } from '@/api/student'
+
 export default {
   name: 'StudyTerm',
+  props: {
+    value: { type: Boolean, required: true },
+    studentId: { type: String, default: '' }
+  },
+  model: {
+    prop: 'value',
+    event: 'change'
+  },
   components: { FormGenerate },
   data() {
+    const panes = [
+      { title: '第1学期', content: '', key: '1' },
+      { title: '第2学期', content: '', key: '2' },
+      { title: '第3学期', content: '', key: '3' },
+      { title: '第4学期', content: '', key: '4' },
+      { title: '第5学期', content: '', key: '5' }
+    ]
     return {
-      YESORNO_ENMU,
-      INFO_GATHER_ENMU,
-      REACH_ENMU,
-      THESIS_FROM_ENMU,
-      studyTimeRange: {
-        isneedXW: [],
-        studyStatus: [],
-        isAchieve: [],
-        isJoin: [],
-        isDeal: [],
-        time: [],
-        address: [],
-        account: [],
-        password: [],
-        enScore: [],
-        coScore: []
-      },
+      loading: false,
+      loadingData: false,
+      activeKey: panes[0].key,
+      panes,
+      contentData: {},
       tab4: [
         {
           label: '要学位',
@@ -227,18 +243,95 @@ export default {
       ]
     }
   },
+  mounted() {
+    this.$watch('value', val => {
+      if (val) {
+        this.getStudyTerm()
+      }
+    })
+  },
   computed: {},
   methods: {
-    validate(callback) {
-      const form = this.$refs.form
-      form.validate(data => {
-        callback && callback(data)
-        console.log(data)
+    async getStudyTerm() {
+      this.loadingData = true
+      this.contentData = {}
+      const result = await getTerm(this.studentId)
+      if (result[this.activeKey - 1]) {
+        // const form = this.$refs.form
+        // form.setData(result[this.activeKey])
+        this.contentData = result[this.activeKey - 1]
+      } else {
+        this.contentData = result[0]
+      }
+      this.loadingData = false
+    },
+    async saveStudyTerm() {
+      this.validate(async values => {
+        this.loading = true
+        console.log({ ...values, studentId: this.studentId, term: this.activeKey })
+        await studentTerm({ ...values, studentId: this.studentId, term: this.activeKey })
+        this.loading = false
+        const { panes, activeKey } = this
+        this.$message.info(`${(panes[activeKey - 1] && panes[activeKey - 1].title) || '学期'}信息保存成功`)
+        // this.handleCancel()
+        // this.$emit('update')
       })
     },
+    validate(callback) {
+      const form = this.$refs[`termForm${this.activeKey}`][0]
+      form.validate(callback)
+    },
     resetForm() {
-      const form = this.$refs.form
-      form.reset()
+      const form = this.$refs[`termForm${this.activeKey}`]
+      form.resetForm()
+    },
+    // onEdit(targetKey, action) {
+    //   console.log(targetKey, action)
+    //   this[action](targetKey)
+    // },
+    // add() {
+    //   const panes = this.panes
+    //   const activeKey = `${this.panes.length + 1}`
+    //   console.log(activeKey)
+    //   panes.push({
+    //     title: `第${activeKey}学期`,
+    //     content: '',
+    //     key: activeKey
+    //   })
+    //   this.panes = panes
+    // },
+    // remove(targetKey) {
+    //   let activeKey = this.activeKey
+    //   let lastIndex
+    //   if (this.panes.length === 1) {
+    //     this.$message.warning('至少保留１一个学期')
+    //     return
+    //   }
+    //   this.panes.forEach((pane, i) => {
+    //     console.log(pane.key, targetKey)
+    //     if (pane.key === targetKey) {
+    //       lastIndex = i - 1
+    //     }
+    //   })
+    //   const panes = this.panes.filter(pane => pane.key !== targetKey)
+    //   if (panes.length && activeKey === targetKey) {
+    //     if (lastIndex >= 0) {
+    //       activeKey = panes[lastIndex].key
+    //     } else {
+    //       activeKey = panes[0].key
+    //     }
+    //   }
+    //   this.panes = panes
+    //   this.activeKey = activeKey
+    // },
+    handleOk() {
+      this.saveStudyTerm()
+    },
+    handleCancel() {
+      this.$emit('change', false)
+      this.activeKey = '1'
+      this.$emit('update')
+      // this.resetForm()
     }
   }
 }

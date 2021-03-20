@@ -136,23 +136,20 @@
         </span>
       </s-table>
 
-      <create-form
-        ref="createModal"
-        :visible="visible"
-        :loading="confirmLoading"
-        :model="mdl"
-        :title="setDialogTitle"
-        @cancel="handleCancel"
-        @ok="handleOk"
-      >
-        <component ref="currentComponent" :is="getForm"></component>
-      </create-form>
+      <BaseInfo v-model="visibleBaseInfo" :studentId="mdl && mdl.studentId" @update="tableRefresh"></BaseInfo>
+      <ImgInfo v-model="visibleImgInfo" :studentId="mdl && mdl.studentId" @update="tableRefresh"></ImgInfo>
+      <JoinInfo v-model="visibleJoinInfo" :studentId="mdl && mdl.studentId" @update="tableRefresh"></JoinInfo>
+      <EduTask v-model="visibleEduTask" :studentId="mdl && mdl.studentId" @update="tableRefresh"></EduTask>
+      <StudyTerm v-model="visibleStudyTerm" :studentId="mdl && mdl.studentId" @update="tableRefresh"></StudyTerm>
+      <StudyDegree v-model="visibleStudyDegree" :studentId="mdl && mdl.studentId" @update="tableRefresh"></StudyDegree>
+      <StudyCost v-model="visibleStudyCost" :studentId="mdl && mdl.studentId" @update="tableRefresh"></StudyCost>
     </a-card>
   </page-header-wrapper>
 </template>
 
 <script>
-import moment from 'moment'
+import { mapState, mapActions } from 'vuex'
+// import moment from 'moment'
 import { STable, Ellipsis } from '@/components'
 import BaseInfo from './components/BaseInfo'
 import ImgInfo from './components/ImgInfo'
@@ -162,16 +159,16 @@ import StudyCost from './components/StudyCost'
 import { getRoleList } from '@/api/manage'
 // import { getStudentsList } from '@/api/students'
 import { studentList } from '@/api/student'
-import {
-  STUDENT_FROM_ENMU,
-  STUDY_LEVEL_ENMU,
-  STUDY_WAT_ENMU,
-  SUBJECT_ENMU,
-  INFO_GATHER_ENMU,
-  THESIS_FROM_ENMU,
-  REACH_ENMU,
-  YESORNO_ENMU
-} from '@/config/dict'
+// import {
+//   STUDENT_FROM_ENMU,
+//   STUDY_LEVEL_ENMU,
+//   STUDY_WAT_ENMU,
+//   SUBJECT_ENMU,
+//   INFO_GATHER_ENMU,
+//   THESIS_FROM_ENMU,
+//   REACH_ENMU,
+//   YESORNO_ENMU
+// } from '@/config/dict'
 
 // import StepByStepModal from './modules/StepByStepModal'
 import CreateForm from './components/CreateForm'
@@ -205,16 +202,14 @@ export default {
     this.columns = columns
     return {
       // create model
-      STUDENT_FROM_ENMU,
-      STUDY_LEVEL_ENMU,
-      STUDY_WAT_ENMU,
-      SUBJECT_ENMU,
-      INFO_GATHER_ENMU,
-      THESIS_FROM_ENMU,
-      REACH_ENMU,
-      YESORNO_ENMU,
       currentForm: 'BaseInfo',
-      visible: false,
+      visibleBaseInfo: false,
+      visibleImgInfo: false,
+      visibleJoinInfo: false,
+      visibleEduTask: false,
+      visibleStudyTerm: false,
+      visibleStudyDegree: false,
+      visibleStudyCost: false,
       confirmLoading: false,
       mdl: null,
       // 高级搜索 展开/关闭
@@ -237,7 +232,11 @@ export default {
   created() {
     getRoleList({ t: new Date() })
   },
+
   computed: {
+    ...mapState({
+      dict: state => state.dict.dict
+    }),
     rowSelection() {
       return {
         selectedRowKeys: this.selectedRowKeys,
@@ -270,68 +269,43 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'IdTypeEnum',
+      'GenderTypeEnum',
+      'NationEnum',
+      'HouseholdEnum',
+      'PoliticsEnum',
+      'StudentSourceTypeEnum',
+      'StudentApplyLevelEnum',
+      'StudentLearnStyleEnum',
+      'YesOrNoEnum',
+      'StudentPaperEnum',
+      'GraduateGatherEnum',
+      'StudentPassEnum',
+      'LanuageEnum',
+      'StudentDegreeLevelEnum',
+      'ScoreResultEnum'
+    ]),
     // 新建学生
     handleAdd() {
       this.mdl = null
-      this.visible = true
-      this.currentForm = 'BaseInfo'
+      this['visibleBaseInfo'] = true
     },
     tableRefresh() {
       const table = this.$refs.table
       table.refresh()
     },
-    handleOk() {
-      const form = this.$refs.currentComponent
 
-      form.validate(values => {
-        console.log('通过', values)
-        this.confirmLoading = true
-        if (values.id > 0) {
-          // 修改 e.g.
-          new Promise((resolve, reject) => {
-            setTimeout(() => {
-              resolve()
-            }, 1000)
-          }).then(res => {
-            this.visible = false
-            this.confirmLoading = false
-            // 重置表单数据
-            form.resetFields()
-            // 刷新表格
-            this.tableRefresh()
-
-            this.$message.info('修改成功')
-          })
-        } else {
-          // 新增
-          new Promise((resolve, reject) => {
-            setTimeout(() => {
-              resolve()
-            }, 1000)
-          }).then(res => {
-            this.visible = false
-            this.confirmLoading = false
-            // 重置表单数据
-            form.resetFields()
-            // 刷新表格
-            this.tableRefresh()
-
-            this.$message.info('新增成功')
-          })
-        }
-      })
-    },
-    // 取消新建
-    handleCancel() {
-      const form = this.$refs.currentComponent
-      form.resetForm()
-      this.visible = false
+    // 保存成功
+    actionSuccess(text) {
+      // 刷新表格
+      this.$message.info(text)
+      this.tableRefresh()
     },
     // 修改
     handleModify(record, form) {
       this.mdl = record
-      this.visible = true
-      this.currentForm = form
+      this[`visible${form}`] = true
     },
     // 勾选
     onSelectChange(selectedRowKeys, selectedRows) {
@@ -343,9 +317,7 @@ export default {
     },
     // 重置search条件
     resetSearchForm() {
-      this.queryParam = {
-        date: moment(new Date())
-      }
+      this.queryParam = {}
     },
     // 删除学生
     deleteStudent() {

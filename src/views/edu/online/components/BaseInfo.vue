@@ -1,14 +1,39 @@
 <template>
-  <div class="edu-adult">
-    <form-generate ref="form" :fields="tab1"></form-generate>
-  </div>
+  <a-modal
+    title="基本信息"
+    :width="900"
+    :visible="value"
+    :mask-closable="false"
+    :confirmLoading="loading"
+    okText="保存基本信息"
+    @ok="handleOk"
+    @cancel="handleCancel"
+  >
+    <div class="edu-adult">
+      <a-spin :spinning="loadingData">
+        <form-generate ref="form" :fields="tab1"></form-generate>
+      </a-spin>
+    </div>
+  </a-modal>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import moment from 'moment'
 import FormGenerate from '@/components/FormGenerate'
 import { isEmail, isPhone } from '@/utils/validate'
+import { studentBaseInfo, getBaseInfo } from '@/api/student'
+
 export default {
   name: 'BaseInfo',
+  props: {
+    value: { type: Boolean, required: true },
+    studentId: { type: String, default: '' }
+  },
+  model: {
+    prop: 'value',
+    event: 'change'
+  },
   components: { FormGenerate },
   data() {
     const validatorEmail = (rule, value, callback) => {
@@ -32,6 +57,8 @@ export default {
       }
     }
     return {
+      loading: false,
+      loadingData: false,
       tab1: [
         {
           label: '学生姓名',
@@ -162,21 +189,59 @@ export default {
       ]
     }
   },
-  mounted() {
-    // this.validate()
+  created() {
+    console.log(this.$route)
   },
-  computed: {},
+  mounted() {
+    this.$watch('value', val => {
+      if (val && this.studentId) {
+        this.getBaseInfo()
+      }
+    })
+  },
+  computed: {
+    ...mapState({
+      IdTypeEnum: state => state.dict.IdTypeEnum,
+      GenderTypeEnum: state => state.dict.GenderTypeEnum,
+      NationEnum: state => state.dict.NationEnum,
+      HouseholdEnum: state => state.dict.HouseholdEnum,
+      PoliticsEnum: state => state.dict.PoliticsEnum
+    })
+  },
   methods: {
+    async getBaseInfo() {
+      this.loadingData = true
+      const result = await getBaseInfo(this.studentId)
+      const form = this.$refs.form
+      form.setData({ ...result, birthDay: moment(result.birthDay), graduateTime: moment(result.birthDay) })
+      this.loadingData = false
+      console.log(result)
+    },
+    saveBaseInfo() {
+      this.validate(async values => {
+        this.loading = true
+        await studentBaseInfo({ applyType: 'S001', ...values, studentId: this.studentId })
+        this.loading = false
+        this.handleCancel()
+        this.$emit('update')
+      })
+    },
     validate(callback) {
       const form = this.$refs.form
       form.validate(data => {
         callback && callback(data)
-        console.log(data)
       })
     },
     resetForm() {
       const form = this.$refs.form
       form.reset()
+    },
+    handleOk() {
+      this.saveBaseInfo()
+    },
+    handleCancel() {
+      this.$emit('change', false)
+      this.resetForm()
     }
   }
 }
