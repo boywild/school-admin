@@ -1,20 +1,52 @@
 <template>
-  <div class="edu-exam">
-    <a-tabs default-active-key="1">
-      <a-tab-pane key="1" tab="第一学期"> </a-tab-pane>
-      <a-tab-pane key="2" tab="第二学期"> </a-tab-pane>
-    </a-tabs>
-    <form-generate ref="form" :fields="tab5"></form-generate>
-  </div>
+  <a-modal
+    title="学位信息"
+    :width="900"
+    :visible="value"
+    :mask-closable="false"
+    :confirmLoading="loading"
+    :okText="`保存${(panes[activeKey - 1] && panes[activeKey - 1].title) || '学期'}学位信息`"
+    @ok="handleOk"
+    @cancel="handleCancel"
+  >
+    <div class="edu-exam">
+      <a-tabs v-model="activeKey" type="card" @change="handleChange">
+        <a-tab-pane v-for="pane in panes" :key="pane.key" :tab="pane.title" :closable="pane.closable"> </a-tab-pane>
+      </a-tabs>
+      <a-spin :spinning="loadingData">
+        <form-generate ref="form" :fields="tab5"></form-generate>
+      </a-spin>
+    </div>
+  </a-modal>
 </template>
 
 <script>
 import FormGenerate from '@/components/FormGenerate'
+import { getDegree, studentDegree } from '@/api/student'
 export default {
   name: 'StudyDegree',
   components: { FormGenerate },
+  props: {
+    value: { type: Boolean, required: true },
+    studentId: { type: String, default: '' }
+  },
+  model: {
+    prop: 'value',
+    event: 'change'
+  },
   data() {
+    const panes = [
+      { title: '第1学期', content: '', key: '1' },
+      { title: '第2学期', content: '', key: '2' },
+      { title: '第3学期', content: '', key: '3' },
+      { title: '第4学期', content: '', key: '4' },
+      { title: '第5学期', content: '', key: '5' }
+    ]
     return {
+      loading: false,
+      loadingData: false,
+      activeKey: panes[0].key,
+      panes,
       labelCol: { span: 8 },
       wrapperCol: { span: 16 },
       studyDegree: {},
@@ -77,7 +109,12 @@ export default {
           form: 'input',
           rules: [{ max: '20', message: '学位准考证号限制输入20位' }]
         },
-        { label: '专业代码', field: 'majorCode', form: 'input', rules: [{ max: '20', message: '专业代码限制输入20位' }] },
+        {
+          label: '专业代码',
+          field: 'majorCode',
+          form: 'input',
+          rules: [{ max: '20', message: '专业代码限制输入20位' }]
+        },
 
         { label: '考区', field: 'examLocation', form: 'input', rules: [{ max: '15', message: '考区限制输入15位' }] },
         {
@@ -94,7 +131,12 @@ export default {
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
-        { label: 'VIP负责人', field: 'vipDutyTeacher', form: 'input', rules: [{ max: '15', message: 'VIP负责人限制输入15位' }] },
+        {
+          label: 'VIP负责人',
+          field: 'vipDutyTeacher',
+          form: 'input',
+          rules: [{ max: '15', message: 'VIP负责人限制输入15位' }]
+        },
         {
           label: '学位分数',
           field: 'passStatus',
@@ -166,8 +208,33 @@ export default {
       ]
     }
   },
+  mounted() {
+    this.$watch('value', val => {
+      if (val) {
+        this.getStudyDegree()
+      }
+    })
+  },
   computed: {},
   methods: {
+    async getStudyDegree() {
+      this.loadingData = true
+      const result = await getDegree(this.studentId)
+      const form = this.$refs.form
+      form.setData(result[this.activeKey - 1] || result[0])
+      this.loadingData = false
+    },
+    async saveStudyDegree() {
+      this.validate(async values => {
+        this.loading = true
+        await studentDegree({ ...values, studentId: this.studentId, term: this.activeKey })
+        this.loading = false
+        const { panes, activeKey } = this
+        this.$message.info(`${(panes[activeKey - 1] && panes[activeKey - 1].title) || '学期'}信息保存成功`)
+        // this.handleCancel()
+        // this.$emit('update')
+      })
+    },
     validate(callback) {
       const form = this.$refs.form
       form.validate(data => {
@@ -178,6 +245,18 @@ export default {
     resetForm() {
       const form = this.$refs.form
       form.reset()
+    },
+    async handleChange() {
+      await this.resetForm()
+      this.getStudyDegree()
+    },
+    handleOk() {
+      this.saveStudyDegree()
+    },
+    handleCancel() {
+      this.$emit('change', false)
+      this.resetForm()
+      this.$emit('update')
     }
   }
 }

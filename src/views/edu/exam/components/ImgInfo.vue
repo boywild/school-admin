@@ -1,31 +1,49 @@
 <template>
-  <a-form-model class="form-no-margin" ref="imgInfoForm" :model="imgInfo" :rules="rules">
-    <a-row :gutter="5">
-      <a-col :span="12" v-for="(item, index) in tab2" :key="index">
-        <a-form-model-item :label="item.label" :prop="item.field">
-          <a-upload
-            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-            list-type="picture-card"
-            :file-list="imgInfo[item.field]"
-            @preview="handlePreview"
-            @change="handleChange"
-          >
-            <div v-if="imgInfo[item.field].length < 2">
-              <a-icon type="plus" />
-              <div class="ant-upload-text">
-                上传图片
+  <a-modal
+    title="图片信息"
+    :width="900"
+    :visible="value"
+    :mask-closable="false"
+    :confirmLoading="loading"
+    okText="保存图片信息"
+    @ok="handleOk"
+    @cancel="handleCancel"
+  >
+    <a-form-model class="form-no-margin" ref="imgInfoForm" :model="imgInfo" :rules="rules">
+      <a-row :gutter="5">
+        <a-col :span="12" v-for="(item, index) in tab2" :key="index">
+          <a-form-model-item :label="item.label" :prop="item.field">
+            <a-upload
+              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+              list-type="picture-card"
+              :file-list="imgInfo[item.field]"
+              @preview="handlePreview"
+              @change="handleChange"
+            >
+              <div v-if="imgInfo[item.field].length < 2">
+                <a-icon type="plus" />
+                <div class="ant-upload-text">
+                  上传图片
+                </div>
               </div>
-            </div>
-          </a-upload>
-        </a-form-model-item>
-      </a-col>
-    </a-row>
-  </a-form-model>
+            </a-upload>
+          </a-form-model-item>
+        </a-col>
+      </a-row>
+    </a-form-model>
+  </a-modal>
 </template>
 
 <script>
 export default {
   name: 'ImgInfo',
+  props: {
+    value: { type: Boolean, required: true }
+  },
+  model: {
+    prop: 'value',
+    event: 'change'
+  },
   data() {
     return {
       previewVisible: false,
@@ -107,6 +125,10 @@ export default {
     resetForm() {
       const form = this.$refs.imgInfoForm
       form.resetFields()
+    },
+    handleOk() {},
+    handleCancel() {
+      this.$emit('change', false)
     }
   }
 }
