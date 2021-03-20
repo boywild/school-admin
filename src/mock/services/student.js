@@ -150,7 +150,7 @@ const termInfo = () => {
       baoKaoDegree: '1',
       applyDegree: '1',
       degreeInformTime: 1616139128276,
-      degreeScore: 98.33,
+      degreeScore: '1',
       termEndScore: 223.23,
       registerSheetFlag: '1',
       studentRegisterFlag: '1',

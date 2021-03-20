@@ -119,7 +119,7 @@ export default {
       form.validate(success => {
         // this.$emit('validate', { success, data: this.baseInfo })
         if (success) {
-          callback && callback(this.baseInfo)
+          callback && callback(this.formData)
         }
       })
     },

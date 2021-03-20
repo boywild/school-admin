@@ -167,10 +167,12 @@ export default {
     async saveStudyDegree() {
       this.validate(async values => {
         this.loading = true
-        await studentDegree({ ...values, studentId: this.studentId })
+        await studentDegree({ ...values, studentId: this.studentId, term: this.activeKey })
         this.loading = false
-        this.handleCancel()
-        this.$emit('update')
+        const { panes, activeKey } = this
+        this.$message.info(`${(panes[activeKey - 1] && panes[activeKey - 1].title) || '学期'}信息保存成功`)
+        // this.handleCancel()
+        // this.$emit('update')
       })
     },
     validate(callback) {
@@ -194,6 +196,7 @@ export default {
     handleCancel() {
       this.$emit('change', false)
       this.resetForm()
+      this.$emit('update')
     }
   }
 }

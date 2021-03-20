@@ -33,7 +33,7 @@ export default {
         },
         {
           label: '补贴费用',
-          field: 'xxxx',
+          field: 'bonus',
           form: 'input',
           rules: [{ validator: validatorMoney('补贴费用') }]
         },

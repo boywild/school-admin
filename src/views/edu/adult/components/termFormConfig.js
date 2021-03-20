@@ -30,7 +30,7 @@ export default [
     label: '期末考试成绩',
     field: 'termEndScore',
     form: 'input',
-    rules: [{ max: 6, message: '登录密码限制输入6位' }]
+    rules: []
   },
   {
     label: '填写入学生登记表',

@@ -42,10 +42,7 @@ export default {
           label: '入学批次',
           field: 'entranceDate',
           form: 'date',
-          rules: [
-            { required: true, message: '请输入入学批次' },
-            { max: 10, message: '限制输入10位' }
-          ]
+          rules: [{ required: true, message: '请输入入学批次' }]
         },
         {
           label: '学生来源',
@@ -195,7 +192,7 @@ export default {
     async saveJoinInfo() {
       this.validate(async values => {
         this.loading = true
-        await studentApply(values)
+        await studentApply({ ...values, studentId: this.studentId })
         this.loading = false
         this.handleCancel()
         this.$emit('update')

@@ -87,12 +87,12 @@ export default {
         },
         {
           label: '欠款结算时间',
-          field: 'xxxx',
+          field: 'oweClearTime',
           form: 'date'
         },
         {
           label: '学位辅导费',
-          field: 'xxxx',
+          field: 'degreeTutor',
           form: 'input',
           rules: [{ validator: validatorMoney('学位辅导费') }]
         }

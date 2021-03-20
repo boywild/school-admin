@@ -27,7 +27,7 @@ export default {
       tab6: [
         {
           label: '特殊报考费',
-          field: 'xxxx',
+          field: 'specialApply',
           form: 'input',
           rules: [{ validator: validatorMoney('特殊报考费') }]
         },

@@ -30,7 +30,6 @@ export default {
     content(newVal, oldVal) {
       if (newVal) {
         const form = this.$refs.form
-        console.log(newVal)
         form.setData({ ...newVal, degreeInformTime: moment(newVal.degreeInformTime) })
       }
     }
@@ -40,7 +39,6 @@ export default {
       const form = this.$refs.form
       form.validate(data => {
         callback && callback(data)
-        console.log(data)
       })
     },
     resetForm() {

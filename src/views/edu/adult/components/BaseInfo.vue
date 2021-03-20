@@ -182,7 +182,9 @@ export default {
       ]
     }
   },
-  created() {},
+  created() {
+    console.log(this.$route)
+  },
   mounted() {
     this.$watch('value', val => {
       if (val && this.studentId) {
@@ -211,7 +213,7 @@ export default {
     saveBaseInfo() {
       this.validate(async values => {
         this.loading = true
-        await studentBaseInfo({ ...values, studentId: this.studentId })
+        await studentBaseInfo({ applyType: 'S001', ...values, studentId: this.studentId })
         this.loading = false
         this.handleCancel()
         this.$emit('update')

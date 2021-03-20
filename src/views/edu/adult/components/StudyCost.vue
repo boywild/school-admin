@@ -112,73 +112,73 @@ export default {
         },
         {
           label: '第一年交费',
-          field: 'xxxx',
+          field: 'first',
           form: 'input',
           rules: [{ validator: validatorMoney('第一年交费') }]
         },
         {
           label: '第二年交费',
-          field: 'xxxx',
+          field: 'second',
           form: 'input',
           rules: [{ validator: validatorMoney('第二年交费') }]
         },
         {
           label: '第三年交费',
-          field: 'xxxx',
+          field: 'third',
           form: 'input',
           rules: [{ validator: validatorMoney('第三年交费') }]
         },
         {
           label: '第四年交费',
-          field: 'xxxx',
+          field: 'fourth',
           form: 'input',
           rules: [{ validator: validatorMoney('第四年交费') }]
         },
         {
           label: '第五年交费',
-          field: 'xxxx',
+          field: 'fifth',
           form: 'input',
           rules: [{ validator: validatorMoney('第五年交费') }]
         },
         {
           label: '报考费',
-          field: 'xxxx',
+          field: 'apply',
           form: 'input',
           rules: [{ validator: validatorMoney('报考费') }]
         },
         {
           label: '入学考试辅导费',
-          field: 'xxxx',
+          field: 'entranceTutor',
           form: 'input',
           rules: [{ validator: validatorMoney('入学考试辅导费') }]
         },
         {
           label: '学位报考费',
-          field: 'xxxx',
+          field: 'degreeApply',
           form: 'input',
           rules: [{ validator: validatorMoney('学位报考费') }]
         },
         {
           label: '学位辅导费',
-          field: 'xxxx',
+          field: 'degreeTutor',
           form: 'input',
           rules: [{ validator: validatorMoney('学位辅导费') }]
         },
         {
           label: '网课费',
-          field: 'xxxx',
+          field: 'eCourse',
           form: 'input',
           rules: [{ validator: validatorMoney('网课费') }]
         },
         {
           label: '论文费',
-          field: 'xxxx',
+          field: 'paper',
           form: 'input',
           rules: [{ validator: validatorMoney('论文费') }]
         },
         {
           label: '图像采集费',
-          field: 'xxxx',
+          field: 'imageCollect',
           form: 'input',
           rules: [{ validator: validatorMoney('图像采集费') }]
         }

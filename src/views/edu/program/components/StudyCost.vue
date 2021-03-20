@@ -87,25 +87,25 @@ export default {
         },
         {
           label: '第一年交费',
-          field: 'mm',
+          field: 'first',
           form: 'input',
           rules: [{ validator: validatorMoney('第一年交费') }]
         },
         {
           label: '第二年交费',
-          field: 'school',
+          field: 'second',
           form: 'input',
           rules: [{ validator: validatorMoney('第二年交费') }]
         },
         {
           label: '报名费',
-          field: 'address',
+          field: 'xxxx',
           form: 'input',
           rules: [{ validator: validatorMoney('报考费') }]
         },
         {
           label: '图像采集费',
-          field: 'dd',
+          field: 'imageCollect',
           form: 'input',
           rules: [{ validator: validatorMoney('图像采集费') }]
         }

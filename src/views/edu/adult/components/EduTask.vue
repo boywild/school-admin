@@ -71,7 +71,7 @@ export default {
           label: '语文分数',
           field: 'chineseScore',
           form: 'input',
-          rules: [{ max: 5, message: '数学分数' }]
+          rules: [{ max: 5, message: '语文分数' }]
         },
         {
           label: '数学分数（高中起点）',
@@ -89,7 +89,7 @@ export default {
           label: '政治分数',
           field: 'politicsScore',
           form: 'input',
-          rules: [{ max: 5, message: 'xxxx' }]
+          rules: [{ max: 5, message: '政治分数' }]
         },
         {
           label: '大学语文分数',
@@ -275,7 +275,7 @@ export default {
       ]
       const formObj = {}
       field.forEach((ele, index) => {
-        formObj[ele] = result[index] ? result[index].grade : 0
+        formObj[ele] = result[index] ? result[index].grade : ''
       })
       console.log(formObj)
       return formObj

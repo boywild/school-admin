@@ -223,16 +223,16 @@ import { getRoleList } from '@/api/manage'
 // import { getStudentsList } from '@/api/students'
 import { studentList } from '@/api/student'
 
-import {
-  STUDENT_FROM_ENMU,
-  STUDY_LEVEL_ENMU,
-  STUDY_WAT_ENMU,
-  SUBJECT_ENMU,
-  INFO_GATHER_ENMU,
-  THESIS_FROM_ENMU,
-  REACH_ENMU,
-  YESORNO_ENMU
-} from '@/config/dict'
+// import {
+//   STUDENT_FROM_ENMU,
+//   STUDY_LEVEL_ENMU,
+//   STUDY_WAT_ENMU,
+//   SUBJECT_ENMU,
+//   INFO_GATHER_ENMU,
+//   THESIS_FROM_ENMU,
+//   REACH_ENMU,
+//   YESORNO_ENMU
+// } from '@/config/dict'
 
 // import StepByStepModal from './modules/StepByStepModal'
 import CreateForm from './components/CreateForm'
@@ -269,14 +269,14 @@ export default {
     this.columns = columns
     return {
       // create model
-      STUDENT_FROM_ENMU,
-      STUDY_LEVEL_ENMU,
-      STUDY_WAT_ENMU,
-      SUBJECT_ENMU,
-      INFO_GATHER_ENMU,
-      THESIS_FROM_ENMU,
-      REACH_ENMU,
-      YESORNO_ENMU,
+      // STUDENT_FROM_ENMU,
+      // STUDY_LEVEL_ENMU,
+      // STUDY_WAT_ENMU,
+      // SUBJECT_ENMU,
+      // INFO_GATHER_ENMU,
+      // THESIS_FROM_ENMU,
+      // REACH_ENMU,
+      // YESORNO_ENMU,
       currentForm: 'BaseInfo',
       visibleBaseInfo: false,
       visibleImgInfo: false,
@@ -348,7 +348,8 @@ export default {
       'GraduateGatherEnum',
       'StudentPassEnum',
       'LanuageEnum',
-      'StudentDegreeLevelEnum'
+      'StudentDegreeLevelEnum',
+      'ScoreResultEnum'
     ]),
     // 新建学生
     handleAdd() {

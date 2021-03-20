@@ -14,11 +14,11 @@
         <a-tab-pane v-for="pane in panes" :key="pane.key" :tab="pane.title">
           <a-spin :spinning="loadingData">
             <!-- <component ref="form" :is="`TermFormTab${index + 1}`" :content="contentData"></component> -->
-            <term-form-tab1 v-if="activeKey === '1'" :content="contentData"></term-form-tab1>
-            <term-form-tab2 v-else-if="activeKey === '2'" :content="contentData"></term-form-tab2>
-            <term-form-tab3 v-else-if="activeKey === '3'" :content="contentData"></term-form-tab3>
-            <term-form-tab4 v-else-if="activeKey === '4'" :content="contentData"></term-form-tab4>
-            <term-form-tab5 v-else :content="contentData"></term-form-tab5>
+            <term-form-tab1 ref="termForm1" v-if="activeKey === '1'" :content="contentData"></term-form-tab1>
+            <term-form-tab2 ref="termForm2" v-else-if="activeKey === '2'" :content="contentData"></term-form-tab2>
+            <term-form-tab3 ref="termForm3" v-else-if="activeKey === '3'" :content="contentData"></term-form-tab3>
+            <term-form-tab4 ref="termForm4" v-else-if="activeKey === '4'" :content="contentData"></term-form-tab4>
+            <term-form-tab5 ref="termForm5" v-else :content="contentData"></term-form-tab5>
             <!-- <form-generate ref="form" :fields="tab4"></form-generate> -->
           </a-spin>
         </a-tab-pane>
@@ -215,32 +215,30 @@ export default {
       if (result[this.activeKey - 1]) {
         // const form = this.$refs.form
         // form.setData(result[this.activeKey])
-        console.log(result[this.activeKey - 1])
         this.contentData = result[this.activeKey - 1]
       } else {
         this.contentData = result[0]
       }
-      console.log(result)
       this.loadingData = false
     },
     async saveStudyTerm() {
       this.validate(async values => {
         this.loading = true
-        await studentTerm({ ...values, studentId: this.studentId })
+        console.log({ ...values, studentId: this.studentId, term: this.activeKey })
+        await studentTerm({ ...values, studentId: this.studentId, term: this.activeKey })
         this.loading = false
-        this.handleCancel()
-        this.$emit('update')
+        const { panes, activeKey } = this
+        this.$message.info(`${(panes[activeKey - 1] && panes[activeKey - 1].title) || '学期'}信息保存成功`)
+        // this.handleCancel()
+        // this.$emit('update')
       })
     },
     validate(callback) {
-      const form = this.$refs.form
-      form.validate(data => {
-        callback && callback(data)
-        console.log(data)
-      })
+      const form = this.$refs[`termForm${this.activeKey}`][0]
+      form.validate(callback)
     },
     resetForm() {
-      const form = this.$refs.form[0]
+      const form = this.$refs[`termForm${this.activeKey}`]
       form.resetForm()
     },
     // onEdit(targetKey, action) {
@@ -288,6 +286,7 @@ export default {
     handleCancel() {
       this.$emit('change', false)
       this.activeKey = '1'
+      this.$emit('update')
       // this.resetForm()
     }
   }
