@@ -1,16 +1,42 @@
 <template>
-  <div class="edu-adult">
-    <form-generate ref="form" :fields="tab3"></form-generate>
-  </div>
+  <a-modal
+    title="报名信息"
+    :width="900"
+    :visible="value"
+    :mask-closable="false"
+    :confirmLoading="loading"
+    okText="保存报名信息"
+    @ok="handleOk"
+    @cancel="handleCancel"
+  >
+    <div class="edu-adult">
+      <a-spin :spinning="loadingData">
+        <form-generate ref="form" :fields="tab3"></form-generate>
+      </a-spin>
+    </div>
+  </a-modal>
 </template>
 
 <script>
 import FormGenerate from '@/components/FormGenerate'
+import { getApply, studentApply } from '@/api/student'
+import moment from 'moment'
+
 export default {
   name: 'JoinInfo',
+  props: {
+    value: { type: Boolean, required: true },
+    studentId: { type: String, default: '' }
+  },
+  model: {
+    prop: 'value',
+    event: 'change'
+  },
   components: { FormGenerate },
   data() {
     return {
+      loading: false,
+      loadingData: false,
       tab3: [
         {
           label: '入学批次',
@@ -93,8 +119,36 @@ export default {
       ]
     }
   },
+  created() {},
+  mounted() {
+    this.$watch('value', val => {
+      if (val) {
+        this.getJoinInfo()
+      }
+    })
+  },
   computed: {},
   methods: {
+    async getJoinInfo() {
+      this.loadingData = true
+      const result = await getApply()
+      const form = this.$refs.form
+      form.setData({
+        ...result,
+        entranceDate: moment(result.entranceDate),
+        workStartTime: moment(result.workStartTime)
+      })
+      this.loadingData = false
+    },
+    async saveJoinInfo() {
+      this.validate(async values => {
+        this.loading = true
+        await studentApply({ ...values, studentId: this.studentId })
+        this.loading = false
+        this.handleCancel()
+        this.$emit('update')
+      })
+    },
     validate(callback) {
       const form = this.$refs.form
       form.validate(data => {
@@ -105,6 +159,13 @@ export default {
     resetForm() {
       const form = this.$refs.form
       form.reset()
+    },
+    handleOk() {
+      this.saveJoinInfo()
+    },
+    handleCancel() {
+      this.$emit('change', false)
+      this.resetForm()
     }
   }
 }

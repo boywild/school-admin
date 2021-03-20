@@ -139,9 +139,7 @@
       <BaseInfo v-model="visibleBaseInfo" :studentId="mdl && mdl.studentId" @update="tableRefresh"></BaseInfo>
       <ImgInfo v-model="visibleImgInfo" :studentId="mdl && mdl.studentId" @update="tableRefresh"></ImgInfo>
       <JoinInfo v-model="visibleJoinInfo" :studentId="mdl && mdl.studentId" @update="tableRefresh"></JoinInfo>
-      <EduTask v-model="visibleEduTask" :studentId="mdl && mdl.studentId" @update="tableRefresh"></EduTask>
       <StudyTerm v-model="visibleStudyTerm" :studentId="mdl && mdl.studentId" @update="tableRefresh"></StudyTerm>
-      <StudyDegree v-model="visibleStudyDegree" :studentId="mdl && mdl.studentId" @update="tableRefresh"></StudyDegree>
       <StudyCost v-model="visibleStudyCost" :studentId="mdl && mdl.studentId" @update="tableRefresh"></StudyCost>
     </a-card>
   </page-header-wrapper>
@@ -206,9 +204,7 @@ export default {
       visibleBaseInfo: false,
       visibleImgInfo: false,
       visibleJoinInfo: false,
-      visibleEduTask: false,
       visibleStudyTerm: false,
-      visibleStudyDegree: false,
       visibleStudyCost: false,
       confirmLoading: false,
       mdl: null,
@@ -242,30 +238,6 @@ export default {
         selectedRowKeys: this.selectedRowKeys,
         onChange: this.onSelectChange
       }
-    },
-    getForm() {
-      return this.currentForm
-    },
-    setDialogTitle() {
-      let titTxt = ''
-      switch (this.currentForm) {
-        case 'BaseInfo':
-          titTxt = '基本信息'
-          break
-        case 'ImgInfo':
-          titTxt = '图片信息'
-          break
-        case 'JoinInfo':
-          titTxt = '报名信息'
-          break
-        case 'StudyTerm':
-          titTxt = '学期信息'
-          break
-        case 'StudyCost':
-          titTxt = '财务信息'
-          break
-      }
-      return titTxt
     }
   },
   methods: {
