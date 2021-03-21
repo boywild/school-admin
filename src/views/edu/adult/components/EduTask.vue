@@ -69,98 +69,98 @@ export default {
         // },
         {
           label: '语文分数',
-          field: 'chineseScore',
+          field: 'language',
           form: 'input',
-          rules: [{ max: 5, message: '语文分数' }]
+          rules: []
         },
         {
           label: '数学分数（高中起点）',
-          field: 'mathScore',
+          field: 'math',
           form: 'input',
-          rules: [{ max: 5, message: '数学分数' }]
+          rules: []
         },
         {
           label: '英语分数（高中起点）',
-          field: 'englishScore',
+          field: 'english',
           form: 'input',
-          rules: [{ max: 5, message: '英语分数' }]
+          rules: []
         },
         {
           label: '政治分数',
-          field: 'politicsScore',
+          field: 'politics',
           form: 'input',
-          rules: [{ max: 5, message: '政治分数' }]
+          rules: []
         },
         {
           label: '大学语文分数',
-          field: 'universityChineseScore',
+          field: 'collageLanguage',
           form: 'input',
-          rules: [{ max: 5, message: '大学语文分数' }]
+          rules: []
         },
         {
           label: '高等数学一分数',
-          field: 'highMathScore1',
+          field: 'highMathOne',
           form: 'input',
-          rules: [{ max: 5, message: '高等数学一分数' }]
+          rules: []
         },
         {
           label: '高等数学二分数',
-          field: 'highMathScore2',
+          field: 'highMathTwo',
           form: 'input',
-          rules: [{ max: 5, message: '高等数学二分数' }]
+          rules: []
         },
         {
           label: '物理化学分数',
-          field: 'physicsScore',
+          field: 'physicsChemistry',
           form: 'input',
-          rules: [{ max: 5, message: '物理化学分数' }]
+          rules: []
         },
         {
           label: '教育理论分数',
-          field: 'educationScore',
+          field: 'educationTheory',
           form: 'input',
-          rules: [{ max: 5, message: '教育理论分数' }]
+          rules: []
         },
         {
           label: '医学综合分数',
-          field: 'medicineScore',
+          field: 'medicine',
           form: 'input',
-          rules: [{ max: 5, message: '医学综合分数' }]
+          rules: []
         },
         {
           label: '民法分数',
-          field: 'civillawScore',
+          field: 'civilLaw',
           form: 'input',
-          rules: [{ max: 5, message: '民法分数' }]
+          rules: []
         },
         {
           label: '历史地理分数',
-          field: 'historyGeographyScore',
+          field: 'historyGeography',
           form: 'input',
-          rules: [{ max: 5, message: '历史地理分数' }]
+          rules: []
         },
         {
           label: '艺术概论分数',
-          field: 'artScore',
+          field: 'art',
           form: 'input',
-          rules: [{ max: 5, message: '艺术概论分数' }]
+          rules: []
         },
 
         {
           label: '入学考试总分数',
           field: 'totalScore',
           form: 'input',
-          rules: [{ max: 5, message: '入学考试总分数' }]
+          rules: []
         },
         {
           label: '加试时间',
-          field: 'xxxx',
+          field: 'addTime',
           form: 'input',
           rules: []
         },
         {
           label: '加试成绩',
-          field: 'xxxx',
+          field: 'add',
           form: 'input',
           rules: [{ max: 6, message: '加试成绩限制输入6位' }]
         },
@@ -222,10 +222,11 @@ export default {
   mounted() {
     this.$watch('value', val => {
       if (val && this.studentId) {
-        this.getSbuject().then(res => {
-          this.getEduTask(res)
-        })
-        this.getSbuject()
+        // this.getSbuject().then(res => {
+        //   this.getEduTask(res)
+        // })
+        this.getEduTask()
+        // this.getSbuject()
       }
     })
   },

@@ -20,7 +20,7 @@
 <script>
 import FormGenerate from '@/components/FormGenerate'
 import { getApply, studentApply } from '@/api/student'
-import moment from 'moment'
+// import moment from 'moment'
 
 export default {
   name: 'JoinInfo',
@@ -180,12 +180,10 @@ export default {
   methods: {
     async getJoinInfo() {
       this.loadingData = true
-      const result = await getApply()
+      const result = await getApply(this.studentId)
       const form = this.$refs.form
       form.setData({
-        ...result,
-        entranceDate: moment(result.entranceDate),
-        workStartTime: moment(result.workStartTime)
+        ...result
       })
       this.loadingData = false
     },

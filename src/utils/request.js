@@ -36,6 +36,7 @@ const errorHandler = error => {
         message: 'Unauthorized',
         description: 'Authorization verification failed'
       })
+      console.log(token)
       if (token) {
         store.dispatch('Logout').then(() => {
           setTimeout(() => {

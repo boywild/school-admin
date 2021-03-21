@@ -28,6 +28,6 @@ export function financeDetail(studentId) {
   return request({
     url: financeApi.Finance,
     method: 'get',
-    data: { studentId }
+    params: { studentId }
   })
 }

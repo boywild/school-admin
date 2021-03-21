@@ -1,11 +1,11 @@
 <template>
   <div>
-    <form-generate ref="form" :fields="tab4"></form-generate>
+    <form-generate ref="termFormTabForm1" :fields="tab4"></form-generate>
   </div>
 </template>
 
 <script>
-import moment from 'moment'
+// import moment from 'moment'
 import FormGenerate from '@/components/FormGenerate'
 import { YESORNO_ENMU, REACH_ENMU } from '@/config/dict'
 
@@ -29,20 +29,20 @@ export default {
   watch: {
     content(newVal, oldVal) {
       if (newVal) {
-        const form = this.$refs.form
-        form.setData({ ...newVal, degreeInformTime: moment(newVal.degreeInformTime) })
+        const form = this.$refs.termFormTabForm1
+        form.setData({ ...newVal })
       }
     }
   },
   methods: {
     validate(callback) {
-      const form = this.$refs.form
+      const form = this.$refs.termFormTabForm1
       form.validate(data => {
         callback && callback(data)
       })
     },
     resetForm() {
-      const form = this.$refs.form
+      const form = this.$refs.termFormTabForm1
       form.reset()
     }
   }

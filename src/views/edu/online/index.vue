@@ -154,7 +154,7 @@ import ImgInfo from './components/ImgInfo'
 import JoinInfo from './components/JoinInfo'
 import StudyTerm from './components/StudyTerm'
 import StudyCost from './components/StudyCost'
-import { getRoleList } from '@/api/manage'
+// import { getRoleList } from '@/api/manage'
 // import { getStudentsList } from '@/api/students'
 import { studentList } from '@/api/student'
 // import {
@@ -226,7 +226,7 @@ export default {
   },
 
   created() {
-    getRoleList({ t: new Date() })
+    // getRoleList({ t: new Date() })
   },
 
   computed: {

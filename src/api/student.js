@@ -51,7 +51,7 @@ export function getBaseInfo(studentId) {
   return request({
     url: studentApi.StudentGetBaseInfo,
     method: 'get',
-    data: { studentId }
+    params: { studentId }
   })
 }
 
@@ -69,7 +69,7 @@ export function getPic(studentId) {
   return request({
     url: studentApi.StudentGetPic,
     method: 'get',
-    data: { studentId }
+    params: { studentId }
   })
 }
 
@@ -87,7 +87,7 @@ export function getApply(studentId) {
   return request({
     url: studentApi.StudentGetApply,
     method: 'get',
-    data: { studentId }
+    params: { studentId }
   })
 }
 
@@ -105,7 +105,7 @@ export function getTerm(studentId) {
   return request({
     url: studentApi.StudentGetTerm,
     method: 'get',
-    data: { studentId }
+    params: { studentId }
   })
 }
 
@@ -119,11 +119,11 @@ export function studentDegree(parameter) {
 }
 
 // 学生-获取学位信息
-export function getDegree(studentId) {
+export function getDegree(studentId, term) {
   return request({
     url: studentApi.StudentGetDegree,
     method: 'get',
-    data: { studentId }
+    params: { studentId, term }
   })
 }
 
@@ -141,7 +141,7 @@ export function studentGetEduTask(studentId) {
   return request({
     url: studentApi.StudentGetEduTask,
     method: 'get',
-    data: { studentId }
+    params: { studentId }
   })
 }
 
@@ -168,7 +168,7 @@ export function getSubjectScore(studentId) {
   return request({
     url: studentApi.StudentScore,
     method: 'get',
-    data: { studentId }
+    params: { studentId }
   })
 }
 // 学生-保存毕业申请
@@ -184,6 +184,6 @@ export function studentGetGraduate(studentId) {
   return request({
     url: studentApi.StudentGraduate,
     method: 'get',
-    data: { studentId }
+    params: { studentId }
   })
 }

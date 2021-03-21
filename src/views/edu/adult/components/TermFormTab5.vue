@@ -1,16 +1,16 @@
 <template>
   <div>
-    <form-generate ref="form" :fields="tab4"></form-generate>
+    <form-generate ref="termFormTabForm5" :fields="tab4"></form-generate>
   </div>
 </template>
 
 <script>
-import moment from 'moment'
+// import moment from 'moment'
 import FormGenerate from '@/components/FormGenerate'
 import { YESORNO_ENMU } from '@/config/dict'
 
 export default {
-  name: 'StudyTerm',
+  name: 'TermFormTab5',
   props: {
     studentId: { type: String, default: '' },
     content: { type: Object, default: () => {} }
@@ -69,22 +69,22 @@ export default {
   watch: {
     content(newVal, oldVal) {
       if (newVal) {
-        const form = this.$refs.form
+        const form = this.$refs.termFormTabForm5
         console.log(newVal)
-        form.setData({ ...newVal, diplomaTakeTime: moment(newVal.diplomaTakeTime) })
+        form.setData({ ...newVal })
       }
     }
   },
   methods: {
     validate(callback) {
-      const form = this.$refs.form
+      const form = this.$refs.termFormTabForm5
       form.validate(data => {
         callback && callback(data)
         console.log(data)
       })
     },
     resetForm() {
-      const form = this.$refs.form
+      const form = this.$refs.termFormTabForm5
       form.reset()
     }
   }

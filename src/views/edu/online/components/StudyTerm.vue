@@ -29,7 +29,7 @@ import FormGenerate from '@/components/FormGenerate'
 import { studentTerm, getTerm } from '@/api/student'
 
 export default {
-  name: 'StudyTerm',
+  name: 'OnlineStudyTerm',
   props: {
     value: { type: Boolean, required: true },
     studentId: { type: String, default: '' }

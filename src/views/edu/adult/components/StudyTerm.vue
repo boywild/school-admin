@@ -11,18 +11,17 @@
   >
     <div class="edu-adult">
       <a-tabs v-model="activeKey" type="card" @change="getStudyTerm">
-        <a-tab-pane v-for="pane in panes" :key="pane.key" :tab="pane.title">
-          <a-spin :spinning="loadingData">
-            <!-- <component ref="form" :is="`TermFormTab${index + 1}`" :content="contentData"></component> -->
-            <term-form-tab1 ref="termForm1" v-if="activeKey === '1'" :content="contentData"></term-form-tab1>
-            <term-form-tab2 ref="termForm2" v-else-if="activeKey === '2'" :content="contentData"></term-form-tab2>
-            <term-form-tab3 ref="termForm3" v-else-if="activeKey === '3'" :content="contentData"></term-form-tab3>
-            <term-form-tab4 ref="termForm4" v-else-if="activeKey === '4'" :content="contentData"></term-form-tab4>
-            <term-form-tab5 ref="termForm5" v-else :content="contentData"></term-form-tab5>
-            <!-- <form-generate ref="form" :fields="tab4"></form-generate> -->
-          </a-spin>
-        </a-tab-pane>
+        <a-tab-pane v-for="pane in panes" :key="pane.key" :tab="pane.title"> </a-tab-pane>
       </a-tabs>
+      <a-spin :spinning="loadingData">
+        <!-- <component ref="form" :is="`TermFormTab${index + 1}`" :content="contentData"></component> -->
+        <term-form-tab1 ref="termForm1" v-if="activeKey === '1'" :content="contentData"></term-form-tab1>
+        <term-form-tab2 ref="termForm2" v-else-if="activeKey === '2'" :content="contentData"></term-form-tab2>
+        <term-form-tab3 ref="termForm3" v-else-if="activeKey === '3'" :content="contentData"></term-form-tab3>
+        <term-form-tab4 ref="termForm4" v-else-if="activeKey === '4'" :content="contentData"></term-form-tab4>
+        <term-form-tab5 ref="termForm5" v-else-if="activeKey === '5'" :content="contentData"></term-form-tab5>
+        <!-- <form-generate ref="form" :fields="tab4"></form-generate> -->
+      </a-spin>
     </div>
   </a-modal>
 </template>
@@ -212,13 +211,16 @@ export default {
       this.loadingData = true
       this.contentData = {}
       const result = await getTerm(this.studentId)
-      if (result[this.activeKey - 1]) {
-        // const form = this.$refs.form
-        // form.setData(result[this.activeKey])
-        this.contentData = result[this.activeKey - 1]
-      } else {
-        this.contentData = result[0]
-      }
+      const current = result.find(ele => ele.term === Number(this.activeKey)) || {}
+      // if (result[this.activeKey - 1]) {
+      //   // const form = this.$refs.form
+      //   // form.setData(result[this.activeKey])
+      //   this.contentData = result[this.activeKey - 1]
+      // } else {
+      //   this.contentData = result[0]
+      // }
+      console.log(result, current)
+      this.contentData = current
       this.loadingData = false
     },
     async saveStudyTerm() {
@@ -234,7 +236,7 @@ export default {
       })
     },
     validate(callback) {
-      const form = this.$refs[`termForm${this.activeKey}`][0]
+      const form = this.$refs[`termForm${this.activeKey}`]
       form.validate(callback)
     },
     resetForm() {

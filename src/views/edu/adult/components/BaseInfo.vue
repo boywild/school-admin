@@ -19,9 +19,12 @@
 
 <script>
 import { mapState } from 'vuex'
-import moment from 'moment'
+// import moment from 'moment'
 import FormGenerate from '@/components/FormGenerate'
 import { isEmail, isPhone } from '@/utils/validate'
+// import timestamp from '@/utils/timestamp'
+// import { matchAddress } from '@/utils/address'
+
 import { studentBaseInfo, getBaseInfo } from '@/api/student'
 
 export default {
@@ -204,16 +207,21 @@ export default {
   methods: {
     async getBaseInfo() {
       this.loadingData = true
+      console.log(this.studentId)
       const result = await getBaseInfo(this.studentId)
       const form = this.$refs.form
-      form.setData({ ...result, birthDay: moment(result.birthDay), graduateTime: moment(result.birthDay) })
+      form.setData({ ...result })
       this.loadingData = false
       console.log(result)
     },
     saveBaseInfo() {
       this.validate(async values => {
         this.loading = true
-        await studentBaseInfo({ applyType: 'S001', ...values, studentId: this.studentId })
+        await studentBaseInfo({
+          applyType: 'S001',
+          ...values,
+          studentId: this.studentId
+        })
         this.loading = false
         this.handleCancel()
         this.$emit('update')

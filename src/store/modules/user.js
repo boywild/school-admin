@@ -18,6 +18,7 @@ const user = {
 
   mutations: {
     SET_TOKEN: (state, token) => {
+      console.log(state)
       state.token = token
     },
     SET_NAME: (state, { name, welcome }) => {
@@ -45,7 +46,8 @@ const user = {
       state.info = {}
       state.permissionList = []
       state.adminType = ''
-      state.permission.addRouters = []
+      // state.permission.addRouters = []
+      console.log(state)
       storage.remove(ACCESS_TOKEN)
       storage.remove(PERMISSION)
       storage.remove(ADMINTYPE)

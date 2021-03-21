@@ -35,32 +35,36 @@
 
 <script>
 import { mapState } from 'vuex'
-import {
-  STUDENT_FROM_ENMU,
-  STUDY_LEVEL_ENMU,
-  STUDY_WAT_ENMU,
-  SUBJECT_ENMU,
-  INFO_GATHER_ENMU,
-  DEGREE_ENMU,
-  THESIS_FROM_ENMU,
-  REACH_ENMU,
-  YESORNO_ENMU,
-  MZ_ENMU,
-  HK_ENMU,
-  LANG_ENMU,
-  SEX_ENMU,
-  ZZMM_ENMU,
-  CARDTYPE_ENMU,
-  HJ_ENMU,
-  PLATFORM_ENMU,
-  FEESOURCE_ENMU,
-  SCOREQUERY_ENMU,
-  STUDY_LEVEL_ENMU2,
-  TRAINING_ENMU,
-  TEACHMETHOD_ENMU,
-  CLASSTYPE_ENMU
-} from '@/config/dict'
+import moment from 'moment'
+import { matchAddress } from '@/utils/address'
+// import timestamp from '@/utils/timestamp'
+// import {
+//   STUDENT_FROM_ENMU,
+//   STUDY_LEVEL_ENMU,
+//   STUDY_WAT_ENMU,
+//   SUBJECT_ENMU,
+//   INFO_GATHER_ENMU,
+//   DEGREE_ENMU,
+//   THESIS_FROM_ENMU,
+//   REACH_ENMU,
+//   YESORNO_ENMU,
+//   MZ_ENMU,
+//   HK_ENMU,
+//   LANG_ENMU,
+//   SEX_ENMU,
+//   ZZMM_ENMU,
+//   CARDTYPE_ENMU,
+//   HJ_ENMU,
+//   PLATFORM_ENMU,
+//   FEESOURCE_ENMU,
+//   SCOREQUERY_ENMU,
+//   STUDY_LEVEL_ENMU2,
+//   TRAINING_ENMU,
+//   TEACHMETHOD_ENMU,
+//   CLASSTYPE_ENMU
+// } from '@/config/dict'
 import city from '@/config/city'
+
 export default {
   name: 'FormGenerate',
   props: { fields: { type: Array, default: () => [] } },
@@ -69,36 +73,46 @@ export default {
       labelCol: { span: 8 },
       wrapperCol: { span: 16 },
       formData: {},
-      selectData: {
-        STUDENT_FROM_ENMU,
-        STUDY_LEVEL_ENMU,
-        STUDY_LEVEL_ENMU2,
-        STUDY_WAT_ENMU,
-        SUBJECT_ENMU,
-        INFO_GATHER_ENMU,
-        THESIS_FROM_ENMU,
-        HK_ENMU,
-        LANG_ENMU,
-        MZ_ENMU,
-        DEGREE_ENMU,
-        ZZMM_ENMU,
-        CARDTYPE_ENMU,
-        PLATFORM_ENMU,
-        FEESOURCE_ENMU,
-        SCOREQUERY_ENMU,
-        TRAINING_ENMU,
-        TEACHMETHOD_ENMU,
-        CLASSTYPE_ENMU
-      },
-      radioData: {
-        YESORNO_ENMU,
-        REACH_ENMU,
-        SEX_ENMU,
-        HJ_ENMU
-      },
+      // selectData: {
+      //   STUDENT_FROM_ENMU,
+      //   STUDY_LEVEL_ENMU,
+      //   STUDY_LEVEL_ENMU2,
+      //   STUDY_WAT_ENMU,
+      //   SUBJECT_ENMU,
+      //   INFO_GATHER_ENMU,
+      //   THESIS_FROM_ENMU,
+      //   HK_ENMU,
+      //   LANG_ENMU,
+      //   MZ_ENMU,
+      //   DEGREE_ENMU,
+      //   ZZMM_ENMU,
+      //   CARDTYPE_ENMU,
+      //   PLATFORM_ENMU,
+      //   FEESOURCE_ENMU,
+      //   SCOREQUERY_ENMU,
+      //   TRAINING_ENMU,
+      //   TEACHMETHOD_ENMU,
+      //   CLASSTYPE_ENMU
+      // },
+      // radioData: {
+      //   YESORNO_ENMU,
+      //   REACH_ENMU,
+      //   SEX_ENMU,
+      //   HJ_ENMU
+      // },
       cascaderData: {
         CITY: city
-      }
+      },
+      interceptAddress: ['examCity', 'location'],
+      interceptDate: [
+        'birthDay',
+        'graduateTime',
+        'entranceDate',
+        'workStartTime',
+        'degreeInformTime',
+        'diplomaTakeTime',
+        'registerDateTime'
+      ]
     }
   },
   computed: {
@@ -118,8 +132,21 @@ export default {
       const form = this.$refs.formGenerate
       form.validate(success => {
         // this.$emit('validate', { success, data: this.baseInfo })
+        const res = {}
         if (success) {
-          callback && callback(this.formData)
+          this.interceptAddress.forEach(address => {
+            if (this.formData && this.formData[address]) {
+              res[address] = matchAddress(this.formData[address])
+            }
+          })
+          this.interceptDate.forEach(date => {
+            if (this.formData && this.formData[date]) {
+              res[date] = new Date(this.formData[date]).getTime()
+            }
+          })
+          const validateData = { ...this.formData, ...res }
+          console.log(validateData)
+          callback && callback(validateData)
         }
       })
     },
@@ -130,6 +157,17 @@ export default {
       form.clearValidate()
     },
     setData(data) {
+      this.interceptAddress.forEach(address => {
+        if (data && data[address]) {
+          const location = data[address]
+          data[address] = [location[0].code, location[1].code, location[2].code]
+        }
+      })
+      this.interceptDate.forEach(date => {
+        if (data && data[date]) {
+          data[date] = moment(Number(data[date]))
+        }
+      })
       this.formData = data
     }
   }

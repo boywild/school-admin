@@ -130,7 +130,7 @@ export default {
           radioFrom: 'YesOrNoEnum',
           rules: []
         },
-        { label: 'VIP负责人', field: 'xxxx', form: 'input', rules: [{ max: '15', message: 'VIP负责人限制输入15位' }] },
+        { label: 'VIP负责人', field: 'vipDutyTeacher', form: 'input', rules: [{ max: '15', message: 'VIP负责人限制输入15位' }] },
         {
           label: '学位分数',
           field: 'passStatus',
@@ -159,9 +159,9 @@ export default {
   methods: {
     async getStudyDegree() {
       this.loadingData = true
-      const result = await getDegree(this.studentId)
+      const result = await getDegree(this.studentId, this.activeKey)
       const form = this.$refs.form
-      form.setData(result[this.activeKey - 1] || result[0])
+      form.setData(result)
       this.loadingData = false
     },
     async saveStudyDegree() {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form-generate ref="form" :fields="tab4"></form-generate>
+    <form-generate ref="termFormTabForm4" :fields="tab4"></form-generate>
   </div>
 </template>
 
@@ -9,7 +9,7 @@ import FormGenerate from '@/components/FormGenerate'
 import { YESORNO_ENMU, INFO_GATHER_ENMU, THESIS_FROM_ENMU } from '@/config/dict'
 
 export default {
-  name: 'StudyTerm',
+  name: 'TermFormTab4',
   props: {
     studentId: { type: String, default: '' },
     content: { type: Object, default: () => {} }
@@ -81,7 +81,7 @@ export default {
   watch: {
     content(newVal, oldVal) {
       if (newVal) {
-        const form = this.$refs.form
+        const form = this.$refs.termFormTabForm4
         console.log(newVal)
         form.setData({ ...newVal })
       }
@@ -89,14 +89,14 @@ export default {
   },
   methods: {
     validate(callback) {
-      const form = this.$refs.form
+      const form = this.$refs.termFormTabForm4
       form.validate(data => {
         callback && callback(data)
         console.log(data)
       })
     },
     resetForm() {
-      const form = this.$refs.form
+      const form = this.$refs.termFormTabForm4
       form.reset()
     }
   }
