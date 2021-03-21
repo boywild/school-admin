@@ -219,7 +219,7 @@ import EduTask from './components/EduTask'
 import StudyTerm from './components/StudyTerm'
 import StudyDegree from './components/StudyDegree'
 import StudyCost from './components/StudyCost'
-import { getRoleList } from '@/api/manage'
+// import { getRoleList } from '@/api/manage'
 // import { getStudentsList } from '@/api/students'
 import { studentList } from '@/api/student'
 
@@ -306,7 +306,7 @@ export default {
   },
 
   created() {
-    getRoleList({ t: new Date() })
+    // getRoleList({ t: new Date() })
     this.YesOrNoEnum()
     this.IdTypeEnum()
     this.GenderTypeEnum()

@@ -98,7 +98,7 @@
       <s-table
         ref="table"
         size="default"
-        rowKey="key"
+        rowKey="studentId"
         :columns="columns"
         :data="loadData"
         :alert="true"
@@ -121,60 +121,56 @@
         </span>
       </s-table>
 
-      <create-form
-        ref="createModal"
-        :visible="visible"
-        :loading="confirmLoading"
-        :model="mdl"
-        :title="setDialogTitle"
-        @cancel="handleCancel"
-        @ok="handleOk"
-      >
-        <component ref="currentComponent" :is="getForm"></component>
-      </create-form>
+      <BaseInfo v-model="visibleBaseInfo" :studentId="mdl && mdl.studentId" @update="tableRefresh"></BaseInfo>
+      <ImgInfo v-model="visibleImgInfo" :studentId="mdl && mdl.studentId" @update="tableRefresh"></ImgInfo>
+      <JoinInfo v-model="visibleJoinInfo" :studentId="mdl && mdl.studentId" @update="tableRefresh"></JoinInfo>
+      <EduTask v-model="visibleEduTask" :studentId="mdl && mdl.studentId" @update="tableRefresh"></EduTask>
+
+      <StudyCost v-model="visibleStudyCost" :studentId="mdl && mdl.studentId" @update="tableRefresh"></StudyCost>
     </a-card>
   </page-header-wrapper>
 </template>
 
 <script>
-import moment from 'moment'
+// import moment from 'moment'
+import { mapState, mapActions } from 'vuex'
 import { STable, Ellipsis } from '@/components'
 import BaseInfo from './components/BaseInfo'
 import ImgInfo from './components/ImgInfo'
 import JoinInfo from './components/JoinInfo'
 import EduTask from './components/EduTask'
 import StudyCost from './components/StudyCost'
-import { getRoleList } from '@/api/manage'
-import { getStudentsList } from '@/api/students'
-import {
-  STUDENT_FROM_ENMU,
-  STUDY_LEVEL_ENMU,
-  STUDY_WAT_ENMU,
-  SUBJECT_ENMU,
-  INFO_GATHER_ENMU,
-  THESIS_FROM_ENMU,
-  REACH_ENMU,
-  YESORNO_ENMU,
-  STUDY_LEVEL_ENMU2,
-  TRAINING_ENMU,
-  TEACHMETHOD_ENMU,
-  CLASSTYPE_ENMU
-} from '@/config/dict'
+// import { getRoleList } from '@/api/manage'
+import { studentList } from '@/api/student'
+// import {
+//   STUDENT_FROM_ENMU,
+//   STUDY_LEVEL_ENMU,
+//   STUDY_WAT_ENMU,
+//   SUBJECT_ENMU,
+//   INFO_GATHER_ENMU,
+//   THESIS_FROM_ENMU,
+//   REACH_ENMU,
+//   YESORNO_ENMU,
+//   STUDY_LEVEL_ENMU2,
+//   TRAINING_ENMU,
+//   TEACHMETHOD_ENMU,
+//   CLASSTYPE_ENMU
+// } from '@/config/dict'
 
 // import StepByStepModal from './modules/StepByStepModal'
 import CreateForm from './components/CreateForm'
 // import { type } from 'mockjs2'
 
 const columns = [
-  { title: '学号', dataIndex: 'a', width: 100 },
-  { title: '姓名', dataIndex: 'description', width: 100 },
-  { title: '性别', dataIndex: 'description', width: 100 },
-  { title: '出生日期', dataIndex: 'description', width: 100 },
-  { title: '身份证号', dataIndex: 'callNo', width: 220 },
-  { title: '电话号', dataIndex: 'status', width: 140 },
-  { title: '毕业院校', dataIndex: 'school', width: 150 },
-  { title: '职业', dataIndex: 'zy', width: 140 },
-  { title: '所属省市', dataIndex: 'updatedAt', width: 190 },
+  { title: '学号', dataIndex: 'studentNo', width: 100 },
+  { title: '姓名', dataIndex: 'studentName', width: 100 },
+  { title: '性别', dataIndex: 'gender', width: 100 },
+  { title: '出生日期', dataIndex: 'birthDay', width: 100 },
+  { title: '身份证号', dataIndex: 'idNumber', width: 220 },
+  { title: '电话号', dataIndex: 'phone', width: 140 },
+  { title: '毕业院校', dataIndex: 'graduateSchool', width: 150 },
+  { title: '职业', dataIndex: 'profession', width: 140 },
+  { title: '所属省市', dataIndex: 'location', width: 190 },
   { title: '操作', dataIndex: 'action', width: 280, fixed: 'right', scopedSlots: { customRender: 'action' } }
 ]
 
@@ -194,20 +190,24 @@ export default {
     this.columns = columns
     return {
       // create model
-      STUDENT_FROM_ENMU,
-      STUDY_LEVEL_ENMU,
-      STUDY_WAT_ENMU,
-      SUBJECT_ENMU,
-      INFO_GATHER_ENMU,
-      THESIS_FROM_ENMU,
-      REACH_ENMU,
-      YESORNO_ENMU,
-      STUDY_LEVEL_ENMU2,
-      TRAINING_ENMU,
-      TEACHMETHOD_ENMU,
-      CLASSTYPE_ENMU,
+      // STUDENT_FROM_ENMU,
+      // STUDY_LEVEL_ENMU,
+      // STUDY_WAT_ENMU,
+      // SUBJECT_ENMU,
+      // INFO_GATHER_ENMU,
+      // THESIS_FROM_ENMU,
+      // REACH_ENMU,
+      // YESORNO_ENMU,
+      // STUDY_LEVEL_ENMU2,
+      // TRAINING_ENMU,
+      // TEACHMETHOD_ENMU,
+      // CLASSTYPE_ENMU,
       currentForm: 'BaseInfo',
-      visible: false,
+      visibleBaseInfo: false,
+      visibleImgInfo: false,
+      visibleJoinInfo: false,
+      visibleEduTask: false,
+      visibleStudyCost: false,
       confirmLoading: false,
       mdl: null,
       // 高级搜索 展开/关闭
@@ -218,8 +218,9 @@ export default {
       loadData: parameter => {
         const requestParameters = Object.assign({}, parameter, this.queryParam)
         console.log('loadData request parameters:', requestParameters)
-        return getStudentsList(requestParameters).then(res => {
-          return res.result
+        return studentList({ applyType: 'S001', ...requestParameters }).then(res => {
+          console.log(res)
+          return res
         })
       },
       selectedRowKeys: [],
@@ -228,9 +229,12 @@ export default {
   },
 
   created() {
-    getRoleList({ t: new Date() })
+    // getRoleList({ t: new Date() })
   },
   computed: {
+    ...mapState({
+      dict: state => state.dict.dict
+    }),
     rowSelection() {
       return {
         selectedRowKeys: this.selectedRowKeys,
@@ -263,68 +267,43 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'IdTypeEnum',
+      'GenderTypeEnum',
+      'NationEnum',
+      'HouseholdEnum',
+      'PoliticsEnum',
+      'StudentSourceTypeEnum',
+      'StudentApplyLevelEnum',
+      'StudentLearnStyleEnum',
+      'YesOrNoEnum',
+      'StudentPaperEnum',
+      'GraduateGatherEnum',
+      'StudentPassEnum',
+      'LanuageEnum',
+      'StudentDegreeLevelEnum',
+      'ScoreResultEnum'
+    ]),
     // 新建学生
     handleAdd() {
       this.mdl = null
-      this.visible = true
-      this.currentForm = 'BaseInfo'
+      this['visibleBaseInfo'] = true
     },
     tableRefresh() {
       const table = this.$refs.table
       table.refresh()
     },
-    handleOk() {
-      const form = this.$refs.currentComponent
 
-      form.validate(values => {
-        console.log('通过', values)
-        this.confirmLoading = true
-        if (values.id > 0) {
-          // 修改 e.g.
-          new Promise((resolve, reject) => {
-            setTimeout(() => {
-              resolve()
-            }, 1000)
-          }).then(res => {
-            this.visible = false
-            this.confirmLoading = false
-            // 重置表单数据
-            form.resetFields()
-            // 刷新表格
-            this.tableRefresh()
-
-            this.$message.info('修改成功')
-          })
-        } else {
-          // 新增
-          new Promise((resolve, reject) => {
-            setTimeout(() => {
-              resolve()
-            }, 1000)
-          }).then(res => {
-            this.visible = false
-            this.confirmLoading = false
-            // 重置表单数据
-            form.resetFields()
-            // 刷新表格
-            this.tableRefresh()
-
-            this.$message.info('新增成功')
-          })
-        }
-      })
-    },
-    // 取消新建
-    handleCancel() {
-      const form = this.$refs.currentComponent
-      form.resetForm()
-      this.visible = false
+    // 保存成功
+    actionSuccess(text) {
+      // 刷新表格
+      this.$message.info(text)
+      this.tableRefresh()
     },
     // 修改
     handleModify(record, form) {
       this.mdl = record
-      this.visible = true
-      this.currentForm = form
+      this[`visible${form}`] = true
     },
     // 勾选
     onSelectChange(selectedRowKeys, selectedRows) {
@@ -336,9 +315,7 @@ export default {
     },
     // 重置search条件
     resetSearchForm() {
-      this.queryParam = {
-        date: moment(new Date())
-      }
+      this.queryParam = {}
     },
     // 删除学生
     deleteStudent() {
