@@ -146,8 +146,8 @@ import ImgInfo from './components/ImgInfo'
 import JoinInfo from './components/JoinInfo'
 import EduTask from './components/EduTask'
 import StudyCost from './components/StudyCost'
-import { getRoleList } from '@/api/manage'
-import { getStudentsList } from '@/api/students'
+// import { getRoleList } from '@/api/manage'
+import { studentList } from '@/api/student'
 // import {
 //   STUDENT_FROM_ENMU,
 //   STUDY_LEVEL_ENMU,
@@ -220,8 +220,9 @@ export default {
       loadData: parameter => {
         const requestParameters = Object.assign({}, parameter, this.queryParam)
         console.log('loadData request parameters:', requestParameters)
-        return getStudentsList(requestParameters).then(res => {
-          return res.result
+        return studentList({ applyType: 'S006', ...requestParameters }).then(res => {
+          console.log(res)
+          return res
         })
       },
       selectedRowKeys: [],
@@ -230,7 +231,7 @@ export default {
   },
 
   created() {
-    getRoleList({ t: new Date() })
+    // getRoleList({ t: new Date() })
   },
   computed: {
     ...mapState({

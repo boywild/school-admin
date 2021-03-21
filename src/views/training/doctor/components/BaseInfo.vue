@@ -194,7 +194,7 @@ export default {
     saveBaseInfo() {
       this.validate(async values => {
         this.loading = true
-        await studentBaseInfo({ applyType: 'S001', ...values, studentId: this.studentId })
+        await studentBaseInfo({ applyType: 'S009', ...values, studentId: this.studentId })
         this.loading = false
         this.handleCancel()
         this.$emit('update')
