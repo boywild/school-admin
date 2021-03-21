@@ -123,7 +123,7 @@ export default {
         },
         {
           label: '户籍',
-          field: 'xxxx',
+          field: 'huji',
           form: 'radio',
           radioFrom: 'HJ_ENMU',
           rules: [{ required: true, message: '请选择户籍' }]
@@ -146,7 +146,7 @@ export default {
         },
         {
           label: '已婚',
-          field: 'xxxx',
+          field: 'married',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: [{ required: true, max: 20, message: '请选择政治面貌' }]

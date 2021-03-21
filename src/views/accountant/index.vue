@@ -90,18 +90,18 @@ const columns = [
   { title: '总学费', dataIndex: 'totalExpense', width: 120 },
   { title: '实缴学费', dataIndex: 'realExpense', width: 120 },
   { title: '欠款', dataIndex: 'oweExpense', width: 120 },
-  { title: '第一年交费', dataIndex: 'xxxx1', width: 120 },
-  { title: '第二年', dataIndex: 'xxxx2', width: 120 },
-  { title: '第三年', dataIndex: 'xxxx3', width: 120 },
-  { title: '第四年', dataIndex: 'xxxx4', width: 120 },
-  { title: '第五年', dataIndex: 'xxxx5', width: 120 },
-  { title: '报考费', dataIndex: 'xxxx6', width: 120 },
-  { title: '入学考试辅导费', dataIndex: 'xxxx7', width: 140 },
-  { title: '学位报考费', dataIndex: 'xxxx8', width: 120 },
-  { title: '学位辅导费', dataIndex: 'xxxx9', width: 120 },
-  { title: '网课费', dataIndex: 'xxxx10', width: 120 },
-  { title: '论文费', dataIndex: 'xxxx11', width: 120 },
-  { title: '图像采集费', dataIndex: 'xxxx12', width: 120 }
+  { title: '第一年交费', dataIndex: 'first', width: 120 },
+  { title: '第二年', dataIndex: 'second', width: 120 },
+  { title: '第三年', dataIndex: 'third', width: 120 },
+  { title: '第四年', dataIndex: 'fourth', width: 120 },
+  { title: '第五年', dataIndex: 'fifth', width: 120 },
+  { title: '报考费', dataIndex: 'apply', width: 120 },
+  { title: '入学考试辅导费', dataIndex: 'entranceTutor', width: 140 },
+  { title: '学位报考费', dataIndex: 'degreeApply', width: 120 },
+  { title: '学位辅导费', dataIndex: 'degreeTutor', width: 120 },
+  { title: '网课费', dataIndex: 'eCourse', width: 120 },
+  { title: '论文费', dataIndex: 'paper', width: 120 },
+  { title: '图像采集费', dataIndex: 'imageCollect', width: 120 }
 ]
 
 export default {

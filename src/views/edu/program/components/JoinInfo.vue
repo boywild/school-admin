@@ -72,7 +72,7 @@ export default {
         },
         {
           label: '学费来源',
-          field: 'xxxx',
+          field: 'feeSource',
           form: 'select',
           selectFrom: 'FeeSourceTypeEnum',
           rules: [{ required: true, message: '请选择所学费来源' }]
@@ -85,14 +85,14 @@ export default {
         },
         {
           label: '电大毕业',
-          field: 'xxxx',
+          field: 'TvGraduateFlag',
           form: 'radio',
           radioFrom: 'YesOrNoEnum',
           rules: [{ required: true, message: '请选择是否电大毕业' }]
         },
         {
           label: '证书性质',
-          field: 'xxxx',
+          field: 'certQuatity',
           form: 'input',
           rules: [{ required: true, message: '请选择证书性质' }]
         },
@@ -106,13 +106,13 @@ export default {
 
         {
           label: '认证编号',
-          field: 'xxxx',
+          field: 'authNo',
           form: 'input',
           rules: [{ required: true, message: '请输入认证编号' }]
         },
         {
           label: '电子注册备案表编号',
-          field: 'xxxx',
+          field: 'eRegisterNo',
           form: 'input',
           rules: [{ required: true, message: '请输入电子注册备案表编号' }]
         }

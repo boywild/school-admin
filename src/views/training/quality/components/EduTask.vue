@@ -26,38 +26,38 @@ export default {
         },
         {
           label: '考试时间',
-          field: 'xxxx',
+          field: 'examTime',
           form: 'date',
           rules: []
         },
 
         {
           label: '考试成绩',
-          field: 'xxxx',
+          field: 'grade',
           form: 'input',
           rules: [{ max: 6, message: '考试成绩限制输入6位' }]
         },
         {
           label: '证书发放时间',
-          field: 'xxxx',
+          field: 'certProvideTime',
           form: 'date',
           rules: []
         },
         {
           label: '学习实效',
-          field: 'xxxx',
+          field: 'learnEffect',
           form: 'input',
           rules: []
         },
         {
           label: '报考情况',
-          field: 'xxxx',
+          field: 'applySituation',
           form: 'input',
           rules: []
         },
         {
           label: '报考次数',
-          field: 'xxxx',
+          field: 'applyTimes',
           form: 'input',
           rules: [{ max: 20, message: '报考次数限制输入20位' }]
         },
@@ -70,20 +70,20 @@ export default {
         },
         {
           label: '退费',
-          field: 'xxxx',
+          field: 'refundFeeFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '退费时间',
-          field: 'xxxx',
+          field: 'refundFeeTime',
           form: 'date',
           rules: []
         },
         {
           label: '退费途径',
-          field: 'xxxx',
+          field: 'refundWay',
           rules: []
         }
       ]

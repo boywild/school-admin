@@ -116,7 +116,7 @@ export default {
         },
         {
           label: '户籍',
-          field: 'xxxx',
+          field: 'huji',
           form: 'radio',
           radioFrom: 'HJ_ENMU',
           rules: [{ required: true, message: '请选择户籍' }]

@@ -29,7 +29,7 @@ export default {
         },
         {
           label: '报考工种',
-          field: 'xxxx',
+          field: 'workIndustry',
           form: 'input',
           rules: [
             { required: true, message: '请输入报考工种' },
@@ -45,7 +45,7 @@ export default {
         },
         {
           label: '报考时间',
-          field: 'xxxx',
+          field: 'applyTime',
           form: 'date',
           rules: [{ required: true, message: '请选择报考时间' }]
         },
@@ -57,7 +57,7 @@ export default {
         },
         {
           label: '首次培训/复培',
-          field: 'xxxx',
+          field: 'newTrainTimesFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: [{ required: true, message: '请选择首次培训/复培' }]
@@ -71,7 +71,7 @@ export default {
         },
         {
           label: '班主任',
-          field: 'xxxx',
+          field: 'headTeacher',
           form: 'input',
           rules: [{ required: true, message: '请输入班主任' }]
         }

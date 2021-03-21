@@ -133,7 +133,7 @@ export default {
         { label: 'email', field: 'email', form: 'input', rules: [{ required: true, validator: validatorEmail }] },
         {
           label: '保险缴纳时限',
-          field: 'xxxx',
+          field: 'socialDuration',
           form: 'input',
           rules: [{ required: true, message: '请输入保险缴纳时限' }]
         }

@@ -26,32 +26,32 @@ export default {
         },
         {
           label: '考试成绩',
-          field: 'xxxx',
+          field: 'grade',
           form: 'input',
           rules: [{ max: 5, message: '考试成绩' }]
         },
         {
           label: '考试时间',
-          field: 'xxxx',
+          field: 'examTime',
           form: 'date',
           rules: []
         },
 
         {
           label: '证书发放时间',
-          field: 'xxxx',
+          field: 'certProvideTime',
           form: 'date',
           rules: []
         },
         {
           label: '学习实效',
-          field: 'xxxx',
+          field: 'learnEffect',
           form: 'input',
           rules: []
         },
         {
           label: '报考情况',
-          field: 'xxxx',
+          field: 'applySituation',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
@@ -65,39 +65,39 @@ export default {
         },
         {
           label: '报考次数',
-          field: 'xxxx',
+          field: 'applyTimes',
           form: 'input',
           rules: [{ max: 2, message: '报考次数限制输入2位' }]
         },
         {
           label: '教材领取',
-          field: 'xxxx',
+          field: 'getTextBookFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '退费',
-          field: 'xxxx',
+          field: 'refundFeeFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '退费时间',
-          field: 'xxxx',
+          field: 'refundFeeTime',
           form: 'date',
           rules: []
         },
         {
           label: '退费途径',
-          field: 'xxxx',
+          field: 'refundWay',
           form: 'input',
           rules: []
         },
         {
           label: '沟通一',
-          field: 'xxxx',
+          field: 'communicate',
           form: 'input',
           rules: []
         }

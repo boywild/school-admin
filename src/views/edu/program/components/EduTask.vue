@@ -69,14 +69,14 @@ export default {
         },
         {
           label: '有录取通知书',
-          field: 'xxxx',
+          field: 'admitLetterFlag',
           form: 'radio',
           radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '如期毕业',
-          field: 'xxxx',
+          field: 'graduateOnTimeFlag',
           form: 'radio',
           radioFrom: 'YesOrNoEnum',
           rules: []
@@ -84,20 +84,20 @@ export default {
 
         {
           label: '未毕业原因',
-          field: 'xxxx',
+          field: 'noGraduateReason',
           form: 'input',
           rules: [{ max: 30, message: '未毕业原因限制输入30位' }]
         },
         {
           label: '已有毕业证书',
-          field: 'xxxx',
+          field: 'haveGraduateCertFlag',
           form: 'radio',
           radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '毕业证书已到',
-          field: 'xxxx',
+          field: 'graduateCertReachFlag',
           form: 'radio',
           radioFrom: 'YesOrNoEnum',
           rules: []
@@ -111,41 +111,41 @@ export default {
         },
         {
           label: '领走时间',
-          field: 'xxxx',
+          field: 'graduateCertTakeTime',
           form: 'date',
           rules: []
         },
         {
           label: '领走方式',
-          field: 'xxxx',
+          field: 'graduateCertTakeWay',
           form: 'radio',
           radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '已填毕业生登记表',
-          field: 'xxxx',
+          field: 'fillGraduateRegisterSheetFlag',
           form: 'radio',
           radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '毕业信息已采集',
-          field: 'xxxx',
+          field: 'graduateInfoCollectFlag',
           form: 'radio',
           radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '毕业纸质照片已到我司',
-          field: 'xxxx',
+          field: 'graduatePhotoReachMyEntFlag',
           form: 'radio',
           radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '毕业纸质照片已提交院校',
-          field: 'xxxx',
+          field: 'graduatePhotoSubmitSchoolFlag',
           form: 'radio',
           radioFrom: 'YesOrNoEnum',
           rules: []

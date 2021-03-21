@@ -126,14 +126,14 @@ export default {
         },
         {
           label: '学位论文',
-          field: 'xxxx',
+          field: 'degreePaperFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '学位论文由我司处理',
-          field: 'xxxx',
+          field: 'degreePaperMyEntDealFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
@@ -148,14 +148,14 @@ export default {
 
         {
           label: '毕业信息已核实',
-          field: 'xxxx',
+          field: 'graduateInfoCheckFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '图像采集已完成',
-          field: 'xxxx',
+          field: 'imageCollectFinishFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
@@ -203,14 +203,14 @@ export default {
         },
         {
           label: '申请学位证书',
-          field: 'xxxx',
+          field: 'applyDegreeCertFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '有学位证书',
-          field: 'xxxx',
+          field: 'haveDegreeCertFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
@@ -224,21 +224,21 @@ export default {
         },
         {
           label: '学位证已领走',
-          field: 'xxxx',
+          field: 'degreeCertTakeFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
         },
         {
           label: '学位证领走时间',
-          field: 'xxxx',
+          field: 'degreeTakeTime',
           form: 'date',
           rules: []
         },
         {
           label: '学位证领走方式',
-          field: 'xxxx',
-          form: 'select',
+          field: 'degreeTakeWay',
+          form: 'input',
           rules: []
         }
       ]

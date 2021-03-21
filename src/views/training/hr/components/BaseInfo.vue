@@ -105,7 +105,7 @@ export default {
         },
         {
           label: '学历层次',
-          field: 'xxxx',
+          field: 'degreeLevel',
           form: 'select',
           rules: [{ required: true, max: 20, message: '请选择学历层次' }]
         },
@@ -139,7 +139,7 @@ export default {
         },
         {
           label: '保险缴纳时限',
-          field: 'xxxx',
+          field: 'socialDuration',
           form: 'input',
           rules: [
             { required: true, message: '请输入保险缴纳时限' },
