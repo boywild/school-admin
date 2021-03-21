@@ -1,16 +1,41 @@
 <template>
-  <div class="edu-adult">
-    <form-generate ref="form" :fields="tab3"></form-generate>
-  </div>
+  <a-modal
+    title="教务信息"
+    :width="900"
+    :visible="value"
+    :mask-closable="false"
+    :confirmLoading="loading"
+    okText="保存教务信息"
+    @ok="handleOk"
+    @cancel="handleCancel"
+  >
+    <div class="edu-adult">
+      <a-spin :spinning="loadingData">
+        <form-generate ref="form" :fields="tab3"></form-generate>
+      </a-spin>
+    </div>
+  </a-modal>
 </template>
 
 <script>
 import FormGenerate from '@/components/FormGenerate'
+import { studentEduTask, studentGetEduTask, getSubjectScore } from '@/api/student'
+
 export default {
   name: 'EduTask',
+  props: {
+    value: { type: Boolean, required: true },
+    studentId: { type: String, default: '' }
+  },
+  model: {
+    prop: 'value',
+    event: 'change'
+  },
   components: { FormGenerate },
   data() {
     return {
+      loading: false,
+      loadingData: false,
       tab3: [
         {
           label: '准考证号',
@@ -89,6 +114,16 @@ export default {
       ]
     }
   },
+  mounted() {
+    this.$watch('value', val => {
+      if (val && this.studentId) {
+        this.getSbuject().then(res => {
+          this.getEduTask(res)
+        })
+        this.getSbuject()
+      }
+    })
+  },
   computed: {
     rules() {
       const rules = {}
@@ -99,6 +134,47 @@ export default {
     }
   },
   methods: {
+    async getEduTask(subject = {}) {
+      this.loadingData = true
+      const result = await studentGetEduTask(this.studentId)
+      const form = this.$refs.form
+      form.setData({ ...result, ...subject })
+      this.loadingData = false
+    },
+    async saveEduTask() {
+      this.validate(async values => {
+        this.loading = true
+        await studentEduTask({ ...values, studentId: this.studentId })
+        this.loading = false
+        this.handleCancel()
+        this.$emit('update')
+      })
+    },
+    async getSbuject() {
+      const result = await getSubjectScore(this.studentId)
+      const field = [
+        'chineseScore',
+        'mathScore',
+        'englishScore',
+        'politicsScore',
+        'universityChineseScore',
+        'highMathScore1',
+        'highMathScore2',
+        'physicsScore',
+        'educationScore',
+        'medicineScore',
+        'civillawScore',
+        'historyGeographyScore',
+        'artScore',
+        'totalScore'
+      ]
+      const formObj = {}
+      field.forEach((ele, index) => {
+        formObj[ele] = result[index] ? result[index].grade : ''
+      })
+      console.log(formObj)
+      return formObj
+    },
     validate(callback) {
       const form = this.$refs.form
       form.validate(data => {
@@ -109,6 +185,13 @@ export default {
     resetForm() {
       const form = this.$refs.form
       form.reset()
+    },
+    handleOk() {
+      this.saveEduTask()
+    },
+    handleCancel() {
+      this.$emit('change', false)
+      this.resetForm()
     }
   }
 }
