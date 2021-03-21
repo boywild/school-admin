@@ -154,7 +154,7 @@ export default {
         },
         {
           label: '是否报考学位',
-          field: 'xxxx',
+          field: 'applyDegreeFlag',
           form: 'radio',
           radioFrom: 'YESORNO_ENMU',
           rules: []
@@ -168,14 +168,14 @@ export default {
         },
         {
           label: '学位成绩',
-          field: 'xxxx',
+          field: 'degreeScore',
           form: 'radio',
           radioFrom: 'REACH_ENMU',
           rules: []
         },
         {
           label: '学位成绩通过时间',
-          field: 'xxxx',
+          field: 'degreeInformTime',
           form: 'date',
           rules: []
         },

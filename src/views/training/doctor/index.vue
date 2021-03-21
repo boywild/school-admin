@@ -170,7 +170,7 @@ const columns = [
   { title: '姓名', dataIndex: 'description', width: 100 },
   { title: '性别', dataIndex: 'description', width: 100 },
   { title: '出生日期', dataIndex: 'description', width: 100 },
-  { title: '身份证号', dataIndex: 'callNo', width: 170 },
+  { title: '身份证号', dataIndex: 'callNo', width: 220 },
   { title: '电话号', dataIndex: 'status', width: 140 },
   { title: '毕业院校', dataIndex: 'school', width: 150 },
   { title: '职业', dataIndex: 'zy', width: 140 },
