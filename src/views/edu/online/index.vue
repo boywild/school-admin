@@ -175,7 +175,7 @@ import CreateForm from './components/CreateForm'
 const columns = [
   { title: '学号', dataIndex: 'studentNo', width: 160 },
   { title: '姓名', dataIndex: 'studentName', width: 100 },
-  { title: '证件号', dataIndex: 'idNumber', width: 170 },
+  { title: '证件号', dataIndex: 'idNumber', width: 220 },
   { title: '电话号', dataIndex: 'phone', width: 140 },
   { title: '年龄', dataIndex: 'age', width: 70 },
   { title: '毕业院校', dataIndex: 'graduateSchool', width: 150 },

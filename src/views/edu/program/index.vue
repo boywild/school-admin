@@ -116,7 +116,7 @@
       <BaseInfo v-model="visibleBaseInfo" :studentId="mdl && mdl.studentId" @update="tableRefresh"></BaseInfo>
       <ImgInfo v-model="visibleImgInfo" :studentId="mdl && mdl.studentId" @update="tableRefresh"></ImgInfo>
       <JoinInfo v-model="visibleJoinInfo" :studentId="mdl && mdl.studentId" @update="tableRefresh"></JoinInfo>
-      <StudyTerm v-model="visibleStudyTerm" :studentId="mdl && mdl.studentId" @update="tableRefresh"></StudyTerm>
+      <EduTask v-model="visibleEduTask" :studentId="mdl && mdl.studentId" @update="tableRefresh"></EduTask>
       <StudyCost v-model="visibleStudyCost" :studentId="mdl && mdl.studentId" @update="tableRefresh"></StudyCost>
     </a-card>
   </page-header-wrapper>
@@ -152,7 +152,7 @@ import CreateForm from './components/CreateForm'
 const columns = [
   { title: '学号', dataIndex: 'studentNo', width: 160 },
   { title: '姓名', dataIndex: 'studentName', width: 100 },
-  { title: '证件号', dataIndex: 'idNumber', width: 170 },
+  { title: '证件号', dataIndex: 'idNumber', width: 220 },
   { title: '电话号', dataIndex: 'phone', width: 140 },
   { title: '年龄', dataIndex: 'age', width: 70 },
   { title: '毕业院校', dataIndex: 'graduateSchool', width: 150 },
@@ -189,7 +189,7 @@ export default {
       visibleBaseInfo: false,
       visibleImgInfo: false,
       visibleJoinInfo: false,
-      visibleStudyTerm: false,
+      visibleEduTask: false,
       visibleStudyCost: false,
       confirmLoading: false,
       mdl: null,
