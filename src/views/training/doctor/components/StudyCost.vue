@@ -33,13 +33,13 @@ export default {
         },
         {
           label: '培训费',
-          field: 'xxxx',
+          field: 'train',
           form: 'input',
           rules: [{ validator: validatorMoney('培训费') }]
         },
         {
           label: '实际缴费',
-          field: 'xxxx',
+          field: 'realExpense',
           form: 'input',
           rules: [{ validator: validatorMoney('实际缴费') }]
         },
@@ -51,7 +51,7 @@ export default {
         },
         {
           label: '备注',
-          field: 'xxxx',
+          field: 'remark',
           form: 'input',
           rules: []
         }

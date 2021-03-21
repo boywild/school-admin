@@ -124,7 +124,7 @@ export default {
         },
         {
           label: '报名费',
-          field: 'xxxx',
+          field: 'baoming',
           form: 'input',
           rules: [{ validator: validatorMoney('报考费') }]
         },

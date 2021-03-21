@@ -33,19 +33,19 @@ export default {
         },
         {
           label: '补贴费用',
-          field: 'xxxx',
+          field: 'bonus',
           form: 'input',
           rules: [{ validator: validatorMoney('补贴费用') }]
         },
         {
           label: '补贴到账时间',
-          field: 'xxxx',
+          field: 'bonusComeInTime',
           form: 'date',
           rules: [{ validator: validatorMoney('补贴到账时间') }]
         },
         {
           label: '备注',
-          field: 'xxxx',
+          field: 'remark',
           form: 'input',
           rules: []
         }
