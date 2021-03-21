@@ -55,7 +55,11 @@ const financeDetail = () => {
     paper: 100,
     imageCollect: 100,
     specialApply: 100,
-    bonus: 100
+    bonus: 100,
+    train: 100,
+    baoming: 100,
+    bonusComeInTime: 1612938896703,
+    remark: '测试备注'
   }
 }
 Mock.mock(/\/finance\/list/, 'post', financeList)

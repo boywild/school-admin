@@ -58,7 +58,12 @@ const baseInfo = () => {
     diplomaType: '学士学位',
     contactAddr: '湖北武汉',
     workLocation: '武昌',
-    email: '136@qq.com'
+    email: '136@qq.com',
+    huji: '1',
+    hujiDesc: '本地',
+    married: '1',
+    degreeLevel: '1',
+    socialDuration: '3'
   }
 }
 
@@ -137,7 +142,17 @@ const applyInfo = () => {
     applyTimes: '20',
     textFlag: '1',
     refundFlag: '1',
-    refundWay: '支付宝'
+    refundWay: '支付宝',
+    feeSource: '1',
+    TvGraduateFlag: '1',
+    certQuatity: '1',
+    authNo: '887',
+    eRegisterNo: '001',
+    workIndustry: '1',
+    applyTime: 1616139128276,
+    newTrainTimesFlag: '1',
+    headTeacher: '1',
+    vipClassFlag: '1'
   }
 }
 
@@ -178,7 +193,16 @@ const termInfo = () => {
       unifyAccount: '239239293',
       unifyPassword: '111111',
       englishScore: 20.44,
-      computerScore: 30.55
+      computerScore: 30.55,
+      degreePaperFlag: '1',
+      degreePaperMyEntDealFlag: '1',
+      graduateInfoCheckFlag: '1',
+      imageCollectFinishFlag: '1',
+      applyDegreeCertFlag: '1',
+      haveDegreeCertFlag: '1',
+      degreeCertTakeFlag: '1',
+      degreeTakeTime: 1616139128276,
+      degreeTakeWay: '邮寄'
     }
   ]
 }
@@ -218,7 +242,10 @@ const degreeInfo = () => {
       reachDiplomaFlag: '1',
       takeDiplomaFlag: '1',
       takeDiplomaDate: 1616139128276,
-      takeWay: '邮寄'
+      takeWay: '邮寄',
+      applyDegreeFlag: '1',
+      degreeScore: 20,
+      degreeInformTime: 1616139128276
     }
   ]
 }
@@ -267,7 +294,29 @@ const academicInfo = () => {
     studyNo: '099889',
     accountNo: '3333',
     loginPsd: '2222',
-    admitFlag: '1'
+    admitFlag: '1',
+    admitLetterFlag: '1',
+    graduateOnTimeFlag: '1',
+    noGraduateReason: '1',
+    haveGraduateCertFlag: '1',
+    graduateCertReachFlag: '1',
+    graduateCertTakeTime: 1616139128276,
+    graduateCertTakeWay: '邮寄',
+    fillGraduateRegisterSheetFlag: '1',
+    graduateInfoCollectFlag: '1',
+    graduatePhotoReachMyEntFlag: '1',
+    graduatePhotoSubmitSchoolFlag: '1',
+    examTime: 1616139128276,
+    grade: 200,
+    certProvideTime: 1616139128276,
+    learnEffect: '1',
+    applySituation: '1',
+    applyTimes: '1',
+    getTextBookFlag: '1',
+    refundFeeFlag: '1',
+    refundFeeTime: 1616139128276,
+    refundWay: '1',
+    communicate: '1'
   }
 }
 const graduateApply = () => {
