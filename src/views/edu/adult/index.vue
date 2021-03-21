@@ -295,7 +295,7 @@ export default {
       loadData: parameter => {
         const requestParameters = Object.assign({}, parameter, this.queryParam)
         console.log('loadData request parameters:', requestParameters)
-        return studentList(requestParameters).then(res => {
+        return studentList({ applyType: 'S001', ...requestParameters }).then(res => {
           console.log(res)
           return res
         })
