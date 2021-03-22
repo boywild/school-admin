@@ -86,13 +86,13 @@ export default {
         },
         {
           label: '领走时间',
-          field: 'takeDiplomaDate',
+          field: 'graduateCertTakeTime',
           form: 'date',
           rules: []
         },
         {
           label: '领走方式',
-          field: 'takeWay',
+          field: 'graduateCertTakeWay',
           form: 'input',
           rules: []
         }

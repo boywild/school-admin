@@ -11,18 +11,17 @@
   >
     <div class="edu-adult">
       <a-tabs v-model="activeKey" type="card" @change="getStudyTerm">
-        <a-tab-pane v-for="pane in panes" :key="pane.key" :tab="pane.title">
-          <a-spin :spinning="loadingData">
-            <form-generate ref="form" :fields="tab4"></form-generate>
-          </a-spin>
-        </a-tab-pane>
+        <a-tab-pane v-for="pane in panes" :key="pane.key" :tab="pane.title"> </a-tab-pane>
       </a-tabs>
+      <a-spin :spinning="loadingData">
+        <form-generate ref="onlineStudyTermForm" :fields="tab4"></form-generate>
+      </a-spin>
     </div>
   </a-modal>
 </template>
 
 <script>
-import moment from 'moment'
+// import moment from 'moment'
 import FormGenerate from '@/components/FormGenerate'
 
 // import { YESORNO_ENMU, INFO_GATHER_ENMU, REACH_ENMU, THESIS_FROM_ENMU } from '@/config/dict'
@@ -58,7 +57,7 @@ export default {
           label: '要学位',
           field: 'wantDegreeFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
@@ -71,21 +70,21 @@ export default {
           label: '学分达到学位要求',
           field: 'degreeRequire',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '报考统考',
           field: 'applyUnifyFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '统考由我司处理',
           field: 'unifyDealFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
@@ -128,21 +127,21 @@ export default {
           label: '学位论文',
           field: 'degreePaperFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '学位论文由我司处理',
           field: 'degreePaperMyEntDealFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '毕业生登记表已填写',
           field: 'graduateRegisterSheet',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
 
@@ -150,28 +149,28 @@ export default {
           label: '毕业信息已核实',
           field: 'graduateInfoCheckFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '图像采集已完成',
           field: 'imageCollectFinishFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '延期毕业',
           field: 'delayGraduateFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '已有毕业证书',
           field: 'diplomaFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
 
@@ -179,14 +178,14 @@ export default {
           label: '毕业证书已到',
           field: 'diplomaReachFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '毕业证书已领走',
           field: 'diplomaTakeFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
@@ -205,28 +204,28 @@ export default {
           label: '申请学位证书',
           field: 'applyDegreeCertFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '有学位证书',
           field: 'haveDegreeCertFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '学位证书已到',
-          field: 'xxxx',
+          field: 'degreeCertReachFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '学位证已领走',
           field: 'degreeCertTakeFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
@@ -256,11 +255,13 @@ export default {
     async getStudyTerm() {
       this.loadingData = true
       this.contentData = {}
-      const result = await getTerm(this.studentId)
-      const form = this.$refs.form[0]
-      console.log(form)
-      const data = result[this.activeKey - 1] || result[0]
-      form.setData({ ...data, unifyDate: moment(data.unifyDate), diplomaTakeTime: moment(data.diplomaTakeTime) })
+      const result = await getTerm(this.studentId, this.activeKey)
+      const form = this.$refs['onlineStudyTermForm']
+      // console.log(form)
+      // const data = result[this.activeKey - 1] || result[0]
+      const current = result.find(ele => ele.term === Number(this.activeKey)) || {}
+      // this.contentData = current
+      form.setData({ ...current })
       this.loadingData = false
     },
     async saveStudyTerm() {
@@ -276,11 +277,11 @@ export default {
       })
     },
     validate(callback) {
-      const form = this.$refs[`termForm${this.activeKey}`][0]
+      const form = this.$refs['onlineStudyTermForm']
       form.validate(callback)
     },
     resetForm() {
-      const form = this.$refs[`termForm${this.activeKey}`]
+      const form = this.$refs['onlineStudyTermForm']
       form.resetForm()
     },
     // onEdit(targetKey, action) {

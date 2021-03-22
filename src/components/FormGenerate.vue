@@ -117,7 +117,10 @@ export default {
         'registerDateTime',
         'oweClearTime',
         'takeDiplomaDate',
-        'examTime'
+        'examTime',
+        'graduateCertTakeTime',
+        'unifyDate',
+        'degreeTakeTime'
       ]
     }
   },

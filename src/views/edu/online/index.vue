@@ -233,6 +233,9 @@ export default {
     this.NationEnum()
     this.HouseholdEnum()
     this.PoliticsEnum()
+    this.HuJiEnum()
+    this.StudentSourceTypeEnum()
+    this.StudentApplyLevelEnum()
   },
 
   computed: {
@@ -247,7 +250,17 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['IdTypeEnum', 'GenderTypeEnum', 'NationEnum', 'HouseholdEnum', 'PoliticsEnum']),
+    ...mapActions([
+      'YesOrNoEnum',
+      'IdTypeEnum',
+      'GenderTypeEnum',
+      'NationEnum',
+      'HouseholdEnum',
+      'PoliticsEnum',
+      'HuJiEnum',
+      'StudentSourceTypeEnum',
+      'StudentApplyLevelEnum'
+    ]),
     // 新建学生
     handleAdd() {
       this.mdl = null

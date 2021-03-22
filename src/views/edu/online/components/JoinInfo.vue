@@ -20,7 +20,7 @@
 <script>
 import FormGenerate from '@/components/FormGenerate'
 import { getApply, studentApply } from '@/api/student'
-import moment from 'moment'
+// import moment from 'moment'
 
 export default {
   name: 'JoinInfo',
@@ -42,10 +42,7 @@ export default {
           label: '入学批次',
           field: 'entranceDate',
           form: 'date',
-          rules: [
-            { required: true, message: '请输入入学批次' },
-            { max: 10, message: '限制输入10位' }
-          ]
+          rules: [{ required: true, message: '请输入入学批次' }]
         },
         {
           label: '学生来源',
@@ -169,12 +166,10 @@ export default {
   methods: {
     async getJoinInfo() {
       this.loadingData = true
-      const result = await getApply()
+      const result = await getApply(this.studentId)
       const form = this.$refs.form
       form.setData({
-        ...result,
-        entranceDate: moment(result.entranceDate),
-        workStartTime: moment(result.workStartTime)
+        ...result
       })
       this.loadingData = false
     },
