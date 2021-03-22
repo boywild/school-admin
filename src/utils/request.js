@@ -70,7 +70,7 @@ request.interceptors.request.use(config => {
 
 // response interceptor
 request.interceptors.response.use(response => {
-  return response.data
+  return response.request.responseType === 'blob' ? response : response.data
 }, errorHandler)
 
 const installer = {

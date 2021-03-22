@@ -9,36 +9,40 @@
     @ok="handleOk"
     @cancel="handleCancel"
   >
-    <a-form-model class="form-no-margin" ref="imgInfoForm" :model="imgInfo" :rules="rules">
-      <a-row :gutter="5">
-        <a-col :span="12" v-for="(item, index) in tab2" :key="index">
-          <a-form-model-item :label="item.label" :prop="item.field">
-            <a-upload
-              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-              list-type="picture-card"
-              :file-list="imgInfo[item.field]"
-              @preview="handlePreview"
-              @change="handleChange"
-            >
-              <div v-if="imgInfo[item.field].length < 2">
-                <a-icon type="plus" />
-                <div class="ant-upload-text">
-                  上传图片
+    <a-spin :spinning="loadingData">
+      <a-form-model class="form-no-margin" ref="imgInfoForm" :model="imgInfo" :rules="rules">
+        <a-row :gutter="5">
+          <a-col :span="12" v-for="(item, index) in tab2" :key="index">
+            <a-form-model-item :label="item.label" :prop="item.field">
+              <a-upload
+                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                list-type="picture-card"
+                :file-list="imgInfo[item.field]"
+                @preview="handlePreview"
+                @change="handleChange"
+              >
+                <div v-if="imgInfo[item.field].length < 2">
+                  <a-icon type="plus" />
+                  <div class="ant-upload-text">
+                    上传图片
+                  </div>
                 </div>
-              </div>
-            </a-upload>
-          </a-form-model-item>
-        </a-col>
-      </a-row>
-    </a-form-model>
+              </a-upload>
+            </a-form-model-item>
+          </a-col>
+        </a-row>
+      </a-form-model>
+    </a-spin>
   </a-modal>
 </template>
 
 <script>
+import { getPic } from '@/api/student'
 export default {
   name: 'ImgInfo',
   props: {
-    value: { type: Boolean, required: true }
+    value: { type: Boolean, required: true },
+    studentId: { type: String, default: '' }
   },
   model: {
     prop: 'value',
@@ -47,6 +51,7 @@ export default {
   data() {
     return {
       loading: false,
+      loadingData: false,
       previewVisible: false,
       previewImage: '',
       imgInfo: {
@@ -105,7 +110,20 @@ export default {
       return rules
     }
   },
+  mounted() {
+    this.$watch('value', val => {
+      if (val && this.studentId) {
+        this.getImage()
+      }
+    })
+  },
   methods: {
+    async getImage() {
+      this.loadingData = true
+      const result = await getPic(this.studentId)
+      this.loadingData = false
+      console.log(result)
+    },
     async handlePreview(file) {
       if (!file.url && !file.preview) {
         // file.preview = await getBase64(file.originFileObj)
