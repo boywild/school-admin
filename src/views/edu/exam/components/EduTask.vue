@@ -20,7 +20,7 @@
 <script>
 import FormGenerate from '@/components/FormGenerate'
 import { studentEduTask, studentGetEduTask, getSubjectScore } from '@/api/student'
-import moment from 'moment'
+// import moment from 'moment'
 export default {
   name: 'EduTask',
   components: { FormGenerate },
@@ -146,7 +146,7 @@ export default {
       this.loadingData = true
       const result = await studentGetEduTask(this.studentId)
       const form = this.$refs.form
-      form.setData({ ...result, ...subject, entranceTime: moment(result.entranceTime) })
+      form.setData({ ...result, ...subject })
       this.loadingData = false
     },
     async saveEduTask() {

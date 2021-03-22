@@ -84,7 +84,7 @@
 
 <script>
 // import moment from 'moment'
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import { STable, Ellipsis } from '@/components'
 import BaseInfo from './components/BaseInfo'
 import ImgInfo from './components/ImgInfo'
@@ -183,6 +183,20 @@ export default {
 
   created() {
     // getRoleList({ t: new Date() })
+
+    this.YesOrNoEnum()
+    this.IdTypeEnum()
+    this.GenderTypeEnum()
+    this.NationEnum()
+    this.HouseholdEnum()
+    this.PoliticsEnum()
+    this.ScoreResultEnum()
+    this.StudentSubjectEnum()
+    this.StudentDegreeTypeEnum()
+    this.LanuageEnum()
+    this.StudentPassEnum()
+    this.StudentPaperEnum()
+    this.StudentPaperEnum()
   },
   computed: {
     ...mapState({
@@ -229,6 +243,21 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'YesOrNoEnum',
+      'IdTypeEnum',
+      'GenderTypeEnum',
+      'NationEnum',
+      'HouseholdEnum',
+      'PoliticsEnum',
+      'ScoreResultEnum',
+      'StudentSubjectEnum',
+      'StudentDegreeTypeEnum',
+      'LanuageEnum',
+      'StudentPassEnum',
+      'StudentPaperEnum',
+      'StudentPaperEnum'
+    ]),
     // 新建学生
     handleAdd() {
       this.mdl = null

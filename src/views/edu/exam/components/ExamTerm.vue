@@ -9,12 +9,12 @@
     @ok="handleOk"
     @cancel="handleCancel"
   >
-    <a-tabs v-model="activeKey" type="card">
-      <a-tab-pane v-for="pane in SUBJECT_ENMU" :key="pane.code" :tab="pane.desc"> </a-tab-pane>
+    <a-tabs v-model="activeKey" type="card" @change="getBaseInfo">
+      <a-tab-pane v-for="pane in dict.StudentSubjectEnum" :key="pane.code" :tab="pane.desc"> </a-tab-pane>
     </a-tabs>
     <div class="edu-exam">
       <a-spin :spinning="loadingData">
-        <form-generate ref="form" :fields="tab4"></form-generate>
+        <form-generate ref="examTermForm" :fields="tab4"></form-generate>
       </a-spin>
     </div>
   </a-modal>
@@ -22,12 +22,12 @@
 
 <script>
 import { mapState } from 'vuex'
-import moment from 'moment'
+// import moment from 'moment'
 import FormGenerate from '@/components/FormGenerate'
-import { studentGetEduTask, studentExam } from '@/api/student'
-import { YESORNO_ENMU, INFO_GATHER_ENMU, REACH_ENMU, THESIS_FROM_ENMU, SUBJECT_ENMU } from '@/config/dict'
+import { getExam, studentExam } from '@/api/student'
+// import { YESORNO_ENMU, INFO_GATHER_ENMU, REACH_ENMU, THESIS_FROM_ENMU, SUBJECT_ENMU } from '@/config/dict'
 export default {
-  name: 'StudyTerm',
+  name: 'ExamTerm',
   components: { FormGenerate },
   props: {
     value: { type: Boolean, required: true },
@@ -41,12 +41,12 @@ export default {
     return {
       loading: false,
       loadingData: false,
-      activeKey: SUBJECT_ENMU[0].key,
-      YESORNO_ENMU,
-      INFO_GATHER_ENMU,
-      REACH_ENMU,
-      THESIS_FROM_ENMU,
-      SUBJECT_ENMU,
+      activeKey: '0',
+      // YESORNO_ENMU,
+      // INFO_GATHER_ENMU,
+      // REACH_ENMU,
+      // THESIS_FROM_ENMU,
+      // SUBJECT_ENMU,
       tab4: [
         {
           label: '科目编码',
@@ -71,28 +71,28 @@ export default {
           label: '报考',
           field: 'applyFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '复习资料已发放',
           field: 'assignReviewDataFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '辅导课已通知',
           field: 'tutorialInformFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '成绩查询',
           field: 'grade',
           form: 'select',
-          selectFrom: 'SCOREQUERY_ENMU',
+          selectFrom: 'ScoreResultEnum',
           rules: []
         }
       ]
@@ -107,39 +107,35 @@ export default {
   },
   computed: {
     ...mapState({
-      IdTypeEnum: state => state.dict.IdTypeEnum,
-      GenderTypeEnum: state => state.dict.GenderTypeEnum,
-      NationEnum: state => state.dict.NationEnum,
-      HouseholdEnum: state => state.dict.HouseholdEnum,
-      PoliticsEnum: state => state.dict.PoliticsEnum
+      dict: state => state.dict.dict
     })
   },
   methods: {
     async getBaseInfo() {
       this.loadingData = true
-      const result = await studentGetEduTask(this.studentId)
-      const form = this.$refs.form
-      form.setData({ ...result, birthDay: moment(result.birthDay), graduateTime: moment(result.birthDay) })
+      const result = await getExam(this.studentId, this.activeKey)
+      const form = this.$refs.examTermForm
+      form.setData({ ...result })
       this.loadingData = false
       console.log(result)
     },
     saveBaseInfo() {
       this.validate(async values => {
         this.loading = true
-        await studentExam({ applyType: 'S001', ...values, studentId: this.studentId })
+        await studentExam({ ...values, studentId: this.studentId, subjectType: this.activeKey })
         this.loading = false
         this.handleCancel()
         this.$emit('update')
       })
     },
     validate(callback) {
-      const form = this.$refs.form
+      const form = this.$refs.examTermForm
       form.validate(data => {
         callback && callback(data)
       })
     },
     resetForm() {
-      const form = this.$refs.form
+      const form = this.$refs.examTermForm
       form.reset()
     },
     handleOk() {

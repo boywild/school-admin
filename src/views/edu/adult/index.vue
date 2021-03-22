@@ -177,7 +177,7 @@
         :scroll="{ x: 1500 }"
       >
         <span slot="graduateTime" slot-scope="text">
-          {{ text | moment }}
+          {{ text | dateFromate }}
         </span>
         <span slot="action" slot-scope="text, record">
           <template>
@@ -209,7 +209,7 @@
 </template>
 
 <script>
-// import moment from 'moment'
+import moment from 'moment'
 import { mapState, mapActions } from 'vuex'
 import { STable, Ellipsis } from '@/components'
 import BaseInfo from './components/BaseInfo'
@@ -236,6 +236,7 @@ import { studentList } from '@/api/student'
 
 // import StepByStepModal from './modules/StepByStepModal'
 import CreateForm from './components/CreateForm'
+// import moment from 'moment'
 // import { type } from 'mockjs2'
 
 const columns = [
@@ -264,6 +265,11 @@ export default {
     StudyTerm,
     StudyDegree,
     StudyCost
+  },
+  filters: {
+    dateFromate(data) {
+      return moment(Number(data)).format('YYYY-MM-DD')
+    }
   },
   data() {
     this.columns = columns

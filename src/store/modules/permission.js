@@ -60,6 +60,10 @@ const permission = {
     SET_ROUTERS: (state, routers) => {
       state.addRouters = routers
       state.routers = constantRouterMap.concat(routers)
+    },
+    RSET_ROUTERS: state => {
+      state.addRouters = []
+      state.routers = constantRouterMap
     }
   },
   actions: {

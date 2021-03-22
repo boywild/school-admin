@@ -23,7 +23,7 @@
 <script>
 import FormGenerate from '@/components/FormGenerate'
 import { getDegree, studentDegree } from '@/api/student'
-import moment from 'moment'
+// import moment from 'moment'
 export default {
   name: 'StudyDegree',
   components: { FormGenerate },
@@ -101,7 +101,7 @@ export default {
           label: '学位性质',
           field: 'studentDegreeType',
           form: 'select',
-          selectFrom: 'DEGREE_ENMU',
+          selectFrom: 'StudentDegreeTypeEnum',
           rules: []
         },
         {
@@ -122,14 +122,14 @@ export default {
           label: '语种',
           field: 'language',
           form: 'select',
-          selectFrom: 'LANG_ENMU',
+          selectFrom: 'LanuageEnum',
           rules: []
         },
         {
           label: '是否为VIP',
           field: 'vipFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
@@ -142,35 +142,35 @@ export default {
           label: '学位分数',
           field: 'passStatus',
           form: 'radio',
-          radioFrom: 'REACH_ENMU',
+          radioFrom: 'StudentPassEnum',
           rules: []
         },
         {
           label: '毕业论文',
           field: 'paper',
           form: 'select',
-          selectFrom: 'THESIS_FROM_ENMU',
+          selectFrom: 'StudentPaperEnum',
           rules: []
         },
         {
           label: '是否报考学位',
           field: 'applyDegreeFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '是否申请学位',
           field: 'applyDiplomaFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '学位成绩',
           field: 'degreeScore',
           form: 'radio',
-          radioFrom: 'REACH_ENMU',
+          radioFrom: 'StudentPaperEnum',
           rules: []
         },
         {
@@ -183,14 +183,14 @@ export default {
           label: '学位证书是否已到',
           field: 'reachDiplomaFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '是否已领走',
           field: 'takeDiplomaFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
@@ -203,7 +203,7 @@ export default {
           label: '领走方式',
           field: 'takeWay',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         }
       ]
@@ -220,10 +220,9 @@ export default {
   methods: {
     async getStudyDegree() {
       this.loadingData = true
-      const result = await getDegree(this.studentId)
+      const result = await getDegree(this.studentId, this.activeKey)
       const form = this.$refs.form
-      const data = result[this.activeKey - 1] || result[0]
-      form.setData({ ...data, takeDiplomaDate: moment(data.takeDiplomaDate) })
+      form.setData({ ...result })
       this.loadingData = false
     },
     async saveStudyDegree() {

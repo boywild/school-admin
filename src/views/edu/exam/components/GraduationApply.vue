@@ -11,20 +11,20 @@
   >
     <div class="edu-exam">
       <a-spin :spinning="loadingData">
-        <form-generate ref="form" :fields="tab4"></form-generate>
+        <form-generate ref="graduationApplyForm" :fields="tab4"></form-generate>
       </a-spin>
     </div>
   </a-modal>
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import moment from 'moment'
+// import { mapState } from 'vuex'
+// import moment from 'moment'
 import FormGenerate from '@/components/FormGenerate'
 import { studentGraduate, studentGetGraduate } from '@/api/student'
 // import { YESORNO_ENMU, INFO_GATHER_ENMU, REACH_ENMU, THESIS_FROM_ENMU } from '@/config/dict'
 export default {
-  name: 'StudyTerm',
+  name: 'GraduationApply',
   components: { FormGenerate },
   props: {
     value: { type: Boolean, required: true },
@@ -71,7 +71,7 @@ export default {
         },
         {
           label: '毕业证书已到',
-          field: 'xxxx',
+          field: 'graduateCertReachFlag',
           form: 'radio',
           radioFrom: 'YesOrNoEnum',
           rules: []
@@ -79,7 +79,7 @@ export default {
 
         {
           label: '已领走',
-          field: 'takeDiplomaFlag',
+          field: 'graduateCertTakeFlag',
           form: 'radio',
           radioFrom: 'YesOrNoEnum',
           rules: []
@@ -106,41 +106,33 @@ export default {
       }
     })
   },
-  computed: {
-    ...mapState({
-      IdTypeEnum: state => state.dict.IdTypeEnum,
-      GenderTypeEnum: state => state.dict.GenderTypeEnum,
-      NationEnum: state => state.dict.NationEnum,
-      HouseholdEnum: state => state.dict.HouseholdEnum,
-      PoliticsEnum: state => state.dict.PoliticsEnum
-    })
-  },
+  computed: {},
   methods: {
     async getBaseInfo() {
       this.loadingData = true
       const result = await studentGetGraduate(this.studentId)
-      const form = this.$refs.form
-      form.setData({ ...result, takeDiplomaDate: moment(result.takeDiplomaDate) })
+      const form = this.$refs.graduationApplyForm
+      form.setData({ ...result })
       this.loadingData = false
       console.log(result)
     },
     saveBaseInfo() {
       this.validate(async values => {
         this.loading = true
-        await studentGraduate({ applyType: 'S001', ...values, studentId: this.studentId })
+        await studentGraduate({ ...values, studentId: this.studentId })
         this.loading = false
         this.handleCancel()
         this.$emit('update')
       })
     },
     validate(callback) {
-      const form = this.$refs.form
+      const form = this.$refs.graduationApplyForm
       form.validate(data => {
         callback && callback(data)
       })
     },
     resetForm() {
-      const form = this.$refs.form
+      const form = this.$refs.graduationApplyForm
       form.reset()
     },
     handleOk() {

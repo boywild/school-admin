@@ -24,7 +24,8 @@ const studentApi = {
   StudentEduTask: '/student/saveAcademic', // 教务-保存
   StudentGetEduTask: '/student/academicInfo', // 教务-获取
 
-  StudentGraduate: '/student/graduateApply', // 毕业申请
+  StudentGraduate: '/student/graduateApply', // 毕业申请-保存
+  StudentGetGraduate: '/student/getGraduateApply', // 毕业申请-获取
   StudentScore: '/student/subjectList' // 科目成绩列表
 }
 
@@ -137,11 +138,11 @@ export function studentEduTask(parameter) {
 }
 
 // 学生-获取教务信息
-export function studentGetEduTask(studentId) {
+export function studentGetEduTask(studentId, subjectType) {
   return request({
     url: studentApi.StudentGetEduTask,
     method: 'get',
-    params: { studentId }
+    params: { studentId, subjectType }
   })
 }
 
@@ -155,11 +156,11 @@ export function studentExam(parameter) {
 }
 
 // 学生-获取考期信息
-export function getExam(studentId) {
+export function getExam(studentId, subjectType) {
   return request({
     url: studentApi.StudentGetExam,
-    method: 'post',
-    data: { studentId }
+    method: 'get',
+    params: { studentId, subjectType }
   })
 }
 
@@ -182,7 +183,7 @@ export function studentGraduate(parameter) {
 // 学生-获取毕业申请
 export function studentGetGraduate(studentId) {
   return request({
-    url: studentApi.StudentGraduate,
+    url: studentApi.StudentGetGraduate,
     method: 'get',
     params: { studentId }
   })

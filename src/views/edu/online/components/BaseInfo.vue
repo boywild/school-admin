@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+// import { mapState } from 'vuex'
 import moment from 'moment'
 import FormGenerate from '@/components/FormGenerate'
 import { isEmail, isPhone } from '@/utils/validate'
@@ -189,9 +189,7 @@ export default {
       ]
     }
   },
-  created() {
-    console.log(this.$route)
-  },
+  created() {},
   mounted() {
     this.$watch('value', val => {
       if (val && this.studentId) {
@@ -199,15 +197,7 @@ export default {
       }
     })
   },
-  computed: {
-    ...mapState({
-      IdTypeEnum: state => state.dict.IdTypeEnum,
-      GenderTypeEnum: state => state.dict.GenderTypeEnum,
-      NationEnum: state => state.dict.NationEnum,
-      HouseholdEnum: state => state.dict.HouseholdEnum,
-      PoliticsEnum: state => state.dict.PoliticsEnum
-    })
-  },
+  computed: {},
   methods: {
     async getBaseInfo() {
       this.loadingData = true

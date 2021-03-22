@@ -19,7 +19,7 @@
 
 <script>
 import FormGenerate from '@/components/FormGenerate'
-import { studentEduTask, studentGetEduTask, getSubjectScore } from '@/api/student'
+import { studentEduTask, studentGetEduTask } from '@/api/student'
 
 export default {
   name: 'EduTask',
@@ -256,31 +256,31 @@ export default {
         this.$emit('update')
       })
     },
-    async getSbuject() {
-      const result = await getSubjectScore(this.studentId)
-      const field = [
-        'chineseScore',
-        'mathScore',
-        'englishScore',
-        'politicsScore',
-        'universityChineseScore',
-        'highMathScore1',
-        'highMathScore2',
-        'physicsScore',
-        'educationScore',
-        'medicineScore',
-        'civillawScore',
-        'historyGeographyScore',
-        'artScore',
-        'totalScore'
-      ]
-      const formObj = {}
-      field.forEach((ele, index) => {
-        formObj[ele] = result[index] ? result[index].grade : ''
-      })
-      console.log(formObj)
-      return formObj
-    },
+    // async getSbuject() {
+    //   const result = await getSubjectScore(this.studentId)
+    //   const field = [
+    //     'chineseScore',
+    //     'mathScore',
+    //     'englishScore',
+    //     'politicsScore',
+    //     'universityChineseScore',
+    //     'highMathScore1',
+    //     'highMathScore2',
+    //     'physicsScore',
+    //     'educationScore',
+    //     'medicineScore',
+    //     'civillawScore',
+    //     'historyGeographyScore',
+    //     'artScore',
+    //     'totalScore'
+    //   ]
+    //   const formObj = {}
+    //   field.forEach((ele, index) => {
+    //     formObj[ele] = result[index] ? result[index].grade : ''
+    //   })
+    //   console.log(formObj)
+    //   return formObj
+    // },
     validate(callback) {
       const form = this.$refs.form
       form.validate(data => {

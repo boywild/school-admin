@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import moment from 'moment'
+// import moment from 'moment'
 import FormGenerate from '@/components/FormGenerate'
 import { financeDetail, financeSave } from '@/api/finance'
 import { isMoney } from '@/utils/validate'
@@ -138,9 +138,7 @@ export default {
       const result = await financeDetail(this.studentId)
       const form = this.$refs.form
       form.setData({
-        ...result,
-        registerDateTime: moment(result.registerDateTime),
-        oweClearTime: moment(result.oweClearTime)
+        ...result
       })
       this.loadingData = false
     },

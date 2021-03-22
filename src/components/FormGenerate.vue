@@ -111,7 +111,13 @@ export default {
         'workStartTime',
         'degreeInformTime',
         'diplomaTakeTime',
-        'registerDateTime'
+        'registerDateTime',
+        'graduateTime',
+        'entranceTime',
+        'registerDateTime',
+        'oweClearTime',
+        'takeDiplomaDate',
+        'examTime'
       ]
     }
   },
