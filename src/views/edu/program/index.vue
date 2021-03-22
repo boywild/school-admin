@@ -212,6 +212,17 @@ export default {
 
   created() {
     // getRoleList({ t: new Date() })
+    this.YesOrNoEnum()
+    this.IdTypeEnum()
+    this.GenderTypeEnum()
+    this.NationEnum()
+    this.HouseholdEnum()
+    this.PoliticsEnum()
+    this.HuJiEnum()
+    this.AdmitPlatformEnum()
+    this.StudentSourceTypeEnum()
+    this.FeeSourceTypeEnum()
+    this.StudentApplyLevelEnum()
   },
   computed: {
     ...mapState({
@@ -226,21 +237,17 @@ export default {
   },
   methods: {
     ...mapActions([
+      'YesOrNoEnum',
       'IdTypeEnum',
       'GenderTypeEnum',
       'NationEnum',
       'HouseholdEnum',
       'PoliticsEnum',
+      'HuJiEnum',
       'StudentSourceTypeEnum',
-      'StudentApplyLevelEnum',
-      'StudentLearnStyleEnum',
-      'YesOrNoEnum',
-      'StudentPaperEnum',
-      'GraduateGatherEnum',
-      'StudentPassEnum',
-      'LanuageEnum',
-      'StudentDegreeLevelEnum',
-      'ScoreResultEnum'
+      'AdmitPlatformEnum',
+      'FeeSourceTypeEnum',
+      'StudentApplyLevelEnum'
     ]),
     // 新建学生
     handleAdd() {

@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+// import { mapState } from 'vuex'
 import moment from 'moment'
 import FormGenerate from '@/components/FormGenerate'
 import { isEmail, isPhone } from '@/utils/validate'
@@ -62,9 +62,9 @@ export default {
       tab1: [
         {
           label: '录入平台',
-          field: 'xxxx',
+          field: 'admitPlatform',
           form: 'select',
-          selectFrom: 'PLATFORM_ENMU',
+          selectFrom: 'AdmitPlatformEnum',
           rules: [{ required: true, message: '请选择录入平台' }]
         },
         {
@@ -81,7 +81,7 @@ export default {
           label: '证件种类',
           field: 'idType',
           form: 'select',
-          selectFrom: 'CARDTYPE_ENMU',
+          selectFrom: 'IdTypeEnum',
           rules: [{ required: true, message: '请输入证件种类' }]
         },
         {
@@ -97,14 +97,14 @@ export default {
           label: '民族',
           field: 'nation',
           form: 'select',
-          selectFrom: 'MZ_ENMU',
+          selectFrom: 'NationEnum',
           rules: [{ required: true, message: '请选择民族' }]
         },
         {
           label: '性别',
           field: 'gender',
           form: 'radio',
-          radioFrom: 'SEX_ENMU',
+          radioFrom: 'GenderTypeEnum',
           rules: [{ required: true, message: '请选择性别' }]
         },
         { label: '出生日期', field: 'birthDay', form: 'date', rules: [{ required: true, message: '请选择出生日期' }] },
@@ -118,14 +118,14 @@ export default {
           label: '户口性质',
           field: 'householdType',
           form: 'select',
-          selectFrom: 'HK_ENMU',
+          selectFrom: 'HouseholdEnum',
           rules: [{ required: true, message: '请选择户口性质' }]
         },
         {
           label: '户籍',
           field: 'huji',
           form: 'radio',
-          radioFrom: 'HJ_ENMU',
+          radioFrom: 'HuJiEnum',
           rules: [{ required: true, message: '请选择户籍' }]
         },
         {
@@ -141,14 +141,14 @@ export default {
           label: '政治面貌',
           field: 'politicsStatus',
           form: 'select',
-          selectFrom: 'ZZMM_ENMU',
+          selectFrom: 'PoliticsEnum',
           rules: [{ required: true, max: 20, message: '请选择政治面貌' }]
         },
         {
           label: '已婚',
           field: 'married',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: [{ required: true, max: 20, message: '请选择政治面貌' }]
         },
         {
@@ -168,7 +168,7 @@ export default {
         },
         {
           label: '原毕业专业',
-          field: 'xxxx',
+          field: 'major',
           form: 'input',
           rules: [{ required: true, message: '请输入原毕业专业' }]
         },
@@ -219,15 +219,7 @@ export default {
       }
     })
   },
-  computed: {
-    ...mapState({
-      IdTypeEnum: state => state.dict.IdTypeEnum,
-      GenderTypeEnum: state => state.dict.GenderTypeEnum,
-      NationEnum: state => state.dict.NationEnum,
-      HouseholdEnum: state => state.dict.HouseholdEnum,
-      PoliticsEnum: state => state.dict.PoliticsEnum
-    })
-  },
+  computed: {},
   methods: {
     async getBaseInfo() {
       this.loadingData = true

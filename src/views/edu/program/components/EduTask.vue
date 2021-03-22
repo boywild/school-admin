@@ -63,7 +63,8 @@ export default {
         },
         {
           label: '录取结果',
-          form: 'admitFlag',
+          field: 'admitFlag',
+          form: 'radio',
           radioFrom: 'YesOrNoEnum',
           rules: []
         },
@@ -104,7 +105,7 @@ export default {
         },
         {
           label: '毕业证书已领',
-          field: 'xxxx',
+          field: 'graduateCertTakeFlag',
           form: 'radio',
           radioFrom: 'YesOrNoEnum',
           rules: []

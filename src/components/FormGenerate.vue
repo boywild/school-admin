@@ -114,7 +114,6 @@ export default {
         'registerDateTime',
         'graduateTime',
         'entranceTime',
-        'registerDateTime',
         'oweClearTime',
         'takeDiplomaDate',
         'examTime',
