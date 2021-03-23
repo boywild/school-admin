@@ -17,7 +17,7 @@
             <a-col :md="8" :sm="24">
               <a-form-item label="使用状态">
                 <a-select v-model="queryParam.allowStatus" placeholder="请选择使用状态" default-value="0">
-                  <a-select-option :value="item.code" v-for="(item, index) in OPENORCLOSE_ENMU" :key="index">{{
+                  <a-select-option :value="item.code" v-for="(item, index) in dict.OpenOrCloseEnum" :key="index">{{
                     item.desc
                   }}</a-select-option>
                 </a-select>
@@ -97,13 +97,14 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
 import moment from 'moment'
 import { STable } from '@/components'
 import { adminList, adminSave, adminRemove } from '@/api/admin'
 import { roleList } from '@/api/role'
 // import StepByStepModal from './modules/StepByStepModal'
 import CreateForm from './components/CreateForm'
-import { OPENORCLOSE_ENMU } from '@/config/dict'
+// import { OPENORCLOSE_ENMU } from '@/config/dict'
 
 const columns = [
   { title: '登录名', dataIndex: 'loginNo' },
@@ -126,7 +127,7 @@ export default {
     this.columns = columns
     return {
       // create model
-      OPENORCLOSE_ENMU,
+      // OPENORCLOSE_ENMU,
       visible: false,
       confirmLoading: false,
       mdl: null,
@@ -159,8 +160,13 @@ export default {
   created() {
     // adminList({ t: new Date() })
     this.getRole()
+    this.YesOrNoEnum()
+    this.OpenOrCloseEnum()
   },
   computed: {
+    ...mapState({
+      dict: state => state.dict.dict
+    }),
     rowSelection() {
       return {
         selectedRowKeys: this.selectedRowKeys,
@@ -169,6 +175,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['OpenOrCloseEnum', 'YesOrNoEnum']),
     async getRole() {
       const { content = [] } = await roleList({ pageNo: 1, pageSize: 100 })
       this.roleList = content

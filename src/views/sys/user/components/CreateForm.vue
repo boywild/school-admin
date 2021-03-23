@@ -46,7 +46,7 @@
         </a-form-model-item>
         <a-form-model-item label="是否允许登录" prop="allowStatus">
           <a-radio-group v-model="form.allowStatus">
-            <a-radio :value="radio.code" v-for="(radio, count) in YESORNO_ENMU" :key="count">
+            <a-radio :value="radio.code" v-for="(radio, count) in dict.YesOrNoEnum" :key="count">
               {{ radio.desc }}
             </a-radio>
           </a-radio-group>
@@ -60,8 +60,9 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import WangEditor from '@/components/Editor/WangEditor'
-import { YESORNO_ENMU } from '@/config/dict'
+// import { YESORNO_ENMU } from '@/config/dict'
 import { isPassword, isLoginName, isChinese, isPhone } from '@/utils/validate'
 import { roleList } from '@/api/role'
 export default {
@@ -126,7 +127,7 @@ export default {
     }
 
     return {
-      YESORNO_ENMU,
+      // YESORNO_ENMU,
       labelCol: { span: 5 },
       wrapperCol: { span: 19 },
       roleList: [],
@@ -151,6 +152,11 @@ export default {
         roleId: [{ required: true, message: '请为用户分配角色' }]
       }
     }
+  },
+  computed: {
+    ...mapState({
+      dict: state => state.dict.dict
+    })
   },
   created() {
     this.$watch('model', () => {

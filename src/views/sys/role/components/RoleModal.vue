@@ -14,14 +14,14 @@
         </a-form-model-item>
         <a-form-model-item label="是否可用" prop="status">
           <a-radio-group v-model="form.status">
-            <a-radio :value="radio.code" v-for="(radio, count) in YESORNO_ENMU" :key="count">
+            <a-radio :value="radio.code" v-for="(radio, count) in dict.YesOrNoEnum" :key="count">
               {{ radio.desc }}
             </a-radio>
           </a-radio-group>
         </a-form-model-item>
         <a-form-model-item label="是否系统数据" prop="updSysData">
           <a-radio-group v-model="form.updSysData" disabled>
-            <a-radio :value="radio.code" v-for="(radio, count) in YESORNO_ENMU" :key="count">
+            <a-radio :value="radio.code" v-for="(radio, count) in dict.YesOrNoEnum" :key="count">
               {{ radio.desc }}
             </a-radio>
           </a-radio-group>
@@ -35,13 +35,14 @@
 </template>
 
 <script>
-import { YESORNO_ENMU } from '@/config/dict'
+import { mapState } from 'vuex'
+// import { YESORNO_ENMU } from '@/config/dict'
 import { roleSave } from '@/api/role'
 export default {
   name: 'RoleModal',
   data() {
     return {
-      YESORNO_ENMU,
+      // YESORNO_ENMU,
       visible: false,
       loading: false,
       confirmLoading: false,
@@ -50,7 +51,7 @@ export default {
       form: {
         roleName: '',
         status: '',
-        updSysData: 0,
+        updSysData: '0',
         remark: ''
       },
       rules: {
@@ -62,6 +63,11 @@ export default {
   },
   created() {},
   watch: {},
+  computed: {
+    ...mapState({
+      dict: state => state.dict.dict
+    })
+  },
   methods: {
     handleOk() {
       this.validate(async values => {

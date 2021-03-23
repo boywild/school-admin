@@ -85,6 +85,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import { STable } from '@/components'
 import RoleModal from './components/RoleModal'
 import RolePermissionModal from './components/RolePermissionModal'
@@ -133,7 +134,11 @@ export default {
       selectedRows: []
     }
   },
+  created() {
+    this.YesOrNoEnum()
+  },
   methods: {
+    ...mapActions(['YesOrNoEnum']),
     refreshTable() {
       // 新增/修改 成功时，重载列表
       this.$refs.table.refresh()
