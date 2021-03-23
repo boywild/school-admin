@@ -131,7 +131,7 @@ export default {
         }
         const requestParameters = Object.assign({}, parameter, this.queryParam)
         console.log('loadData request parameters:', requestParameters)
-        return financeList(requestParameters).then(res => {
+        return financeList({ ...requestParameters }).then(res => {
           return res
         })
       },
