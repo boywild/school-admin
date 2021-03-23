@@ -20,7 +20,7 @@
 <script>
 import FormGenerate from '@/components/FormGenerate'
 import { getApply, studentApply } from '@/api/student'
-import moment from 'moment'
+// import moment from 'moment'
 
 export default {
   name: 'JoinInfo',
@@ -47,7 +47,8 @@ export default {
         {
           label: '渠道来源',
           field: 'sourceType',
-          form: 'input',
+          form: 'select',
+          selectFrom: 'StudentSourceTypeEnum',
           rules: [
             { required: true, message: '请输入渠道来源' },
             { max: 10, message: '限制输入10位' }
@@ -66,7 +67,7 @@ export default {
           label: '报考层次',
           field: 'studentApplyLevel',
           form: 'select',
-          selectFrom: 'STUDY_LEVEL_ENMU',
+          selectFrom: 'StudentApplyLevel2Enum',
           rules: [{ required: true, message: '请选择报考层次' }]
         },
         {
@@ -78,14 +79,15 @@ export default {
         {
           label: '授课方式',
           field: 'lessonStyle',
-          form: 'input',
+          form: 'select',
+          selectFrom: 'LessonStyleEnum',
           rules: [{ required: true, message: '请输入授课方式' }]
         },
         {
           label: '首次培训/复培',
           field: 'newTrainTimesFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: [{ required: true, message: '请选择首次培训/复培' }]
         },
 
@@ -116,12 +118,10 @@ export default {
   methods: {
     async getJoinInfo() {
       this.loadingData = true
-      const result = await getApply()
+      const result = await getApply(this.studentId)
       const form = this.$refs.form
       form.setData({
-        ...result,
-        entranceDate: moment(result.entranceDate),
-        workStartTime: moment(result.workStartTime)
+        ...result
       })
       this.loadingData = false
     },

@@ -122,17 +122,12 @@
         </span>
       </s-table>
 
-      <create-form
-        ref="createModal"
-        :visible="visible"
-        :loading="confirmLoading"
-        :model="mdl"
-        :title="setDialogTitle"
-        @cancel="handleCancel"
-        @ok="handleOk"
-      >
-        <component ref="currentComponent" :is="getForm"></component>
-      </create-form>
+      <BaseInfo v-model="visibleBaseInfo" :studentId="mdl && mdl.studentId" @update="tableRefresh"></BaseInfo>
+      <ImgInfo v-model="visibleImgInfo" :studentId="mdl && mdl.studentId" @update="tableRefresh"></ImgInfo>
+      <JoinInfo v-model="visibleJoinInfo" :studentId="mdl && mdl.studentId" @update="tableRefresh"></JoinInfo>
+      <EduTask v-model="visibleEduTask" :studentId="mdl && mdl.studentId" @update="tableRefresh"></EduTask>
+
+      <StudyCost v-model="visibleStudyCost" :studentId="mdl && mdl.studentId" @update="tableRefresh"></StudyCost>
     </a-card>
   </page-header-wrapper>
 </template>
@@ -232,6 +227,12 @@ export default {
 
   created() {
     // getRoleList({ t: new Date() })
+    this.YesOrNoEnum()
+    this.IdTypeEnum()
+    this.GenderTypeEnum()
+    this.NationEnum()
+    this.HouseholdEnum()
+    this.PoliticsEnum()
   },
   computed: {
     ...mapState({
@@ -269,23 +270,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions([
-      'IdTypeEnum',
-      'GenderTypeEnum',
-      'NationEnum',
-      'HouseholdEnum',
-      'PoliticsEnum',
-      'StudentSourceTypeEnum',
-      'StudentApplyLevelEnum',
-      'StudentLearnStyleEnum',
-      'YesOrNoEnum',
-      'StudentPaperEnum',
-      'GraduateGatherEnum',
-      'StudentPassEnum',
-      'LanuageEnum',
-      'StudentDegreeLevelEnum',
-      'ScoreResultEnum'
-    ]),
+    ...mapActions(['YesOrNoEnum', 'IdTypeEnum', 'GenderTypeEnum', 'NationEnum', 'HouseholdEnum', 'PoliticsEnum']),
     // 新建学生
     handleAdd() {
       this.mdl = null

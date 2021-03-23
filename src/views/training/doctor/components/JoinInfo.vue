@@ -11,7 +11,7 @@
   >
     <div class="edu-adult">
       <a-spin :spinning="loadingData">
-        <form-generate ref="form" :fields="tab3"></form-generate>
+        <form-generate ref="joinInfoForm" :fields="tab3"></form-generate>
       </a-spin>
     </div>
   </a-modal>
@@ -20,7 +20,7 @@
 <script>
 import FormGenerate from '@/components/FormGenerate'
 import { getApply, studentApply } from '@/api/student'
-import moment from 'moment'
+// import moment from 'moment'
 
 export default {
   name: 'JoinInfo',
@@ -47,27 +47,22 @@ export default {
         {
           label: '渠道来源',
           field: 'sourceType',
-          form: 'input',
-          rules: [
-            { required: true, message: '请输入渠道来源' },
-            { max: 10, message: '限制输入10位' }
-          ]
+          form: 'select',
+          selectFrom: 'StudentSourceTypeEnum',
+          rules: [{ required: true, message: '请输入渠道来源' }]
         },
         {
           label: '报考工种',
           field: 'workIndustry',
           form: 'select',
-          selectFrom: 'TRAINING_ENMU',
-          rules: [
-            { required: true, message: '请输入报考工种' },
-            { max: 10, message: '限制输入10位' }
-          ]
+          selectFrom: 'TraningTypeEnum',
+          rules: [{ required: true, message: '请输入报考工种' }]
         },
         {
           label: '报考层次',
           field: 'studentApplyLevel',
           form: 'select',
-          selectFrom: 'STUDY_LEVEL_ENMU2',
+          selectFrom: 'StudentApplyLevel2Enum',
           rules: [{ required: true, message: '请选择报考层次' }]
         },
         {
@@ -80,14 +75,14 @@ export default {
           label: '授课方式',
           field: 'lessonStyle',
           form: 'select',
-          selectFrom: 'TEACHMETHOD_ENMU',
+          selectFrom: 'LessonStyleEnum',
           rules: [{ required: true, message: '请输入授课方式' }]
         },
         {
           label: '班型',
           field: 'vipClassFlag',
           form: 'select',
-          selectFrom: 'CLASSTYPE_ENMU',
+          selectFrom: 'ClassTypeEnum',
           rules: [{ required: true, message: '请选择首次培训/复培' }]
         },
 
@@ -118,12 +113,10 @@ export default {
   methods: {
     async getJoinInfo() {
       this.loadingData = true
-      const result = await getApply()
-      const form = this.$refs.form
+      const result = await getApply(this.studentId)
+      const form = this.$refs.joinInfoForm
       form.setData({
-        ...result,
-        entranceDate: moment(result.entranceDate),
-        workStartTime: moment(result.workStartTime)
+        ...result
       })
       this.loadingData = false
     },
@@ -137,14 +130,14 @@ export default {
       })
     },
     validate(callback) {
-      const form = this.$refs.form
+      const form = this.$refs.joinInfoForm
       form.validate(data => {
         callback && callback(data)
         console.log(data)
       })
     },
     resetForm() {
-      const form = this.$refs.form
+      const form = this.$refs.joinInfoForm
       form.reset()
     },
     handleOk() {

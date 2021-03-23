@@ -230,6 +230,15 @@ export default {
 
   created() {
     // getRoleList({ t: new Date() })
+    this.YesOrNoEnum()
+    this.IdTypeEnum()
+    this.GenderTypeEnum()
+    this.NationEnum()
+    this.HouseholdEnum()
+    this.PoliticsEnum()
+    this.StudentApplyLevel2Enum()
+    this.StudentSourceTypeEnum()
+    this.LessonStyleEnum()
   },
   computed: {
     ...mapState({
@@ -273,16 +282,10 @@ export default {
       'NationEnum',
       'HouseholdEnum',
       'PoliticsEnum',
-      'StudentSourceTypeEnum',
-      'StudentApplyLevelEnum',
-      'StudentLearnStyleEnum',
       'YesOrNoEnum',
-      'StudentPaperEnum',
-      'GraduateGatherEnum',
-      'StudentPassEnum',
-      'LanuageEnum',
-      'StudentDegreeLevelEnum',
-      'ScoreResultEnum'
+      'StudentApplyLevel2Enum',
+      'StudentSourceTypeEnum',
+      'LessonStyleEnum'
     ]),
     // 新建学生
     handleAdd() {

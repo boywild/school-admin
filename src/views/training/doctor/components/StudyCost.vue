@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import moment from 'moment'
+// import moment from 'moment'
 import FormGenerate from '@/components/FormGenerate'
 import { isMoney } from '@/utils/validate'
 import { financeDetail, financeSave } from '@/api/finance'
@@ -26,7 +26,8 @@ import { financeDetail, financeSave } from '@/api/finance'
 export default {
   name: 'StudyCost',
   props: {
-    value: { type: Boolean, required: true }
+    value: { type: Boolean, required: true },
+    studentId: { type: String, default: '' }
   },
   model: {
     prop: 'value',
@@ -96,7 +97,7 @@ export default {
       this.loadingData = true
       const result = await financeDetail(this.studentId)
       const form = this.$refs.form
-      form.setData({ ...result, registerDateTime: moment(result.registerDateTime) })
+      form.setData({ ...result })
       this.loadingData = false
     },
     async saveStudyCost() {

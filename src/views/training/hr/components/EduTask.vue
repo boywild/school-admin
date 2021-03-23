@@ -60,7 +60,7 @@ export default {
           label: '考试成绩',
           field: 'grade',
           form: 'input',
-          rules: [{ max: 6, message: '考试成绩限制输入6位' }]
+          rules: []
         },
         {
           label: '证书发放时间',
@@ -84,20 +84,20 @@ export default {
           label: '报考次数',
           field: 'applyTimes',
           form: 'input',
-          rules: [{ max: 20, message: '报考次数限制输入20位' }]
+          rules: []
         },
         {
           label: '教材领取',
           field: 'getTextBookFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '退费',
           field: 'refundFeeFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
@@ -109,6 +109,7 @@ export default {
         {
           label: '退费途径',
           field: 'refundWay',
+          form: 'input',
           rules: []
         }
       ]

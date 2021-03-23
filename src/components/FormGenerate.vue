@@ -119,7 +119,11 @@ export default {
         'examTime',
         'graduateCertTakeTime',
         'unifyDate',
-        'degreeTakeTime'
+        'degreeTakeTime',
+        'applyTime',
+        'bonusComeInTime',
+        'certProvideTime',
+        'refundFeeTime'
       ]
     }
   },
