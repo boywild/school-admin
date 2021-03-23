@@ -90,7 +90,7 @@
       <s-table
         ref="table"
         size="default"
-        rowKey="key"
+        rowKey="studentId"
         :columns="columns"
         :data="loadData"
         :alert="true"
