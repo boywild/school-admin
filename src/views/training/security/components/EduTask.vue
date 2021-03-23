@@ -90,14 +90,14 @@ export default {
           label: '教材领取',
           field: 'getTextBookFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
           label: '退费',
           field: 'refundFeeFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: []
         },
         {
@@ -109,6 +109,7 @@ export default {
         {
           label: '退费途径',
           field: 'refundWay',
+          form: 'input',
           rules: []
         }
       ]

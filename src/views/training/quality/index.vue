@@ -99,7 +99,7 @@
       <s-table
         ref="table"
         size="default"
-        rowKey="key"
+        rowKey="studentId"
         :columns="columns"
         :data="loadData"
         :alert="true"
@@ -227,6 +227,16 @@ export default {
 
   created() {
     // getRoleList({ t: new Date() })
+    this.YesOrNoEnum()
+    this.IdTypeEnum()
+    this.GenderTypeEnum()
+    this.NationEnum()
+    this.HouseholdEnum()
+    this.PoliticsEnum()
+    this.TraningTypeEnum()
+    this.StudentApplyLevel2Enum()
+    this.LessonStyleEnum()
+    this.StudentSourceTypeEnum()
   },
   computed: {
     ...mapState({
@@ -265,21 +275,16 @@ export default {
   },
   methods: {
     ...mapActions([
+      'YesOrNoEnum',
       'IdTypeEnum',
       'GenderTypeEnum',
       'NationEnum',
       'HouseholdEnum',
       'PoliticsEnum',
-      'StudentSourceTypeEnum',
-      'StudentApplyLevelEnum',
-      'StudentLearnStyleEnum',
-      'YesOrNoEnum',
-      'StudentPaperEnum',
-      'GraduateGatherEnum',
-      'StudentPassEnum',
-      'LanuageEnum',
-      'StudentDegreeLevelEnum',
-      'ScoreResultEnum'
+      'TraningTypeEnum',
+      'StudentApplyLevel2Enum',
+      'LessonStyleEnum',
+      'StudentSourceTypeEnum'
     ]),
     // 新建学生
     handleAdd() {

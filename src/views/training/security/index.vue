@@ -99,7 +99,7 @@
       <s-table
         ref="table"
         size="default"
-        rowKey="key"
+        rowKey="studentId"
         :columns="columns"
         :data="loadData"
         :alert="true"
@@ -233,6 +233,10 @@ export default {
     this.NationEnum()
     this.HouseholdEnum()
     this.PoliticsEnum()
+    this.TraningTypeEnum()
+    this.StudentApplyLevel2Enum()
+    this.LessonStyleEnum()
+    this.StudentSourceTypeEnum()
   },
   computed: {
     ...mapState({
@@ -270,7 +274,18 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['YesOrNoEnum', 'IdTypeEnum', 'GenderTypeEnum', 'NationEnum', 'HouseholdEnum', 'PoliticsEnum']),
+    ...mapActions([
+      'YesOrNoEnum',
+      'IdTypeEnum',
+      'GenderTypeEnum',
+      'NationEnum',
+      'HouseholdEnum',
+      'PoliticsEnum',
+      'TraningTypeEnum',
+      'StudentApplyLevel2Enum',
+      'LessonStyleEnum',
+      'StudentSourceTypeEnum'
+    ]),
     // 新建学生
     handleAdd() {
       this.mdl = null

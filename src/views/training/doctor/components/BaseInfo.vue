@@ -72,14 +72,14 @@ export default {
         { label: '联系电话', field: 'phone', form: 'input', rules: [{ required: true, validator: validatorPhone }] },
         {
           label: '证件种类',
-          field: 'card',
+          field: 'idType',
           form: 'select',
           selectFrom: 'IdTypeEnum',
           rules: [{ required: true, message: '请输入证件种类' }]
         },
         {
           label: '证件号码',
-          field: 'idType',
+          field: 'idNumber',
           form: 'input',
           rules: [
             { required: true, message: '请输入证件号码' },
