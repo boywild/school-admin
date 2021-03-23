@@ -107,7 +107,7 @@
       <div class="table-operator">
         <a-button type="primary" icon="plus" v-action:T024 @click="handleAdd">新建</a-button>
         <a-button type="danger" icon="delete" v-action:T025 @click="deleteStudent">删除</a-button>
-        <a-button type="primary" ghost icon="download" v-action:T026>导出数据</a-button>
+        <a-button type="primary" ghost icon="download" v-action:T026 @click="downLoad">导出数据</a-button>
       </div>
 
       <s-table
@@ -157,6 +157,7 @@ import StudyCost from './components/StudyCost'
 // import { getRoleList } from '@/api/manage'
 // import { getStudentsList } from '@/api/students'
 import { studentList } from '@/api/student'
+import { downLoadExcel } from '@/api/sys'
 // import {
 //   STUDENT_FROM_ENMU,
 //   STUDY_LEVEL_ENMU,
@@ -311,6 +312,9 @@ export default {
         },
         onCancel() {}
       })
+    },
+    async downLoad() {
+      await downLoadExcel('S003')
     }
   }
 }

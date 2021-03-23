@@ -302,8 +302,7 @@ export default {
       })
     },
     async downLoad() {
-      const res = await downLoadExcel('S004')
-      console.log(res)
+      await downLoadExcel('S004')
     }
   }
 }
