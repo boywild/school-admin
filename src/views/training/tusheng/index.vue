@@ -93,7 +93,7 @@
       <div class="table-operator">
         <a-button type="primary" icon="plus" v-action:T069 @click="handleAdd">新建</a-button>
         <a-button type="danger" icon="delete" v-action:T070 @click="deleteStudent">删除</a-button>
-        <a-button type="primary" ghost icon="download" v-action:T071>导出数据</a-button>
+        <a-button type="primary" ghost icon="download" v-action:T071 @click="downLoad">导出数据</a-button>
       </div>
 
       <s-table
@@ -130,44 +130,40 @@
           </template>
         </span>
       </s-table>
+      <BaseInfo v-model="visibleBaseInfo" :studentId="mdl && mdl.studentId" @update="tableRefresh"></BaseInfo>
+      <ImgInfo v-model="visibleImgInfo" :studentId="mdl && mdl.studentId" @update="tableRefresh"></ImgInfo>
+      <JoinInfo v-model="visibleJoinInfo" :studentId="mdl && mdl.studentId" @update="tableRefresh"></JoinInfo>
+      <EduTask v-model="visibleEduTask" :studentId="mdl && mdl.studentId" @update="tableRefresh"></EduTask>
 
-      <create-form
-        ref="createModal"
-        :visible="visible"
-        :loading="confirmLoading"
-        :model="mdl"
-        :title="setDialogTitle"
-        @cancel="handleCancel"
-        @ok="handleOk"
-      >
-        <component ref="currentComponent" :is="getForm"></component>
-      </create-form>
+      <StudyCost v-model="visibleStudyCost" :studentId="mdl && mdl.studentId" @update="tableRefresh"></StudyCost>
     </a-card>
   </page-header-wrapper>
 </template>
 
 <script>
-import moment from 'moment'
+// import moment from 'moment'
+import { mapActions } from 'vuex'
 import { STable, Ellipsis } from '@/components'
 import BaseInfo from './components/BaseInfo'
 import ImgInfo from './components/ImgInfo'
 import JoinInfo from './components/JoinInfo'
 import EduTask from './components/EduTask'
 import StudyCost from './components/StudyCost'
-import { getRoleList } from '@/api/manage'
-import { getStudentsList } from '@/api/students'
-import {
-  STUDENT_FROM_ENMU,
-  STUDY_LEVEL_ENMU,
-  STUDY_WAT_ENMU,
-  SUBJECT_ENMU,
-  INFO_GATHER_ENMU,
-  THESIS_FROM_ENMU,
-  REACH_ENMU,
-  YESORNO_ENMU,
-  STUDY_LEVEL_ENMU2,
-  TEACHMETHOD_ENMU
-} from '@/config/dict'
+// import { getRoleList } from '@/api/manage'
+import { studentList } from '@/api/student'
+import { downLoadExcel } from '@/api/sys'
+// import {
+//   STUDENT_FROM_ENMU,
+//   STUDY_LEVEL_ENMU,
+//   STUDY_WAT_ENMU,
+//   SUBJECT_ENMU,
+//   INFO_GATHER_ENMU,
+//   THESIS_FROM_ENMU,
+//   REACH_ENMU,
+//   YESORNO_ENMU,
+//   STUDY_LEVEL_ENMU2,
+//   TEACHMETHOD_ENMU
+// } from '@/config/dict'
 
 // import StepByStepModal from './modules/StepByStepModal'
 import CreateForm from './components/CreateForm'
@@ -202,18 +198,22 @@ export default {
     this.columns = columns
     return {
       // create model
-      STUDENT_FROM_ENMU,
-      STUDY_LEVEL_ENMU,
-      STUDY_WAT_ENMU,
-      SUBJECT_ENMU,
-      INFO_GATHER_ENMU,
-      THESIS_FROM_ENMU,
-      REACH_ENMU,
-      YESORNO_ENMU,
-      STUDY_LEVEL_ENMU2,
-      TEACHMETHOD_ENMU,
+      // STUDENT_FROM_ENMU,
+      // STUDY_LEVEL_ENMU,
+      // STUDY_WAT_ENMU,
+      // SUBJECT_ENMU,
+      // INFO_GATHER_ENMU,
+      // THESIS_FROM_ENMU,
+      // REACH_ENMU,
+      // YESORNO_ENMU,
+      // STUDY_LEVEL_ENMU2,
+      // TEACHMETHOD_ENMU,
       currentForm: 'BaseInfo',
-      visible: false,
+      visibleBaseInfo: false,
+      visibleImgInfo: false,
+      visibleJoinInfo: false,
+      visibleEduTask: false,
+      visibleStudyCost: false,
       confirmLoading: false,
       mdl: null,
       // 高级搜索 展开/关闭
@@ -224,8 +224,9 @@ export default {
       loadData: parameter => {
         const requestParameters = Object.assign({}, parameter, this.queryParam)
         console.log('loadData request parameters:', requestParameters)
-        return getStudentsList(requestParameters).then(res => {
-          return res.result
+        return studentList({ applyType: 'S008', ...requestParameters }).then(res => {
+          console.log(res)
+          return res
         })
       },
       selectedRowKeys: [],
@@ -234,7 +235,17 @@ export default {
   },
 
   created() {
-    getRoleList({ t: new Date() })
+    // getRoleList({ t: new Date() })
+    this.YesOrNoEnum()
+    this.IdTypeEnum()
+    this.GenderTypeEnum()
+    this.NationEnum()
+    this.HouseholdEnum()
+    this.PoliticsEnum()
+    this.TraningTypeEnum()
+    this.StudentApplyLevel2Enum()
+    this.LessonStyleEnum()
+    this.StudentSourceTypeEnum()
   },
   computed: {
     rowSelection() {
@@ -269,68 +280,38 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'YesOrNoEnum',
+      'IdTypeEnum',
+      'GenderTypeEnum',
+      'NationEnum',
+      'HouseholdEnum',
+      'PoliticsEnum',
+      'TraningTypeEnum',
+      'StudentApplyLevel2Enum',
+      'LessonStyleEnum',
+      'StudentSourceTypeEnum'
+    ]),
     // 新建学生
     handleAdd() {
       this.mdl = null
-      this.visible = true
-      this.currentForm = 'BaseInfo'
+      this['visibleBaseInfo'] = true
     },
     tableRefresh() {
       const table = this.$refs.table
       table.refresh()
     },
-    handleOk() {
-      const form = this.$refs.currentComponent
 
-      form.validate(values => {
-        console.log('通过', values)
-        this.confirmLoading = true
-        if (values.id > 0) {
-          // 修改 e.g.
-          new Promise((resolve, reject) => {
-            setTimeout(() => {
-              resolve()
-            }, 1000)
-          }).then(res => {
-            this.visible = false
-            this.confirmLoading = false
-            // 重置表单数据
-            form.resetFields()
-            // 刷新表格
-            this.tableRefresh()
-
-            this.$message.info('修改成功')
-          })
-        } else {
-          // 新增
-          new Promise((resolve, reject) => {
-            setTimeout(() => {
-              resolve()
-            }, 1000)
-          }).then(res => {
-            this.visible = false
-            this.confirmLoading = false
-            // 重置表单数据
-            form.resetFields()
-            // 刷新表格
-            this.tableRefresh()
-
-            this.$message.info('新增成功')
-          })
-        }
-      })
-    },
-    // 取消新建
-    handleCancel() {
-      const form = this.$refs.currentComponent
-      form.resetForm()
-      this.visible = false
+    // 保存成功
+    actionSuccess(text) {
+      // 刷新表格
+      this.$message.info(text)
+      this.tableRefresh()
     },
     // 修改
     handleModify(record, form) {
       this.mdl = record
-      this.visible = true
-      this.currentForm = form
+      this[`visible${form}`] = true
     },
     // 勾选
     onSelectChange(selectedRowKeys, selectedRows) {
@@ -342,9 +323,7 @@ export default {
     },
     // 重置search条件
     resetSearchForm() {
-      this.queryParam = {
-        date: moment(new Date())
-      }
+      this.queryParam = {}
     },
     // 删除学生
     deleteStudent() {
@@ -363,6 +342,9 @@ export default {
         },
         onCancel() {}
       })
+    },
+    async downLoad() {
+      await downLoadExcel('S001')
     }
   }
 }

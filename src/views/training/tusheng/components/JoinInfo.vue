@@ -1,16 +1,42 @@
 <template>
-  <div class="edu-adult">
-    <form-generate ref="form" :fields="tab3"></form-generate>
-  </div>
+  <a-modal
+    title="报名信息"
+    :width="900"
+    :visible="value"
+    :mask-closable="false"
+    :confirmLoading="loading"
+    okText="保存报名信息"
+    @ok="handleOk"
+    @cancel="handleCancel"
+  >
+    <div class="edu-adult">
+      <a-spin :spinning="loadingData">
+        <form-generate ref="form" :fields="tab3"></form-generate>
+      </a-spin>
+    </div>
+  </a-modal>
 </template>
 
 <script>
 import FormGenerate from '@/components/FormGenerate'
+import { getApply, studentApply } from '@/api/student'
+// import moment from 'moment'
+
 export default {
   name: 'JoinInfo',
+  props: {
+    value: { type: Boolean, required: true },
+    studentId: { type: String, default: '' }
+  },
+  model: {
+    prop: 'value',
+    event: 'change'
+  },
   components: { FormGenerate },
   data() {
     return {
+      loading: false,
+      loadingData: false,
       tab3: [
         {
           label: '入学批次',
@@ -18,20 +44,18 @@ export default {
           form: 'date',
           rules: [{ required: true, message: '请选择入学批次' }]
         },
-        {
+         {
           label: '渠道来源',
           field: 'sourceType',
-          form: 'input',
-          rules: [
-            { required: true, message: '请输入渠道来源' },
-            { max: 10, message: '限制输入10位' }
-          ]
+          form: 'select',
+          selectFrom: 'StudentSourceTypeEnum',
+          rules: [{ required: true, message: '请输入渠道来源' }]
         },
         {
           label: '报考工种',
           field: 'workIndustry',
           form: 'select',
-          selectFrom: 'TRAINING_ENMU',
+          selectFrom: 'TraningTypeEnum',
           rules: [
             { required: true, message: '请输入报考工种' },
             { max: 10, message: '限制输入10位' }
@@ -41,7 +65,7 @@ export default {
           label: '报考层次',
           field: 'studentApplyLevel',
           form: 'select',
-          selectFrom: 'STUDY_LEVEL_ENMU2',
+          selectFrom: 'StudentApplyLevel2Enum',
           rules: [{ required: true, message: '请选择报考层次' }]
         },
         {
@@ -52,16 +76,16 @@ export default {
         },
         {
           label: '授课方式',
-          field: 'xxxx',
+          field: 'lessonStyle',
           form: 'select',
-          selectFrom: 'TEACHMETHOD_ENMU',
+          selectFrom: 'LessonStyleEnum',
           rules: [{ required: true, message: '请输入授课方式' }]
         },
         {
           label: '首次培训/复培',
           field: 'newTrainTimesFlag',
           form: 'radio',
-          radioFrom: 'YESORNO_ENMU',
+          radioFrom: 'YesOrNoEnum',
           rules: [{ required: true, message: '请选择首次培训/复培' }]
         },
 
@@ -80,8 +104,34 @@ export default {
       ]
     }
   },
+  created() {},
+  mounted() {
+    this.$watch('value', val => {
+      if (val) {
+        this.getJoinInfo()
+      }
+    })
+  },
   computed: {},
   methods: {
+    async getJoinInfo() {
+      this.loadingData = true
+      const result = await getApply(this.studentId)
+      const form = this.$refs.form
+      form.setData({
+        ...result
+      })
+      this.loadingData = false
+    },
+    async saveJoinInfo() {
+      this.validate(async values => {
+        this.loading = true
+        await studentApply({ ...values, studentId: this.studentId })
+        this.loading = false
+        this.handleCancel()
+        this.$emit('update')
+      })
+    },
     validate(callback) {
       const form = this.$refs.form
       form.validate(data => {
@@ -92,6 +142,13 @@ export default {
     resetForm() {
       const form = this.$refs.form
       form.reset()
+    },
+    handleOk() {
+      this.saveJoinInfo()
+    },
+    handleCancel() {
+      this.$emit('change', false)
+      this.resetForm()
     }
   }
 }
