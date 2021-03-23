@@ -98,6 +98,9 @@
         showPagination="auto"
         :scroll="{ x: 1500 }"
       >
+        <span slot="graduateTime" slot-scope="text">
+          {{ text | moment('YYYY-MM-DD') }}
+        </span>
         <span slot="action" slot-scope="text, record">
           <template>
             <a v-action:T036 @click="handleModify(record, 'BaseInfo')">基本信息</a>
@@ -158,7 +161,7 @@ const columns = [
   { title: '年龄', dataIndex: 'age', width: 70 },
   { title: '毕业院校', dataIndex: 'graduateSchool', width: 150 },
   { title: '专业', dataIndex: 'major', width: 140 },
-  { title: '毕业时间', dataIndex: 'graduateTime', width: 190 },
+  { title: '毕业时间', dataIndex: 'graduateTime', width: 190, scopedSlots: { customRender: 'graduateTime' } },
   { title: '操作', dataIndex: 'action', width: 270, fixed: 'right', scopedSlots: { customRender: 'action' } }
 ]
 

@@ -107,6 +107,15 @@
         showPagination="auto"
         :scroll="{ x: 1500 }"
       >
+        <span slot="gender" slot-scope="text, record">
+          {{ record['genderDesc'] || '' }}
+        </span>
+        <span slot="birth" slot-scope="text">
+          {{ text | moment('YYYY-MM-DD') }}
+        </span>
+        <span slot="location" slot-scope="text">
+          {{ text[0] && text[0].desc }} {{ text[1] && text[1].desc }} {{ text[2] && text[2].desc }}
+        </span>
         <span slot="action" slot-scope="text, record">
           <template>
             <a v-action:T054 @click="handleModify(record, 'BaseInfo')">基本信息</a>
@@ -164,13 +173,13 @@ import CreateForm from './components/CreateForm'
 const columns = [
   { title: '学号', dataIndex: 'studentNo', width: 100 },
   { title: '姓名', dataIndex: 'studentName', width: 100 },
-  { title: '性别', dataIndex: 'gender', width: 100 },
-  { title: '出生日期', dataIndex: 'birthDay', width: 100 },
+  { title: '性别', dataIndex: 'gender', width: 100, scopedSlots: { customRender: 'gender' } },
+  { title: '出生日期', dataIndex: 'birthDay', width: 140, scopedSlots: { customRender: 'birth' } },
   { title: '身份证号', dataIndex: 'idNumber', width: 220 },
   { title: '电话号', dataIndex: 'phone', width: 140 },
   { title: '毕业院校', dataIndex: 'graduateSchool', width: 150 },
   { title: '职业', dataIndex: 'profession', width: 140 },
-  { title: '所属省市', dataIndex: 'location', width: 190 },
+  { title: '所属省市', dataIndex: 'location', width: 190, scopedSlots: { customRender: 'location' } },
   { title: '操作', dataIndex: 'action', width: 280, fixed: 'right', scopedSlots: { customRender: 'action' } }
 ]
 
