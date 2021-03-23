@@ -150,7 +150,7 @@ const user = {
         //   })
         //   .finally(() => {})
         commit('RESET_DATA')
-        commit('permission/RSET_ROUTERS')
+        commit('RSET_ROUTERS', null, { root: true })
         resolve()
       })
     }
