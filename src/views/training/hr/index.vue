@@ -349,7 +349,7 @@ export default {
       })
     },
     async downLoad() {
-      await downLoadExcel('S001')
+      await downLoadExcel('S005')
     }
   }
 }
