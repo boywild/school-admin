@@ -6,57 +6,77 @@
           <a-row :gutter="48">
             <a-col :md="8" :sm="24">
               <a-form-item label="学生姓名">
-                <a-input v-model="queryParam.id" placeholder="请输入学生姓名" />
+                <a-input v-model="queryParam.studentName" placeholder="请输入学生姓名" />
               </a-form-item>
             </a-col>
             <a-col :md="8" :sm="24">
               <a-form-item label="证件号码">
-                <a-input v-model="queryParam.status" placeholder="请输入证件号码" />
+                <a-input v-model="queryParam.idNumber" placeholder="请输入证件号码" />
               </a-form-item>
             </a-col>
             <template v-if="advanced">
               <a-col :md="8" :sm="24">
                 <a-form-item label="入学批次">
-                  <a-input v-model="queryParam.callNo" placeholder="请输入入学批次" style="width: 100%" />
+                  <a-input v-model="queryParam.entranceDate" placeholder="请输入入学批次" style="width: 100%" />
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="渠道来源">
-                  <a-input v-model="queryParam.callNo" placeholder="请输入渠道来源" style="width: 100%" />
+                  <a-select v-model="queryParam.StudentSourceTypeEnum" placeholder="请选择渠道来源">
+                    <a-select-option
+                      :value="item.code"
+                      v-for="(item, index) in dict.StudentApplyLevel2Enum"
+                      :key="index"
+                      >{{ item.desc }}</a-select-option
+                    >
+                  </a-select>
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="报考工种">
-                  <a-input v-model="queryParam.useStatus" placeholder="请输报考工种" style="width: 100%" />
+                  <a-select v-model="queryParam.workIndustry" placeholder="请选择报考工种">
+                    <a-select-option
+                      :value="item.code"
+                      v-for="(item, index) in dict.StudentApplyLevel2Enum"
+                      :key="index"
+                      >{{ item.desc }}</a-select-option
+                    >
+                  </a-select>
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="报考层次">
-                  <a-select v-model="queryParam.cc" placeholder="请选择报考层次">
-                    <a-select-option :value="item.code" v-for="(item, index) in STUDY_LEVEL_ENMU2" :key="index">{{
-                      item.desc
-                    }}</a-select-option>
+                  <a-select v-model="queryParam.studentApplyLevel" placeholder="请选择报考层次">
+                    <a-select-option
+                      :value="item.code"
+                      v-for="(item, index) in dict.StudentApplyLevel2Enum"
+                      :key="index"
+                      >{{ item.desc }}</a-select-option
+                    >
                   </a-select>
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="报考时间">
-                  <a-input v-model="queryParam.useStatus" placeholder="请输入报考时间" style="width: 100%" />
+                  <a-input v-model="queryParam.applyTime" placeholder="请输入报考时间" style="width: 100%" />
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="授课方式">
-                  <a-select v-model="queryParam.skfs" placeholder="请选择授课方式">
-                    <a-select-option :value="item.code" v-for="(item, index) in TEACHMETHOD_ENMU" :key="index">{{
-                      item.desc
-                    }}</a-select-option>
+                  <a-select v-model="queryParam.LessonStyleEnum" placeholder="请选择授课方式">
+                    <a-select-option
+                      :value="item.code"
+                      v-for="(item, index) in dict.StudentApplyLevel2Enum"
+                      :key="index"
+                      >{{ item.desc }}</a-select-option
+                    >
                   </a-select>
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="首次培训/复培">
-                  <a-select v-model="queryParam.ms" placeholder="请选择首次培训/复培">
-                    <a-select-option :value="item.code" v-for="(item, index) in YESORNO_ENMU" :key="index">{{
+                  <a-select v-model="queryParam.newTrainTimesFlag" placeholder="请选择首次培训/复培">
+                    <a-select-option :value="item.code" v-for="(item, index) in dict.YesOrNoEnum" :key="index">{{
                       item.desc
                     }}</a-select-option>
                   </a-select>
@@ -64,12 +84,12 @@
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="招生老师">
-                  <a-input v-model="queryParam.km" placeholder="请选择招生老师" style="width: 100%" />
+                  <a-input v-model="queryParam.principalTeacher" placeholder="请选择招生老师" style="width: 100%" />
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="班主任">
-                  <a-input v-model="queryParam.useStatus" placeholder="请输入班主任" style="width: 100%" />
+                  <a-input v-model="queryParam.headTeacher" placeholder="请输入班主任" style="width: 100%" />
                 </a-form-item>
               </a-col>
             </template>
@@ -142,7 +162,7 @@
 
 <script>
 // import moment from 'moment'
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import { STable, Ellipsis } from '@/components'
 import BaseInfo from './components/BaseInfo'
 import ImgInfo from './components/ImgInfo'
@@ -248,6 +268,9 @@ export default {
     this.StudentSourceTypeEnum()
   },
   computed: {
+    ...mapState({
+      dict: state => state.dict.dict
+    }),
     rowSelection() {
       return {
         selectedRowKeys: this.selectedRowKeys,

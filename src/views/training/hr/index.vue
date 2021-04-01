@@ -22,29 +22,49 @@
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="渠道来源">
-                  <a-input v-model="queryParam.sourceType" placeholder="请输入渠道来源" style="width: 100%" />
+                  <a-select v-model="queryParam.StudentSourceTypeEnum" placeholder="请选择渠道来源">
+                    <a-select-option
+                      :value="item.code"
+                      v-for="(item, index) in dict.StudentApplyLevel2Enum"
+                      :key="index"
+                      >{{ item.desc }}</a-select-option
+                    >
+                  </a-select>
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="报考工种">
-                  <a-input v-model="queryParam.workIndustry" placeholder="请输入报考工种" style="width: 100%" />
+                  <a-select v-model="queryParam.workIndustry" placeholder="请选择报考工种">
+                    <a-select-option
+                      :value="item.code"
+                      v-for="(item, index) in dict.StudentApplyLevel2Enum"
+                      :key="index"
+                      >{{ item.desc }}</a-select-option
+                    >
+                  </a-select>
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="报考层次">
                   <a-select v-model="queryParam.studentApplyLevel" placeholder="请选择报考层次">
-                    <a-select-option :value="item.code" v-for="(item, index) in STUDY_LEVEL_ENMU2" :key="index">{{
-                      item.desc
-                    }}</a-select-option>
+                    <a-select-option
+                      :value="item.code"
+                      v-for="(item, index) in dict.StudentApplyLevel2Enum"
+                      :key="index"
+                      >{{ item.desc }}</a-select-option
+                    >
                   </a-select>
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="授课方式">
-                  <a-select v-model="queryParam.lessonStyle" placeholder="请选择授课方式">
-                    <a-select-option :value="item.code" v-for="(item, index) in TEACHMETHOD_ENMU" :key="index">{{
-                      item.desc
-                    }}</a-select-option>
+                  <a-select v-model="queryParam.LessonStyleEnum" placeholder="请选择授课方式">
+                    <a-select-option
+                      :value="item.code"
+                      v-for="(item, index) in dict.StudentApplyLevel2Enum"
+                      :key="index"
+                      >{{ item.desc }}</a-select-option
+                    >
                   </a-select>
                 </a-form-item>
               </a-col>
