@@ -6,28 +6,28 @@
           <a-row :gutter="48">
             <a-col :md="8" :sm="24">
               <a-form-item label="学生姓名">
-                <a-input v-model="queryParam.id" placeholder="请输入学生姓名" />
+                <a-input v-model="queryParam.studentName" placeholder="请输入学生姓名" />
               </a-form-item>
             </a-col>
             <a-col :md="8" :sm="24">
               <a-form-item label="证件号码">
-                <a-input v-model="queryParam.status" placeholder="请输入证件号码" />
+                <a-input v-model="queryParam.idNumber" placeholder="请输入证件号码" />
               </a-form-item>
             </a-col>
             <template v-if="advanced">
               <a-col :md="8" :sm="24">
                 <a-form-item label="入学批次">
-                  <a-input v-model="queryParam.callNo" placeholder="请输入入学批次" style="width: 100%" />
+                  <a-input v-model="queryParam.entranceDate" placeholder="请输入入学批次" style="width: 100%" />
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="录入平台">
-                  <a-input v-model="queryParam.lupt" placeholder="请输入录入平台" style="width: 100%" />
+                  <a-input v-model="queryParam.admitPlatform" placeholder="请输入录入平台" style="width: 100%" />
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="学生来源">
-                  <a-select v-model="queryParam.from" placeholder="请选择学生来源">
+                  <a-select v-model="queryParam.sourceType" placeholder="请选择学生来源">
                     <a-select-option :value="item.code" v-for="(item, index) in STUDENT_FROM_ENMU" :key="index">{{
                       item.desc
                     }}</a-select-option>
@@ -36,31 +36,31 @@
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="负责人">
-                  <a-input v-model="queryParam.useStatus" placeholder="请输负责人" style="width: 100%" />
+                  <a-input v-model="queryParam.principalGuy" placeholder="请输负责人" style="width: 100%" />
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="学校负责老师">
-                  <a-input v-model="queryParam.ren" placeholder="请输入学校负责老师" style="width: 100%" />
+                  <a-input v-model="queryParam.dutyTeacher" placeholder="请输入学校负责老师" style="width: 100%" />
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="所报层次">
-                  <a-select v-model="queryParam.cc" placeholder="请选择所报层次">
+                  <a-select v-model="queryParam.studentApplyLevel" placeholder="请选择所报层次">
                     <a-select-option :value="item.code" v-for="(item, index) in STUDY_LEVEL_ENMU" :key="index">{{
                       item.desc
                     }}</a-select-option>
                   </a-select>
                 </a-form-item>
               </a-col>
-              <a-col :md="8" :sm="24">
+              <!-- <a-col :md="8" :sm="24">
                 <a-form-item label="所报院校">
                   <a-input v-model="queryParam.useStatus" placeholder="请输入所报院校" style="width: 100%" />
                 </a-form-item>
-              </a-col>
+              </a-col> -->
               <a-col :md="8" :sm="24">
                 <a-form-item label="所报专业">
-                  <a-input v-model="queryParam.useStatus" placeholder="请输入所报专业" style="width: 100%" />
+                  <a-input v-model="queryParam.applyMajor" placeholder="请输入所报专业" style="width: 100%" />
                 </a-form-item>
               </a-col>
             </template>
