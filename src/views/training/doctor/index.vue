@@ -6,37 +6,33 @@
           <a-row :gutter="48">
             <a-col :md="8" :sm="24">
               <a-form-item label="学生姓名">
-                <a-input v-model="queryParam.id" placeholder="请输入学生姓名" />
+                <a-input v-model="queryParam.studentName" placeholder="请输入学生姓名" />
               </a-form-item>
             </a-col>
             <a-col :md="8" :sm="24">
               <a-form-item label="证件号码">
-                <a-input v-model="queryParam.status" placeholder="请输入证件号码" />
+                <a-input v-model="queryParam.idNumber" placeholder="请输入证件号码" />
               </a-form-item>
             </a-col>
             <template v-if="advanced">
               <a-col :md="8" :sm="24">
                 <a-form-item label="入学批次">
-                  <a-input v-model="queryParam.callNo" placeholder="请输入入学批次" style="width: 100%" />
+                  <a-input v-model="queryParam.entranceDate" placeholder="请输入入学批次" style="width: 100%" />
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="渠道来源">
-                  <a-input v-model="queryParam.callNoSS" placeholder="请输入渠道来源" style="width: 100%" />
+                  <a-input v-model="queryParam.sourceType" placeholder="请输入渠道来源" style="width: 100%" />
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
-                <a-form-item label="报名">
-                  <a-select v-model="queryParam.bm" placeholder="请选择所报层次">
-                    <a-select-option :value="item.code" v-for="(item, index) in TRAINING_ENMU" :key="index">{{
-                      item.desc
-                    }}</a-select-option>
-                  </a-select>
+                <a-form-item label="报考工种">
+                  <a-input v-model="queryParam.workIndustry" placeholder="请输入报考工种" style="width: 100%" />
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="报考层次">
-                  <a-select v-model="queryParam.cc" placeholder="请选择报考层次">
+                  <a-select v-model="queryParam.studentApplyLevel" placeholder="请选择报考层次">
                     <a-select-option :value="item.code" v-for="(item, index) in STUDY_LEVEL_ENMU2" :key="index">{{
                       item.desc
                     }}</a-select-option>
@@ -45,7 +41,7 @@
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="授课方式">
-                  <a-select v-model="queryParam.skfs" placeholder="请选择授课方式">
+                  <a-select v-model="queryParam.lessonStyle" placeholder="请选择授课方式">
                     <a-select-option :value="item.code" v-for="(item, index) in TEACHMETHOD_ENMU" :key="index">{{
                       item.desc
                     }}</a-select-option>
@@ -54,7 +50,7 @@
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="班型">
-                  <a-select v-model="queryParam.bx" placeholder="请选择班型">
+                  <a-select v-model="queryParam.vipClassFlag" placeholder="请选择班型">
                     <a-select-option :value="item.code" v-for="(item, index) in CLASSTYPE_ENMU" :key="index">{{
                       item.desc
                     }}</a-select-option>
@@ -63,12 +59,12 @@
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="招生老师">
-                  <a-input v-model="queryParam.zsls" placeholder="请输入招生老师" style="width: 100%" />
+                  <a-input v-model="queryParam.principalTeacher" placeholder="请输入招生老师" style="width: 100%" />
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="班主任">
-                  <a-input v-model="queryParam.bzr" placeholder="请输入班主任" style="width: 100%" />
+                  <a-input v-model="queryParam.headTeacher" placeholder="请输入班主任" style="width: 100%" />
                 </a-form-item>
               </a-col>
             </template>
