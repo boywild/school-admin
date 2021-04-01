@@ -6,12 +6,12 @@
           <a-row :gutter="48">
             <a-col :md="8" :sm="24">
               <a-form-item label="学生姓名">
-                <a-input v-model="queryParam.id" placeholder="请输入学生姓名" />
+                <a-input v-model="queryParam.studentName" placeholder="请输入学生姓名" />
               </a-form-item>
             </a-col>
             <a-col :md="8" :sm="24">
               <a-form-item label="证件号码">
-                <a-input v-model="queryParam.status" placeholder="请输入证件号码" />
+                <a-input v-model="queryParam.idNumber" placeholder="请输入证件号码" />
               </a-form-item>
             </a-col>
             <template v-if="advanced"> </template>
