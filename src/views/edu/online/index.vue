@@ -17,15 +17,18 @@
             <template v-if="advanced">
               <a-col :md="8" :sm="24">
                 <a-form-item label="入学批次">
-                  <a-input v-model="queryParam.entranceDate" placeholder="请输入入学批次" style="width: 100%" />
+                  <a-date-picker v-model="queryParam.entranceDate" placeholder="请选择入学批次" style="width: 100%" />
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="学生来源">
                   <a-select v-model="queryParam.sourceType" placeholder="请选择学生来源">
-                    <a-select-option :value="item.code" v-for="(item, index) in STUDENT_FROM_ENMU" :key="index">{{
-                      item.desc
-                    }}</a-select-option>
+                    <a-select-option
+                      :value="item.code"
+                      v-for="(item, index) in dict.StudentSourceTypeEnum"
+                      :key="index"
+                      >{{ item.desc }}</a-select-option
+                    >
                   </a-select>
                 </a-form-item>
               </a-col>
@@ -42,9 +45,12 @@
               <a-col :md="8" :sm="24">
                 <a-form-item label="所报层次">
                   <a-select v-model="queryParam.studentApplyLevel" placeholder="请选择所报层次">
-                    <a-select-option :value="item.code" v-for="(item, index) in STUDY_LEVEL_ENMU" :key="index">{{
-                      item.desc
-                    }}</a-select-option>
+                    <a-select-option
+                      :value="item.code"
+                      v-for="(item, index) in dict.StudentApplyLevelEnum"
+                      :key="index"
+                      >{{ item.desc }}</a-select-option
+                    >
                   </a-select>
                 </a-form-item>
               </a-col>
@@ -71,7 +77,7 @@
               <a-col :md="8" :sm="24">
                 <a-form-item label="是否报考统考">
                   <a-select v-model="queryParam.applyUnifyFlag" placeholder="请选择学位成绩">
-                    <a-select-option :value="item.code" v-for="(item, index) in YESORNO_ENMU" :key="index">{{
+                    <a-select-option :value="item.code" v-for="(item, index) in dict.YesOrNoEnum" :key="index">{{
                       item.desc
                     }}</a-select-option>
                   </a-select>
@@ -80,7 +86,7 @@
               <a-col :md="8" :sm="24">
                 <a-form-item label="统考是否我司处理">
                   <a-select v-model="queryParam.unifyDealFlag" placeholder="请选择毕业信息采集">
-                    <a-select-option :value="item.code" v-for="(item, index) in YESORNO_ENMU" :key="index">{{
+                    <a-select-option :value="item.code" v-for="(item, index) in dict.YesOrNoEnum" :key="index">{{
                       item.desc
                     }}</a-select-option>
                   </a-select>

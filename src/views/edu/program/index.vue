@@ -17,20 +17,27 @@
             <template v-if="advanced">
               <a-col :md="8" :sm="24">
                 <a-form-item label="入学批次">
-                  <a-input v-model="queryParam.entranceDate" placeholder="请输入入学批次" style="width: 100%" />
+                  <a-date-picker v-model="queryParam.entranceDate" placeholder="请选择入学批次" style="width: 100%" />
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="录入平台">
-                  <a-input v-model="queryParam.admitPlatform" placeholder="请输入录入平台" style="width: 100%" />
+                  <a-select v-model="queryParam.admitPlatform" placeholder="请选择录入平台">
+                    <a-select-option :value="item.code" v-for="(item, index) in dict.AdmitPlatformEnum" :key="index">{{
+                      item.desc
+                    }}</a-select-option>
+                  </a-select>
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="学生来源">
                   <a-select v-model="queryParam.sourceType" placeholder="请选择学生来源">
-                    <a-select-option :value="item.code" v-for="(item, index) in STUDENT_FROM_ENMU" :key="index">{{
-                      item.desc
-                    }}</a-select-option>
+                    <a-select-option
+                      :value="item.code"
+                      v-for="(item, index) in dict.StudentSourceTypeEnum"
+                      :key="index"
+                      >{{ item.desc }}</a-select-option
+                    >
                   </a-select>
                 </a-form-item>
               </a-col>
@@ -47,9 +54,12 @@
               <a-col :md="8" :sm="24">
                 <a-form-item label="所报层次">
                   <a-select v-model="queryParam.studentApplyLevel" placeholder="请选择所报层次">
-                    <a-select-option :value="item.code" v-for="(item, index) in STUDY_LEVEL_ENMU" :key="index">{{
-                      item.desc
-                    }}</a-select-option>
+                    <a-select-option
+                      :value="item.code"
+                      v-for="(item, index) in dict.StudentApplyLevelEnum"
+                      :key="index"
+                      >{{ item.desc }}</a-select-option
+                    >
                   </a-select>
                 </a-form-item>
               </a-col>

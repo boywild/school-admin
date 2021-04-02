@@ -33,8 +33,8 @@ const errorHandler = error => {
     }
     if (error.response.status === 401 && !(data.result && data.result.isLogin)) {
       notification.error({
-        message: 'Unauthorized',
-        description: 'Authorization verification failed'
+        message: '登录超时',
+        description: '登录超时，请重新登录'
       })
       console.log(token)
       if (token) {
