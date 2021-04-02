@@ -196,11 +196,19 @@ This project exists thanks to all the people who contribute.
 
 ## 搜索
 ### 成人教育
-入学批次 所报院校 所报专业 是否免试 是否发放录取通知书 是否报考学位 毕业信息采集 是否延期毕业 论文性质
+入学批次-entranceDate/所报院校-applySchool/所报专业-applyMajor/是否免试-testFree/是否报考学位-wantDegreeFlag/毕业信息采集-graduateGather/是否延期毕业-delayGraduateFlag/论文性质-paper
 
 ### 网络教育
-入学批次 负责人 学校负责老师 所报层次 所报院校 所报专业 是否报考统考 统考是否我司处理
+入学批次-entranceDate/负责人-principalGuy/学校负责老师-principalTeacher/所报层次-studentApplyLevel/所报院校-applySchool/所报专业-applyMajor/是否报考统考-applyUnifyFlag/统考是否我司处理-unifyDealFlag
 
 ### 开发大学
-入学批次 录入平台 学生来源 负责人 学校负责老师 所报层次 所报专业
+入学批次-entranceDate/录入平台-admitPlatform/学生来源-sourceType/负责人-principalGuy/学校负责老师-principalTeacher/所报层次-studentApplyLevel/所报专业-applyMajor
+
+### 人社局培训/医考培训/安检培训/质检培训/途胜教育
+入学批次-entranceDate 渠道来源-sourceType 报考工种-workIndustry 报考层次-studentApplyLevel 报考时间-applyTime 授课方式 首次培训/复培 招生老师/班主任
+
+
+
+
+
 

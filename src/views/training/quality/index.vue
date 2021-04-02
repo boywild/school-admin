@@ -17,15 +17,15 @@
             <template v-if="advanced">
               <a-col :md="8" :sm="24">
                 <a-form-item label="入学批次">
-                  <a-input v-model="queryParam.entranceDate" placeholder="请输入入学批次" style="width: 100%" />
+                  <a-date-picker v-model="queryParam.entranceDate" placeholder="请选择入学批次" style="width: 100%" />
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="渠道来源">
-                  <a-select v-model="queryParam.StudentSourceTypeEnum" placeholder="请选择渠道来源">
+                  <a-select v-model="queryParam.sourceType" placeholder="请选择渠道来源">
                     <a-select-option
                       :value="item.code"
-                      v-for="(item, index) in dict.StudentApplyLevel2Enum"
+                      v-for="(item, index) in dict.StudentSourceTypeEnum"
                       :key="index"
                       >{{ item.desc }}</a-select-option
                     >
@@ -63,10 +63,10 @@
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="授课方式">
-                  <a-select v-model="queryParam.LessonStyleEnum" placeholder="请选择授课方式">
+                  <a-select v-model="queryParam.lessonStyle" placeholder="请选择授课方式">
                     <a-select-option
                       :value="item.code"
-                      v-for="(item, index) in dict.StudentApplyLevel2Enum"
+                      v-for="(item, index) in dict.LessonStyleEnum"
                       :key="index"
                       >{{ item.desc }}</a-select-option
                     >

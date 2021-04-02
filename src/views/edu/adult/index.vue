@@ -82,7 +82,7 @@
                   <a-input v-model="queryParam.useStatus" placeholder="请输入学考试总分数" style="width: 100%" />
                 </a-form-item>
               </a-col> -->
-              <a-col :md="8" :sm="24">
+              <!-- <a-col :md="8" :sm="24">
                 <a-form-item label="发放录取通知书">
                   <a-select v-model="queryParam.ff" placeholder="请选择发放录取通知书">
                     <a-select-option :value="item.code" v-for="(item, index) in dict.YesOrNoEnum" :key="index">{{
@@ -90,7 +90,7 @@
                     }}</a-select-option>
                   </a-select>
                 </a-form-item>
-              </a-col>
+              </a-col> -->
               <a-col :md="8" :sm="24">
                 <a-form-item label="录取结果">
                   <a-input v-model="queryParam.admitFlag" placeholder="请输入录取结果" style="width: 100%" />
