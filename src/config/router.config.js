@@ -397,6 +397,13 @@ export const asyncRouterMap = [
             name: 'sysRole',
             component: () => import(/* webpackChunkName: "sysRole" */ '@/views/sys/role/index'),
             meta: { title: '角色列表', permission: ['S012'] }
+          },
+          {
+            path: '/sys/import',
+            name: 'sysImport',
+            hidden: true,
+            component: () => import(/* webpackChunkName: "sysImport" */ '@/views/sys/import/index'),
+            meta: { title: '导入', permission: ['S012'] }
           }
         ]
       },

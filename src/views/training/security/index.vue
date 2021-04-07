@@ -114,6 +114,7 @@
         <a-button type="primary" icon="plus" v-action:T042 @click="handleAdd">新建</a-button>
         <a-button type="danger" icon="delete" v-action:T043 @click="deleteStudent">删除</a-button>
         <a-button type="primary" ghost icon="download" v-action:T044 @click="downLoad">导出数据</a-button>
+        <a-button type="primary" ghost icon="upload" v-action:T044 @click="importExcel">导入数据</a-button>
       </div>
 
       <s-table
@@ -369,6 +370,9 @@ export default {
     },
     async downLoad() {
       await downLoadExcel('S006')
+    },
+    importExcel() {
+      this.$router.push({ name: 'sysImport', query: { applyType: 'S006' } })
     }
   }
 }

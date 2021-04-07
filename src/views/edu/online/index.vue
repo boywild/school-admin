@@ -74,24 +74,24 @@
                   </a-select>
                 </a-form-item>
               </a-col> -->
-              <a-col :md="8" :sm="24">
+              <!-- <a-col :md="8" :sm="24">
                 <a-form-item label="是否报考统考">
-                  <a-select v-model="queryParam.applyUnifyFlag" placeholder="请选择学位成绩">
+                  <a-select v-model="queryParam.applyUnifyFlag" placeholder="请选择是否报考统考">
                     <a-select-option :value="item.code" v-for="(item, index) in dict.YesOrNoEnum" :key="index">{{
                       item.desc
                     }}</a-select-option>
                   </a-select>
                 </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
+              </a-col> -->
+              <!-- <a-col :md="8" :sm="24">
                 <a-form-item label="统考是否我司处理">
-                  <a-select v-model="queryParam.unifyDealFlag" placeholder="请选择毕业信息采集">
+                  <a-select v-model="queryParam.unifyDealFlag" placeholder="请选择统考是否我司处理">
                     <a-select-option :value="item.code" v-for="(item, index) in dict.YesOrNoEnum" :key="index">{{
                       item.desc
                     }}</a-select-option>
                   </a-select>
                 </a-form-item>
-              </a-col>
+              </a-col> -->
             </template>
             <a-col :md="(!advanced && 8) || 24" :sm="24" v-if="$auth('T023')">
               <span
@@ -114,6 +114,7 @@
         <a-button type="primary" icon="plus" v-action:T024 @click="handleAdd">新建</a-button>
         <a-button type="danger" icon="delete" v-action:T025 @click="deleteStudent">删除</a-button>
         <a-button type="primary" ghost icon="download" v-action:T026 @click="downLoad">导出数据</a-button>
+        <a-button type="primary" ghost icon="upload" v-action:T026 @click="importExcel">导入数据</a-button>
       </div>
 
       <s-table
@@ -324,6 +325,9 @@ export default {
     },
     async downLoad() {
       await downLoadExcel('S003')
+    },
+    importExcel() {
+      this.$router.push({ name: 'sysImport', query: { applyType: 'S003' } })
     }
   }
 }

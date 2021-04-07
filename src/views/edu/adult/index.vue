@@ -96,7 +96,7 @@
                   <a-input v-model="queryParam.admitFlag" placeholder="请输入录取结果" style="width: 100%" />
                 </a-form-item>
               </a-col>
-              <a-col :md="8" :sm="24">
+              <!-- <a-col :md="8" :sm="24">
                 <a-form-item label="是否报考学位">
                   <a-select v-model="queryParam.wantDegreeFlag" placeholder="请选择是否报考学位">
                     <a-select-option :value="item.code" v-for="(item, index) in dict.YesOrNoEnum" :key="index">{{
@@ -104,7 +104,7 @@
                     }}</a-select-option>
                   </a-select>
                 </a-form-item>
-              </a-col>
+              </a-col> -->
               <a-col :md="8" :sm="24">
                 <a-form-item label="学位成绩">
                   <a-select v-model="queryParam.passStatus" placeholder="请选择学位成绩">
@@ -114,7 +114,7 @@
                   </a-select>
                 </a-form-item>
               </a-col>
-              <a-col :md="8" :sm="24">
+              <!-- <a-col :md="8" :sm="24">
                 <a-form-item label="毕业信息采集">
                   <a-select v-model="queryParam.graduateGather" placeholder="请选择毕业信息采集">
                     <a-select-option :value="item.code" v-for="(item, index) in dict.GraduateGatherEnum" :key="index">{{
@@ -122,8 +122,8 @@
                     }}</a-select-option>
                   </a-select>
                 </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
+              </a-col> -->
+              <!-- <a-col :md="8" :sm="24">
                 <a-form-item label="是否延期毕业">
                   <a-select v-model="queryParam.delayGraduateFlag" placeholder="请选择是否延期毕业">
                     <a-select-option :value="item.code" v-for="(item, index) in dict.YesOrNoEnum" :key="index">{{
@@ -131,8 +131,8 @@
                     }}</a-select-option>
                   </a-select>
                 </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
+              </a-col> -->
+              <!-- <a-col :md="8" :sm="24">
                 <a-form-item label="论文性质">
                   <a-select v-model="queryParam.paper" placeholder="请选择论文性质">
                     <a-select-option :value="item.code" v-for="(item, index) in dict.StudentPaperEnum" :key="index">{{
@@ -140,7 +140,7 @@
                     }}</a-select-option>
                   </a-select>
                 </a-form-item>
-              </a-col>
+              </a-col> -->
             </template>
             <a-col :md="(!advanced && 8) || 24" :sm="24" v-if="$auth('T001')">
               <span
@@ -163,6 +163,7 @@
         <a-button type="primary" icon="plus" v-action:T002 @click="handleAdd">新建</a-button>
         <a-button type="danger" icon="delete" v-action:T003 @click="deleteStudent">删除</a-button>
         <a-button type="primary" ghost icon="download" v-action:T004 @click="downLoad">导出数据</a-button>
+        <a-button type="primary" ghost icon="upload" v-action:T004 @click="importExcel">导入数据</a-button>
       </div>
 
       <s-table
@@ -411,6 +412,9 @@ export default {
     },
     async downLoad() {
       await downLoadExcel('S001')
+    },
+    importExcel() {
+      this.$router.push({ name: 'sysImport', query: { applyType: 'S001' } })
     }
   }
 }
