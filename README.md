@@ -205,7 +205,7 @@ This project exists thanks to all the people who contribute.
 入学批次-entranceDate/录入平台-admitPlatform/学生来源-sourceType/负责人-principalGuy/学校负责老师-principalTeacher/所报层次-studentApplyLevel/所报专业-applyMajor
 
 ### 人社局培训/医考培训/安检培训/质检培训/途胜教育
-入学批次-entranceDate 渠道来源-sourceType 报考工种-workIndustry 报考层次-studentApplyLevel 报考时间-applyTime 授课方式 首次培训/复培 招生老师/班主任
+入学批次-entranceDate 渠道来源-sourceType 报考工种-workIndustry 报考层次-studentApplyLevel 报考时间-applyTime 授课方式-lessonStyle 首次培训/复培-newTrainTimesFlag 招生老师-principalTeacher 班主任-headTeacher
 
 
 

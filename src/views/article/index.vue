@@ -58,7 +58,7 @@
         showPagination="auto"
       >
         <span slot="crtDateTime" slot-scope="text">
-          {{ text | moment }}
+          {{ text | moment('YYYY-MM-DD') }}
         </span>
         <span slot="clickCnt" slot-scope="text">
           {{ text || 0 }}

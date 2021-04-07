@@ -54,15 +54,19 @@ export default {
       const formData = new FormData()
       formData.append('file', file.file)
       // formData.append('applyType', 'S001')
-      const { data } = await uploadExcel(applyType || 'S001', formData)
-      this.fileList = [
-        {
-          uid: file.file.uid,
-          name: file.file.name,
-          status: 'done',
-          url: data
-        }
-      ]
+      try {
+        await uploadExcel(applyType || 'S001', formData)
+        this.$message.info('导入成功')
+        this.fileList = [
+          {
+            uid: file.file.uid,
+            name: file.file.name,
+            status: 'done'
+          }
+        ]
+      } catch (e) {
+        this.$message.error('导入失败')
+      }
     }
   }
 }

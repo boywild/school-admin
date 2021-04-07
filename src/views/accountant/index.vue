@@ -63,7 +63,7 @@
         :scroll="{ x: 1500 }"
       >
         <span slot="registerDateTime" slot-scope="text">
-          {{ text | moment }}
+          {{ text | moment('YYYY-MM-DD') }}
         </span>
       </s-table>
     </a-card>

@@ -178,7 +178,7 @@
         :scroll="{ x: 1500 }"
       >
         <span slot="graduateTime" slot-scope="text">
-          {{ text | moment }}
+          {{ text | moment('YYYY-MM-DD') }}
         </span>
         <span slot="action" slot-scope="text, record">
           <template>

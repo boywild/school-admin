@@ -75,7 +75,7 @@
           <a-tag :color="text ? 'blue' : 'orange'">{{ text ? '启用' : '禁用' }}</a-tag>
         </span>
         <span slot="createTime" slot-scope="text">
-          {{ text | moment }}
+          {{ text | moment('YYYY-MM-DD') }}
         </span>
         <span slot="action" slot-scope="text, record">
           <template>
