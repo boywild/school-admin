@@ -329,6 +329,7 @@ export default {
     this.StudentPassEnum()
     this.LanuageEnum()
     this.StudentDegreeLevelEnum()
+    this.ScoreResultEnum()
   },
   computed: {
     ...mapState({

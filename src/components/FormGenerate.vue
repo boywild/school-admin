@@ -172,7 +172,7 @@ export default {
       this.interceptAddress.forEach(address => {
         if (data && data[address]) {
           const location = data[address]
-          data[address] = [location[0].code, location[1].code, location[2].code]
+          data[address] = location.map(ele => ele.code)
         }
       })
       this.interceptDate.forEach(date => {
