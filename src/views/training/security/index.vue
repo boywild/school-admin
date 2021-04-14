@@ -64,12 +64,9 @@
               <a-col :md="8" :sm="24">
                 <a-form-item label="授课方式">
                   <a-select v-model="queryParam.lessonStyle" placeholder="请选择授课方式">
-                    <a-select-option
-                      :value="item.code"
-                      v-for="(item, index) in dict.LessonStyleEnum"
-                      :key="index"
-                      >{{ item.desc }}</a-select-option
-                    >
+                    <a-select-option :value="item.code" v-for="(item, index) in dict.LessonStyleEnum" :key="index">{{
+                      item.desc
+                    }}</a-select-option>
                   </a-select>
                 </a-form-item>
               </a-col>
@@ -172,7 +169,7 @@ import JoinInfo from './components/JoinInfo'
 import EduTask from './components/EduTask'
 import StudyCost from './components/StudyCost'
 // import { getRoleList } from '@/api/manage'
-import { studentList } from '@/api/student'
+import { studentList, studentDel } from '@/api/student'
 import { downLoadExcel } from '@/api/sys'
 // import {
 //   STUDENT_FROM_ENMU,
@@ -360,10 +357,12 @@ export default {
         title: '是否确认删除这些数据',
         content: '请在删除前仔细确定删除数据.确认无误后点击确认按钮删除',
         onOk: async () => {
-          await new Promise((resolve, reject) => {
-            setTimeout(Math.random() > 0.5 ? resolve : reject, 1000)
-          }).catch(() => console.log('Oops errors!'))
+          await studentDel(this.selectedRowKeys)
+          // await new Promise((resolve, reject) => {
+          //   setTimeout(Math.random() > 0.5 ? resolve : reject, 1000)
+          // }).catch(() => console.log('Oops errors!'))
           await this.tableRefresh()
+          this.onSelectChange([], [])
         },
         onCancel() {}
       })
