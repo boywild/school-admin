@@ -101,7 +101,7 @@ import GraduationApply from './components/GraduationApply'
 import StudyCost from './components/StudyCost'
 // import { getRoleList } from '@/api/manage'
 // import { getStudentsList } from '@/api/students'
-import { studentList } from '@/api/student'
+import { studentList, studentDel } from '@/api/student'
 import { downLoadExcel } from '@/api/sys'
 // import {
 //   STUDENT_FROM_ENMU,
@@ -306,10 +306,12 @@ export default {
         title: '是否确认删除这些数据',
         content: '请在删除前仔细确定删除数据.确认无误后点击确认按钮删除',
         onOk: async () => {
-          await new Promise((resolve, reject) => {
-            setTimeout(Math.random() > 0.5 ? resolve : reject, 1000)
-          }).catch(() => console.log('Oops errors!'))
+          await studentDel(this.selectedRowKeys)
+          // await new Promise((resolve, reject) => {
+          //   setTimeout(Math.random() > 0.5 ? resolve : reject, 1000)
+          // }).catch(() => console.log('Oops errors!'))
           await this.tableRefresh()
+          this.onSelectChange([], [])
         },
         onCancel() {}
       })

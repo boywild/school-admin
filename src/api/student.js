@@ -2,6 +2,7 @@ import request from '@/utils/request'
 
 const studentApi = {
   StudentList: '/student/list', // 学生列表
+  StudentDel: '/student/delete', // 删除学生
 
   StudentBaseInfo: '/student/saveBase', // 基本信息-保存
   StudentGetBaseInfo: '/student/base', // 基本信息-获取
@@ -35,6 +36,16 @@ export function studentList(parameter) {
     url: studentApi.StudentList,
     method: 'post',
     data: parameter
+  })
+}
+
+// 学生-删除
+export function studentDel(studentId) {
+  console.log(studentId)
+  return request({
+    url: studentApi.StudentDel,
+    method: 'post',
+    data: studentId
   })
 }
 
